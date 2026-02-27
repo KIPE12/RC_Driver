@@ -1,5 +1,0 @@
-<map id="initExtended_Sensorless_Synchronous_Frame" name="initExtended_Sensorless_Synchronous_Frame">
-<area shape="rect" id="Node000001" title="확장 동기 좌표계 센서리스 옵저버를 초기화한다." alt="" coords="103,5,268,48"/>
-<area shape="rect" id="Node000002" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,13,55,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,28,55,29,55,24,90,26"/>
-</map>

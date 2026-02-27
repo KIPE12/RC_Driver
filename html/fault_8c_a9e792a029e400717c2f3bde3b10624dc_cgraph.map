@@ -1,5 +1,0 @@
-<map id="HardWareFault" name="HardWareFault">
-<area shape="rect" id="Node000001" title="하드웨어 고장 처리 함수" alt="" coords="5,5,114,32"/>
-<area shape="rect" id="Node000002" href="$inv_8c.html#a9013a288bba48367bf9d57702c80b1ee" title="TIM1 PWM 출력을 비활성화한다." alt="" coords="162,5,249,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,16,149,18,144,19,114,21"/>
-</map>

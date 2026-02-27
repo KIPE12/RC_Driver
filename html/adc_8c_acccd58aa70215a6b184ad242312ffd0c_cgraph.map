@@ -1,5 +1,0 @@
-<map id="MX_ADC1_Init" name="MX_ADC1_Init">
-<area shape="rect" id="Node000001" title="ADC1 초기화 (12비트, Injected 4채널, TIM2 TRGO 트리거)" alt="" coords="5,5,115,32"/>
-<area shape="rect" id="Node000002" href="$main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="오류 처리 함수" alt="" coords="163,5,264,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,16,150,18,145,19,115,21"/>
-</map>

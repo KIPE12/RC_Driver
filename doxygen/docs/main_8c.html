@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RC_Driver: Core/Src/main.c 파일 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">RC_Driver<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('main_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">main.c 파일 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>PMSM 인버터 제어 메인 진입점  
+<a href="#details">더 자세히 ...</a></p>
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;adc.h&quot;</code><br />
+<code>#include &quot;tim.h&quot;</code><br />
+<code>#include &quot;gpio.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+main.c에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c__incl.png" border="0" usemap="#a_core_2_src_2main_8c" loading="lazy" alt=""/></div>
+<map name="a_core_2_src_2main_8c" id="a_core_2_src_2main_8c">
+<area shape="rect" title="PMSM 인버터 제어 메인 진입점" alt="" coords="96,5,212,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,66,107"/>
+<area shape="poly" title=" " alt="" coords="136,34,70,74,68,69,131,31"/>
+<area shape="rect" title=" " alt="" coords="90,80,144,107"/>
+<area shape="poly" title=" " alt="" coords="150,31,132,68,128,65,145,34"/>
+<area shape="rect" title=" " alt="" coords="168,80,218,107"/>
+<area shape="poly" title=" " alt="" coords="162,30,182,67,176,66,160,35"/>
+<area shape="rect" title=" " alt="" coords="242,80,298,107"/>
+<area shape="poly" title=" " alt="" coords="175,30,239,71,234,72,174,35"/>
+</map>
+</div>
+</div>
+<p><a href="main_8c_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+함수</h2></td></tr>
+<tr class="memitem:a70af21c671abfcc773614a9a4f63d920" id="r_a70af21c671abfcc773614a9a4f63d920"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a> (void)</td></tr>
+<tr class="memdesc:a70af21c671abfcc773614a9a4f63d920"><td class="mdescLeft">&#160;</td><td class="mdescRight">시스템 클럭 설정  <br /></td></tr>
+<tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe" id="r_a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
+<tr class="memdesc:a840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">애플리케이션 진입점 (메인 함수)  <br /></td></tr>
+<tr class="memitem:a1730ffe1e560465665eb47d9264826f9" id="r_a1730ffe1e560465665eb47d9264826f9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a> (void)</td></tr>
+<tr class="memdesc:a1730ffe1e560465665eb47d9264826f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">오류 처리 함수  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+변수</h2></td></tr>
+<tr class="memitem:ab5e71ba0276929fe061bacdcc22c3335" id="r_ab5e71ba0276929fe061bacdcc22c3335"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ab5e71ba0276929fe061bacdcc22c3335">dutyCycle</a> = 0.0f</td></tr>
+<tr class="memdesc:ab5e71ba0276929fe061bacdcc22c3335"><td class="mdescLeft">&#160;</td><td class="mdescRight">RC 수신기 입력 듀티 사이클 값 [0.0, 1.0]  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>PMSM 인버터 제어 메인 진입점 </p>
+<p>STM32G474RET6 기반의 PMSM(영구자석 동기 전동기) 인버터 제어 펌웨어 메인 파일이다. 시스템 클럭, 주변장치(GPIO, ADC, TIM) 초기화 및 제어 파라미터 설정 후 무한 루프로 진입한다. 실제 제어 루프는 TIM2 인터럽트(Control())에서 실행된다.</p>
+<ul>
+<li>시스템 클럭: HSI(16MHz) + PLL → 170MHz (SYSCLK)</li>
+<li>제어 주기: 100µs (10kHz, TIM2 OC2 인터럽트)</li>
+<li>PWM 주파수: 약 20kHz (TIM1 Center-Aligned, ARR=4200, 170MHz)</li>
+</ul>
+<dl class="section author"><dt>작성자</dt><dd>HALAB_G </dd></dl>
+<dl class="section date"><dt>날짜</dt><dd>2026</dd></dl>
+<dl class="section attention"><dt>주의</dt><dd>Copyright (c) 2026 STMicroelectronics. All rights reserved. </dd></dl>
+
+<p class="definition"><a class="el" href="main_8c_source.html">main.c</a> 파일에서 정의되었습니다.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">함수 문서화</h2>
+<a id="a1730ffe1e560465665eb47d9264826f9" name="a1730ffe1e560465665eb47d9264826f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1730ffe1e560465665eb47d9264826f9">&#9670;&#160;</a></span>Error_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Error_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>오류 처리 함수 </p>
+<p>HAL API 호출 실패 시 진입하며, 인터럽트를 비활성화하고 무한 루프에서 정지한다. 디버거를 연결하면 이 위치에서 중단점을 통해 원인을 파악할 수 있다.</p>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="main_8c_source.html">main.c</a> 파일의 <a class="el" href="main_8c_source.html#l00286">286</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  287</span>{</div>
+<div class="line"><span class="lineno">  288</span>  <span class="comment">/* USER CODE BEGIN Error_Handler_Debug */</span></div>
+<div class="line"><span class="lineno">  289</span>  __disable_irq();</div>
+<div class="line"><span class="lineno">  290</span>  <span class="keywordflow">while</span> (1) { }</div>
+<div class="line"><span class="lineno">  291</span>  <span class="comment">/* USER CODE END Error_Handler_Debug */</span></div>
+<div class="line"><span class="lineno">  292</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_a1730ffe1e560465665eb47d9264826f9_icgraph.png" border="0" usemap="#amain_8c_a1730ffe1e560465665eb47d9264826f9_icgraph" loading="lazy" alt=""/></div>
+<map name="amain_8c_a1730ffe1e560465665eb47d9264826f9_icgraph" id="amain_8c_a1730ffe1e560465665eb47d9264826f9_icgraph">
+<area shape="rect" title="오류 처리 함수" alt="" coords="296,132,397,159"/>
+<area shape="rect" href="adc_8c.html#ac3139540667c403c5dfd37a99c610b1c" title="ADC1 MSP 초기화 (GPIO, 클럭, NVIC 설정)" alt="" coords="109,5,242,32"/>
+<area shape="poly" title=" " alt="" coords="324,119,290,83,247,46,226,35,225,30,249,42,294,79,329,120"/>
+<area shape="rect" href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c" title="ADC1 초기화 (12비트, Injected 4채널, TIM2 TRGO 트리거)" alt="" coords="121,56,230,83"/>
+<area shape="poly" title=" " alt="" coords="305,125,247,97,219,86,219,81,249,92,310,124"/>
+<area shape="rect" href="tim_8c.html#ac4b6b63257bb307dd93a4d5f45e39172" title="TIM15 초기화 (보조 타이머)" alt="" coords="120,107,230,133"/>
+<area shape="poly" title=" " alt="" coords="278,136,231,131,230,125,283,135"/>
+<area shape="rect" href="tim_8c.html#ad1f9d42690163f73f73e5b820c81ca14" title="TIM1 초기화 (3상 Center&#45;Aligned PWM)" alt="" coords="124,157,227,184"/>
+<area shape="poly" title=" " alt="" coords="278,156,228,166,226,161,283,154"/>
+<area shape="rect" href="tim_8c.html#a4b8ff887fd3fdf26605e35927e4ff202" title="TIM2 초기화 (제어 루프 트리거 / ADC TRGO)" alt="" coords="124,208,227,235"/>
+<area shape="poly" title=" " alt="" coords="310,165,249,198,220,210,218,205,247,194,305,168"/>
+<area shape="rect" href="main_8c.html#a70af21c671abfcc773614a9a4f63d920" title="시스템 클럭 설정" alt="" coords="103,259,248,285"/>
+<area shape="poly" title=" " alt="" coords="329,170,294,212,249,249,227,261,225,255,247,244,290,208,324,172"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,157,55,184"/>
+<area shape="poly" title=" " alt="" coords="110,92,104,97,69,128,43,158,39,156,65,124,101,93,113,88"/>
+<area shape="poly" title=" " alt="" coords="119,141,56,165,54,160,122,137"/>
+<area shape="poly" title=" " alt="" coords="106,173,56,173,54,168,110,169"/>
+<area shape="poly" title=" " alt="" coords="118,204,55,182,55,176,122,201"/>
+<area shape="poly" title=" " alt="" coords="109,252,101,249,65,217,40,187,42,182,69,214,104,245,114,252"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a840291bc02cba5474a4cb46a9b9566fe" name="a840291bc02cba5474a4cb46a9b9566fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840291bc02cba5474a4cb46a9b9566fe">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>애플리케이션 진입점 (메인 함수) </p>
+<p>다음 순서로 초기화를 수행한 뒤 무한 루프로 진입한다:</p><ol type="1">
+<li>HAL 라이브러리 초기화 (HAL_Init)</li>
+<li>시스템 클럭 설정 (SystemClock_Config)</li>
+<li>GPIO, ADC1, TIM1/TIM2/TIM15 초기화</li>
+<li>전동기 파라미터, 제어기, 옵저버 초기화</li>
+<li>ADC 인터럽트 및 TIM2 OC 인터럽트 시작</li>
+</ol>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">int</td><td>항상 0을 반환하지만 실제로는 반환되지 않는다. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>주의</dt><dd>속도 제어기 초기화 Wsc = 2π×25 rad/s, ζ = 0.707 (임계 감쇠)</dd>
+<dd>
+전류 제어기 초기화 Wcc = 2π×1000 rad/s</dd>
+<dd>
+속도 PLL 옵저버 초기화 Ws = 2π×20 rad/s</dd>
+<dd>
+확장 EEMF 센서리스 옵저버 초기화 Wc = 2π×200 rad/s</dd></dl>
+<p>ADC1 Injected 인터럽트 시작 (TIM2 TRGO 동기)</p>
+<p>TIM2 CH2 OC 인터럽트 시작. Pulse=2100, Period=16999 → 100µs 주기로 <a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a> 호출</p>
+
+<p class="definition"><a class="el" href="main_8c_source.html">main.c</a> 파일의 <a class="el" href="main_8c_source.html#l00146">146</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  147</span>{</div>
+<div class="line"><span class="lineno">  148</span>  <span class="comment">/* USER CODE BEGIN 1 */</span></div>
+<div class="line"><span class="lineno">  149</span> </div>
+<div class="line"><span class="lineno">  150</span>  <span class="comment">/* USER CODE END 1 */</span></div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>  <span class="comment">/* MCU Configuration -------------------------------------------------------*/</span></div>
+<div class="line"><span class="lineno">  153</span>  HAL_Init();</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>  <span class="comment">/* USER CODE BEGIN Init */</span></div>
+<div class="line"><span class="lineno">  156</span> </div>
+<div class="line"><span class="lineno">  157</span>  <span class="comment">/* USER CODE END Init */</span></div>
+<div class="line"><span class="lineno">  158</span> </div>
+<div class="line"><span class="lineno">  159</span>  <a class="code hl_function" href="#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a>();</div>
+<div class="line"><span class="lineno">  160</span> </div>
+<div class="line"><span class="lineno">  161</span>  <span class="comment">/* USER CODE BEGIN SysInit */</span></div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>  <span class="comment">/* USER CODE END SysInit */</span></div>
+<div class="line"><span class="lineno">  164</span> </div>
+<div class="line"><span class="lineno">  165</span>  <a class="code hl_function" href="gpio_8c.html#ac724e431d2af879252de35615be2bdea">MX_GPIO_Init</a>();</div>
+<div class="line"><span class="lineno">  166</span>  <a class="code hl_function" href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c">MX_ADC1_Init</a>();</div>
+<div class="line"><span class="lineno">  167</span>  <a class="code hl_function" href="tim_8c.html#a4b8ff887fd3fdf26605e35927e4ff202">MX_TIM2_Init</a>();</div>
+<div class="line"><span class="lineno">  168</span>  <a class="code hl_function" href="tim_8c.html#ad1f9d42690163f73f73e5b820c81ca14">MX_TIM1_Init</a>();</div>
+<div class="line"><span class="lineno">  169</span>  <a class="code hl_function" href="tim_8c.html#ac4b6b63257bb307dd93a4d5f45e39172">MX_TIM15_Init</a>();</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>  <span class="comment">/* USER CODE BEGIN 2 */</span></div>
+<div class="line"><span class="lineno">  172</span> </div>
+<div class="line"><span class="lineno">  173</span>  <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  174</span><span class="comment">   * 전동기 파라미터 초기화 예시 (주석 처리된 항목은 다른 모터 설정):</span></div>
+<div class="line"><span class="lineno">  175</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  176</span><span class="comment">   * InitParameter(&amp;INV,  Rs,     Ld,       Lq,       Lamf,    PP,  Jm,    Bm,</span></div>
+<div class="line"><span class="lineno">  177</span><span class="comment">   *                      Idsr_align, Is_rated, Is_limit, Wrpm_rated, Te_rated)</span></div>
+<div class="line"><span class="lineno">  178</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  179</span><span class="comment">   * XERUN 13.5T 설정 사용:</span></div>
+<div class="line"><span class="lineno">  180</span><span class="comment">   */</span></div>
+<div class="line"><span class="lineno">  181</span>  <a class="code hl_function" href="inv_8c.html#a917cf2e97121d1990d40ef50799f3ecd">InitParameter</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>, 19e-3, 3.2e-6, 3.2e-6, 2e-3, 1.f, 1e-6, 1e-6, 2.f, 50.f, 50.f, 10000.f, 3);</div>
+<div class="line"><span class="lineno">  182</span></div>
+<div class="line"><span class="lineno">  187</span>  <a class="code hl_function" href="inv_8c.html#a0e276774794e294c9ba7a8ec91266d75">InitSpeedController</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>, PI2 * 25.f, 0.707f);</div>
+<div class="line"><span class="lineno">  188</span></div>
+<div class="line"><span class="lineno">  193</span>  <a class="code hl_function" href="inv_8c.html#a643273242fd423931f39716c68ac91bf">InitCurrentController</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>, PI2 * 1000.f);</div>
+<div class="line"><span class="lineno">  194</span></div>
+<div class="line"><span class="lineno">  199</span>  <a class="code hl_function" href="inv_8c.html#a887559495f97e26d7fa0ef0a2c5c84f0">Init_Spd_PLL</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>, PI2 * 20.f);</div>
+<div class="line"><span class="lineno">  200</span></div>
+<div class="line"><span class="lineno">  205</span>  <a class="code hl_function" href="speed__observer_8c.html#a7bb91d6ba879e229823d84200e61de2d">initExtended_Sensorless_Synchronous_Frame</a>(&amp;<a class="code hl_variable" href="speed__observer_8c.html#aaac3af89e1dd9944b6bccef174d4250b">EXT_1</a>, PI2 * 200.f, <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Rs, <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Ld, <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Lq);</div>
+<div class="line"><span class="lineno">  206</span></div>
+<div class="line"><span class="lineno">  208</span>  HAL_ADC_Start_IT(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>);</div>
+<div class="line"><span class="lineno">  209</span>  HAL_ADCEx_InjectedStart_IT(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>);</div>
+<div class="line"><span class="lineno">  210</span></div>
+<div class="line"><span class="lineno">  215</span>  HAL_TIM_OC_Start_IT(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>, TIM_CHANNEL_2);</div>
+<div class="line"><span class="lineno">  216</span> </div>
+<div class="line"><span class="lineno">  217</span>  <span class="comment">/* USER CODE END 2 */</span></div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>  <span class="comment">/* Infinite loop -----------------------------------------------------------*/</span></div>
+<div class="line"><span class="lineno">  220</span>  <span class="comment">/* USER CODE BEGIN WHILE */</span></div>
+<div class="line"><span class="lineno">  221</span>  <span class="keywordflow">while</span> (1)</div>
+<div class="line"><span class="lineno">  222</span>  {</div>
+<div class="line"><span class="lineno">  223</span>    <span class="comment">/* 백그라운드 작업 없음. 모든 제어는 TIM2 인터럽트에서 수행 */</span></div>
+<div class="line"><span class="lineno">  224</span>    <span class="comment">/* USER CODE END WHILE */</span></div>
+<div class="line"><span class="lineno">  225</span> </div>
+<div class="line"><span class="lineno">  226</span>    <span class="comment">/* USER CODE BEGIN 3 */</span></div>
+<div class="line"><span class="lineno">  227</span>  }</div>
+<div class="line"><span class="lineno">  228</span>  <span class="comment">/* USER CODE END 3 */</span></div>
+<div class="line"><span class="lineno">  229</span>}</div>
+<div class="ttc" id="aadc_8c_html_a22b804736f5648d52f639b2647d4ed13"><div class="ttname"><a href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a></div><div class="ttdeci">ADC_HandleTypeDef hadc1</div><div class="ttdoc">ADC1 HAL 핸들 구조체</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00059">adc.c:59</a></div></div>
+<div class="ttc" id="aadc_8c_html_acccd58aa70215a6b184ad242312ffd0c"><div class="ttname"><a href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c">MX_ADC1_Init</a></div><div class="ttdeci">void MX_ADC1_Init(void)</div><div class="ttdoc">ADC1 초기화 (12비트, Injected 4채널, TIM2 TRGO 트리거)</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00072">adc.c:72</a></div></div>
+<div class="ttc" id="agpio_8c_html_ac724e431d2af879252de35615be2bdea"><div class="ttname"><a href="gpio_8c.html#ac724e431d2af879252de35615be2bdea">MX_GPIO_Init</a></div><div class="ttdeci">void MX_GPIO_Init(void)</div><div class="ttdoc">사용되는 모든 GPIO 핀을 초기화한다.</div><div class="ttdef"><b>Definition</b> <a href="gpio_8c_source.html#l00047">gpio.c:47</a></div></div>
+<div class="ttc" id="agroup___t_i_m___handles_html_ga2c80fd5510e2990a59a5c90d745c716c"><div class="ttname"><a href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a></div><div class="ttdeci">TIM_HandleTypeDef htim2</div><div class="ttdoc">TIM2 핸들 (tim.c에서 정의)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00049">tim.c:49</a></div></div>
+<div class="ttc" id="ainv_8c_html_a0e276774794e294c9ba7a8ec91266d75"><div class="ttname"><a href="inv_8c.html#a0e276774794e294c9ba7a8ec91266d75">InitSpeedController</a></div><div class="ttdeci">void InitSpeedController(struct INVERTER *INV, float Wsc, float zeta)</div><div class="ttdoc">속도 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00199">inv.c:199</a></div></div>
+<div class="ttc" id="ainv_8c_html_a5b799dff3aee9e48ae67cfe1f9075e30"><div class="ttname"><a href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a></div><div class="ttdeci">struct INVERTER INV</div><div class="ttdoc">인버터 전역 상태/파라미터 구조체</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00053">inv.c:53</a></div></div>
+<div class="ttc" id="ainv_8c_html_a643273242fd423931f39716c68ac91bf"><div class="ttname"><a href="inv_8c.html#a643273242fd423931f39716c68ac91bf">InitCurrentController</a></div><div class="ttdeci">void InitCurrentController(struct INVERTER *INV, float Wcc)</div><div class="ttdoc">전류 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00124">inv.c:124</a></div></div>
+<div class="ttc" id="ainv_8c_html_a887559495f97e26d7fa0ef0a2c5c84f0"><div class="ttname"><a href="inv_8c.html#a887559495f97e26d7fa0ef0a2c5c84f0">Init_Spd_PLL</a></div><div class="ttdeci">void Init_Spd_PLL(struct INVERTER *INV, float Ws)</div><div class="ttdoc">속도 PLL(Phase-Locked Loop) 옵저버를 초기화한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00230">inv.c:230</a></div></div>
+<div class="ttc" id="ainv_8c_html_a917cf2e97121d1990d40ef50799f3ecd"><div class="ttname"><a href="inv_8c.html#a917cf2e97121d1990d40ef50799f3ecd">InitParameter</a></div><div class="ttdeci">void InitParameter(struct INVERTER *INV, float Rs, float Ld, float Lq, float Lamf, float PP, float Jm, float Bm, float Idsr_align, float Is_rated, float Is_limit, float Wrpm_rated, float Te_rated)</div><div class="ttdoc">전동기 및 인버터 기본 파라미터를 초기화한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00083">inv.c:83</a></div></div>
+<div class="ttc" id="amain_8c_html_a70af21c671abfcc773614a9a4f63d920"><div class="ttname"><a href="#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a></div><div class="ttdeci">void SystemClock_Config(void)</div><div class="ttdoc">시스템 클럭 설정</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00245">main.c:245</a></div></div>
+<div class="ttc" id="aspeed__observer_8c_html_a7bb91d6ba879e229823d84200e61de2d"><div class="ttname"><a href="speed__observer_8c.html#a7bb91d6ba879e229823d84200e61de2d">initExtended_Sensorless_Synchronous_Frame</a></div><div class="ttdeci">void initExtended_Sensorless_Synchronous_Frame(struct EXT_Sensorless *EXT, float Wc, float Rs, float Ld, float Lq)</div><div class="ttdoc">확장 동기 좌표계 센서리스 옵저버를 초기화한다.</div><div class="ttdef"><b>Definition</b> <a href="speed__observer_8c_source.html#l00203">speed_observer.c:203</a></div></div>
+<div class="ttc" id="aspeed__observer_8c_html_aaac3af89e1dd9944b6bccef174d4250b"><div class="ttname"><a href="speed__observer_8c.html#aaac3af89e1dd9944b6bccef174d4250b">EXT_1</a></div><div class="ttdeci">struct EXT_Sensorless EXT_1</div><div class="ttdoc">확장 센서리스 옵저버 전역 구조체</div><div class="ttdef"><b>Definition</b> <a href="speed__observer_8c_source.html#l00032">speed_observer.c:32</a></div></div>
+<div class="ttc" id="atim_8c_html_a4b8ff887fd3fdf26605e35927e4ff202"><div class="ttname"><a href="tim_8c.html#a4b8ff887fd3fdf26605e35927e4ff202">MX_TIM2_Init</a></div><div class="ttdeci">void MX_TIM2_Init(void)</div><div class="ttdoc">TIM2 초기화 (제어 루프 트리거 / ADC TRGO)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00152">tim.c:152</a></div></div>
+<div class="ttc" id="atim_8c_html_ac4b6b63257bb307dd93a4d5f45e39172"><div class="ttname"><a href="tim_8c.html#ac4b6b63257bb307dd93a4d5f45e39172">MX_TIM15_Init</a></div><div class="ttdeci">void MX_TIM15_Init(void)</div><div class="ttdoc">TIM15 초기화 (보조 타이머)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00207">tim.c:207</a></div></div>
+<div class="ttc" id="atim_8c_html_ad1f9d42690163f73f73e5b820c81ca14"><div class="ttname"><a href="tim_8c.html#ad1f9d42690163f73f73e5b820c81ca14">MX_TIM1_Init</a></div><div class="ttdeci">void MX_TIM1_Init(void)</div><div class="ttdoc">TIM1 초기화 (3상 Center-Aligned PWM)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00062">tim.c:62</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png" border="0" usemap="#amain_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" loading="lazy" alt=""/></div>
+<map name="amain_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" id="amain_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph">
+<area shape="rect" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,275,55,301"/>
+<area shape="rect" href="inv_8c.html#a887559495f97e26d7fa0ef0a2c5c84f0" title="속도 PLL(Phase&#45;Locked Loop) 옵저버를 초기화한다." alt="" coords="136,5,235,32"/>
+<area shape="poly" title=" " alt="" coords="28,274,31,230,40,168,62,101,79,70,101,42,123,29,120,33,104,46,83,73,66,103,45,169,36,230,34,274"/>
+<area shape="rect" href="inv_8c.html#a643273242fd423931f39716c68ac91bf" title="전류 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다." alt="" coords="116,56,254,83"/>
+<area shape="poly" title=" " alt="" coords="30,274,35,238,46,189,67,138,82,114,101,93,108,89,105,94,105,97,87,117,72,140,51,191,40,239,35,274"/>
+<area shape="rect" href="speed__observer_8c.html#a7bb91d6ba879e229823d84200e61de2d" title="확장 동기 좌표계 센서리스 옵저버를 초기화한다." alt="" coords="103,107,268,149"/>
+<area shape="poly" title=" " alt="" coords="33,273,56,219,76,187,101,159,108,156,105,160,105,163,80,190,61,221,38,275"/>
+<area shape="rect" href="inv_8c.html#a917cf2e97121d1990d40ef50799f3ecd" title="전동기 및 인버터 기본 파라미터를 초기화한다." alt="" coords="136,173,235,200"/>
+<area shape="poly" title=" " alt="" coords="38,273,65,241,101,210,123,201,119,205,104,214,68,245,43,275"/>
+<area shape="rect" href="inv_8c.html#a0e276774794e294c9ba7a8ec91266d75" title="속도 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다." alt="" coords="119,224,252,251"/>
+<area shape="poly" title=" " alt="" coords="53,277,102,260,126,254,122,258,104,265,57,281"/>
+<area shape="rect" href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c" title="ADC1 초기화 (12비트, Injected 4채널, TIM2 TRGO 트리거)" alt="" coords="131,275,240,301"/>
+<area shape="poly" title=" " alt="" coords="54,286,118,286,114,290,56,290"/>
+<area shape="rect" href="gpio_8c.html#ac724e431d2af879252de35615be2bdea" title="사용되는 모든 GPIO 핀을 초기화한다." alt="" coords="132,325,238,352"/>
+<area shape="poly" title=" " alt="" coords="54,294,104,311,126,319,121,321,102,316,56,299"/>
+<area shape="rect" href="tim_8c.html#ac4b6b63257bb307dd93a4d5f45e39172" title="TIM15 초기화 (보조 타이머)" alt="" coords="130,376,240,403"/>
+<area shape="poly" title=" " alt="" coords="40,299,68,331,104,362,118,370,113,372,101,366,65,335,41,304"/>
+<area shape="rect" href="tim_8c.html#ad1f9d42690163f73f73e5b820c81ca14" title="TIM1 초기화 (3상 Center&#45;Aligned PWM)" alt="" coords="134,528,237,555"/>
+<area shape="poly" title=" " alt="" coords="32,299,37,342,47,400,68,461,84,489,104,514,122,528,117,528,101,518,80,492,63,463,42,401,32,343,31,304"/>
+<area shape="rect" href="tim_8c.html#a4b8ff887fd3fdf26605e35927e4ff202" title="TIM2 초기화 (제어 루프 트리거 / ADC TRGO)" alt="" coords="134,427,237,453"/>
+<area shape="poly" title=" " alt="" coords="35,299,60,355,79,386,104,413,122,424,117,426,101,417,75,389,55,358,35,304"/>
+<area shape="rect" href="main_8c.html#a70af21c671abfcc773614a9a4f63d920" title="시스템 클럭 설정" alt="" coords="113,477,258,504"/>
+<area shape="poly" title=" " alt="" coords="33,299,41,334,53,378,74,424,88,445,105,463,110,469,104,469,101,467,84,448,69,426,48,380,36,335,33,304"/>
+<area shape="rect" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="오류 처리 함수" alt="" coords="342,427,444,453"/>
+<area shape="poly" title=" " alt="" coords="240,298,269,311,301,334,331,361,376,414,370,414,327,365,298,338,267,316,241,303"/>
+<area shape="poly" title=" " alt="" coords="241,400,330,423,325,425,241,405"/>
+<area shape="poly" title=" " alt="" coords="237,525,267,514,316,488,358,463,363,462,319,492,269,518,238,530"/>
+<area shape="rect" href="tim_8c.html#a708f19bbc41b292fccf38f2d9796c46a" title="TIM MSP 초기화 후처리 (GPIO 대체 기능 설정)" alt="" coords="316,528,470,555"/>
+<area shape="poly" title=" " alt="" coords="237,539,303,541,298,541,237,544"/>
+<area shape="poly" title=" " alt="" coords="237,437,329,439,324,441,238,443"/>
+<area shape="poly" title=" " alt="" coords="243,474,330,455,325,457,244,479"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a70af21c671abfcc773614a9a4f63d920" name="a70af21c671abfcc773614a9a4f63d920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70af21c671abfcc773614a9a4f63d920">&#9670;&#160;</a></span>SystemClock_Config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SystemClock_Config </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>시스템 클럭 설정 </p>
+<p>HSI(16MHz)를 PLL 소스로 사용하여 SYSCLK = 170MHz를 생성한다.</p>
+<p>PLL 설정:</p><ul>
+<li>PLLM = /4 → VCO 입력 = 4MHz</li>
+<li>PLLN = ×85 → VCO 출력 = 340MHz</li>
+<li>PLLR = /2 → SYSCLK = 170MHz</li>
+<li>APB1 = HCLK/2 = 85MHz</li>
+<li>APB2 = HCLK/2 = 85MHz</li>
+</ul>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="main_8c_source.html">main.c</a> 파일의 <a class="el" href="main_8c_source.html#l00245">245</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  246</span>{</div>
+<div class="line"><span class="lineno">  247</span>  RCC_OscInitTypeDef RCC_OscInitStruct = {0};</div>
+<div class="line"><span class="lineno">  248</span>  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};</div>
+<div class="line"><span class="lineno">  249</span> </div>
+<div class="line"><span class="lineno">  250</span>  HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1_BOOST);</div>
+<div class="line"><span class="lineno">  251</span> </div>
+<div class="line"><span class="lineno">  252</span>  RCC_OscInitStruct.OscillatorType      = RCC_OSCILLATORTYPE_HSI;</div>
+<div class="line"><span class="lineno">  253</span>  RCC_OscInitStruct.HSIState            = RCC_HSI_ON;</div>
+<div class="line"><span class="lineno">  254</span>  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;</div>
+<div class="line"><span class="lineno">  255</span>  RCC_OscInitStruct.PLL.PLLState        = RCC_PLL_ON;</div>
+<div class="line"><span class="lineno">  256</span>  RCC_OscInitStruct.PLL.PLLSource       = RCC_PLLSOURCE_HSI;</div>
+<div class="line"><span class="lineno">  257</span>  RCC_OscInitStruct.PLL.PLLM            = RCC_PLLM_DIV4;</div>
+<div class="line"><span class="lineno">  258</span>  RCC_OscInitStruct.PLL.PLLN            = 85;</div>
+<div class="line"><span class="lineno">  259</span>  RCC_OscInitStruct.PLL.PLLP            = RCC_PLLP_DIV2;</div>
+<div class="line"><span class="lineno">  260</span>  RCC_OscInitStruct.PLL.PLLQ            = RCC_PLLQ_DIV2;</div>
+<div class="line"><span class="lineno">  261</span>  RCC_OscInitStruct.PLL.PLLR            = RCC_PLLR_DIV2;</div>
+<div class="line"><span class="lineno">  262</span>  <span class="keywordflow">if</span> (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK) { <a class="code hl_function" href="#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>  RCC_ClkInitStruct.ClockType      = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK</div>
+<div class="line"><span class="lineno">  265</span>                                   | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;</div>
+<div class="line"><span class="lineno">  266</span>  RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK;</div>
+<div class="line"><span class="lineno">  267</span>  RCC_ClkInitStruct.AHBCLKDivider  = RCC_SYSCLK_DIV1;</div>
+<div class="line"><span class="lineno">  268</span>  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;</div>
+<div class="line"><span class="lineno">  269</span>  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;</div>
+<div class="line"><span class="lineno">  270</span>  <span class="keywordflow">if</span> (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK) { <a class="code hl_function" href="#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  271</span>}</div>
+<div class="ttc" id="amain_8c_html_a1730ffe1e560465665eb47d9264826f9"><div class="ttname"><a href="#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a></div><div class="ttdeci">void Error_Handler(void)</div><div class="ttdoc">오류 처리 함수</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00286">main.c:286</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_a70af21c671abfcc773614a9a4f63d920_cgraph.png" border="0" usemap="#amain_8c_a70af21c671abfcc773614a9a4f63d920_cgraph" loading="lazy" alt=""/></div>
+<map name="amain_8c_a70af21c671abfcc773614a9a4f63d920_cgraph" id="amain_8c_a70af21c671abfcc773614a9a4f63d920_cgraph">
+<area shape="rect" title="시스템 클럭 설정" alt="" coords="5,5,151,32"/>
+<area shape="rect" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="오류 처리 함수" alt="" coords="199,5,300,32"/>
+<area shape="poly" title=" " alt="" coords="151,16,186,19,181,19,151,21"/>
+</map>
+</div>
+<div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_a70af21c671abfcc773614a9a4f63d920_icgraph.png" border="0" usemap="#amain_8c_a70af21c671abfcc773614a9a4f63d920_icgraph" loading="lazy" alt=""/></div>
+<map name="amain_8c_a70af21c671abfcc773614a9a4f63d920_icgraph" id="amain_8c_a70af21c671abfcc773614a9a4f63d920_icgraph">
+<area shape="rect" title="시스템 클럭 설정" alt="" coords="103,5,248,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="85,20,55,21,55,16,90,18"/>
+</map>
+</div>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">변수 문서화</h2>
+<a id="ab5e71ba0276929fe061bacdcc22c3335" name="ab5e71ba0276929fe061bacdcc22c3335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5e71ba0276929fe061bacdcc22c3335">&#9670;&#160;</a></span>dutyCycle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float dutyCycle = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RC 수신기 입력 듀티 사이클 값 [0.0, 1.0] </p>
+<p>RC 입력 듀티 사이클 [0.0, 1.0]</p>
+<p>TIM15 입력 캡처로부터 계산된 PWM 듀티비. <a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a> 함수 내에서 속도 또는 토크 기준으로 변환된다. </p>
+
+<p class="definition"><a class="el" href="main_8c_source.html">main.c</a> 파일의 <a class="el" href="main_8c_source.html#l00120">120</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a href="main_8c.html">main.c</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

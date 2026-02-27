@@ -1,0 +1,5 @@
+../Core/Src/speed_observer.c:16:6:InitSpeedObserver_	1
+../Core/Src/speed_observer.c:67:6:SpeedObserver_4_34	3
+../Core/Src/speed_observer.c:90:6:SpeedObserver_4_35	3
+../Core/Src/speed_observer.c:112:6:initExtended_Sensorless_Synchronous_Frame	1
+../Core/Src/speed_observer.c:164:6:EXT_SS_Sync	2

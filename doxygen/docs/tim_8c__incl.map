@@ -1,0 +1,5 @@
+<map id="Core/Src/tim.c" name="Core/Src/tim.c">
+<area shape="rect" id="Node000001" title="타이머(TIM1, TIM2, TIM15) 초기화 및 MSP 설정 모듈" alt="" coords="5,5,112,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="33,80,84,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,30,61,65,56,64,57,35"/>
+</map>

@@ -1,0 +1,1659 @@
+\doxysection{C:\+/\+\+Users/\+\+USER/\+\+One\+Drive/\+\+Desktop/\+doxygen/\+\+RC\+\_\+\+DRIVER/\+inv.c 파일 참조}
+\hypertarget{inv_8c}{}\label{inv_8c}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/inv.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/inv.c}}
+
+
+인버터 제어 핵심 알고리즘 모듈  
+
+
+{\ttfamily \+\#include "{}inv.\+h"{}}\newline
+{\ttfamily \+\#include "{}flag.\+h"{}}\newline
+{\ttfamily \+\#include "{}variable.\+h"{}}\newline
+{\ttfamily \+\#include "{}speed\+\_\+observer.\+h"{}}\newline
+{\ttfamily \+\#include "{}math.\+h"{}}\newline
+inv.\+c에 대한 include 의존 그래프
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{inv_8c_a917cf2e97121d1990d40ef50799f3ecd}{Init\+Parameter}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}, float Rs, float Ld, float Lq, float Lamf, float PP, float Jm, float Bm, float Idsr\+\_\+align, float Is\+\_\+rated, float Is\+\_\+limit, float Wrpm\+\_\+rated, float Te\+\_\+rated)
+\begin{DoxyCompactList}\small\item\em 전동기 및 인버터 기본 파라미터를 초기화한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a643273242fd423931f39716c68ac91bf}{Init\+Current\+Controller}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}, float Wcc)
+\begin{DoxyCompactList}\small\item\em 전류 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a0e276774794e294c9ba7a8ec91266d75}{Init\+Speed\+Controller}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}, float Wsc, float zeta)
+\begin{DoxyCompactList}\small\item\em 속도 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a887559495f97e26d7fa0ef0a2c5c84f0}{Init\+\_\+\+Spd\+\_\+\+PLL}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}, float Ws)
+\begin{DoxyCompactList}\small\item\em 속도 PLL(Phase-\/\+Locked Loop) 옵저버를 초기화한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a9fabfabf3cf816a557870ac6174ba05b}{Update\+Controller}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em 제어기 게인을 현재 파라미터로 갱신한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a1f6df58c2a073ad2274f97f6a504c96d}{Reset\+Controller}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em 모든 제어 상태 변수를 초기값으로 리셋한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a7c9cfee082f7d95396b41b6fd5b0676d}{Torque\+Control}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em 토크 제어 함수 (듀티 사이클 기반 토크 기준 생성) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a68f857bdf76878fd721ac48e6c354997}{Current\+Control}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em PI 전류 제어기 (d-\/q 동기 좌표계) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_aa0c62359efaad04d667cc7d8d3e169e6}{Speed\+Control}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em PI 속도 제어기 (rpm → 토크 기준 생성) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a964ec348ab2be811f76c85501ac14208}{Open\+Loop\+Control}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em 전류 개루프 제어 (Open-\/\+Loop Current Control) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a01248186cec9f4dadc54e4c94be940cf}{Vref\+\_\+\+Gen\+Control}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em 전압 기준 생성 제어 (전압 피드포워드 방식) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_aefbd0b8bc957317d7f22f0db0185683d}{Voltage\+Open\+Loop\+Control}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em 전압 개루프 제어 (Voltage Open-\/\+Loop Control) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_aedf8f86f640274dface77130a3d50207}{Voltage\+Injection\+\_\+\+Square\+Wave}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em d축 구형파 전압 주입 (파라미터 추정용) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a3db77525a1b8b485f18baebc7e086cb1}{Hallsensor\+\_\+\+Observer}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em Hall 센서 기반 속도/\+위치 PLL 옵저버 \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{inv_8c_a158783ba9a4d5687c5fc417acfcc74a4}{Get\+Hall\+Sensor\+State}} (GPIO\+\_\+\+Pin\+State hall\+\_\+sensor\+\_\+1, GPIO\+\_\+\+Pin\+State hall\+\_\+sensor\+\_\+2, GPIO\+\_\+\+Pin\+State hall\+\_\+sensor\+\_\+3)
+\begin{DoxyCompactList}\small\item\em Hall 센서 3개의 상태를 3비트 정수로 변환한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a5eb5c4adfd5c3833415678e1da00bf93}{Hall\+Position\+\_\+\+Test}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em Hall 위치 테스트:\+ 기본 전압 벡터를 순차 인가한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_ad14c7779ae276ada8516bc3d58997206}{Align}} (struct INVERTER \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}})
+\begin{DoxyCompactList}\small\item\em d축 전류 정렬 절차 (4단계 상태 머신) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{Pwm\+Sw\+On}} (void)
+\begin{DoxyCompactList}\small\item\em TIM1 PWM 출력을 활성화한다 (3상 상하 암 모두). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a9013a288bba48367bf9d57702c80b1ee}{Pwm\+Sw\+Off}} (void)
+\begin{DoxyCompactList}\small\item\em TIM1 PWM 출력을 비활성화한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{Pwm\+Duty\+Upt}} (void)
+\begin{DoxyCompactList}\small\item\em TIM1 CCR 레지스터에 듀티비를 업데이트한다. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{변수}
+\begin{DoxyCompactItemize}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}
+\begin{DoxyCompactList}\small\item\em TIM1 핸들:\+ 3상 PWM 출력 \end{DoxyCompactList}\item 
+TIM\+\_\+\+Handle\+Type\+Def \doxymbox{\hyperlink{inv_8c_aac3d2c59ee0e3bbae1b99529a154eb62}{htim3}}
+\item 
+float \doxymbox{\hyperlink{inv_8c_ab5e71ba0276929fe061bacdcc22c3335}{duty\+Cycle}}
+\begin{DoxyCompactList}\small\item\em RC 수신기 입력 듀티 사이클 값 \+[0.\+0, 1.\+0]\+ \end{DoxyCompactList}\item 
+struct INVERTER \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}
+\begin{DoxyCompactList}\small\item\em 인버터 전역 상태/\+파라미터 구조체 \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{inv_8c_a90e45c5ed8c3f0ed09963d378e1ad75a}{Mode\+\_\+align}} = 0
+\begin{DoxyCompactList}\small\item\em 정렬 상태 머신 단계 (0\texorpdfstring{$\sim$}{\string~}3) \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{inv_8c_ad09af8d36a15d8f6f38d126a90b36862}{Time\+\_\+align}} = 0.
+\begin{DoxyCompactList}\small\item\em 정렬 경과 시간 \+[s]\+ \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{inv_8c_adc9491aaf3043e1e99f084debf0bd167}{cnt\+\_\+inj}} = 0
+\begin{DoxyCompactList}\small\item\em 구형파 주입 카운터 (홀짝 토글) \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{inv_8c_afcd0f0ee99ff421a667c81624818d6ae}{W\+\_\+\+LPF\+\_\+set}} = 50.f
+\begin{DoxyCompactList}\small\item\em 속도 LPF 차단 주파수 설정값 \+[Hz]\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+인버터 제어 핵심 알고리즘 모듈 
+
+PMSM(영구자석 동기 전동기) 제어에 필요한 파라미터 초기화, 전류/\+속도/\+전압 제어기, 개루프 제어, Hall 센서 옵저버, PWM 출력 관리 함수를 포함한다.
+
+좌표계 표기 규칙:\+ 
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}접미사  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}좌표계  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}축  \\
+ss  &정지 좌표계 (α-\/β)  &α(d), β(q)  \\
+sr  &동기 좌표계 (d-\/q)  &d(자속), q(토크)  \\
+r  &회전자 기준  &-\/  \\
+\end{DoxyTable}
+
+
+주요 제어 함수 목록:\+ 
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}함수  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}역할  \\
+\doxylink{inv_8c_a917cf2e97121d1990d40ef50799f3ecd}{Init\+Parameter()}  &전동기/\+인버터 파라미터 초기화  \\
+\doxylink{inv_8c_a643273242fd423931f39716c68ac91bf}{Init\+Current\+Controller()}  &PI 전류 제어기 초기화  \\
+\doxylink{inv_8c_a0e276774794e294c9ba7a8ec91266d75}{Init\+Speed\+Controller()}  &PI 속도 제어기 초기화  \\
+\doxylink{inv_8c_a887559495f97e26d7fa0ef0a2c5c84f0}{Init\+\_\+\+Spd\+\_\+\+PLL()}  &속도 PLL 옵저버 초기화  \\
+\doxylink{inv_8c_a9fabfabf3cf816a557870ac6174ba05b}{Update\+Controller()}  &실시간 게인 갱신  \\
+\doxylink{inv_8c_a1f6df58c2a073ad2274f97f6a504c96d}{Reset\+Controller()}  &모든 상태 변수 초기화  \\
+\doxylink{inv_8c_a7c9cfee082f7d95396b41b6fd5b0676d}{Torque\+Control()}  &토크 기준 생성 (duty\+Cycle 기반)  \\
+\doxylink{inv_8c_a68f857bdf76878fd721ac48e6c354997}{Current\+Control()}  &d-\/q 축 PI 전류 제어 + SVPWM 출력  \\
+\doxylink{inv_8c_aa0c62359efaad04d667cc7d8d3e169e6}{Speed\+Control()}  &PI 속도 제어 → 토크 기준 생성  \\
+\doxylink{inv_8c_a964ec348ab2be811f76c85501ac14208}{Open\+Loop\+Control()}  &전류 개루프 제어  \\
+\doxylink{inv_8c_a01248186cec9f4dadc54e4c94be940cf}{Vref\+\_\+\+Gen\+Control()}  &전압 피드포워드 기준 생성  \\
+\doxylink{inv_8c_aefbd0b8bc957317d7f22f0db0185683d}{Voltage\+Open\+Loop\+Control()}  &전압 개루프 제어  \\
+\doxylink{inv_8c_aedf8f86f640274dface77130a3d50207}{Voltage\+Injection\+\_\+\+Square\+Wave()}  &d축 구형파 주입 (파라미터 추정)  \\
+\doxylink{inv_8c_a3db77525a1b8b485f18baebc7e086cb1}{Hallsensor\+\_\+\+Observer()}  &Hall PLL 속도/\+위치 추정  \\
+\doxylink{inv_8c_a158783ba9a4d5687c5fc417acfcc74a4}{Get\+Hall\+Sensor\+State()}  &Hall 3비트 상태 읽기  \\
+\doxylink{inv_8c_a5eb5c4adfd5c3833415678e1da00bf93}{Hall\+Position\+\_\+\+Test()}  &기본 벡터 순차 인가 (Hall 확인)  \\
+\doxylink{inv_8c_ad14c7779ae276ada8516bc3d58997206}{Align()}  &d축 초기 정렬 (4단계 상태 머신)  \\
+\doxylink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{Pwm\+Sw\+On()} /\+ \doxylink{inv_8c_a9013a288bba48367bf9d57702c80b1ee}{Pwm\+Sw\+Off()}  &TIM1 PWM 채널 시작/\+정지  \\
+\doxylink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{Pwm\+Duty\+Upt()}  &TIM1 CCR 레지스터 듀티 갱신  \\
+\end{DoxyTable}
+
+
+\begin{DoxyAuthor}{작성자}
+HALAB\+\_\+G 
+\end{DoxyAuthor}
+\begin{DoxyDate}{날짜}
+2024-\/11-\/29 
+\end{DoxyDate}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{inv_8c_doc-func-members}
+\doxysubsection{함수 문서화}
+\Hypertarget{inv_8c_ad14c7779ae276ada8516bc3d58997206}\index{inv.c@{inv.c}!Align@{Align}}
+\index{Align@{Align}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{Align()}{Align()}}
+{\footnotesize\ttfamily \label{inv_8c_ad14c7779ae276ada8516bc3d58997206} 
+void Align (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+d축 전류 정렬 절차 (4단계 상태 머신) 
+
+엔코더/\+센서 초기화를 위해 d축 방향으로 전류를 인가하여 회전자를 정렬시킨다.
+
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Mode\+\_\+align  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}동작  \\
+0  &초기화 (Id\+\_\+ref = Idsr\+\_\+align)  \\
+1  &Current\+Control 실행, 4초 대기  \\
+2  &Id\+\_\+ref = 0으로 감쇠, 1초 더 대기  \\
+3  &정렬 완료, FLAG.\+INV\+\_\+\+ALIGN = 0  \\
+\end{DoxyTable}
+
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+Time\+\_\+align은 Tsamp 단위로 매 호출마다 누산된다. 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00867}{867}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00868\ \{}
+\DoxyCodeLine{00869\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ =\ 0.;}
+\DoxyCodeLine{00870\ }
+\DoxyCodeLine{00871\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\doxymbox{\hyperlink{inv_8c_a90e45c5ed8c3f0ed09963d378e1ad75a}{Mode\_align}})\ \{}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___control_mode_gac8cf438350a0d309f204837cbdfa492a}{Align\_done}}\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_offset\ =\ 0.;}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_align;}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_ad09af8d36a15d8f6f38d126a90b36862}{Time\_align}}\ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a90e45c5ed8c3f0ed09963d378e1ad75a}{Mode\_align}}++;}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a68f857bdf76878fd721ac48e6c354997}{CurrentControl}}(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{PwmSwOn}}();}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.FAULT)\ PWM\_BUF\_ON;}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_ad09af8d36a15d8f6f38d126a90b36862}{Time\_align}}\ >=\ 4.)\ \doxymbox{\hyperlink{inv_8c_a90e45c5ed8c3f0ed09963d378e1ad75a}{Mode\_align}}++;}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ =\ 0.;}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a68f857bdf76878fd721ac48e6c354997}{CurrentControl}}(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{PwmSwOn}}();}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.FAULT)\ PWM\_BUF\_ON;}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_ad09af8d36a15d8f6f38d126a90b36862}{Time\_align}}\ >=\ 5.)\ \doxymbox{\hyperlink{inv_8c_a90e45c5ed8c3f0ed09963d378e1ad75a}{Mode\_align}}++;}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a90e45c5ed8c3f0ed09963d378e1ad75a}{Mode\_align}}\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___control_mode_gac8cf438350a0d309f204837cbdfa492a}{Align\_done}}\ \ \ \ \ =\ 1;}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_ALIGN\ =\ 0;}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00901\ \ \ \ \ \}}
+\DoxyCodeLine{00902\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_ad09af8d36a15d8f6f38d126a90b36862}{Time\_align}}\ +=\ Tsamp;}
+\DoxyCodeLine{00903\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{inv_8c_ad14c7779ae276ada8516bc3d58997206_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{inv_8c_ad14c7779ae276ada8516bc3d58997206_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a68f857bdf76878fd721ac48e6c354997}\index{inv.c@{inv.c}!CurrentControl@{CurrentControl}}
+\index{CurrentControl@{CurrentControl}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{CurrentControl()}{CurrentControl()}}
+{\footnotesize\ttfamily \label{inv_8c_a68f857bdf76878fd721ac48e6c354997} 
+void Current\+Control (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+PI 전류 제어기 (d-\/q 동기 좌표계) 
+
+dq 전류 오차에 대한 PI 제어를 수행하고 결과를 3상 듀티로 변환한다.
+
+처리 순서:\+
+\begin{DoxyEnumerate}
+\item Clarke 변환:\+ (Ia,Ib,Ic) → (Idss, Iqss)
+\item Park 변환:\+ (Idss, Iqss) + Thetar → (Idsr, Iqsr)
+\item PI 제어 (Anti-\/windup 포함) → Vdsr\+\_\+ref, Vqsr\+\_\+ref
+\item 역\+Park 변환 → (Vdss\+\_\+ref, Vqss\+\_\+ref)
+\item 역\+Clarke 변환 → (Vas\+\_\+ref, Vbs\+\_\+ref, Vcs\+\_\+ref)
+\item SVPWM 오프셋 계산 (min-\/max 방식)
+\item NLC(비선형 보상) 전압 추가
+\item 듀티비 계산 및 PWM 출력
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+Theta\+\_\+mode==1 이면 OLC 각도 사용, 아니면 Hall PLL 각도 사용 
+\end{DoxyNote}
+\begin{DoxyWarning}{경고}
+FLAG.\+FAULT 발생 시 PWM\+\_\+\+BUF\+\_\+\+OFF 유지 
+\end{DoxyWarning}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00354}{354}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00355\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_RUN)\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Kt;}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_unsat,\ -\/3.f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_rated,\ 3.f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_rated);}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ =\ 0;}
+\DoxyCodeLine{00360\ \ \ \ \ \}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_old\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref;}
+\DoxyCodeLine{00363\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_old\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref;}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{comment}{/*\ Clarke\ 변환\ (α-\/β)\ */}}
+\DoxyCodeLine{00366\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\ =\ (2.f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ia\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic)\ *\ INV\_3;}
+\DoxyCodeLine{00367\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\ =\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic)\ *\ INV\_SQRT3;}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \doxymbox{\hyperlink{group___voltage_ref_ga94ab3777ddd48161a4945f405c0359a6}{Vdss\_ref\_set}}\ =\ (2.f\ *\ \doxymbox{\hyperlink{group___voltage_ref_ga30c95cfd601124d7bb6a4535bdeb1f72}{Van}}\ -\/\ \doxymbox{\hyperlink{group___voltage_ref_ga2f2a0c510c5b72110e5e3835c1c62555}{Vbn}}\ -\/\ \doxymbox{\hyperlink{group___voltage_ref_ga99d72ed4a63ffab24762fc939a2b9c7d}{Vcn}})\ *\ INV\_3;}
+\DoxyCodeLine{00370\ \ \ \ \ \doxymbox{\hyperlink{group___voltage_ref_ga8bf179fb2264726c2d6dc40618e56365}{Vqss\_ref\_set}}\ =\ INV\_SQRT3\ *\ (\doxymbox{\hyperlink{group___voltage_ref_ga2f2a0c510c5b72110e5e3835c1c62555}{Vbn}}\ -\/\ \doxymbox{\hyperlink{group___voltage_ref_ga99d72ed4a63ffab24762fc939a2b9c7d}{Vcn}});}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{comment}{/*\ 각도\ 선택\ */}}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{group___control_mode_ga5e542439936627687d1a27ac7b6b50c2}{Theta\_mode}}\ ==\ 1)\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC;}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ *\ RPM2RM\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP;}
+\DoxyCodeLine{00376\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_est\_Hall;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\_est\_Hall;}
+\DoxyCodeLine{00379\ \ \ \ \ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_PP;}
+\DoxyCodeLine{00382\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\ *\ RM2RPM;}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ \ \ \ =\ BOUND\_PI(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ +\ 1.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ *\ Tsamp);}
+\DoxyCodeLine{00385\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\ \ \ \ \ =\ COS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar);}
+\DoxyCodeLine{00386\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\ \ \ \ \ =\ SIN(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar);}
+\DoxyCodeLine{00387\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ =\ COS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv);}
+\DoxyCodeLine{00388\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ =\ SIN(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv);}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{comment}{/*\ Park\ 변환\ (d-\/q)\ */}}
+\DoxyCodeLine{00391\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar;}
+\DoxyCodeLine{00392\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\ =\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar;}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{comment}{/*\ PI\ 전류\ 제어\ (Anti-\/windup\ 포함)\ */}}
+\DoxyCodeLine{00395\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_err\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr;}
+\DoxyCodeLine{00396\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_err\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr;}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_integ\ +=\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kid\_cc\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_err\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kad\_cc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_aw)\ *\ Tsamp;}
+\DoxyCodeLine{00399\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_integ\ +=\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kiq\_cc\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_err\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kaq\_cc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_aw)\ *\ Tsamp;}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{comment}{/*\ 피드포워드:\ 역기전력\ 분리\ */}}
+\DoxyCodeLine{00402\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_ff\ =\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lq\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref;}
+\DoxyCodeLine{00403\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_ff\ =\ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ld\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lamf);}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\_old\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpd\_cc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_err\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_integ\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_ff\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ractive\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr;}
+\DoxyCodeLine{00406\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\_old\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpq\_cc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_err\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_integ\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_ff\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ractive\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr;}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>alpha\_LPF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ +\ (1\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>alpha\_LPF)\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\_old;}
+\DoxyCodeLine{00409\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>alpha\_LPF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ +\ (1\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>alpha\_LPF)\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\_old;}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{comment}{/*\ 전압\ 포화\ 제한\ (√3/3\ ×\ Vdc)\ */}}
+\DoxyCodeLine{00412\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3);}
+\DoxyCodeLine{00413\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3);}
+\DoxyCodeLine{00414\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_aw\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref;}
+\DoxyCodeLine{00415\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_aw\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref;}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{comment}{/*\ 역Park\ 변환\ */}}
+\DoxyCodeLine{00418\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv;}
+\DoxyCodeLine{00419\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv;}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{comment}{/*\ 역Clarke\ 변환\ */}}
+\DoxyCodeLine{00422\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref;}
+\DoxyCodeLine{00423\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ +\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref;}
+\DoxyCodeLine{00424\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ -\/\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref;}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{comment}{/*\ SVPWM\ 오프셋\ (min-\/max\ 중간값)\ */}}
+\DoxyCodeLine{00427\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref;}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref;}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref;}
+\DoxyCodeLine{00430\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref;}
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref;}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref;}
+\DoxyCodeLine{00433\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ =\ -\/0.5f\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin);}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{comment}{/*\ 전류\ 기준\ 역변환\ (참조용)\ */}}
+\DoxyCodeLine{00436\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv;}
+\DoxyCodeLine{00437\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv;}
+\DoxyCodeLine{00438\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ia\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref;}
+\DoxyCodeLine{00439\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref\ +\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\_ref;}
+\DoxyCodeLine{00440\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref\ -\/\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\_ref;}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{comment}{/*\ NLC\ 비선형\ 보상\ 전압\ */}}
+\DoxyCodeLine{00443\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Va\_NLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>A\_NLC\ *\ atanf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>B\_NLC\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ia\_ref);}
+\DoxyCodeLine{00444\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vb\_NLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>A\_NLC\ *\ atanf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>B\_NLC\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\_ref);}
+\DoxyCodeLine{00445\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vc\_NLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>A\_NLC\ *\ atanf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>B\_NLC\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic\_ref);}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{comment}{/*\ 최종\ 상전압\ (NLC\ 포함)\ */}}
+\DoxyCodeLine{00448\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Va\_NLC,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00449\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vb\_NLC,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00450\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vc\_NLC,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \doxymbox{\hyperlink{group___voltage_ref_ga30c95cfd601124d7bb6a4535bdeb1f72}{Van}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref;\ \doxymbox{\hyperlink{group___voltage_ref_ga2f2a0c510c5b72110e5e3835c1c62555}{Vbn}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref;\ \doxymbox{\hyperlink{group___voltage_ref_ga99d72ed4a63ffab24762fc939a2b9c7d}{Vcn}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref;}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{comment}{/*\ 듀티비\ 계산\ [0,\ 1]\ */}}
+\DoxyCodeLine{00455\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00456\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00457\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{PwmSwOn}}();}
+\DoxyCodeLine{00460\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.FAULT)\ PWM\_BUF\_ON;}
+\DoxyCodeLine{00462\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{inv_8c_a68f857bdf76878fd721ac48e6c354997_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a68f857bdf76878fd721ac48e6c354997_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a158783ba9a4d5687c5fc417acfcc74a4}\index{inv.c@{inv.c}!GetHallSensorState@{GetHallSensorState}}
+\index{GetHallSensorState@{GetHallSensorState}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{GetHallSensorState()}{GetHallSensorState()}}
+{\footnotesize\ttfamily \label{inv_8c_a158783ba9a4d5687c5fc417acfcc74a4} 
+uint8\+\_\+t Get\+Hall\+Sensor\+State (\begin{DoxyParamCaption}\item[{GPIO\+\_\+\+Pin\+State}]{hall\+\_\+sensor\+\_\+1}{, }\item[{GPIO\+\_\+\+Pin\+State}]{hall\+\_\+sensor\+\_\+2}{, }\item[{GPIO\+\_\+\+Pin\+State}]{hall\+\_\+sensor\+\_\+3}{}\end{DoxyParamCaption})}
+
+
+
+Hall 센서 3개의 상태를 3비트 정수로 변환한다. 
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in}}  & {\em hall\+\_\+sensor\+\_\+1} & Hall A 핀 상태 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em hall\+\_\+sensor\+\_\+2} & Hall B 핀 상태 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em hall\+\_\+sensor\+\_\+3} & Hall C 핀 상태 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+3비트 Hall 상태값 (0\texorpdfstring{$\sim$}{\string~}7) 
+\end{DoxyReturn}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00819}{819}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00822\ \{}
+\DoxyCodeLine{00823\ \ \ \ \ uint8\_t\ hall\_state\ =\ 0;}
+\DoxyCodeLine{00824\ \ \ \ \ hall\_state\ |=\ (hall\_sensor\_1\ ==\ GPIO\_PIN\_SET)\ ?\ 0x01\ :\ 0x00;}
+\DoxyCodeLine{00825\ \ \ \ \ hall\_state\ |=\ (hall\_sensor\_2\ ==\ GPIO\_PIN\_SET)\ ?\ 0x02\ :\ 0x00;}
+\DoxyCodeLine{00826\ \ \ \ \ hall\_state\ |=\ (hall\_sensor\_3\ ==\ GPIO\_PIN\_SET)\ ?\ 0x04\ :\ 0x00;}
+\DoxyCodeLine{00827\ \ \ \ \ \textcolor{keywordflow}{return}\ hall\_state;}
+\DoxyCodeLine{00828\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a158783ba9a4d5687c5fc417acfcc74a4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a5eb5c4adfd5c3833415678e1da00bf93}\index{inv.c@{inv.c}!HallPosition\_Test@{HallPosition\_Test}}
+\index{HallPosition\_Test@{HallPosition\_Test}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{HallPosition\_Test()}{HallPosition\_Test()}}
+{\footnotesize\ttfamily \label{inv_8c_a5eb5c4adfd5c3833415678e1da00bf93} 
+void Hall\+Position\+\_\+\+Test (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+Hall 위치 테스트:\+ 기본 전압 벡터를 순차 인가한다. 
+
+duty\+\_\+state 값에 따라 6개 기본 전압 벡터 중 하나를 선택하여 Hall 센서 설치 위치와 극성을 확인하는 데 사용한다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+duty\+\_\+state 1\texorpdfstring{$\sim$}{\string~}6 → 기본 벡터, 그 외 → 영 벡터 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00839}{839}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00840\ \{}
+\DoxyCodeLine{00841\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>duty\_state)\ \{}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00849\ \ \ \ \ \}}
+\DoxyCodeLine{00850\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a5eb5c4adfd5c3833415678e1da00bf93_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a3db77525a1b8b485f18baebc7e086cb1}\index{inv.c@{inv.c}!Hallsensor\_Observer@{Hallsensor\_Observer}}
+\index{Hallsensor\_Observer@{Hallsensor\_Observer}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{Hallsensor\_Observer()}{Hallsensor\_Observer()}}
+{\footnotesize\ttfamily \label{inv_8c_a3db77525a1b8b485f18baebc7e086cb1} 
+void Hallsensor\+\_\+\+Observer (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+Hall 센서 기반 속도/\+위치 PLL 옵저버 
+
+Hall 센서 3비트 상태로부터 전기각을 이산적으로 결정하고, PI-\/\+PLL을 사용하여 전기각(\+Thetar\+\_\+est\+\_\+\+Hall)과 전기 각속도(\+Wr\+\_\+est\+\_\+\+Hall)를 연속적으로 추정한다.
+
+Hall 상태와 전기각 매핑 (0\texorpdfstring{$\sim$}{\string~}2π, 60° 간격):\+ 
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}hall\+\_\+state  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Thetar\+\_\+\+Hall\+\_\+\+PLL  \\
+6  &0  \\
+4  &π/\+3  \\
+5  &2π/\+3  \\
+1  &π  \\
+3  &-\/2π/\+3  \\
+2  &-\/π/\+3  \\
+\end{DoxyTable}
+
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+GPIOC PIN6=hall\+\_\+a, GPIOC PIN7=hall\+\_\+b, GPIOD PIN2=hall\+\_\+c 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00781}{781}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00782\ \{}
+\DoxyCodeLine{00783\ \ \ \ \ \textcolor{comment}{/*\ PLL:\ 위치\ 오차로\ 속도/각도\ 추정\ */}}
+\DoxyCodeLine{00784\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_err\_Hall\ =\ BOUND\_PI(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_Hall\_PLL\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_est\_Hall);}
+\DoxyCodeLine{00785\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>integ\_PLL\_Hall\ +=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_PLL\_Hall\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_err\_Hall;}
+\DoxyCodeLine{00786\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\_est\_Hall\ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_PLL\_Hall\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_err\_Hall\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>integ\_PLL\_Hall;}
+\DoxyCodeLine{00787\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_est\_Hall\ +=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\_est\_Hall;}
+\DoxyCodeLine{00788\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_est\_Hall\ \ =\ BOUND\_PI(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_est\_Hall);}
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00790\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\_est\_Hall;}
+\DoxyCodeLine{00791\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_PP;}
+\DoxyCodeLine{00792\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\ *\ Rm2Rpm;}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \ \ \ \ \textcolor{comment}{/*\ Hall\ 센서\ 읽기\ */}}
+\DoxyCodeLine{00795\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>hall\_a\ =\ HAL\_GPIO\_ReadPin(GPIOC,\ GPIO\_PIN\_6);}
+\DoxyCodeLine{00796\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>hall\_b\ =\ HAL\_GPIO\_ReadPin(GPIOC,\ GPIO\_PIN\_7);}
+\DoxyCodeLine{00797\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>hall\_c\ =\ HAL\_GPIO\_ReadPin(GPIOD,\ GPIO\_PIN\_2);}
+\DoxyCodeLine{00798\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>hall\_state\ =\ \doxymbox{\hyperlink{inv_8c_a158783ba9a4d5687c5fc417acfcc74a4}{GetHallSensorState}}(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>hall\_a,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>hall\_b,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>hall\_c);}
+\DoxyCodeLine{00799\ }
+\DoxyCodeLine{00800\ \ \ \ \ \textcolor{comment}{/*\ Hall\ 상태\ →\ 전기각\ 매핑\ */}}
+\DoxyCodeLine{00801\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>hall\_state)\ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_Hall\_PLL\ =\ \ 0.f;\ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_Hall\_PLL\ =\ \ PIOF3;\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_Hall\_PLL\ =\ \ 2.f\ *\ PIOF3;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_Hall\_PLL\ =\ \ 3.f\ *\ PIOF3;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_Hall\_PLL\ =\ -\/2.f\ *\ PIOF3;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_Hall\_PLL\ =\ -\/PIOF3;\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00808\ \ \ \ \ \}}
+\DoxyCodeLine{00809\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{inv_8c_a3db77525a1b8b485f18baebc7e086cb1_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a3db77525a1b8b485f18baebc7e086cb1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a887559495f97e26d7fa0ef0a2c5c84f0}\index{inv.c@{inv.c}!Init\_Spd\_PLL@{Init\_Spd\_PLL}}
+\index{Init\_Spd\_PLL@{Init\_Spd\_PLL}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{Init\_Spd\_PLL()}{Init\_Spd\_PLL()}}
+{\footnotesize\ttfamily \label{inv_8c_a887559495f97e26d7fa0ef0a2c5c84f0} 
+void Init\+\_\+\+Spd\+\_\+\+PLL (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{, }\item[{float}]{Ws}{}\end{DoxyParamCaption})}
+
+
+
+속도 PLL(Phase-\/\+Locked Loop) 옵저버를 초기화한다. 
+
+Hall 센서 또는 사용자 설정 대역폭으로 PLL 게인을 계산한다.
+\begin{DoxyItemize}
+\item 기본 PLL:\+ Kp = 2ζ\+Ws, Ki = Ws² (ζ=0.\+707)
+\item Hall PLL:\+ Kp = 2ζ\+W\+\_\+\+Hall, Ki = W\+\_\+\+Hall² (W\+\_\+\+Hall = 2π×10 rad/\+s)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Ws} & PLL 자연 주파수 \+[rad/\+s]\+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00230}{230}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00231\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>W\_PLL\ \ \ \ \ \ \ \ \ \ \ =\ Ws;}
+\DoxyCodeLine{00233\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_PLL\ \ \ \ \ \ \ \ \ \ =\ 2.f\ *\ 0.707f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>W\_PLL;}
+\DoxyCodeLine{00234\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_PLL\ \ \ \ \ \ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>W\_PLL\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>W\_PLL;}
+\DoxyCodeLine{00235\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>integ\_Thetar\_PLL\ =\ 0.;}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>W\_PLL\_Hall\ \ \ \ \ \ =\ PI2\ *\ 10.f;}
+\DoxyCodeLine{00238\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_PLL\_Hall\ \ \ \ \ =\ 2.f\ *\ 0.707f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>W\_PLL\_Hall;}
+\DoxyCodeLine{00239\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_PLL\_Hall\ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>W\_PLL\_Hall\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>W\_PLL\_Hall;}
+\DoxyCodeLine{00240\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>integ\_PLL\_Hall\ \ =\ 0.;}
+\DoxyCodeLine{00241\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{inv_8c_a887559495f97e26d7fa0ef0a2c5c84f0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a643273242fd423931f39716c68ac91bf}\index{inv.c@{inv.c}!InitCurrentController@{InitCurrentController}}
+\index{InitCurrentController@{InitCurrentController}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{InitCurrentController()}{InitCurrentController()}}
+{\footnotesize\ttfamily \label{inv_8c_a643273242fd423931f39716c68ac91bf} 
+void Init\+Current\+Controller (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{, }\item[{float}]{Wcc}{}\end{DoxyParamCaption})}
+
+
+
+전류 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다. 
+
+PI 전류 제어기 게인을 대역폭(\+Wcc)으로 설정한다 (내부 모델 방식):\+
+\begin{DoxyItemize}
+\item Kp = Wcc × L
+\item Ki = Wcc × Rs
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Wcc} & 전류 제어 대역폭 \+[rad/\+s]\+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00124}{124}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ \ \ \ \ =\ Wcc;}
+\DoxyCodeLine{00127\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpd\_cc\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ld;}
+\DoxyCodeLine{00128\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpq\_cc\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lq;}
+\DoxyCodeLine{00129\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kid\_cc\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs;}
+\DoxyCodeLine{00130\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kiq\_cc\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs;}
+\DoxyCodeLine{00131\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kad\_cc\ \ =\ 1.f\ /\ fmaxf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpd\_cc,\ 1.e-\/9f);}
+\DoxyCodeLine{00132\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kaq\_cc\ \ =\ 1.f\ /\ fmaxf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpq\_cc,\ 1.e-\/9f);}
+\DoxyCodeLine{00133\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ractive\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{/*\ 상태\ 변수\ 초기화\ */}}
+\DoxyCodeLine{00136\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\ =\ 0.;}
+\DoxyCodeLine{00137\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\ =\ 0.;}
+\DoxyCodeLine{00138\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_err\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_err\ =\ 0.;}
+\DoxyCodeLine{00139\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_integ\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_integ\ =\ 0.;}
+\DoxyCodeLine{00140\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_ff\ \ \ \ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_ff\ \ \ \ =\ 0.;}
+\DoxyCodeLine{00141\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ =\ 0.;}
+\DoxyCodeLine{00142\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmag\_ref\ =\ 0.;}
+\DoxyCodeLine{00143\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_old\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_old\ =\ 0.;}
+\DoxyCodeLine{00144\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_aw\ \ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_aw\ \ =\ 0.;}
+\DoxyCodeLine{00145\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref\ =\ 0.;}
+\DoxyCodeLine{00146\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ =\ 0.;}
+\DoxyCodeLine{00147\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ =\ 0.;}
+\DoxyCodeLine{00148\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ =\ 0.;}
+\DoxyCodeLine{00149\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ 0.;}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{/*\ 개루프\ 제어\ 변수\ 초기화\ */}}
+\DoxyCodeLine{00152\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ =\ 0.;}
+\DoxyCodeLine{00153\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_OLC\ =\ 0.;}
+\DoxyCodeLine{00154\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_OLC\ =\ 0.;}
+\DoxyCodeLine{00155\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\ \ \ =\ 0.;}
+\DoxyCodeLine{00156\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\_buffer\ =\ 0.;}
+\DoxyCodeLine{00157\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00158\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_OLC\ =\ 0.;}
+\DoxyCodeLine{00159\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC\ \ \ =\ 10.f;}
+\DoxyCodeLine{00160\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC\ \ \ =\ 20.f;}
+\DoxyCodeLine{00161\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_set\_OLC\ =\ 0.;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{/*\ 비선형\ 보상(NLC)\ 변수\ 초기화\ */}}
+\DoxyCodeLine{00164\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_NLC\ =\ 0.1f;}
+\DoxyCodeLine{00165\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\_ref\ =\ 0.;}
+\DoxyCodeLine{00166\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ia\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic\_ref\ =\ 0.;}
+\DoxyCodeLine{00167\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>A\_NLC\ =\ 3.f;}
+\DoxyCodeLine{00168\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>B\_NLC\ =\ 4.f;}
+\DoxyCodeLine{00169\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>C\_NLC\ =\ 0.;}
+\DoxyCodeLine{00170\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Va\_NLC\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vb\_NLC\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vc\_NLC\ =\ 0.;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{/*\ 각도\ 관련\ 변수\ 초기화\ */}}
+\DoxyCodeLine{00173\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ \ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00174\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00175\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_offset\ \ =\ 0.;}
+\DoxyCodeLine{00176\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00177\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00178\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ \ =\ 0.;}
+\DoxyCodeLine{00179\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ \ =\ 0.;}
+\DoxyCodeLine{00180\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>init\_align\_done\ =\ 0;}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>TestDuty\_A\ =\ 0.f;}
+\DoxyCodeLine{00183\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>TestDuty\_B\ =\ 0.f;}
+\DoxyCodeLine{00184\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>TestDuty\_C\ =\ 0.f;}
+\DoxyCodeLine{00185\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_Test\ \ =\ 0.01f;}
+\DoxyCodeLine{00186\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{inv_8c_a643273242fd423931f39716c68ac91bf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a917cf2e97121d1990d40ef50799f3ecd}\index{inv.c@{inv.c}!InitParameter@{InitParameter}}
+\index{InitParameter@{InitParameter}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{InitParameter()}{InitParameter()}}
+{\footnotesize\ttfamily \label{inv_8c_a917cf2e97121d1990d40ef50799f3ecd} 
+void Init\+Parameter (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{, }\item[{float}]{Rs}{, }\item[{float}]{Ld}{, }\item[{float}]{Lq}{, }\item[{float}]{Lamf}{, }\item[{float}]{PP}{, }\item[{float}]{Jm}{, }\item[{float}]{Bm}{, }\item[{float}]{Idsr\+\_\+align}{, }\item[{float}]{Is\+\_\+rated}{, }\item[{float}]{Is\+\_\+limit}{, }\item[{float}]{Wrpm\+\_\+rated}{, }\item[{float}]{Te\+\_\+rated}{}\end{DoxyParamCaption})}
+
+
+
+전동기 및 인버터 기본 파라미터를 초기화한다. 
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Rs} & 고정자 저항 \+[Ω]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Ld} & d축 인덕턴스 \+[H]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Lq} & q축 인덕턴스 \+[H]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Lamf} & 영구자석 자속 \+[Wb]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em PP} & 극쌍수 \+[-\/]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Jm} & 관성 모멘트 \+[kg·m²]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Bm} & 점성 마찰 계수 \+[N·m·s/\+rad]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Idsr\+\_\+align} & 정렬용 d축 전류 기준값 \+[A]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Is\+\_\+rated} & 정격 전류 \+[A]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Is\+\_\+limit} & 최대 허용 전류 \+[A]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Wrpm\+\_\+rated} & 정격 속도 \+[rpm]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Te\+\_\+rated} & 정격 토크 \+[N·m]\+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+Kt = 1.\+5 × PP × Lamf, MTPA 테이블 간격도 내부에서 설정된다. 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00083}{83}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs\ \ \ \ \ \ =\ Rs;}
+\DoxyCodeLine{00090\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ld\ \ \ \ \ \ =\ Ld;}
+\DoxyCodeLine{00091\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lq\ \ \ \ \ \ =\ Lq;}
+\DoxyCodeLine{00092\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ls\ \ \ \ \ \ =\ Ld;}
+\DoxyCodeLine{00093\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lamf\ \ \ \ =\ Lamf;}
+\DoxyCodeLine{00094\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP\ \ \ \ \ \ =\ PP;}
+\DoxyCodeLine{00095\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_PP\ \ =\ 1.f\ /\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP;}
+\DoxyCodeLine{00096\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kt\ \ \ \ \ \ =\ 1.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lamf;}
+\DoxyCodeLine{00097\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Kt\ \ =\ 1.f\ /\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kt;}
+\DoxyCodeLine{00098\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Jm\ \ \ \ \ \ =\ Jm;}
+\DoxyCodeLine{00099\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Jm\ \ =\ 1.f\ /\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Jm;}
+\DoxyCodeLine{00100\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Bm\ \ \ \ \ \ =\ Bm;}
+\DoxyCodeLine{00101\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_align\ =\ Idsr\_align;}
+\DoxyCodeLine{00102\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_rated\ \ \ =\ Is\_rated;}
+\DoxyCodeLine{00103\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_limit\ \ \ =\ Is\_limit;}
+\DoxyCodeLine{00104\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_rated\ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kt\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_rated;}
+\DoxyCodeLine{00105\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_limit\ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kt\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_limit;}
+\DoxyCodeLine{00106\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_rated\ =\ Wrpm\_rated;}
+\DoxyCodeLine{00107\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_rated\ \ \ =\ Te\_rated;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>MTPA\_Te\_gap\ \ \ \ \ =\ 0.105263157894737f;}
+\DoxyCodeLine{00110\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>MTPA\_Te\_max\ \ \ \ \ =\ 2.f;}
+\DoxyCodeLine{00111\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>MTPA\_Te\_gap\_INV\ =\ 1.f\ /\ 0.105263157894737f;}
+\DoxyCodeLine{00112\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{inv_8c_a917cf2e97121d1990d40ef50799f3ecd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a0e276774794e294c9ba7a8ec91266d75}\index{inv.c@{inv.c}!InitSpeedController@{InitSpeedController}}
+\index{InitSpeedController@{InitSpeedController}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{InitSpeedController()}{InitSpeedController()}}
+{\footnotesize\ttfamily \label{inv_8c_a0e276774794e294c9ba7a8ec91266d75} 
+void Init\+Speed\+Controller (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{, }\item[{float}]{Wsc}{, }\item[{float}]{zeta}{}\end{DoxyParamCaption})}
+
+
+
+속도 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다. 
+
+PI 속도 제어기 게인을 대역폭(\+Wsc)으로 설정한다:\+
+\begin{DoxyItemize}
+\item Kp = Jm × Wsc
+\item Ki = Kp × Wsc × 0.\+25
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Wsc} & 속도 제어 대역폭 \+[rad/\+s]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em zeta} & 감쇠비 (현재 미사용, 향후 확장용) \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00199}{199}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00200\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wsc\ \ \ \ \ \ =\ Wsc;}
+\DoxyCodeLine{00202\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>zeta\_sc\ \ =\ zeta;}
+\DoxyCodeLine{00203\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_sc\ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Jm\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wsc;}
+\DoxyCodeLine{00204\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_scale\ =\ 0.25f;}
+\DoxyCodeLine{00205\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_sc\ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_sc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wsc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_scale;}
+\DoxyCodeLine{00206\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ka\_sc\ \ \ \ =\ 1.f\ /\ fmaxf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_sc,\ 1.e-\/9f);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ =\ 0.;}
+\DoxyCodeLine{00209\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\_set\ =\ 0.;}
+\DoxyCodeLine{00210\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\ =\ 0.;\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ =\ 0.;}
+\DoxyCodeLine{00211\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>dWrm\ \ \ \ =\ 3000.f\ *\ RPM2RM\ *\ Tsamp;\ \textcolor{comment}{/*\ 가속도\ 제한:\ 3000rpm/s\ */}}
+\DoxyCodeLine{00212\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_err\ =\ 0.;}
+\DoxyCodeLine{00213\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_integ\ \ =\ 0.;}
+\DoxyCodeLine{00214\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_ff\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00215\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_unsat\ \ =\ 0.;}
+\DoxyCodeLine{00216\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00217\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_aw\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00218\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{inv_8c_a0e276774794e294c9ba7a8ec91266d75_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a964ec348ab2be811f76c85501ac14208}\index{inv.c@{inv.c}!OpenLoopControl@{OpenLoopControl}}
+\index{OpenLoopControl@{OpenLoopControl}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{OpenLoopControl()}{OpenLoopControl()}}
+{\footnotesize\ttfamily \label{inv_8c_a964ec348ab2be811f76c85501ac14208} 
+void Open\+Loop\+Control (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+전류 개루프 제어 (Open-\/\+Loop Current Control) 
+
+외부에서 설정한 d/\+q 전류 기준(\+Idsr\+\_\+ref\+\_\+\+OLC, Iqsr\+\_\+ref\+\_\+\+OLC)과 OLC 각속도(\+Wrpm\+\_\+ref\+\_\+\+OLC)로 생성한 각도를 사용하여 \doxylink{inv_8c_a68f857bdf76878fd721ac48e6c354997}{Current\+Control()}을 호출한다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+\doxylink{inv_8c_a68f857bdf76878fd721ac48e6c354997}{Current\+Control()} 내에서 Theta\+\_\+mode=1을 통해 OLC 각도가 선택된다. 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00503}{503}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00504\ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \textcolor{comment}{/*\ d축\ 전류\ 경사\ 제한\ */}}
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ \ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_set\_OLC\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ +\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC)}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ +=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC;}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_set\_OLC\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ -\/\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC)}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ -\/=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC;}
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_set\_OLC;}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC;}
+\DoxyCodeLine{00513\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_OLC;}
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{comment}{/*\ 속도\ 경사\ 제한\ */}}
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ \ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_OLC\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ +\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC)}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ +=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC;}
+\DoxyCodeLine{00518\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_OLC\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ -\/\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC)}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ -\/=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC;}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_OLC;}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\ =\ BOUND\_PI(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ *\ RPM2RM\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP\ *\ Tsamp);}
+\DoxyCodeLine{00523\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a964ec348ab2be811f76c85501ac14208_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}\index{inv.c@{inv.c}!PwmDutyUpt@{PwmDutyUpt}}
+\index{PwmDutyUpt@{PwmDutyUpt}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{PwmDutyUpt()}{PwmDutyUpt()}}
+{\footnotesize\ttfamily \label{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13} 
+void Pwm\+Duty\+Upt (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+TIM1 CCR 레지스터에 듀티비를 업데이트한다. 
+
+INV.\+Duty\+\_\+A/\+\+B/\+C \+[0,1]\+ 값을 TIM1 ARR(자동 리로드 값)에 곱하여 CCR1\texorpdfstring{$\sim$}{\string~}\+CCR3에 직접 기록한다. 
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00953}{953}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00954\ \{}
+\DoxyCodeLine{00955\ \ \ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Instance-\/>CCR1\ =\ (\textcolor{keywordtype}{unsigned}\ int)(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_A\ *\ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Instance-\/>ARR);}
+\DoxyCodeLine{00956\ \ \ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Instance-\/>CCR2\ =\ (\textcolor{keywordtype}{unsigned}\ int)(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_B\ *\ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Instance-\/>ARR);}
+\DoxyCodeLine{00957\ \ \ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Instance-\/>CCR3\ =\ (\textcolor{keywordtype}{unsigned}\ int)(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_C\ *\ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Instance-\/>ARR);}
+\DoxyCodeLine{00958\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a9013a288bba48367bf9d57702c80b1ee}\index{inv.c@{inv.c}!PwmSwOff@{PwmSwOff}}
+\index{PwmSwOff@{PwmSwOff}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{PwmSwOff()}{PwmSwOff()}}
+{\footnotesize\ttfamily \label{inv_8c_a9013a288bba48367bf9d57702c80b1ee} 
+void Pwm\+Sw\+Off (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+TIM1 PWM 출력을 비활성화한다. 
+
+고장 발생 또는 정지 시 호출된다. PWM 버퍼를 먼저 끄고 듀티를 0으로 설정한 뒤 모든 채널을 정지한다.
+
+\begin{DoxyWarning}{경고}
+이 함수 호출 즉시 인버터 출력이 차단된다. 
+\end{DoxyWarning}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00932}{932}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00933\ \{}
+\DoxyCodeLine{00934\ \ \ \ \ PWM\_BUF\_OFF;}
+\DoxyCodeLine{00935\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_A\ =\ 0.f;}
+\DoxyCodeLine{00936\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_B\ =\ 0.f;}
+\DoxyCodeLine{00937\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_C\ =\ 0.f;}
+\DoxyCodeLine{00938\ }
+\DoxyCodeLine{00939\ \ \ \ \ HAL\_TIM\_PWM\_Stop(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_1);}
+\DoxyCodeLine{00940\ \ \ \ \ HAL\_TIMEx\_PWMN\_Stop(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_1);}
+\DoxyCodeLine{00941\ \ \ \ \ HAL\_TIM\_PWM\_Stop(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_2);}
+\DoxyCodeLine{00942\ \ \ \ \ HAL\_TIMEx\_PWMN\_Stop(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_2);}
+\DoxyCodeLine{00943\ \ \ \ \ HAL\_TIM\_PWM\_Stop(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_3);}
+\DoxyCodeLine{00944\ \ \ \ \ HAL\_TIMEx\_PWMN\_Stop(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_3);}
+\DoxyCodeLine{00945\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a9013a288bba48367bf9d57702c80b1ee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a031511fea69b8fce19a44f86eb1858fe}\index{inv.c@{inv.c}!PwmSwOn@{PwmSwOn}}
+\index{PwmSwOn@{PwmSwOn}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{PwmSwOn()}{PwmSwOn()}}
+{\footnotesize\ttfamily \label{inv_8c_a031511fea69b8fce19a44f86eb1858fe} 
+void Pwm\+Sw\+On (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+TIM1 PWM 출력을 활성화한다 (3상 상하 암 모두). 
+
+CH1\texorpdfstring{$\sim$}{\string~}\+CH3 및 보완 채널(CH1\+N\texorpdfstring{$\sim$}{\string~}\+CH3N)을 모두 시작한다. 
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00914}{914}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00915\ \{}
+\DoxyCodeLine{00916\ \ \ \ \ HAL\_TIM\_PWM\_Start(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_1);}
+\DoxyCodeLine{00917\ \ \ \ \ HAL\_TIMEx\_PWMN\_Start(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_1);}
+\DoxyCodeLine{00918\ \ \ \ \ HAL\_TIM\_PWM\_Start(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_2);}
+\DoxyCodeLine{00919\ \ \ \ \ HAL\_TIMEx\_PWMN\_Start(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_2);}
+\DoxyCodeLine{00920\ \ \ \ \ HAL\_TIM\_PWM\_Start(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_3);}
+\DoxyCodeLine{00921\ \ \ \ \ HAL\_TIMEx\_PWMN\_Start(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ TIM\_CHANNEL\_3);}
+\DoxyCodeLine{00922\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a031511fea69b8fce19a44f86eb1858fe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a1f6df58c2a073ad2274f97f6a504c96d}\index{inv.c@{inv.c}!ResetController@{ResetController}}
+\index{ResetController@{ResetController}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{ResetController()}{ResetController()}}
+{\footnotesize\ttfamily \label{inv_8c_a1f6df58c2a073ad2274f97f6a504c96d} 
+void Reset\+Controller (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+모든 제어 상태 변수를 초기값으로 리셋한다. 
+
+고장 발생, 운전 정지, 모드 전환 시 호출하여 적분기 등 내부 상태를 초기화한다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00274}{274}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00275\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\_set\ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00277\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00278\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_old\ =\ 0.;}
+\DoxyCodeLine{00279\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ \ \ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00280\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\ \ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00281\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_integ\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00282\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_aw\ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00283\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_integ\ \ \ =\ 0.;}
+\DoxyCodeLine{00284\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_aw\ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00285\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_sat\ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00286\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\ \ \ \ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00287\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ \ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00288\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ \ \ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00289\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00290\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_OLC\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00291\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_OLC\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00292\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_OLC\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00293\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00294\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00295\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_OLC\ =\ 0.;}
+\DoxyCodeLine{00296\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC\ \ \ =\ 5.f;}
+\DoxyCodeLine{00297\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_integ\ \ \ =\ 0.;}
+\DoxyCodeLine{00298\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_integ\ \ \ =\ 0.;}
+\DoxyCodeLine{00299\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ \ \ =\ 0;}
+\DoxyCodeLine{00300\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ \ \ =\ 0;}
+\DoxyCodeLine{00301\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_aw\ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00302\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_aw\ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00303\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>TestDuty\_A\ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00304\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>TestDuty\_B\ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00305\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>TestDuty\_C\ \ \ \ \ \ \ =\ 0.;}
+\DoxyCodeLine{00306\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>alpha\_LPF\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00307\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a1f6df58c2a073ad2274f97f6a504c96d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_aa0c62359efaad04d667cc7d8d3e169e6}\index{inv.c@{inv.c}!SpeedControl@{SpeedControl}}
+\index{SpeedControl@{SpeedControl}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{SpeedControl()}{SpeedControl()}}
+{\footnotesize\ttfamily \label{inv_8c_aa0c62359efaad04d667cc7d8d3e169e6} 
+void Speed\+Control (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+PI 속도 제어기 (rpm → 토크 기준 생성) 
+
+속도 기준(\+Wrpm\+\_\+ref\+\_\+set)을 경사 제한(d\+Wrm)하여 Wrm\+\_\+ref를 생성하고, 속도 오차에 PI 제어를 적용하여 Te\+\_\+ref를 출력한다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+데드존:\+ \texorpdfstring{$\vert$}{|}\+Wrpm\+\_\+ref\+\_\+set\texorpdfstring{$\vert$}{|} \texorpdfstring{$<$}{<} 5\% × Wrpm\+\_\+rated → Wrpm\+\_\+ref\+\_\+set = 0 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00473}{473}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00474\ \{}
+\DoxyCodeLine{00475\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_cmd;}
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keywordflow}{if}\ (ABS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set)\ <\ 0.05f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_rated)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\ =\ 0.;}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{comment}{/*\ 속도\ 경사\ 제한\ */}}
+\DoxyCodeLine{00479\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\_set\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\ *\ RPM2RM;}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ \ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\_set\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>dWrm)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ +=\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>dWrm;}
+\DoxyCodeLine{00481\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\_set\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>dWrm)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ -\/=\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>dWrm;}
+\DoxyCodeLine{00482\ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\_set;}
+\DoxyCodeLine{00483\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ *\ RM2RPM;}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ \textcolor{comment}{/*\ PI\ 속도\ 제어\ (Anti-\/windup\ 포함)\ */}}
+\DoxyCodeLine{00486\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_err\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm;}
+\DoxyCodeLine{00487\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_integ\ +=\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_sc\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_err\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ka\_sc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_aw)\ *\ Tsamp;}
+\DoxyCodeLine{00488\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_unsat\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_sc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_err\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_integ;}
+\DoxyCodeLine{00489\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\ \ \ \ \ \ \ \ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_rated,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_rated);}
+\DoxyCodeLine{00490\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_aw\ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref;}
+\DoxyCodeLine{00491\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_aa0c62359efaad04d667cc7d8d3e169e6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a7c9cfee082f7d95396b41b6fd5b0676d}\index{inv.c@{inv.c}!TorqueControl@{TorqueControl}}
+\index{TorqueControl@{TorqueControl}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{TorqueControl()}{TorqueControl()}}
+{\footnotesize\ttfamily \label{inv_8c_a7c9cfee082f7d95396b41b6fd5b0676d} 
+void Torque\+Control (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+토크 제어 함수 (듀티 사이클 기반 토크 기준 생성) 
+
+외부 입력(duty\+Cycle)으로부터 토크 기준을 생성하고 q축 전류 기준만 사용하는 단순 토크 제어를 수행한다. (Id=0 제어, MTPA 미적용)
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+데드존:\+ \texorpdfstring{$\vert$}{|}\+Te\+\_\+ref\texorpdfstring{$\vert$}{|} \texorpdfstring{$<$}{<} 5\% × Te\+\_\+rated → Te\+\_\+ref = 0 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00323}{323}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00324\ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\ =\ (\doxymbox{\hyperlink{inv_8c_ab5e71ba0276929fe061bacdcc22c3335}{dutyCycle}}\ -\/\ 0.15f)\ *\ 20.f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_rated;}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{if}\ (ABS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref)\ <\ 0.05f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_rated)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\ =\ 0.f;}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00330\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_unsat\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Kt;}
+\DoxyCodeLine{00331\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_max\ \ \ \ \ \ \ \ =\ sqrtf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_limit\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_limit\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref);}
+\DoxyCodeLine{00332\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ \ \ \ \ \ \ \ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_max,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_max);}
+\DoxyCodeLine{00333\ \}}
+
+\end{DoxyCode}
+\Hypertarget{inv_8c_a9fabfabf3cf816a557870ac6174ba05b}\index{inv.c@{inv.c}!UpdateController@{UpdateController}}
+\index{UpdateController@{UpdateController}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{UpdateController()}{UpdateController()}}
+{\footnotesize\ttfamily \label{inv_8c_a9fabfabf3cf816a557870ac6174ba05b} 
+void Update\+Controller (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+제어기 게인을 현재 파라미터로 갱신한다. 
+
+실시간으로 Rs, Ld, Lq, Wcc, Wsc가 변경되었을 때 호출하여 전류/\+속도 제어기 게인을 재계산한다. 매 샘플링마다 \doxylink{control_8c_afb486c446e28753e3dca5112dfdc8264}{Control()}에서 호출된다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00251}{251}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00252\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpd\_cc\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ld;}
+\DoxyCodeLine{00254\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpq\_cc\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lq;}
+\DoxyCodeLine{00255\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kid\_cc\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs;}
+\DoxyCodeLine{00256\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kiq\_cc\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wcc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs;}
+\DoxyCodeLine{00257\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kad\_cc\ =\ 1.f\ /\ fmaxf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpd\_cc,\ 1.e-\/9f);}
+\DoxyCodeLine{00258\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kaq\_cc\ =\ 1.f\ /\ fmaxf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kpq\_cc,\ 1.e-\/9f);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_sc\ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Jm\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wsc;}
+\DoxyCodeLine{00261\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_scale\ =\ 0.25f;}
+\DoxyCodeLine{00262\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_sc\ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_sc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wsc\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ki\_scale;}
+\DoxyCodeLine{00263\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ka\_sc\ \ \ =\ 1.f\ /\ fmaxf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Kp\_sc,\ 1.e-\/9f);}
+\DoxyCodeLine{00264\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a9fabfabf3cf816a557870ac6174ba05b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_aedf8f86f640274dface77130a3d50207}\index{inv.c@{inv.c}!VoltageInjection\_SquareWave@{VoltageInjection\_SquareWave}}
+\index{VoltageInjection\_SquareWave@{VoltageInjection\_SquareWave}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{VoltageInjection\_SquareWave()}{VoltageInjection\_SquareWave()}}
+{\footnotesize\ttfamily \label{inv_8c_aedf8f86f640274dface77130a3d50207} 
+void Voltage\+Injection\+\_\+\+Square\+Wave (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+d축 구형파 전압 주입 (파라미터 추정용) 
+
+매 제어 주기마다 d축 전압을 ±\+Vmag\+\_\+inj로 토글하여 주입한다. 인덕턴스, 저항 등 파라미터 추정에 사용된다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+주입 방향:\+ cnt\+\_\+inj≥2 → +d주입, cnt\+\_\+inj\texorpdfstring{$<$}{<}2 → -\/d주입 (2주기 토글) 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00694}{694}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00695\ \{}
+\DoxyCodeLine{00696\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmag\_inj\ =\ 1;}
+\DoxyCodeLine{00697\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC;}
+\DoxyCodeLine{00698\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC;}
+\DoxyCodeLine{00699\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\ \ \ \ \ =\ 1;}
+\DoxyCodeLine{00700\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00701\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ =\ 1;}
+\DoxyCodeLine{00702\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ =\ 0;}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_adc9491aaf3043e1e99f084debf0bd167}{cnt\_inj}}\ >=\ 2)\ \{}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ =\ +\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmag\_inj;\ \textcolor{comment}{/*\ +d\ 주입\ */}}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ =\ \ 0;}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_adc9491aaf3043e1e99f084debf0bd167}{cnt\_inj}}\ =\ 0;}
+\DoxyCodeLine{00708\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ =\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmag\_inj;\ \textcolor{comment}{/*\ -\/d\ 주입\ */}}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ =\ \ 0;}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_adc9491aaf3043e1e99f084debf0bd167}{cnt\_inj}}\ =\ 1;}
+\DoxyCodeLine{00712\ \ \ \ \ \}}
+\DoxyCodeLine{00713\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_adc9491aaf3043e1e99f084debf0bd167}{cnt\_inj}}++;}
+\DoxyCodeLine{00714\ }
+\DoxyCodeLine{00715\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3);}
+\DoxyCodeLine{00716\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3);}
+\DoxyCodeLine{00717\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_aw\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref;}
+\DoxyCodeLine{00718\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_aw\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref;}
+\DoxyCodeLine{00719\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv;}
+\DoxyCodeLine{00720\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv;}
+\DoxyCodeLine{00721\ }
+\DoxyCodeLine{00722\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref;}
+\DoxyCodeLine{00723\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ +\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref;}
+\DoxyCodeLine{00724\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ -\/\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref;}
+\DoxyCodeLine{00725\ }
+\DoxyCodeLine{00726\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref;}
+\DoxyCodeLine{00727\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref;}
+\DoxyCodeLine{00728\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref;}
+\DoxyCodeLine{00729\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref;}
+\DoxyCodeLine{00730\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref;}
+\DoxyCodeLine{00731\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref;}
+\DoxyCodeLine{00732\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ =\ -\/0.5f\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin);}
+\DoxyCodeLine{00733\ }
+\DoxyCodeLine{00734\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv;}
+\DoxyCodeLine{00735\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv;}
+\DoxyCodeLine{00736\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ia\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref;}
+\DoxyCodeLine{00737\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref\ +\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\_ref;}
+\DoxyCodeLine{00738\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\_ref\ -\/\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\_ref;}
+\DoxyCodeLine{00739\ }
+\DoxyCodeLine{00740\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Va\_NLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>A\_NLC\ *\ atanf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>B\_NLC\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ia\_ref);}
+\DoxyCodeLine{00741\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vb\_NLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>A\_NLC\ *\ atanf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>B\_NLC\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\_ref);}
+\DoxyCodeLine{00742\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vc\_NLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>A\_NLC\ *\ atanf(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>B\_NLC\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic\_ref);}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00744\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Va\_NLC,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00745\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vb\_NLC,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00746\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vc\_NLC,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00749\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00750\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00751\ }
+\DoxyCodeLine{00752\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{00753\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{PwmSwOn}}();}
+\DoxyCodeLine{00754\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.FAULT)\ PWM\_BUF\_ON;}
+\DoxyCodeLine{00755\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{inv_8c_aedf8f86f640274dface77130a3d50207_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_aedf8f86f640274dface77130a3d50207_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_aefbd0b8bc957317d7f22f0db0185683d}\index{inv.c@{inv.c}!VoltageOpenLoopControl@{VoltageOpenLoopControl}}
+\index{VoltageOpenLoopControl@{VoltageOpenLoopControl}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{VoltageOpenLoopControl()}{VoltageOpenLoopControl()}}
+{\footnotesize\ttfamily \label{inv_8c_aefbd0b8bc957317d7f22f0db0185683d} 
+void Voltage\+Open\+Loop\+Control (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+전압 개루프 제어 (Voltage Open-\/\+Loop Control) 
+
+외부에서 직접 설정한 dq 전압 기준(\+Vdsr\+\_\+ref\+\_\+\+OLC, Vqsr\+\_\+ref\+\_\+\+OLC)을 OLC 각도로 역변환하여 PWM을 출력한다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00627}{627}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00628\ \{}
+\DoxyCodeLine{00629\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_OLC;}
+\DoxyCodeLine{00630\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_OLC;}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\ =\ BOUND\_PI(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ *\ RPM2RM\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP\ *\ Tsamp);}
+\DoxyCodeLine{00633\ }
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{group___control_mode_ga5e542439936627687d1a27ac7b6b50c2}{Theta\_mode}})\ \{}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ =\ \doxymbox{\hyperlink{speed__observer_8c_aaac3af89e1dd9944b6bccef174d4250b}{EXT\_1}}.Thetar\_EXT\_old;}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ \ \ \ \ =\ \doxymbox{\hyperlink{speed__observer_8c_aaac3af89e1dd9944b6bccef174d4250b}{EXT\_1}}.Wr\_EXT\_f;}
+\DoxyCodeLine{00637\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC;}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ *\ RPM2RM\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP;}
+\DoxyCodeLine{00640\ \ \ \ \ \}}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idss\ =\ (2.f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ia\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic)\ *\ INV\_3;}
+\DoxyCodeLine{00643\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqss\ =\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ib\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ic)\ *\ INV\_SQRT3;}
+\DoxyCodeLine{00644\ }
+\DoxyCodeLine{00645\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ \ \ \ =\ BOUND\_PI(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ +\ 1.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ *\ Tsamp);}
+\DoxyCodeLine{00646\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\ \ \ \ \ =\ COS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar);}
+\DoxyCodeLine{00647\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\ \ \ \ \ =\ SIN(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar);}
+\DoxyCodeLine{00648\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ =\ COS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv);}
+\DoxyCodeLine{00649\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ =\ SIN(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv);}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00651\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3);}
+\DoxyCodeLine{00652\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3);}
+\DoxyCodeLine{00653\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_aw\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref;}
+\DoxyCodeLine{00654\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_aw\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref;}
+\DoxyCodeLine{00655\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv;}
+\DoxyCodeLine{00656\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv;}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref;}
+\DoxyCodeLine{00659\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ +\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref;}
+\DoxyCodeLine{00660\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ -\/\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref;}
+\DoxyCodeLine{00661\ }
+\DoxyCodeLine{00662\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref;}
+\DoxyCodeLine{00663\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref;}
+\DoxyCodeLine{00664\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref;}
+\DoxyCodeLine{00665\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref;}
+\DoxyCodeLine{00666\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref;}
+\DoxyCodeLine{00667\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref;}
+\DoxyCodeLine{00668\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ =\ -\/0.5f\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin);}
+\DoxyCodeLine{00669\ }
+\DoxyCodeLine{00670\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00671\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00672\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \ \ \ \ \doxymbox{\hyperlink{group___voltage_ref_ga30c95cfd601124d7bb6a4535bdeb1f72}{Van}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref;\ \doxymbox{\hyperlink{group___voltage_ref_ga2f2a0c510c5b72110e5e3835c1c62555}{Vbn}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref;\ \doxymbox{\hyperlink{group___voltage_ref_ga99d72ed4a63ffab24762fc939a2b9c7d}{Vcn}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref;}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00677\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00678\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{PwmSwOn}}();}
+\DoxyCodeLine{00681\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{00682\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.FAULT)\ PWM\_BUF\_ON;}
+\DoxyCodeLine{00683\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{inv_8c_aefbd0b8bc957317d7f22f0db0185683d_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_aefbd0b8bc957317d7f22f0db0185683d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{inv_8c_a01248186cec9f4dadc54e4c94be940cf}\index{inv.c@{inv.c}!Vref\_GenControl@{Vref\_GenControl}}
+\index{Vref\_GenControl@{Vref\_GenControl}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{Vref\_GenControl()}{Vref\_GenControl()}}
+{\footnotesize\ttfamily \label{inv_8c_a01248186cec9f4dadc54e4c94be940cf} 
+void Vref\+\_\+\+Gen\+Control (\begin{DoxyParamCaption}\item[{struct INVERTER \texorpdfstring{$\ast$}{*}}]{INV}{}\end{DoxyParamCaption})}
+
+
+
+전압 기준 생성 제어 (전압 피드포워드 방식) 
+
+Theta\+\_\+mode에 따라 두 가지 동작을 수행한다:\+
+\begin{DoxyItemize}
+\item mode=1 (OLC):\+ OLC 기준으로 모델 기반 피드포워드 전압 생성
+\item mode=0 (Hall):\+ Hall PLL 각도 + 속도 제어 토크 기준으로 전압 생성
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em \doxylink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}} & 인버터 구조체 포인터 \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00534}{534}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00535\ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{group___control_mode_ga5e542439936627687d1a27ac7b6b50c2}{Theta\_mode}}\ ==\ 1)\ \{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ OLC\ 각도\ +\ 모델\ 기반\ 피드포워드\ 전압\ */}}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ \ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_set\_OLC\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ +\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC)}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ +=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC;}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_set\_OLC\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ -\/\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC)}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ -\/=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_slope\_OLC;}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_set\_OLC;}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC;}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_OLC;}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ \ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_OLC\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ +\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC)}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ +=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC;}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_OLC\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ -\/\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC)}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ -\/=\ Tsamp\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_slope\_OLC;}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_set\_OLC;}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\_ref\_OLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrpm\_ref\_OLC\ *\ RPM2RM\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP;}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 정상\ 상태\ 전압\ 모델:\ Vd\ =\ Rs×Id\ -\/\ Wr×Lq×Iq,\ Vq\ =\ Rs×Iq\ +\ Wr×(Ld×Id\ +\ λf)\ */}}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_OLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\_ref\_OLC\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lq\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_OLC;}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_OLC\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_OLC\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\_ref\_OLC\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ld\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\_OLC\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lamf);}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_OLC;}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_OLC;}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\ =\ BOUND\_PI(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\_ref\_OLC\ *\ Tsamp);}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_OLC;}
+\DoxyCodeLine{00563\ \ \ \ \ \}}
+\DoxyCodeLine{00564\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Hall\ PLL\ 각도\ +\ 속도\ 제어\ 토크\ →\ Iq\ 기준\ 전환\ */}}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Te\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Kt;}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\_unsat,\ -\/1.3f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_rated,\ 1.3f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Is\_rated);}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ =\ 0;}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lq\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref;}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Rs\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Iqsr\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wrm\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>PP\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Ld\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Idsr\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Lamf);}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref;}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref;}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_est\_Hall;}
+\DoxyCodeLine{00576\ \ \ \ \ \}}
+\DoxyCodeLine{00577\ }
+\DoxyCodeLine{00578\ \ \ \ \ \textcolor{comment}{/*\ 이하\ 역변환\ 및\ PWM\ 출력\ (CurrentControl과\ 동일\ 구조)\ */}}
+\DoxyCodeLine{00579\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ \ \ \ =\ BOUND\_PI(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ +\ 1.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Wr\ *\ Tsamp);}
+\DoxyCodeLine{00580\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\ \ \ \ \ =\ COS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar);}
+\DoxyCodeLine{00581\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\ \ \ \ \ =\ SIN(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar);}
+\DoxyCodeLine{00582\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ =\ COS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv);}
+\DoxyCodeLine{00583\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ =\ SIN(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Thetar\_adv);}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3);}
+\DoxyCodeLine{00586\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat,\ -\/\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3,\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc\ *\ INV\_SQRT3);}
+\DoxyCodeLine{00587\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_aw\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref;}
+\DoxyCodeLine{00588\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_aw\ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\_unsat\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref;}
+\DoxyCodeLine{00589\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv\ -\/\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv;}
+\DoxyCodeLine{00590\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>sinThetar\_adv\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqsr\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>cosThetar\_adv;}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref;}
+\DoxyCodeLine{00593\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ +\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref;}
+\DoxyCodeLine{00594\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ =\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdss\_ref\ -\/\ SQRT3HALF\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vqss\_ref;}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00596\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref;}
+\DoxyCodeLine{00597\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref;}
+\DoxyCodeLine{00598\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ <\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref;}
+\DoxyCodeLine{00599\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref;}
+\DoxyCodeLine{00600\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref;}
+\DoxyCodeLine{00601\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ >\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref)\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref;}
+\DoxyCodeLine{00602\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset\ =\ -\/0.5f\ *\ (\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmax\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vmin);}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vas\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00605\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbs\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00606\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcs\_ref\ +\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Voffset,\ -\/0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc,\ 0.5f\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vdc);}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \ \ \ \ \doxymbox{\hyperlink{group___voltage_ref_ga30c95cfd601124d7bb6a4535bdeb1f72}{Van}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref;\ \doxymbox{\hyperlink{group___voltage_ref_ga2f2a0c510c5b72110e5e3835c1c62555}{Vbn}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref;\ \doxymbox{\hyperlink{group___voltage_ref_ga99d72ed4a63ffab24762fc939a2b9c7d}{Vcn}}\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref;}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_A\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Van\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00611\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_B\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vbn\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00612\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Duty\_C\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>Vcn\_ref\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}-\/>INV\_Vdc\ +\ 0.5f,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{PwmSwOn}}();}
+\DoxyCodeLine{00615\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{00616\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.FAULT)\ PWM\_BUF\_ON;}
+\DoxyCodeLine{00617\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{inv_8c_a01248186cec9f4dadc54e4c94be940cf_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inv_8c_a01248186cec9f4dadc54e4c94be940cf_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{inv_8c_doc-var-members}
+\doxysubsection{변수 문서화}
+\Hypertarget{inv_8c_adc9491aaf3043e1e99f084debf0bd167}\index{inv.c@{inv.c}!cnt\_inj@{cnt\_inj}}
+\index{cnt\_inj@{cnt\_inj}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{cnt\_inj}{cnt\_inj}}
+{\footnotesize\ttfamily \label{inv_8c_adc9491aaf3043e1e99f084debf0bd167} 
+int cnt\+\_\+inj = 0}
+
+
+
+구형파 주입 카운터 (홀짝 토글) 
+
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00057}{57}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{inv_8c_ab5e71ba0276929fe061bacdcc22c3335}\index{inv.c@{inv.c}!dutyCycle@{dutyCycle}}
+\index{dutyCycle@{dutyCycle}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{dutyCycle}{dutyCycle}}
+{\footnotesize\ttfamily \label{inv_8c_ab5e71ba0276929fe061bacdcc22c3335} 
+float duty\+Cycle\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+RC 수신기 입력 듀티 사이클 값 \+[0.\+0, 1.\+0]\+ 
+
+TIM15 입력 캡처로부터 계산된 PWM 듀티비. \doxylink{control_8c_afb486c446e28753e3dca5112dfdc8264}{Control()} 함수 내에서 속도 또는 토크 기준으로 변환된다. 
+
+\doxymbox{\hyperlink{main_8c_source}{main.\+c}} 파일의 \doxymbox{\hyperlink{main_8c_source_l00056}{56}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{inv_8c_aac3d2c59ee0e3bbae1b99529a154eb62}\index{inv.c@{inv.c}!htim3@{htim3}}
+\index{htim3@{htim3}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{htim3}{htim3}}
+{\footnotesize\ttfamily \label{inv_8c_aac3d2c59ee0e3bbae1b99529a154eb62} 
+TIM\+\_\+\+Handle\+Type\+Def htim3\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}\index{inv.c@{inv.c}!INV@{INV}}
+\index{INV@{INV}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{INV}{INV}}
+{\footnotesize\ttfamily \label{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30} 
+struct INVERTER INV}
+
+
+
+인버터 전역 상태/\+파라미터 구조체 
+
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00053}{53}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{inv_8c_a90e45c5ed8c3f0ed09963d378e1ad75a}\index{inv.c@{inv.c}!Mode\_align@{Mode\_align}}
+\index{Mode\_align@{Mode\_align}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{Mode\_align}{Mode\_align}}
+{\footnotesize\ttfamily \label{inv_8c_a90e45c5ed8c3f0ed09963d378e1ad75a} 
+int Mode\+\_\+align = 0}
+
+
+
+정렬 상태 머신 단계 (0\texorpdfstring{$\sim$}{\string~}3) 
+
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00055}{55}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{inv_8c_ad09af8d36a15d8f6f38d126a90b36862}\index{inv.c@{inv.c}!Time\_align@{Time\_align}}
+\index{Time\_align@{Time\_align}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{Time\_align}{Time\_align}}
+{\footnotesize\ttfamily \label{inv_8c_ad09af8d36a15d8f6f38d126a90b36862} 
+float Time\+\_\+align = 0.}
+
+
+
+정렬 경과 시간 \+[s]\+ 
+
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00056}{56}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{inv_8c_afcd0f0ee99ff421a667c81624818d6ae}\index{inv.c@{inv.c}!W\_LPF\_set@{W\_LPF\_set}}
+\index{W\_LPF\_set@{W\_LPF\_set}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{W\_LPF\_set}{W\_LPF\_set}}
+{\footnotesize\ttfamily \label{inv_8c_afcd0f0ee99ff421a667c81624818d6ae} 
+float W\+\_\+\+LPF\+\_\+set = 50.f}
+
+
+
+속도 LPF 차단 주파수 설정값 \+[Hz]\+ 
+
+
+
+\doxymbox{\hyperlink{inv_8c_source}{inv.\+c}} 파일의 \doxymbox{\hyperlink{inv_8c_source_l00058}{58}} 번째 라인에서 정의되었습니다.
+

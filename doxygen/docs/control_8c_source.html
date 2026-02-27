@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RC_Driver: Core/Src/control.c 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">RC_Driver<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('control_8c_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">control.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="control_8c.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;control.h&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;inv.h&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;variable.h&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;fault.h&quot;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;flag.h&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;adc.h&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;speed_observer.h&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="control_8c.html#a8dde33cdd74f2fd5bc110c7986794411">   44</a></span>uint32_t <a class="code hl_variable" href="control_8c.html#a8dde33cdd74f2fd5bc110c7986794411">ControlCnt</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">extern</span> uint8_t           <a class="code hl_variable" href="control_8c.html#aee4f58524acc5e1a9386b2e9223e4846">T_buffer</a>[0];</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">extern</span> ADC_HandleTypeDef <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264">   60</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264">Control</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_variable" href="control_8c.html#a8dde33cdd74f2fd5bc110c7986794411">ControlCnt</a>++;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">/* ADC Injected 레지스터 직접 읽기 */</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[0] = <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Instance-&gt;JDR1; <span class="comment">/* Ia  [LSB] */</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[1] = <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Instance-&gt;JDR2; <span class="comment">/* Ib  [LSB] */</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[2] = <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Instance-&gt;JDR3; <span class="comment">/* Ic  [LSB] */</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[3] = <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Instance-&gt;JDR4; <span class="comment">/* Vdc [LSB] */</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="group___a_d_c___variables.html#ga734b67f14f678f4b701be37706729cd0">AdInitFlag</a>)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <a class="code hl_function" href="adc_8c.html#a5c5c41c37d32d75b9a5844f877762629">Offset</a>();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <a class="code hl_function" href="adc_8c.html#a39fd8940b1565d6d40f65b288f358c6c">AdcProcess</a>();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">/* 소프트웨어 과전류 보호 */</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">if</span> (ABS(<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Ia) &gt;= 80.f) { <a class="code hl_function" href="fault_8c.html#a5d0d662228c78364b02259814f0f8ccd">SoftWareFault</a>(); }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">if</span> (ABS(<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Ib) &gt;= 80.f) { <a class="code hl_function" href="fault_8c.html#a5d0d662228c78364b02259814f0f8ccd">SoftWareFault</a>(); }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">if</span> (ABS(<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Ic) &gt;= 80.f) { <a class="code hl_function" href="fault_8c.html#a5d0d662228c78364b02259814f0f8ccd">SoftWareFault</a>(); }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_function" href="inv_8c.html#a9fabfabf3cf816a557870ac6174ba05b">UpdateController</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_function" href="inv_8c.html#a3db77525a1b8b485f18baebc7e086cb1">Hallsensor_Observer</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.READY &amp;&amp; !(<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.FAULT)) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_RUN) {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <a class="code hl_function" href="inv_8c.html#aa0c62359efaad04d667cc7d8d3e169e6">SpeedControl</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            <a class="code hl_function" href="inv_8c.html#a01248186cec9f4dadc54e4c94be940cf">Vref_GenControl</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.HALL_POS_TEST) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <a class="code hl_function" href="inv_8c.html#a5eb5c4adfd5c3833415678e1da00bf93">HallPosition_Test</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <a class="code hl_function" href="inv_8c.html#a4b849dca1f135dd860c6f0ce88cc7c13">PwmDutyUpt</a>();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <a class="code hl_function" href="inv_8c.html#a031511fea69b8fce19a44f86eb1858fe">PwmSwOn</a>();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            PWM_BUF_ON;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.DUTY_TEST) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_A = LIMIT(<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_A, 0.f, 0.95f);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_B = LIMIT(<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_B, 0.f, 0.95f);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_C = LIMIT(<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_C, 0.f, 0.95f);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_A = 0.2f;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_B = 0.3f;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Duty_C = 0.8f;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <a class="code hl_function" href="inv_8c.html#a4b849dca1f135dd860c6f0ce88cc7c13">PwmDutyUpt</a>();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            <a class="code hl_function" href="inv_8c.html#a031511fea69b8fce19a44f86eb1858fe">PwmSwOn</a>();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            PWM_BUF_ON;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_OLC) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <a class="code hl_variable" href="group___control_mode.html#ga5e542439936627687d1a27ac7b6b50c2">Theta_mode</a> = 1;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <a class="code hl_function" href="inv_8c.html#a964ec348ab2be811f76c85501ac14208">OpenLoopControl</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <a class="code hl_function" href="inv_8c.html#a68f857bdf76878fd721ac48e6c354997">CurrentControl</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_Vref_Gen) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <a class="code hl_function" href="inv_8c.html#a01248186cec9f4dadc54e4c94be940cf">Vref_GenControl</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_VOLC) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <a class="code hl_function" href="inv_8c.html#aefbd0b8bc957317d7f22f0db0185683d">VoltageOpenLoopControl</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.Param_Estimation) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <a class="code hl_function" href="inv_8c.html#aedf8f86f640274dface77130a3d50207">VoltageInjection_SquareWave</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_ALIGN) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            <a class="code hl_function" href="inv_8c.html#ad14c7779ae276ada8516bc3d58997206">Align</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <a class="code hl_function" href="inv_8c.html#a9013a288bba48367bf9d57702c80b1ee">PwmSwOff</a>();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <a class="code hl_function" href="inv_8c.html#a4b849dca1f135dd860c6f0ce88cc7c13">PwmDutyUpt</a>();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <a class="code hl_function" href="inv_8c.html#a1f6df58c2a073ad2274f97f6a504c96d">ResetController</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_RUN = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_OLC = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_VOLC = 0;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_ALIGN = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_NLC = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.TS_MODE = 0;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <a class="code hl_function" href="inv_8c.html#a9013a288bba48367bf9d57702c80b1ee">PwmSwOff</a>();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <a class="code hl_function" href="inv_8c.html#a4b849dca1f135dd860c6f0ce88cc7c13">PwmDutyUpt</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <a class="code hl_function" href="inv_8c.html#a1f6df58c2a073ad2274f97f6a504c96d">ResetController</a>(&amp;<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_RUN = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_OLC = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_VOLC = 0;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_ALIGN = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.INV_NLC = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.TS_MODE = <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a>.READY = 0;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>}</div>
+</div>
+<div class="ttc" id="aadc_8c_html_a22b804736f5648d52f639b2647d4ed13"><div class="ttname"><a href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a></div><div class="ttdeci">ADC_HandleTypeDef hadc1</div><div class="ttdoc">ADC1 HAL 핸들 구조체</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00059">adc.c:59</a></div></div>
+<div class="ttc" id="aadc_8c_html_a39fd8940b1565d6d40f65b288f358c6c"><div class="ttname"><a href="adc_8c.html#a39fd8940b1565d6d40f65b288f358c6c">AdcProcess</a></div><div class="ttdeci">void AdcProcess(void)</div><div class="ttdoc">ADC 원시값을 물리량(전류/전압)으로 변환한다.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00197">adc.c:197</a></div></div>
+<div class="ttc" id="aadc_8c_html_a5c5c41c37d32d75b9a5844f877762629"><div class="ttname"><a href="adc_8c.html#a5c5c41c37d32d75b9a5844f877762629">Offset</a></div><div class="ttdeci">void Offset(void)</div><div class="ttdoc">전류 센서 오프셋을 자동 측정한다.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00230">adc.c:230</a></div></div>
+<div class="ttc" id="acontrol_8c_html_a8dde33cdd74f2fd5bc110c7986794411"><div class="ttname"><a href="control_8c.html#a8dde33cdd74f2fd5bc110c7986794411">ControlCnt</a></div><div class="ttdeci">uint32_t ControlCnt</div><div class="ttdoc">제어 루프 실행 횟수 카운터 (디버깅용) TIM2 인터럽트마다 1씩 증가한다. uint32_t 오버플로우 시 자연 순환.</div><div class="ttdef"><b>Definition</b> <a href="#l00044">control.c:44</a></div></div>
+<div class="ttc" id="acontrol_8c_html_aee4f58524acc5e1a9386b2e9223e4846"><div class="ttname"><a href="control_8c.html#aee4f58524acc5e1a9386b2e9223e4846">T_buffer</a></div><div class="ttdeci">uint8_t T_buffer[0]</div></div>
+<div class="ttc" id="acontrol_8c_html_afb486c446e28753e3dca5112dfdc8264"><div class="ttname"><a href="control_8c.html#afb486c446e28753e3dca5112dfdc8264">Control</a></div><div class="ttdeci">void Control(void)</div><div class="ttdoc">PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)</div><div class="ttdef"><b>Definition</b> <a href="#l00060">control.c:60</a></div></div>
+<div class="ttc" id="afault_8c_html_a5d0d662228c78364b02259814f0f8ccd"><div class="ttname"><a href="fault_8c.html#a5d0d662228c78364b02259814f0f8ccd">SoftWareFault</a></div><div class="ttdeci">void SoftWareFault(void)</div><div class="ttdoc">소프트웨어 고장 처리 함수</div><div class="ttdef"><b>Definition</b> <a href="fault_8c_source.html#l00092">fault.c:92</a></div></div>
+<div class="ttc" id="aflag_8c_html_ac09613eff9a28b2750787c13d7d6fdc9"><div class="ttname"><a href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a></div><div class="ttdeci">struct CONTROL_FLAG FLAG</div><div class="ttdoc">제어 플래그 전역 구조체 (시스템 시작 시 모두 0으로 초기화)</div><div class="ttdef"><b>Definition</b> <a href="flag_8c_source.html#l00041">flag.c:41</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga3f46ad79f65150aec6105a862cf32624"><div class="ttname"><a href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a></div><div class="ttdeci">float adc1Val[4]</div><div class="ttdoc">ADC1 Injected 채널 원시값 [Ia, Ib, Ic, Vdc]</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00038">adc.c:38</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga734b67f14f678f4b701be37706729cd0"><div class="ttname"><a href="group___a_d_c___variables.html#ga734b67f14f678f4b701be37706729cd0">AdInitFlag</a></div><div class="ttdeci">int AdInitFlag</div><div class="ttdoc">ADC 오프셋 보정 완료 플래그 (0: 미완료, 1: 완료)</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00036">adc.c:36</a></div></div>
+<div class="ttc" id="agroup___control_mode_html_ga5e542439936627687d1a27ac7b6b50c2"><div class="ttname"><a href="group___control_mode.html#ga5e542439936627687d1a27ac7b6b50c2">Theta_mode</a></div><div class="ttdeci">int Theta_mode</div><div class="ttdoc">전기각 소스 선택 (0: Hall PLL, 1: OLC 개루프 각도)</div><div class="ttdef"><b>Definition</b> <a href="variable_8c_source.html#l00025">variable.c:25</a></div></div>
+<div class="ttc" id="ainv_8c_html_a01248186cec9f4dadc54e4c94be940cf"><div class="ttname"><a href="inv_8c.html#a01248186cec9f4dadc54e4c94be940cf">Vref_GenControl</a></div><div class="ttdeci">void Vref_GenControl(struct INVERTER *INV)</div><div class="ttdoc">전압 기준 생성 제어 (전압 피드포워드 방식)</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00534">inv.c:534</a></div></div>
+<div class="ttc" id="ainv_8c_html_a031511fea69b8fce19a44f86eb1858fe"><div class="ttname"><a href="inv_8c.html#a031511fea69b8fce19a44f86eb1858fe">PwmSwOn</a></div><div class="ttdeci">void PwmSwOn(void)</div><div class="ttdoc">TIM1 PWM 출력을 활성화한다 (3상 상하 암 모두).</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00914">inv.c:914</a></div></div>
+<div class="ttc" id="ainv_8c_html_a1f6df58c2a073ad2274f97f6a504c96d"><div class="ttname"><a href="inv_8c.html#a1f6df58c2a073ad2274f97f6a504c96d">ResetController</a></div><div class="ttdeci">void ResetController(struct INVERTER *INV)</div><div class="ttdoc">모든 제어 상태 변수를 초기값으로 리셋한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00274">inv.c:274</a></div></div>
+<div class="ttc" id="ainv_8c_html_a3db77525a1b8b485f18baebc7e086cb1"><div class="ttname"><a href="inv_8c.html#a3db77525a1b8b485f18baebc7e086cb1">Hallsensor_Observer</a></div><div class="ttdeci">void Hallsensor_Observer(struct INVERTER *INV)</div><div class="ttdoc">Hall 센서 기반 속도/위치 PLL 옵저버</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00781">inv.c:781</a></div></div>
+<div class="ttc" id="ainv_8c_html_a4b849dca1f135dd860c6f0ce88cc7c13"><div class="ttname"><a href="inv_8c.html#a4b849dca1f135dd860c6f0ce88cc7c13">PwmDutyUpt</a></div><div class="ttdeci">void PwmDutyUpt(void)</div><div class="ttdoc">TIM1 CCR 레지스터에 듀티비를 업데이트한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00953">inv.c:953</a></div></div>
+<div class="ttc" id="ainv_8c_html_a5b799dff3aee9e48ae67cfe1f9075e30"><div class="ttname"><a href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a></div><div class="ttdeci">struct INVERTER INV</div><div class="ttdoc">인버터 전역 상태/파라미터 구조체</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00053">inv.c:53</a></div></div>
+<div class="ttc" id="ainv_8c_html_a5eb5c4adfd5c3833415678e1da00bf93"><div class="ttname"><a href="inv_8c.html#a5eb5c4adfd5c3833415678e1da00bf93">HallPosition_Test</a></div><div class="ttdeci">void HallPosition_Test(struct INVERTER *INV)</div><div class="ttdoc">Hall 위치 테스트: 기본 전압 벡터를 순차 인가한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00839">inv.c:839</a></div></div>
+<div class="ttc" id="ainv_8c_html_a68f857bdf76878fd721ac48e6c354997"><div class="ttname"><a href="inv_8c.html#a68f857bdf76878fd721ac48e6c354997">CurrentControl</a></div><div class="ttdeci">void CurrentControl(struct INVERTER *INV)</div><div class="ttdoc">PI 전류 제어기 (d-q 동기 좌표계)</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00354">inv.c:354</a></div></div>
+<div class="ttc" id="ainv_8c_html_a9013a288bba48367bf9d57702c80b1ee"><div class="ttname"><a href="inv_8c.html#a9013a288bba48367bf9d57702c80b1ee">PwmSwOff</a></div><div class="ttdeci">void PwmSwOff(void)</div><div class="ttdoc">TIM1 PWM 출력을 비활성화한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00932">inv.c:932</a></div></div>
+<div class="ttc" id="ainv_8c_html_a964ec348ab2be811f76c85501ac14208"><div class="ttname"><a href="inv_8c.html#a964ec348ab2be811f76c85501ac14208">OpenLoopControl</a></div><div class="ttdeci">void OpenLoopControl(struct INVERTER *INV)</div><div class="ttdoc">전류 개루프 제어 (Open-Loop Current Control)</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00503">inv.c:503</a></div></div>
+<div class="ttc" id="ainv_8c_html_a9fabfabf3cf816a557870ac6174ba05b"><div class="ttname"><a href="inv_8c.html#a9fabfabf3cf816a557870ac6174ba05b">UpdateController</a></div><div class="ttdeci">void UpdateController(struct INVERTER *INV)</div><div class="ttdoc">제어기 게인을 현재 파라미터로 갱신한다.</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00251">inv.c:251</a></div></div>
+<div class="ttc" id="ainv_8c_html_aa0c62359efaad04d667cc7d8d3e169e6"><div class="ttname"><a href="inv_8c.html#aa0c62359efaad04d667cc7d8d3e169e6">SpeedControl</a></div><div class="ttdeci">void SpeedControl(struct INVERTER *INV)</div><div class="ttdoc">PI 속도 제어기 (rpm → 토크 기준 생성)</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00473">inv.c:473</a></div></div>
+<div class="ttc" id="ainv_8c_html_ad14c7779ae276ada8516bc3d58997206"><div class="ttname"><a href="inv_8c.html#ad14c7779ae276ada8516bc3d58997206">Align</a></div><div class="ttdeci">void Align(struct INVERTER *INV)</div><div class="ttdoc">d축 전류 정렬 절차 (4단계 상태 머신)</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00867">inv.c:867</a></div></div>
+<div class="ttc" id="ainv_8c_html_aedf8f86f640274dface77130a3d50207"><div class="ttname"><a href="inv_8c.html#aedf8f86f640274dface77130a3d50207">VoltageInjection_SquareWave</a></div><div class="ttdeci">void VoltageInjection_SquareWave(struct INVERTER *INV)</div><div class="ttdoc">d축 구형파 전압 주입 (파라미터 추정용)</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00694">inv.c:694</a></div></div>
+<div class="ttc" id="ainv_8c_html_aefbd0b8bc957317d7f22f0db0185683d"><div class="ttname"><a href="inv_8c.html#aefbd0b8bc957317d7f22f0db0185683d">VoltageOpenLoopControl</a></div><div class="ttdeci">void VoltageOpenLoopControl(struct INVERTER *INV)</div><div class="ttdoc">전압 개루프 제어 (Voltage Open-Loop Control)</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00627">inv.c:627</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a href="control_8c.html">control.c</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

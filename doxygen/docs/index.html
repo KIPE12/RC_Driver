@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RC_Driver: RC_Driver</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">RC_Driver<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('index.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">RC_Driver </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><br  />
+ <img src="전력전자학회로고1.png" alt="" width="400px" style="display:block; margin:0;" class="inline"/></p>
+<p><br  />
+ </p>
+<h1 class="doxsection"><a class="anchor" id="overview"></a>
+프로젝트 개요</h1>
+<p><b>RC_Driver</b>는 STM32G474RET6 마이크로컨트롤러 기반의 <b>14V / 10A PMSM(영구자석 동기 전동기) 인버터 드라이버</b>입니다.<br  />
+RC카용 브러시리스 모터를 FOC(Field Oriented Control) 방식으로 구동하며, Hall 센서 기반 위치/속도 추정과 센서리스 EEMF 옵저버를 지원합니다.</p>
+<h1 class="doxsection"><a class="anchor" id="hw"></a>
+하드웨어 구성</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">항목  </th><th class="markdownTableHeadNone">내용  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">MCU  </td><td class="markdownTableBodyNone">STM32G474RET6 (Cortex-M4, 170MHz, LQFP64)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">게이트 드라이버  </td><td class="markdownTableBodyNone">DRV8300DPWR – 3상 상하 암 6채널 구동  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">전력 스위치  </td><td class="markdownTableBodyNone">ISG0613N04NM6HATMA1 N-MOSFET × 6  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">전류 센서  </td><td class="markdownTableBodyNone">ACS725LLCTR-20AB-T (±20A, 66mV/A) × 3상  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">전원 공급  </td><td class="markdownTableBodyNone">TPS54202DDCR 벅 컨버터 (14V → 3.3V)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">홀 센서 인터페이스  </td><td class="markdownTableBodyNone">74LVC125AD 레벨 시프터 + TPS60150 차지 펌프 (5V)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">입력 전압  </td><td class="markdownTableBodyNone">14V (최대), 외부 12V IC 전원 사용 가능  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">정격 전류  </td><td class="markdownTableBodyNone">10A  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="sw"></a>
+소프트웨어 구조</h1>
+<p>제어 루프는 TIM2 인터럽트(10kHz, 100µs 주기)에서 실행됩니다. </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">파일  </th><th class="markdownTableHeadNone">역할  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="main_8c.html" title="PMSM 인버터 제어 메인 진입점">main.c</a>  </td><td class="markdownTableBodyNone">시스템 초기화, 파라미터 설정, 제어기 초기화  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="control_8c.html" title="PMSM 메인 제어 루프 모듈">control.c</a>  </td><td class="markdownTableBodyNone">메인 제어 루프 – ADC 샘플링 → 보호 → 모드 분기  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="inv_8c.html" title="인버터 제어 핵심 알고리즘 모듈">inv.c</a>  </td><td class="markdownTableBodyNone">FOC 핵심 알고리즘 – Clarke/Park 변환, PI 제어, SVPWM, Hall 옵저버  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="adc_8c.html" title="ADC1 초기화 및 전류/전압 측정 처리 모듈">adc.c</a>  </td><td class="markdownTableBodyNone">ADC1 초기화 및 3상 전류(Ia, Ib, Ic) / DC링크 전압(Vdc) 측정  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="speed__observer_8c.html" title="속도 옵저버 및 확장 역기전력(EEMF) 기반 센서리스 제어 모듈">speed_observer.c</a>  </td><td class="markdownTableBodyNone">전체차원 속도 옵저버 및 EEMF 기반 센서리스 위치 추정  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="fault_8c.html" title="인버터 고장 감지 및 처리 모듈">fault.c</a>  </td><td class="markdownTableBodyNone">하드웨어/소프트웨어 고장 감지 및 PWM 즉시 차단  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="flag_8c.html" title="인버터 제어 플래그 초기화 모듈">flag.c</a>  </td><td class="markdownTableBodyNone">운전 모드 플래그 정의 (READY, FAULT, INV_RUN 등)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="variable_8c.html" title="전역 공유 변수 정의 모듈">variable.c</a>  </td><td class="markdownTableBodyNone">모듈 간 공유 전역 변수  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="tim_8c.html" title="타이머(TIM1, TIM2, TIM15) 초기화 및 MSP 설정 모듈">tim.c</a>  </td><td class="markdownTableBodyNone">TIM1(PWM 20kHz), TIM2(제어 10kHz), TIM15 초기화  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="gpio_8c.html" title="GPIO 핀 초기화 모듈">gpio.c</a>  </td><td class="markdownTableBodyNone">PWM_EN 출력 및 Hall 센서 입력 GPIO 설정  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="algo"></a>
+제어 알고리즘</h1>
+<ul>
+<li><b>Clarke / Park 변환</b>: 3상 정지 좌표계 → α-β → d-q 동기 좌표계</li>
+<li><b>PI 전류 제어기</b>: d축(자속), q축(토크) 독립 제어, Anti-windup 포함</li>
+<li><b>PI 속도 제어기</b>: 속도 기준 경사 제한(Ramp), Anti-windup 포함</li>
+<li><b>SVPWM</b>: min-max 오프셋 방식, NLC(비선형 보상) 전압 추가</li>
+<li><b>Hall PLL 옵저버</b>: 3비트 Hall 상태 → 전기각 매핑 → PI-PLL 속도 추정</li>
+<li><b>EEMF 센서리스 옵저버</b>: 확장 동기 좌표계 역기전력 기반 위치 오차 추정</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="modes"></a>
+지원 운전 모드</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">플래그  </th><th class="markdownTableHeadNone">모드 설명  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">INV_RUN  </td><td class="markdownTableBodyNone">폐루프 속도 제어 (Hall PLL + FOC 전류 제어)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">INV_OLC  </td><td class="markdownTableBodyNone">전류 개루프 제어 (d/q 전류 기준 직접 지정)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">INV_VOLC  </td><td class="markdownTableBodyNone">전압 개루프 제어 (d/q 전압 기준 직접 지정)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">INV_ALIGN  </td><td class="markdownTableBodyNone">초기 d축 정렬 (4단계 상태 머신)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Param_Estimation  </td><td class="markdownTableBodyNone">파라미터 추정 (d축 구형파 전압 주입)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">HALL_POS_TEST  </td><td class="markdownTableBodyNone">Hall 센서 위치 확인 (기본 전압 벡터 순차 인가)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">DUTY_TEST  </td><td class="markdownTableBodyNone">PWM 듀티 직접 설정 테스트  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="clk"></a>
+시스템 클럭</h1>
+<p>HSI(16MHz) → PLL(×85/4/2) → SYSCLK <b>170MHz</b><br  />
+APB1/APB2: 85MHz, ADC1: SYSCLK/4 = 42.5MHz </p>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

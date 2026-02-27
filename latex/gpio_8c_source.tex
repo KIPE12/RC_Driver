@@ -1,0 +1,55 @@
+\doxysection{gpio.\+c}
+\hypertarget{gpio_8c_source}{}\label{gpio_8c_source}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/gpio.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/gpio.c}}
+\doxymbox{\hyperlink{gpio_8c}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00025}00025\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}gpio.h"{}}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00028}00028\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00030}00030\ \textcolor{comment}{/*\ USER\ CODE\ END\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00032}00032\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00034}00034\ \textcolor{comment}{/*\ USER\ CODE\ END\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00047}\doxymbox{\hyperlink{gpio_8c_ac724e431d2af879252de35615be2bdea}{00047}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gpio_8c_ac724e431d2af879252de35615be2bdea}{MX\_GPIO\_Init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00049}00049\ \ \ GPIO\_InitTypeDef\ GPIO\_InitStruct\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00051}00051\ \ \ \textcolor{comment}{/*\ GPIO\ 포트\ 클럭\ 활성화\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00052}00052\ \ \ \_\_HAL\_RCC\_GPIOC\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00053}00053\ \ \ \_\_HAL\_RCC\_GPIOA\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00054}00054\ \ \ \_\_HAL\_RCC\_GPIOB\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00055}00055\ \ \ \_\_HAL\_RCC\_GPIOD\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00057}00057\ \ \ \textcolor{comment}{/*\ PWM\_EN\_Pin\ 초기\ 출력\ 레벨:\ HIGH\ (인버터\ 게이트\ 드라이버\ 활성)\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00058}00058\ \ \ HAL\_GPIO\_WritePin(PWM\_EN\_GPIO\_Port,\ PWM\_EN\_Pin,\ GPIO\_PIN\_SET);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00060}00060\ \ \ \textcolor{comment}{/*\ PWM\_EN\_Pin:\ Push-\/Pull\ 출력,\ No\ Pull,\ Low\ Speed\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00061}00061\ \ \ GPIO\_InitStruct.Pin\ \ \ =\ PWM\_EN\_Pin;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00062}00062\ \ \ GPIO\_InitStruct.Mode\ \ =\ GPIO\_MODE\_OUTPUT\_PP;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00063}00063\ \ \ GPIO\_InitStruct.Pull\ \ =\ GPIO\_NOPULL;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00064}00064\ \ \ GPIO\_InitStruct.Speed\ =\ GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00065}00065\ \ \ HAL\_GPIO\_Init(PWM\_EN\_GPIO\_Port,\ \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00067}00067\ \ \ \textcolor{comment}{/*\ HALL\_A\_Pin,\ HALL\_B\_Pin:\ 디지털\ 입력,\ 내부\ Pull-\/Up\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00068}00068\ \ \ GPIO\_InitStruct.Pin\ \ =\ HALL\_A\_Pin\ |\ HALL\_B\_Pin;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00069}00069\ \ \ GPIO\_InitStruct.Mode\ =\ GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00070}00070\ \ \ GPIO\_InitStruct.Pull\ =\ GPIO\_PULLUP;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00071}00071\ \ \ HAL\_GPIO\_Init(GPIOC,\ \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00073}00073\ \ \ \textcolor{comment}{/*\ HALL\_C\_Pin:\ 디지털\ 입력,\ 내부\ Pull-\/Up\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00074}00074\ \ \ GPIO\_InitStruct.Pin\ \ =\ HALL\_C\_Pin;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00075}00075\ \ \ GPIO\_InitStruct.Mode\ =\ GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00076}00076\ \ \ GPIO\_InitStruct.Pull\ =\ GPIO\_PULLUP;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00077}00077\ \ \ HAL\_GPIO\_Init(HALL\_C\_GPIO\_Port,\ \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00078}00078\ \}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00080}00080\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ 2\ */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00082}00082\ \textcolor{comment}{/*\ USER\ CODE\ END\ 2\ */}}
+
+\end{DoxyCode}

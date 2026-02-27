@@ -1,0 +1,64 @@
+\doxysection{C:\+/\+\+Users/\+\+USER/\+\+One\+Drive/\+\+Desktop/\+doxygen/\+\+RC\+\_\+\+DRIVER/\+variable.c 파일 참조}
+\hypertarget{variable_8c}{}\label{variable_8c}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/variable.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/variable.c}}
+
+
+전역 공유 변수 정의 모듈  
+
+
+\doxysubsubsection*{변수}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{group___control_mode_gac8cf438350a0d309f204837cbdfa492a}{Align\+\_\+done}} = 0
+\begin{DoxyCompactList}\small\item\em d축 정렬 완료 플래그 (0:\+ 미완료, 1:\+ 완료) \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{group___control_mode_ga5e542439936627687d1a27ac7b6b50c2}{Theta\+\_\+mode}} = 0
+\begin{DoxyCompactList}\small\item\em 전기각 소스 선택 (0:\+ Hall PLL, 1:\+ OLC 개루프 각도) \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___speed_p_l_l_gadc87dae95abcb03a026eb0d0dfce2c52}{W\+\_\+\+SPD\+\_\+\+PLL}} = 0.f
+\begin{DoxyCompactList}\small\item\em 속도 PLL 자연 주파수 \+[rad/\+s]\+ \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___speed_p_l_l_gad694603a0b14177a055a2a0b9aa15059}{Kp\+\_\+\+SPD\+\_\+\+PLL}} = 0.f
+\begin{DoxyCompactList}\small\item\em 속도 PLL 비례 게인 \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___speed_p_l_l_gaf264b9081a097b39ddf858991455616a}{Ki\+\_\+\+SPD\+\_\+\+PLL}} = 0.f
+\begin{DoxyCompactList}\small\item\em 속도 PLL 적분 게인 \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___speed_p_l_l_gae5a48e70b8cf30f644d2659922be401e}{integ\+\_\+\+Thetar\+\_\+\+PLL}} = 0.f
+\begin{DoxyCompactList}\small\item\em 속도 PLL 전기각 적분 누산값 \+[rad]\+ \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___voltage_ref_ga30c95cfd601124d7bb6a4535bdeb1f72}{Van}} = 0.f
+\begin{DoxyCompactList}\small\item\em A상 중성점 전압 기준 \+[V]\+ (Current\+Control 출력) \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___voltage_ref_ga2f2a0c510c5b72110e5e3835c1c62555}{Vbn}} = 0.f
+\begin{DoxyCompactList}\small\item\em B상 중성점 전압 기준 \+[V]\+ \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___voltage_ref_ga99d72ed4a63ffab24762fc939a2b9c7d}{Vcn}} = 0.f
+\begin{DoxyCompactList}\small\item\em C상 중성점 전압 기준 \+[V]\+ \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___voltage_ref_ga94ab3777ddd48161a4945f405c0359a6}{Vdss\+\_\+ref\+\_\+set}} = 0.f
+\begin{DoxyCompactList}\small\item\em 정지 좌표계 α축 전압 기준 \+[V]\+ (디버깅/\+모니터링용) \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___voltage_ref_ga8bf179fb2264726c2d6dc40618e56365}{Vqss\+\_\+ref\+\_\+set}} = 0.f
+\begin{DoxyCompactList}\small\item\em 정지 좌표계 β축 전압 기준 \+[V]\+ \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___voltage_ref_ga2fd0eefeac2ca9b75b92696acff79191}{Vdse\+\_\+ref\+\_\+set}} = 0.f
+\begin{DoxyCompactList}\small\item\em 동기 좌표계 d축 전압 기준 \+[V]\+ \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___voltage_ref_gad30cf7ec93e4213c93b2ed4bf3e0ad18}{Vqse\+\_\+ref\+\_\+set}} = 0.f
+\begin{DoxyCompactList}\small\item\em 동기 좌표계 q축 전압 기준 \+[V]\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+전역 공유 변수 정의 모듈 
+
+여러 모듈(\doxylink{inv_8c}{inv.\+c}, \doxylink{control_8c}{control.\+c}, \doxylink{speed__observer_8c}{speed\+\_\+observer.\+c} 등)에서 공유되는 전역 변수를 정의한다.
+
+포함 변수:\+
+\begin{DoxyItemize}
+\item 제어 모드 플래그 (Theta\+\_\+mode, Align\+\_\+done)
+\item 속도 PLL 상태 변수 (W\+\_\+\+SPD\+\_\+\+PLL, Kp/\+\+Ki, integ)
+\item 3상 전압 기준 (Van, Vbn, Vcn)
+\item 정지/\+동기 좌표계 전압 기준 (Vdss\+\_\+ref\+\_\+set 등)
+\end{DoxyItemize}
+
+\begin{DoxyNote}{주의}
+이 파일의 변수들은 extern 선언으로 다른 모듈에서 참조된다. 헤더 파일(variable.\+h)에 extern 선언이 위치해야 한다.
+\end{DoxyNote}
+\begin{DoxyAuthor}{작성자}
+HALAB\+\_\+G 
+\end{DoxyAuthor}
+\begin{DoxyDate}{날짜}
+2024-\/12-\/06 
+\end{DoxyDate}
+
+
+\doxymbox{\hyperlink{variable_8c_source}{variable.\+c}} 파일에서 정의되었습니다.
+

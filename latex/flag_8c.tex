@@ -1,0 +1,118 @@
+\doxysection{C:\+/\+\+Users/\+\+USER/\+\+One\+Drive/\+\+Desktop/\+doxygen/\+\+RC\+\_\+\+DRIVER/\+flag.c 파일 참조}
+\hypertarget{flag_8c}{}\label{flag_8c}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/flag.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/flag.c}}
+
+
+인버터 제어 플래그 초기화 모듈  
+
+
+{\ttfamily \+\#include "{}flag.\+h"{}}\newline
+flag.\+c에 대한 include 의존 그래프
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{flag_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{변수}
+\begin{DoxyCompactItemize}
+\item 
+struct CONTROL\+\_\+\+FLAG \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}
+\begin{DoxyCompactList}\small\item\em 제어 플래그 전역 구조체 (시스템 시작 시 모두 0으로 초기화) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+인버터 제어 플래그 초기화 모듈 
+
+시스템 운전 상태를 나타내는 CONTROL\+\_\+\+FLAG 구조체를 정의하고 초기화한다. 각 플래그는 \doxylink{control_8c_afb486c446e28753e3dca5112dfdc8264}{Control()} 함수에서 운전 모드를 선택하는 데 사용된다.
+
+플래그 목록:\+ 
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}플래그  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}초기값  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}의미  \\
+READY  &0  &인버터 운전 준비 완료  \\
+FAULT  &0  &고장 상태 (0=정상, 1=HW, 2=SW)  \\
+FAULT\+\_\+\+CLEAR  &0  &고장 해제 요청  \\
+INV\+\_\+\+RUN  &0  &폐루프 속도 제어 활성화  \\
+INV\+\_\+\+OLC  &0  &전류 개루프 제어 활성화  \\
+INV\+\_\+\+VOLC  &0  &전압 개루프 제어 활성화  \\
+INV\+\_\+\+Vref\+\_\+\+Gen  &0  &전압 기준 생성 모드 활성화  \\
+INV\+\_\+\+ALIGN  &0  &d축 초기 정렬 활성화  \\
+INV\+\_\+\+NLC  &0  &비선형 보상 제어 활성화  \\
+TS\+\_\+\+MODE  &0  &토크 제어 모드 활성화  \\
+TS\+\_\+\+MODE\+\_\+\+STOP  &0  &토크 제어 정지  \\
+DUTY\+\_\+\+TEST  &0  &듀티 직접 테스트 활성화  \\
+Param\+\_\+\+Estimation  &0  &파라미터 추정 모드 활성화  \\
+HALL\+\_\+\+POS\+\_\+\+TEST  &0  &Hall 위치 테스트 활성화  \\
+\end{DoxyTable}
+
+
+\begin{DoxyNote}{주의}
+시스템 시작 시 모든 플래그는 0으로 초기화된다. 외부 디버거 또는 통신 명령으로 플래그를 변경하여 모드를 전환한다.
+\end{DoxyNote}
+\begin{DoxyAuthor}{작성자}
+HALAB\+\_\+G 
+\end{DoxyAuthor}
+\begin{DoxyDate}{날짜}
+2024-\/12-\/06 
+\end{DoxyDate}
+
+
+\doxymbox{\hyperlink{flag_8c_source}{flag.\+c}} 파일에서 정의되었습니다.
+
+
+
+\label{doc-var-members}
+\Hypertarget{flag_8c_doc-var-members}
+\doxysubsection{변수 문서화}
+\Hypertarget{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}\index{flag.c@{flag.c}!FLAG@{FLAG}}
+\index{FLAG@{FLAG}!flag.c@{flag.c}}
+\doxysubsubsection{\texorpdfstring{FLAG}{FLAG}}
+{\footnotesize\ttfamily \label{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9} 
+struct CONTROL\+\_\+\+FLAG FLAG}
+
+{\bfseries 초기값:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \ \ .READY\ \ \ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .FAULT\ \ \ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .FAULT\_CLEAR\ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .INV\_RUN\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .INV\_OLC\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .INV\_VOLC\ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .INV\_ALIGN\ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .INV\_NLC\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .TS\_MODE\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .TS\_MODE\_STOP\ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .DUTY\_TEST\ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .Param\_Estimation\ =\ 0,}
+\DoxyCodeLine{\ \ \ \ .HALL\_POS\_TEST\ \ \ \ =\ 0}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+제어 플래그 전역 구조체 (시스템 시작 시 모두 0으로 초기화) 
+
+\doxylink{control_8c_afb486c446e28753e3dca5112dfdc8264}{Control()} 함수가 이 구조체를 참조하여 현재 운전 모드를 결정한다. 플래그 변경은 디버거(\+Live Expression) 또는 UART/\+\+SPI 명령으로 수행한다. 
+
+\doxymbox{\hyperlink{flag_8c_source}{flag.\+c}} 파일의 \doxymbox{\hyperlink{flag_8c_source_l00041}{41}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ .READY\ \ \ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00043\ \ \ \ \ .FAULT\ \ \ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00044\ \ \ \ \ .FAULT\_CLEAR\ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00045\ \ \ \ \ .INV\_RUN\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00046\ \ \ \ \ .INV\_OLC\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00047\ \ \ \ \ .INV\_VOLC\ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00048\ \ \ \ \ .INV\_ALIGN\ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00049\ \ \ \ \ .INV\_NLC\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00050\ \ \ \ \ .TS\_MODE\ \ \ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00051\ \ \ \ \ .TS\_MODE\_STOP\ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00052\ \ \ \ \ .DUTY\_TEST\ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00053\ \ \ \ \ .Param\_Estimation\ =\ 0,}
+\DoxyCodeLine{00054\ \ \ \ \ .HALL\_POS\_TEST\ \ \ \ =\ 0}
+\DoxyCodeLine{00055\ \};}
+
+\end{DoxyCode}

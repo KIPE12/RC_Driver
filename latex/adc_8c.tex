@@ -1,0 +1,477 @@
+\doxysection{C:\+/\+\+Users/\+\+USER/\+\+One\+Drive/\+\+Desktop/\+doxygen/\+\+RC\+\_\+\+DRIVER/\+adc.c 파일 참조}
+\hypertarget{adc_8c}{}\label{adc_8c}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/adc.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/adc.c}}
+
+
+ADC1 초기화 및 전류/\+전압 측정 처리 모듈  
+
+
+{\ttfamily \+\#include "{}adc.\+h"{}}\newline
+{\ttfamily \+\#include "{}stm32g4xx\+\_\+it.\+h"{}}\newline
+{\ttfamily \+\#include "{}inv.\+h"{}}\newline
+adc.\+c에 대한 include 의존 그래프
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{adc_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{매크로}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{adc_8c_a6468e4f5307fe3787196c448082edfa4}{ADC12\+BIT}}~4095.\+1f
+\begin{DoxyCompactList}\small\item\em 12비트 ADC 최대값 (풀스케일) \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{adc_8c_abb6c4ee522ebd1493a24229158ba9289}{ADC\+\_\+\+RESOL}}~\doxymbox{\hyperlink{adc_8c_a6468e4f5307fe3787196c448082edfa4}{ADC12\+BIT}}
+\begin{DoxyCompactList}\small\item\em ADC 분해능 설정값 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{adc_8c_acccd58aa70215a6b184ad242312ffd0c}{MX\+\_\+\+ADC1\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em ADC1 초기화 (12비트, Injected 4채널, TIM2 TRGO 트리거) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{adc_8c_ac3139540667c403c5dfd37a99c610b1c}{HAL\+\_\+\+ADC\+\_\+\+Msp\+Init}} (ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+Handle)
+\begin{DoxyCompactList}\small\item\em ADC1 MSP 초기화 (GPIO, 클럭, NVIC 설정) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{adc_8c_a3f61f2c2af0f122f81a87af8ad7b4360}{HAL\+\_\+\+ADC\+\_\+\+Msp\+De\+Init}} (ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+Handle)
+\begin{DoxyCompactList}\small\item\em ADC1 MSP 해제 \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{adc_8c_a39fd8940b1565d6d40f65b288f358c6c}{Adc\+Process}} (void)
+\begin{DoxyCompactList}\small\item\em ADC 원시값을 물리량(전류/\+전압)으로 변환한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{adc_8c_a5c5c41c37d32d75b9a5844f877762629}{Offset}} (void)
+\begin{DoxyCompactList}\small\item\em 전류 센서 오프셋을 자동 측정한다. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{변수}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{group___a_d_c___variables_ga734b67f14f678f4b701be37706729cd0}{Ad\+Init\+Flag}} = 0
+\begin{DoxyCompactList}\small\item\em ADC 오프셋 보정 완료 플래그 (0:\+ 미완료, 1:\+ 완료) \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1\+Val}} \+[4]\+ = \{0.f, 0.f, 0.f, 0.f\}
+\begin{DoxyCompactList}\small\item\em ADC1 Injected 채널 원시값 \+[Ia, Ib, Ic, Vdc]\+ \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\+\_\+\+Result}} \+[4]\+ = \{0.f, 0.f, 0.f, 0.f\}
+\begin{DoxyCompactList}\small\item\em 오프셋/\+스케일 적용 후 변환값 \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___a_d_c___variables_gaaf7ce8ada81ed29a8dc65c3e5e37dc9f}{ADC1\+\_\+\+Offset}} \+[3]\+ = \{2048.f, 2048.f, 2048.f\}
+\begin{DoxyCompactList}\small\item\em 전류 채널 오프셋 (12bit 중간값 기본) \end{DoxyCompactList}\item 
+unsigned long \doxymbox{\hyperlink{group___a_d_c___variables_gad15e099727465664d340076de7f99b54}{ADC1\+\_\+\+Offset\+\_\+sum}} \+[3]\+ = \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em 오프셋 누산 버퍼 \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___a_d_c___variables_ga179af1226d9481eedeaa735e688c4553}{scale\+\_\+comp}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em ADC 스케일링 보정 계수 \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___a_d_c___variables_ga30578536ba1b4f97bf46c3e23a4656af}{ADCgain}} \+[4]\+ = \{1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f\}
+\begin{DoxyCompactList}\small\item\em ADC 채널별 게인 보정 배열 \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{group___a_d_c___variables_gaa84d1b34b367ee7ae68cfdb9161260cc}{Ia\+\_\+arr}} \+[3000]\+
+\begin{DoxyCompactList}\small\item\em Ia 데이터 저장 버퍼 (디버깅용, 최대 3000샘플) \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{group___a_d_c___variables_ga62322c9b26bf52d62a48597667468e2e}{store\+\_\+cnt}} = 0
+\begin{DoxyCompactList}\small\item\em Ia\+\_\+arr 저장 인덱스 \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{group___a_d_c___variables_gaefc0d46c6253b25ffa506d5430abe433}{store\+\_\+flag}} = 0
+\begin{DoxyCompactList}\small\item\em 데이터 저장 활성화 플래그 (1:\+ 활성) \end{DoxyCompactList}\item 
+unsigned int \doxymbox{\hyperlink{group___a_d_c___variables_ga263585f5810892154827fe50fa03970f}{Ad\+Off\+Calc\+Cnt}} = 0
+\begin{DoxyCompactList}\small\item\em 오프셋 평균 계산 카운터 \end{DoxyCompactList}\item 
+ADC\+\_\+\+Handle\+Type\+Def \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}
+\begin{DoxyCompactList}\small\item\em ADC1 HAL 핸들 구조체 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+ADC1 초기화 및 전류/\+전압 측정 처리 모듈 
+
+STM32\+G4xx의 ADC1을 사용하여 3상 전류(\+Ia, Ib, Ic) 및 DC 링크 전압(\+Vdc)을 측정한다. Injected 채널 방식으로 TIM2 TRGO에 동기화되어 샘플링된다.
+
+하드웨어 연결:\+ 
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}ADC 채널  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}GPIO  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}측정 대상  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}센서  \\
+CH1  &PA0  &Ia  &ACS725 (66m\+V/\+A)  \\
+CH2  &PA1  &Ib  &ACS725 (66m\+V/\+A)  \\
+CH3  &PA2  &Ic  &ACS725 (66m\+V/\+A)  \\
+CH4  &PA3  &Vdc  &저항 분배기  \\
+\end{DoxyTable}
+
+
+물리량 변환 공식:\+
+\begin{DoxyItemize}
+\item 전류:\+ I\+[A]\+ = (raw -\/ offset) /\+ 81.\+9
+\item 전압:\+ Vdc\+[V]\+ = raw /\+ 203.\+4
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{작성자}
+HALAB\+\_\+G 
+\end{DoxyAuthor}
+\begin{DoxyDate}{날짜}
+2026 
+\end{DoxyDate}
+
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일에서 정의되었습니다.
+
+
+
+\label{doc-define-members}
+\Hypertarget{adc_8c_doc-define-members}
+\doxysubsection{매크로 문서화}
+\Hypertarget{adc_8c_a6468e4f5307fe3787196c448082edfa4}\index{adc.c@{adc.c}!ADC12BIT@{ADC12BIT}}
+\index{ADC12BIT@{ADC12BIT}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{ADC12BIT}{ADC12BIT}}
+{\footnotesize\ttfamily \label{adc_8c_a6468e4f5307fe3787196c448082edfa4} 
+\+\#define ADC12\+BIT~4095.\+1f}
+
+
+
+12비트 ADC 최대값 (풀스케일) 
+
+
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일의 \doxymbox{\hyperlink{adc_8c_source_l00025}{25}} 번째 라인에서 정의되었습니다.
+
+\Hypertarget{adc_8c_abb6c4ee522ebd1493a24229158ba9289}\index{adc.c@{adc.c}!ADC\_RESOL@{ADC\_RESOL}}
+\index{ADC\_RESOL@{ADC\_RESOL}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{ADC\_RESOL}{ADC\_RESOL}}
+{\footnotesize\ttfamily \label{adc_8c_abb6c4ee522ebd1493a24229158ba9289} 
+\+\#define ADC\+\_\+\+RESOL~\doxymbox{\hyperlink{adc_8c_a6468e4f5307fe3787196c448082edfa4}{ADC12\+BIT}}}
+
+
+
+ADC 분해능 설정값 
+
+
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일의 \doxymbox{\hyperlink{adc_8c_source_l00026}{26}} 번째 라인에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{adc_8c_doc-func-members}
+\doxysubsection{함수 문서화}
+\Hypertarget{adc_8c_a39fd8940b1565d6d40f65b288f358c6c}\index{adc.c@{adc.c}!AdcProcess@{AdcProcess}}
+\index{AdcProcess@{AdcProcess}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{AdcProcess()}{AdcProcess()}}
+{\footnotesize\ttfamily \label{adc_8c_a39fd8940b1565d6d40f65b288f358c6c} 
+void Adc\+Process (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+ADC 원시값을 물리량(전류/\+전압)으로 변환한다. 
+
+Injected 레지스터(JDR1\texorpdfstring{$\sim$}{\string~}\+JDR4) 값에 오프셋 제거 및 스케일을 적용하고 INV 구조체의 Ia, Ib, Ic, Vdc 값을 갱신한다. Vdc에는 1차 IIR 저역통과 필터(α = 0.\+999)를 적용한다.
+
+\begin{DoxyNote}{주의}
+Ad\+Init\+Flag == 1 이후에만 \doxylink{control_8c_afb486c446e28753e3dca5112dfdc8264}{Control()}에서 호출된다. 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일의 \doxymbox{\hyperlink{adc_8c_source_l00197}{197}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\_Result}}[0]\ =\ (\doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[0]\ -\/\ \doxymbox{\hyperlink{group___a_d_c___variables_gaaf7ce8ada81ed29a8dc65c3e5e37dc9f}{ADC1\_Offset}}[0])\ /\ 81.9f;}
+\DoxyCodeLine{00200\ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\_Result}}[1]\ =\ (\doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[1]\ -\/\ \doxymbox{\hyperlink{group___a_d_c___variables_gaaf7ce8ada81ed29a8dc65c3e5e37dc9f}{ADC1\_Offset}}[1])\ /\ 81.9f;}
+\DoxyCodeLine{00201\ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\_Result}}[2]\ =\ (\doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[2]\ -\/\ \doxymbox{\hyperlink{group___a_d_c___variables_gaaf7ce8ada81ed29a8dc65c3e5e37dc9f}{ADC1\_Offset}}[2])\ /\ 81.9f;}
+\DoxyCodeLine{00202\ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\_Result}}[3]\ =\ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[3]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ /\ 203.4f;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Ia\ \ =\ \doxymbox{\hyperlink{group___a_d_c___variables_ga30578536ba1b4f97bf46c3e23a4656af}{ADCgain}}[0]\ *\ \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\_Result}}[0]\ *\ \doxymbox{\hyperlink{group___a_d_c___variables_ga179af1226d9481eedeaa735e688c4553}{scale\_comp}};}
+\DoxyCodeLine{00205\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Ib\ \ =\ \doxymbox{\hyperlink{group___a_d_c___variables_ga30578536ba1b4f97bf46c3e23a4656af}{ADCgain}}[1]\ *\ \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\_Result}}[1]\ *\ \doxymbox{\hyperlink{group___a_d_c___variables_ga179af1226d9481eedeaa735e688c4553}{scale\_comp}};}
+\DoxyCodeLine{00206\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Ic\ \ =\ \doxymbox{\hyperlink{group___a_d_c___variables_ga30578536ba1b4f97bf46c3e23a4656af}{ADCgain}}[2]\ *\ \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\_Result}}[2]\ *\ \doxymbox{\hyperlink{group___a_d_c___variables_ga179af1226d9481eedeaa735e688c4553}{scale\_comp}};}
+\DoxyCodeLine{00207\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Vdc\ =\ \doxymbox{\hyperlink{group___a_d_c___variables_ga30578536ba1b4f97bf46c3e23a4656af}{ADCgain}}[3]\ *\ \doxymbox{\hyperlink{group___a_d_c___variables_ga7a716cd4960c2c53daedb424e347c545}{ADC1\_Result}}[3]\ *\ \doxymbox{\hyperlink{group___a_d_c___variables_ga179af1226d9481eedeaa735e688c4553}{scale\_comp}};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ alpha\ =\ 0.999f;}
+\DoxyCodeLine{00210\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Vdc\_control\ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Vdc\ *\ (1.0f\ -\/\ alpha)\ +\ alpha\ *\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Vdc\_control;}
+\DoxyCodeLine{00211\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Vdc\ \ \ \ \ \ \ \ \ \ \ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Vdc\_control;}
+\DoxyCodeLine{00212\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.INV\_Vdc\ \ \ \ \ \ \ =\ 1.0f\ /\ MAX(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Vdc\_control,\ 1.f);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{group___a_d_c___variables_gaefc0d46c6253b25ffa506d5430abe433}{store\_flag}}\ ==\ 1)\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{group___a_d_c___variables_ga62322c9b26bf52d62a48597667468e2e}{store\_cnt}}\ <\ 3000)\ \doxymbox{\hyperlink{group___a_d_c___variables_gaa84d1b34b367ee7ae68cfdb9161260cc}{Ia\_arr}}[\doxymbox{\hyperlink{group___a_d_c___variables_ga62322c9b26bf52d62a48597667468e2e}{store\_cnt}}++]\ =\ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Ia;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_gaefc0d46c6253b25ffa506d5430abe433}{store\_flag}}\ =\ 0;}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{adc_8c_a39fd8940b1565d6d40f65b288f358c6c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{adc_8c_a3f61f2c2af0f122f81a87af8ad7b4360}\index{adc.c@{adc.c}!HAL\_ADC\_MspDeInit@{HAL\_ADC\_MspDeInit}}
+\index{HAL\_ADC\_MspDeInit@{HAL\_ADC\_MspDeInit}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_ADC\_MspDeInit()}{HAL\_ADC\_MspDeInit()}}
+{\footnotesize\ttfamily \label{adc_8c_a3f61f2c2af0f122f81a87af8ad7b4360} 
+void HAL\+\_\+\+ADC\+\_\+\+Msp\+De\+Init (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+ADC1 MSP 해제 
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in}}  & {\em adc\+Handle} & 해제 중인 ADC 핸들 포인터 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일의 \doxymbox{\hyperlink{adc_8c_source_l00177}{177}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{if}\ (adcHandle-\/>Instance\ ==\ ADC1)}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \_\_HAL\_RCC\_ADC12\_CLK\_DISABLE();}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ HAL\_GPIO\_DeInit(GPIOA,\ GPIO\_PIN\_0\ |\ GPIO\_PIN\_1\ |\ GPIO\_PIN\_2\ |\ GPIO\_PIN\_3);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ HAL\_NVIC\_DisableIRQ(ADC1\_2\_IRQn);}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \}}
+
+\end{DoxyCode}
+\Hypertarget{adc_8c_ac3139540667c403c5dfd37a99c610b1c}\index{adc.c@{adc.c}!HAL\_ADC\_MspInit@{HAL\_ADC\_MspInit}}
+\index{HAL\_ADC\_MspInit@{HAL\_ADC\_MspInit}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_ADC\_MspInit()}{HAL\_ADC\_MspInit()}}
+{\footnotesize\ttfamily \label{adc_8c_ac3139540667c403c5dfd37a99c610b1c} 
+void HAL\+\_\+\+ADC\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+ADC1 MSP 초기화 (GPIO, 클럭, NVIC 설정) 
+
+PA0\texorpdfstring{$\sim$}{\string~}\+PA3를 아날로그 입력으로 구성하고 ADC1 인터럽트를 활성화한다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in}}  & {\em adc\+Handle} & 초기화 중인 ADC 핸들 포인터 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일의 \doxymbox{\hyperlink{adc_8c_source_l00147}{147}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ GPIO\_InitTypeDef\ \ \ \ \ \ \ \ \ GPIO\_InitStruct\ =\ \{0\};}
+\DoxyCodeLine{00150\ \ \ \ \ RCC\_PeriphCLKInitTypeDef\ PeriphClkInit\ \ =\ \{0\};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (adcHandle-\/>Instance\ ==\ ADC1)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ PeriphClkInit.PeriphClockSelection\ =\ RCC\_PERIPHCLK\_ADC12;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ PeriphClkInit.Adc12ClockSelection\ \ =\ RCC\_ADC12CLKSOURCE\_SYSCLK;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (HAL\_RCCEx\_PeriphCLKConfig(\&PeriphClkInit)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \_\_HAL\_RCC\_ADC12\_CLK\_ENABLE();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \_\_HAL\_RCC\_GPIOA\_CLK\_ENABLE();}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ PA0=Ia,\ PA1=Ib,\ PA2=Ic,\ PA3=Vdc:\ 아날로그\ 입력\ */}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ GPIO\_InitStruct.Pin\ \ =\ GPIO\_PIN\_0\ |\ GPIO\_PIN\_1\ |\ GPIO\_PIN\_2\ |\ GPIO\_PIN\_3;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ GPIO\_InitStruct.Mode\ =\ GPIO\_MODE\_ANALOG;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ GPIO\_InitStruct.Pull\ =\ GPIO\_NOPULL;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ HAL\_GPIO\_Init(GPIOA,\ \&GPIO\_InitStruct);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ HAL\_NVIC\_SetPriority(ADC1\_2\_IRQn,\ 0,\ 0);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ HAL\_NVIC\_EnableIRQ(ADC1\_2\_IRQn);}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{adc_8c_ac3139540667c403c5dfd37a99c610b1c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{adc_8c_acccd58aa70215a6b184ad242312ffd0c}\index{adc.c@{adc.c}!MX\_ADC1\_Init@{MX\_ADC1\_Init}}
+\index{MX\_ADC1\_Init@{MX\_ADC1\_Init}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{MX\_ADC1\_Init()}{MX\_ADC1\_Init()}}
+{\footnotesize\ttfamily \label{adc_8c_acccd58aa70215a6b184ad242312ffd0c} 
+void MX\+\_\+\+ADC1\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+ADC1 초기화 (12비트, Injected 4채널, TIM2 TRGO 트리거) 
+
+ADC1을 다음 조건으로 설정한다:\+
+\begin{DoxyItemize}
+\item 12비트 분해능, 우측 정렬
+\item Injected 4채널 (CH1\texorpdfstring{$\sim$}{\string~}\+CH4):\+ TIM2 TRGO 상승에지 외부 트리거
+\item CH1\texorpdfstring{$\sim$}{\string~}\+CH3:\+ 2.\+5 사이클 샘플링 (전류)
+\item CH4:\+ 47.\+5 사이클 샘플링 (Vdc)
+\end{DoxyItemize}
+
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일의 \doxymbox{\hyperlink{adc_8c_source_l00072}{72}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ ADC\_MultiModeTypeDef\ \ \ \ \ multimode\ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{00075\ \ \ \ \ ADC\_ChannelConfTypeDef\ \ \ sConfig\ \ \ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{00076\ \ \ \ \ ADC\_InjectionConfTypeDef\ sConfigInjected\ =\ \{0\};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Instance\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ADC1;}
+\DoxyCodeLine{00079\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.ClockPrescaler\ \ \ \ \ \ \ \ =\ ADC\_CLOCK\_SYNC\_PCLK\_DIV4;}
+\DoxyCodeLine{00080\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.Resolution\ \ \ \ \ \ \ \ \ \ \ \ =\ ADC\_RESOLUTION\_12B;}
+\DoxyCodeLine{00081\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.DataAlign\ \ \ \ \ \ \ \ \ \ \ \ \ =\ ADC\_DATAALIGN\_RIGHT;}
+\DoxyCodeLine{00082\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.GainCompensation\ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00083\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.ScanConvMode\ \ \ \ \ \ \ \ \ \ =\ ADC\_SCAN\_ENABLE;}
+\DoxyCodeLine{00084\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.EOCSelection\ \ \ \ \ \ \ \ \ \ =\ ADC\_EOC\_SINGLE\_CONV;}
+\DoxyCodeLine{00085\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.LowPowerAutoWait\ \ \ \ \ \ =\ DISABLE;}
+\DoxyCodeLine{00086\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.ContinuousConvMode\ \ \ \ =\ DISABLE;}
+\DoxyCodeLine{00087\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.NbrOfConversion\ \ \ \ \ \ \ =\ 1;}
+\DoxyCodeLine{00088\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.DiscontinuousConvMode\ =\ DISABLE;}
+\DoxyCodeLine{00089\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.ExternalTrigConv\ \ \ \ \ \ =\ ADC\_SOFTWARE\_START;}
+\DoxyCodeLine{00090\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.ExternalTrigConvEdge\ \ =\ ADC\_EXTERNALTRIGCONVEDGE\_NONE;}
+\DoxyCodeLine{00091\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.DMAContinuousRequests\ =\ DISABLE;}
+\DoxyCodeLine{00092\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.Overrun\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ADC\_OVR\_DATA\_PRESERVED;}
+\DoxyCodeLine{00093\ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Init.OversamplingMode\ \ \ \ \ \ =\ DISABLE;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{if}\ (HAL\_ADC\_Init(\&\doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ multimode.Mode\ =\ ADC\_MODE\_INDEPENDENT;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (HAL\_ADCEx\_MultiModeConfigChannel(\&\doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}},\ \&multimode)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{/*\ Regular\ CH1\ (초기화만\ 수행)\ */}}
+\DoxyCodeLine{00100\ \ \ \ \ sConfig.Channel\ \ \ \ \ \ =\ ADC\_CHANNEL\_1;}
+\DoxyCodeLine{00101\ \ \ \ \ sConfig.Rank\ \ \ \ \ \ \ \ \ =\ ADC\_REGULAR\_RANK\_1;}
+\DoxyCodeLine{00102\ \ \ \ \ sConfig.SamplingTime\ =\ ADC\_SAMPLETIME\_2CYCLES\_5;}
+\DoxyCodeLine{00103\ \ \ \ \ sConfig.SingleDiff\ \ \ =\ ADC\_SINGLE\_ENDED;}
+\DoxyCodeLine{00104\ \ \ \ \ sConfig.OffsetNumber\ =\ ADC\_OFFSET\_NONE;}
+\DoxyCodeLine{00105\ \ \ \ \ sConfig.Offset\ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{if}\ (HAL\_ADC\_ConfigChannel(\&\doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}},\ \&sConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{/*\ Injected\ CH1\string~CH3\ (Ia/Ib/Ic):\ TIM2\ TRGO\ 트리거\ */}}
+\DoxyCodeLine{00109\ \ \ \ \ sConfigInjected.InjectedChannel\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ADC\_CHANNEL\_1;}
+\DoxyCodeLine{00110\ \ \ \ \ sConfigInjected.InjectedRank\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ ADC\_INJECTED\_RANK\_1;}
+\DoxyCodeLine{00111\ \ \ \ \ sConfigInjected.InjectedSamplingTime\ \ \ \ \ \ \ \ \ \ =\ ADC\_SAMPLETIME\_2CYCLES\_5;}
+\DoxyCodeLine{00112\ \ \ \ \ sConfigInjected.InjectedSingleDiff\ \ \ \ \ \ \ \ \ \ \ \ =\ ADC\_SINGLE\_ENDED;}
+\DoxyCodeLine{00113\ \ \ \ \ sConfigInjected.InjectedOffsetNumber\ \ \ \ \ \ \ \ \ \ =\ ADC\_OFFSET\_NONE;}
+\DoxyCodeLine{00114\ \ \ \ \ sConfigInjected.InjectedOffset\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00115\ \ \ \ \ sConfigInjected.InjectedNbrOfConversion\ \ \ \ \ \ \ =\ 4;}
+\DoxyCodeLine{00116\ \ \ \ \ sConfigInjected.InjectedDiscontinuousConvMode\ =\ DISABLE;}
+\DoxyCodeLine{00117\ \ \ \ \ sConfigInjected.AutoInjectedConv\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ DISABLE;}
+\DoxyCodeLine{00118\ \ \ \ \ sConfigInjected.QueueInjectedContext\ \ \ \ \ \ \ \ \ \ =\ DISABLE;}
+\DoxyCodeLine{00119\ \ \ \ \ sConfigInjected.ExternalTrigInjecConv\ \ \ \ \ \ \ \ \ =\ ADC\_EXTERNALTRIGINJEC\_T2\_TRGO;}
+\DoxyCodeLine{00120\ \ \ \ \ sConfigInjected.ExternalTrigInjecConvEdge\ \ \ \ \ =\ ADC\_EXTERNALTRIGINJECCONV\_EDGE\_RISING;}
+\DoxyCodeLine{00121\ \ \ \ \ sConfigInjected.InjecOversamplingMode\ \ \ \ \ \ \ \ \ =\ DISABLE;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{if}\ (HAL\_ADCEx\_InjectedConfigChannel(\&\doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}},\ \&sConfigInjected)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ sConfigInjected.InjectedChannel\ =\ ADC\_CHANNEL\_2;}
+\DoxyCodeLine{00125\ \ \ \ \ sConfigInjected.InjectedRank\ \ \ \ =\ ADC\_INJECTED\_RANK\_2;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (HAL\_ADCEx\_InjectedConfigChannel(\&\doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}},\ \&sConfigInjected)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ sConfigInjected.InjectedChannel\ =\ ADC\_CHANNEL\_3;}
+\DoxyCodeLine{00129\ \ \ \ \ sConfigInjected.InjectedRank\ \ \ \ =\ ADC\_INJECTED\_RANK\_3;}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (HAL\_ADCEx\_InjectedConfigChannel(\&\doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}},\ \&sConfigInjected)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{/*\ Injected\ CH4\ (Vdc):\ 47.5\ 사이클\ 샘플링\ */}}
+\DoxyCodeLine{00133\ \ \ \ \ sConfigInjected.InjectedChannel\ \ \ \ \ \ =\ ADC\_CHANNEL\_4;}
+\DoxyCodeLine{00134\ \ \ \ \ sConfigInjected.InjectedRank\ \ \ \ \ \ \ \ \ =\ ADC\_INJECTED\_RANK\_4;}
+\DoxyCodeLine{00135\ \ \ \ \ sConfigInjected.InjectedSamplingTime\ =\ ADC\_SAMPLETIME\_47CYCLES\_5;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (HAL\_ADCEx\_InjectedConfigChannel(\&\doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}},\ \&sConfigInjected)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00137\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{adc_8c_acccd58aa70215a6b184ad242312ffd0c_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{adc_8c_acccd58aa70215a6b184ad242312ffd0c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{adc_8c_a5c5c41c37d32d75b9a5844f877762629}\index{adc.c@{adc.c}!Offset@{Offset}}
+\index{Offset@{Offset}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{Offset()}{Offset()}}
+{\footnotesize\ttfamily \label{adc_8c_a5c5c41c37d32d75b9a5844f877762629} 
+void Offset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+전류 센서 오프셋을 자동 측정한다. 
+
+인버터 출력이 없는 상태에서 5000회 더미 대기 후 5000회 누산하여 ADC1\+\_\+\+Offset\+[]\+을 갱신하고 Ad\+Init\+Flag = 1로 설정한다. 총 소요 시간:\+ (5000 + 5000) × 100µs = 1초.
+
+\begin{DoxyNote}{주의}
+Ad\+Init\+Flag == 0 동안 \doxylink{control_8c_afb486c446e28753e3dca5112dfdc8264}{Control()}에서 매 주기 호출된다. 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일의 \doxymbox{\hyperlink{adc_8c_source_l00230}{230}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00231\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ AdDummyCnt\ =\ 0;}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{if}\ (AdDummyCnt\ <\ 5000)\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ AdDummyCnt++;}
+\DoxyCodeLine{00236\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga263585f5810892154827fe50fa03970f}{AdOffCalcCnt}}++;}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_gad15e099727465664d340076de7f99b54}{ADC1\_Offset\_sum}}[0]\ +=\ (\textcolor{keywordtype}{unsigned}\ long)\doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[0];}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_gad15e099727465664d340076de7f99b54}{ADC1\_Offset\_sum}}[1]\ +=\ (\textcolor{keywordtype}{unsigned}\ long)\doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[1];}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_gad15e099727465664d340076de7f99b54}{ADC1\_Offset\_sum}}[2]\ +=\ (\textcolor{keywordtype}{unsigned}\ long)\doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[2];}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{group___a_d_c___variables_ga263585f5810892154827fe50fa03970f}{AdOffCalcCnt}}\ ==\ 5000)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_gaaf7ce8ada81ed29a8dc65c3e5e37dc9f}{ADC1\_Offset}}[0]\ =\ (float)\doxymbox{\hyperlink{group___a_d_c___variables_gad15e099727465664d340076de7f99b54}{ADC1\_Offset\_sum}}[0]\ /\ 5000.f;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_gaaf7ce8ada81ed29a8dc65c3e5e37dc9f}{ADC1\_Offset}}[1]\ =\ (float)\doxymbox{\hyperlink{group___a_d_c___variables_gad15e099727465664d340076de7f99b54}{ADC1\_Offset\_sum}}[1]\ /\ 5000.f;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_gaaf7ce8ada81ed29a8dc65c3e5e37dc9f}{ADC1\_Offset}}[2]\ =\ (float)\doxymbox{\hyperlink{group___a_d_c___variables_gad15e099727465664d340076de7f99b54}{ADC1\_Offset\_sum}}[2]\ /\ 5000.f;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga734b67f14f678f4b701be37706729cd0}{AdInitFlag}}\ =\ 1;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{adc_8c_a5c5c41c37d32d75b9a5844f877762629_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{adc_8c_doc-var-members}
+\doxysubsection{변수 문서화}
+\Hypertarget{adc_8c_a22b804736f5648d52f639b2647d4ed13}\index{adc.c@{adc.c}!hadc1@{hadc1}}
+\index{hadc1@{hadc1}!adc.c@{adc.c}}
+\doxysubsubsection{\texorpdfstring{hadc1}{hadc1}}
+{\footnotesize\ttfamily \label{adc_8c_a22b804736f5648d52f639b2647d4ed13} 
+ADC\+\_\+\+Handle\+Type\+Def hadc1}
+
+
+
+ADC1 HAL 핸들 구조체 
+
+ADC1 핸들 (adc.\+c에서 정의) 
+
+\doxymbox{\hyperlink{adc_8c_source}{adc.\+c}} 파일의 \doxymbox{\hyperlink{adc_8c_source_l00059}{59}} 번째 라인에서 정의되었습니다.
+

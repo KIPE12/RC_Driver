@@ -1,0 +1,483 @@
+\doxysection{C:\+/\+\+Users/\+\+USER/\+\+One\+Drive/\+\+Desktop/\+doxygen/\+\+RC\+\_\+\+DRIVER/\+speed\+\_\+observer.c 파일 참조}
+\hypertarget{speed__observer_8c}{}\label{speed__observer_8c}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/speed\_observer.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/speed\_observer.c}}
+
+
+속도 옵저버 및 확장 역기전력(\+EEMF) 기반 센서리스 제어 모듈  
+
+
+{\ttfamily \+\#include "{}speed\+\_\+observer.\+h"{}}\newline
+{\ttfamily \+\#include "{}math.\+h"{}}\newline
+{\ttfamily \+\#include "{}variable.\+h"{}}\newline
+speed\+\_\+observer.\+c에 대한 include 의존 그래프
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{speed__observer_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{speed__observer_8c_a69c4e8e965006dc08a941b3778962d4a}{Init\+Speed\+Observer\+\_\+}} (struct SPEED\+\_\+\+OBSERVER \texorpdfstring{$\ast$}{*}SPDOBS, float Beta, float PP, float Ld, float Lq, float Lamf, float Jm, float Bm)
+\begin{DoxyCompactList}\small\item\em 전체차원 속도 옵저버를 초기화한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{speed__observer_8c_a8f5b08ab903b8aed4b6acc456b12804d}{Speed\+Observer\+\_\+4\+\_\+34}} (struct SPEED\+\_\+\+OBSERVER \texorpdfstring{$\ast$}{*}SPDOBS, float Err\+\_\+\+Thetar, float Idse\+\_\+ff, float Iqse\+\_\+ff)
+\begin{DoxyCompactList}\small\item\em 속도 옵저버 실행 (수식 4-\/34 방식) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{speed__observer_8c_afecd3b4028d587d06f5acc2cb78ec17b}{Speed\+Observer\+\_\+4\+\_\+35}} (struct SPEED\+\_\+\+OBSERVER \texorpdfstring{$\ast$}{*}SPDOBS, float Err\+\_\+\+Thetar, float Idse\+\_\+ff, float Iqse\+\_\+ff)
+\begin{DoxyCompactList}\small\item\em 속도 옵저버 실행 (수식 4-\/35 방식) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{speed__observer_8c_a7bb91d6ba879e229823d84200e61de2d}{init\+Extended\+\_\+\+Sensorless\+\_\+\+Synchronous\+\_\+\+Frame}} (struct EXT\+\_\+\+Sensorless \texorpdfstring{$\ast$}{*}EXT, float Wc, float Rs, float Ld, float Lq)
+\begin{DoxyCompactList}\small\item\em 확장 동기 좌표계 센서리스 옵저버를 초기화한다. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{speed__observer_8c_abaa786059f3014de411996ce837e3d61}{EXT\+\_\+\+SS\+\_\+\+Sync}} (struct EXT\+\_\+\+Sensorless \texorpdfstring{$\ast$}{*}EXT, float Vdss, float Vqss, float Idss, float Iqss)
+\begin{DoxyCompactList}\small\item\em 확장 EEMF 센서리스 옵저버를 실행한다. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{변수}
+\begin{DoxyCompactItemize}
+\item 
+struct EXT\+\_\+\+Sensorless \doxymbox{\hyperlink{speed__observer_8c_aaac3af89e1dd9944b6bccef174d4250b}{EXT\+\_\+1}}
+\begin{DoxyCompactList}\small\item\em 확장 센서리스 옵저버 전역 구조체 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+속도 옵저버 및 확장 역기전력(\+EEMF) 기반 센서리스 제어 모듈 
+
+PMSM 제어를 위한 두 가지 속도/\+위치 추정 방법을 제공한다.
+
+옵저버 종류:\+ 
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}옵저버  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}함수  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}특징  \\
+전체차원 속도 옵저버 (4-\/34 방식)  &\doxylink{speed__observer_8c_a8f5b08ab903b8aed4b6acc456b12804d}{Speed\+Observer\+\_\+4\+\_\+34()}  &순수 적분 출력, 위치에 K1 보정  \\
+전체차원 속도 옵저버 (4-\/35 방식)  &\doxylink{speed__observer_8c_afecd3b4028d587d06f5acc2cb78ec17b}{Speed\+Observer\+\_\+4\+\_\+35()}  &출력에 K1 보정 포함  \\
+확장 EEMF 센서리스 옵저버  &\doxylink{speed__observer_8c_abaa786059f3014de411996ce837e3d61}{EXT\+\_\+\+SS\+\_\+\+Sync()}  &동기 좌표계 전류 모델 기반  \\
+\end{DoxyTable}
+
+
+옵저버 공통 게인 설계 (Butterworth 극 배치):\+
+\begin{DoxyItemize}
+\item l1 = -\/2×\+Wso -\/ Bm/\+\+Jm
+\item l2 = 2×\+Wso² -\/ l1×\+Bm/\+\+Jm
+\item l3 = Wso³ × Jm
+\end{DoxyItemize}
+
+EEMF 센서리스 동작 원리:\+ 추정 전기각으로 정지→동기 좌표 변환 후 전류 모델 오차로부터 확장 역기전력(\+EEMFd, EEMFq)을 추정하고, atan2(-\/EEMFd, EEMFq)로 위치 오차를 계산한다.
+
+\begin{DoxyAuthor}{작성자}
+HALAB\+\_\+G 
+\end{DoxyAuthor}
+\begin{DoxyDate}{날짜}
+2025-\/02-\/12 
+\end{DoxyDate}
+
+
+\doxymbox{\hyperlink{speed__observer_8c_source}{speed\+\_\+observer.\+c}} 파일에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{speed__observer_8c_doc-func-members}
+\doxysubsection{함수 문서화}
+\Hypertarget{speed__observer_8c_abaa786059f3014de411996ce837e3d61}\index{speed\_observer.c@{speed\_observer.c}!EXT\_SS\_Sync@{EXT\_SS\_Sync}}
+\index{EXT\_SS\_Sync@{EXT\_SS\_Sync}!speed\_observer.c@{speed\_observer.c}}
+\doxysubsubsection{\texorpdfstring{EXT\_SS\_Sync()}{EXT\_SS\_Sync()}}
+{\footnotesize\ttfamily \label{speed__observer_8c_abaa786059f3014de411996ce837e3d61} 
+void EXT\+\_\+\+SS\+\_\+\+Sync (\begin{DoxyParamCaption}\item[{struct EXT\+\_\+\+Sensorless \texorpdfstring{$\ast$}{*}}]{EXT}{, }\item[{float}]{Vdss}{, }\item[{float}]{Vqss}{, }\item[{float}]{Idss}{, }\item[{float}]{Iqss}{}\end{DoxyParamCaption})}
+
+
+
+확장 EEMF 센서리스 옵저버를 실행한다. 
+
+정지 좌표계 전압/\+전류를 추정 전기각으로 회전 변환하여 동기 좌표계 전류 모델 기반 EEMF를 추정하고, 위치 오차(\+Err\+\_\+\+Thetar\+\_\+\+EXT)를 출력한다.
+
+처리 순서:\+
+\begin{DoxyEnumerate}
+\item 추정 각도로 정지→동기 좌표 변환 (Vdss→\+Vdse, Idss→\+Idse)
+\item 전류 오차 계산:\+ Err\+\_\+\+Id = Idse -\/ Idse\+\_\+est
+\item PI 관측기:\+ EEMFd = -\/(Kp×\+Err\+\_\+\+Id + ∫\+Ki×\+Err\+\_\+\+Id dt)
+\item 피드포워드 전압:\+ Vdse\+\_\+\+FF = Vdse\+\_\+ref + Wr×\+Lq×\+Iqse
+\item 전류 모델 적분:\+ Idse\+\_\+est += (Vdse\+\_\+\+FF -\/ EEMFd -\/ Rs×\+Idse) /\+ Ld × Ts
+\item 위치 오차:\+ Err\+\_\+\+Thetar = atan2(-\/EEMFd, EEMFq)
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em EXT} & 확장 센서리스 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Vdss} & 정지 좌표계 α축 기준 전압 \+[V]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Vqss} & 정지 좌표계 β축 기준 전압 \+[V]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Idss} & 정지 좌표계 α축 전류 \+[A]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Iqss} & 정지 좌표계 β축 전류 \+[A]\+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{주의}
+\texorpdfstring{$\vert$}{|}\+EEMFq\+\_\+est\texorpdfstring{$\vert$}{|} \texorpdfstring{$<$}{<} 1.\+0 이면 1.\+0으로 제한하여 atan2 발산을 방지한다. 
+\end{DoxyNote}
+
+
+\doxymbox{\hyperlink{speed__observer_8c_source}{speed\+\_\+observer.\+c}} 파일의 \doxymbox{\hyperlink{speed__observer_8c_source_l00268}{268}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00270\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{/*\ 게인\ 갱신\ */}}
+\DoxyCodeLine{00272\ \ \ \ \ EXT-\/>Kpd\_EXT\ =\ EXT-\/>Ld\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{00273\ \ \ \ \ EXT-\/>Kid\_EXT\ =\ EXT-\/>Rs\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{00274\ \ \ \ \ EXT-\/>Kpq\_EXT\ =\ EXT-\/>Ld\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{00275\ \ \ \ \ EXT-\/>Kiq\_EXT\ =\ EXT-\/>Rs\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ EXT-\/>Sin\_Thetar\_EXT\ =\ sinf(EXT-\/>Thetar\_EXT);}
+\DoxyCodeLine{00278\ \ \ \ \ EXT-\/>Cos\_Thetar\_EXT\ =\ cosf(EXT-\/>Thetar\_EXT);}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{comment}{/*\ 전압\ 평균\ (1/2\ 스텝\ 지연\ 보상)\ */}}
+\DoxyCodeLine{00281\ \ \ \ \ EXT-\/>Vdss\_ref\_EXT\ =\ (EXT-\/>Vdss\_ref\_old\ +\ Vdss)\ *\ 0.5f;}
+\DoxyCodeLine{00282\ \ \ \ \ EXT-\/>Vqss\_ref\_EXT\ =\ (EXT-\/>Vqss\_ref\_old\ +\ Vqss)\ *\ 0.5f;}
+\DoxyCodeLine{00283\ \ \ \ \ EXT-\/>Vdss\_ref\_old\ =\ Vdss;}
+\DoxyCodeLine{00284\ \ \ \ \ EXT-\/>Vqss\_ref\_old\ =\ Vqss;}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{comment}{/*\ 정지\ →\ 동기\ 좌표\ 변환\ */}}
+\DoxyCodeLine{00287\ \ \ \ \ EXT-\/>Vdse\_ref\_EXT\ =\ EXT-\/>Vdss\_ref\_EXT\ *\ \ EXT-\/>Cos\_Thetar\_EXT\ +\ EXT-\/>Vqss\_ref\_EXT\ *\ EXT-\/>Sin\_Thetar\_EXT;}
+\DoxyCodeLine{00288\ \ \ \ \ EXT-\/>Vqse\_ref\_EXT\ =\ EXT-\/>Vdss\_ref\_EXT\ *\ (-\/EXT-\/>Sin\_Thetar\_EXT)\ +\ EXT-\/>Vqss\_ref\_EXT\ *\ EXT-\/>Cos\_Thetar\_EXT;}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ EXT-\/>Idse\_EXT\ =\ Idss\ *\ \ EXT-\/>Cos\_Thetar\_EXT\ +\ Iqss\ *\ EXT-\/>Sin\_Thetar\_EXT;}
+\DoxyCodeLine{00291\ \ \ \ \ EXT-\/>Iqse\_EXT\ =\ Idss\ *\ (-\/EXT-\/>Sin\_Thetar\_EXT)\ +\ Iqss\ *\ EXT-\/>Cos\_Thetar\_EXT;}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{comment}{/*\ PI\ 전류\ 관측기\ */}}
+\DoxyCodeLine{00294\ \ \ \ \ EXT-\/>Err\_Idse\_EXT\ =\ EXT-\/>Idse\_EXT\ -\/\ EXT-\/>Idse\_EXT\_est;}
+\DoxyCodeLine{00295\ \ \ \ \ EXT-\/>Err\_Iqse\_EXT\ =\ EXT-\/>Iqse\_EXT\ -\/\ EXT-\/>Iqse\_EXT\_est;}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ EXT-\/>integ\_Idse\_EXT\_est\ +=\ Tsamp\ *\ EXT-\/>Kid\_EXT\ *\ EXT-\/>Err\_Idse\_EXT;}
+\DoxyCodeLine{00298\ \ \ \ \ EXT-\/>integ\_Iqse\_EXT\_est\ +=\ Tsamp\ *\ EXT-\/>Kiq\_EXT\ *\ EXT-\/>Err\_Iqse\_EXT;}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{/*\ EEMF\ 추정\ */}}
+\DoxyCodeLine{00301\ \ \ \ \ EXT-\/>EEMFd\_est\ =\ -\/(EXT-\/>Err\_Idse\_EXT\ *\ EXT-\/>Kpd\_EXT\ +\ EXT-\/>integ\_Idse\_EXT\_est);}
+\DoxyCodeLine{00302\ \ \ \ \ EXT-\/>EEMFq\_est\ =\ -\/(EXT-\/>Err\_Iqse\_EXT\ *\ EXT-\/>Kpq\_EXT\ +\ EXT-\/>integ\_Iqse\_EXT\_est);}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{comment}{/*\ 피드포워드\ 전압\ (역기전력\ 분리)\ */}}
+\DoxyCodeLine{00305\ \ \ \ \ EXT-\/>Vdse\_FF\_EXT\ =\ EXT-\/>Vdse\_ref\_EXT\ +\ EXT-\/>Wr\_EXT\ *\ EXT-\/>Lq\_hat\ *\ EXT-\/>Iqse\_EXT;}
+\DoxyCodeLine{00306\ \ \ \ \ EXT-\/>Vqse\_FF\_EXT\ =\ EXT-\/>Vqse\_ref\_EXT\ -\/\ EXT-\/>Wr\_EXT\ *\ EXT-\/>Lq\_hat\ *\ EXT-\/>Idse\_EXT;}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{comment}{/*\ 전류\ 모델\ 적분\ */}}
+\DoxyCodeLine{00309\ \ \ \ \ EXT-\/>Idse\_EXT\_est\ +=\ EXT-\/>INV\_Ld\_hat\ *\ Tsamp\ *\ (EXT-\/>Vdse\_FF\_EXT\ -\/\ EXT-\/>EEMFd\_est\ -\/\ EXT-\/>Rs\_hat\ *\ EXT-\/>Idse\_EXT);}
+\DoxyCodeLine{00310\ \ \ \ \ EXT-\/>Iqse\_EXT\_est\ +=\ EXT-\/>INV\_Ld\_hat\ *\ Tsamp\ *\ (EXT-\/>Vqse\_FF\_EXT\ -\/\ EXT-\/>EEMFq\_est\ -\/\ EXT-\/>Rs\_hat\ *\ EXT-\/>Iqse\_EXT);}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{comment}{/*\ EEMFq\ 발산\ 방지\ (분모\ 제한)\ */}}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabs(EXT-\/>EEMFq\_est)\ <\ 1.f)\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ EXT-\/>EEMFq\_est\ =\ 1.f;}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{comment}{/*\ 위치\ 오차\ 계산:\ θ\_err\ =\ atan2(-\/EEMFd,\ EEMFq)\ */}}
+\DoxyCodeLine{00318\ \ \ \ \ EXT-\/>Err\_Thetar\_EXT\ =\ atan2f(-\/EXT-\/>EEMFd\_est,\ EXT-\/>EEMFq\_est);}
+\DoxyCodeLine{00319\ \ \ \ \ EXT-\/>Thetar\_EXT\_old\ \ =\ EXT-\/>Thetar\_EXT;}
+\DoxyCodeLine{00320\ \ \ \ \ EXT-\/>Thetarm\_EXT\_old\ =\ EXT-\/>Thetarm\_EXT;}
+\DoxyCodeLine{00321\ \}}
+
+\end{DoxyCode}
+\Hypertarget{speed__observer_8c_a7bb91d6ba879e229823d84200e61de2d}\index{speed\_observer.c@{speed\_observer.c}!initExtended\_Sensorless\_Synchronous\_Frame@{initExtended\_Sensorless\_Synchronous\_Frame}}
+\index{initExtended\_Sensorless\_Synchronous\_Frame@{initExtended\_Sensorless\_Synchronous\_Frame}!speed\_observer.c@{speed\_observer.c}}
+\doxysubsubsection{\texorpdfstring{initExtended\_Sensorless\_Synchronous\_Frame()}{initExtended\_Sensorless\_Synchronous\_Frame()}}
+{\footnotesize\ttfamily \label{speed__observer_8c_a7bb91d6ba879e229823d84200e61de2d} 
+void init\+Extended\+\_\+\+Sensorless\+\_\+\+Synchronous\+\_\+\+Frame (\begin{DoxyParamCaption}\item[{struct EXT\+\_\+\+Sensorless \texorpdfstring{$\ast$}{*}}]{EXT}{, }\item[{float}]{Wc}{, }\item[{float}]{Rs}{, }\item[{float}]{Ld}{, }\item[{float}]{Lq}{}\end{DoxyParamCaption})}
+
+
+
+확장 동기 좌표계 센서리스 옵저버를 초기화한다. 
+
+전류 모델 기반의 확장 역기전력(\+EEMF) 추정기를 초기화하며, 추정된 EEMF의 d/\+q성분 비율로 위치 오차를 계산한다.
+
+PI 게인 설정:\+
+\begin{DoxyItemize}
+\item Kpd = Ld × Wc, Kid = Rs × Wc
+\item Kpq = Ld × Wc, Kiq = Rs × Wc (내부 모델 방식)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{out}}  & {\em EXT} & 확장 센서리스 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Wc} & 옵저버 대역폭 \+[rad/\+s]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Rs} & 고정자 저항 \+[Ω]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Ld} & d축 인덕턴스 \+[H]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Lq} & q축 인덕턴스 \+[H]\+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{speed__observer_8c_source}{speed\+\_\+observer.\+c}} 파일의 \doxymbox{\hyperlink{speed__observer_8c_source_l00203}{203}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00205\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ EXT-\/>Rs\_hat\ \ \ \ \ =\ Rs;}
+\DoxyCodeLine{00207\ \ \ \ \ EXT-\/>Ld\_hat\ \ \ \ \ =\ Ld;}
+\DoxyCodeLine{00208\ \ \ \ \ EXT-\/>Lq\_hat\ \ \ \ \ =\ Lq;}
+\DoxyCodeLine{00209\ \ \ \ \ EXT-\/>INV\_Ld\_hat\ =\ 1.f\ /\ Ld;}
+\DoxyCodeLine{00210\ \ \ \ \ EXT-\/>k\_debug\ \ \ \ =\ 1.f;}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ EXT-\/>Wec\ \ \ \ \ \ =\ 1.0f\ *\ Wc;}
+\DoxyCodeLine{00213\ \ \ \ \ EXT-\/>Kpd\_EXT\ \ =\ EXT-\/>Ld\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{00214\ \ \ \ \ EXT-\/>Kid\_EXT\ \ =\ EXT-\/>Rs\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{00215\ \ \ \ \ EXT-\/>Kpq\_EXT\ \ =\ EXT-\/>Ld\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{00216\ \ \ \ \ EXT-\/>Kiq\_EXT\ \ =\ EXT-\/>Rs\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{comment}{/*\ 전압/전류\ 상태\ 변수\ 초기화\ */}}
+\DoxyCodeLine{00219\ \ \ \ \ EXT-\/>Vdss\_ref\_EXT\ =\ 0.f;\ EXT-\/>Vqss\_ref\_EXT\ =\ 0.f;}
+\DoxyCodeLine{00220\ \ \ \ \ EXT-\/>Vdss\_ref\_old\ =\ 0.f;\ EXT-\/>Vqss\_ref\_old\ =\ 0.f;}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ EXT-\/>Err\_Thetar\_EXT\ =\ 0.f;}
+\DoxyCodeLine{00223\ \ \ \ \ EXT-\/>Wr\_EXT\ \ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00224\ \ \ \ \ EXT-\/>Thetar\_EXT\ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00225\ \ \ \ \ EXT-\/>Thetar\_EXT\_old\ =\ 0.f;}
+\DoxyCodeLine{00226\ \ \ \ \ EXT-\/>Sin\_Thetar\_EXT\ =\ 0.f;}
+\DoxyCodeLine{00227\ \ \ \ \ EXT-\/>Cos\_Thetar\_EXT\ =\ 0.f;}
+\DoxyCodeLine{00228\ \ \ \ \ EXT-\/>Wr\_EXT\_f\ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ EXT-\/>Thetarm\_EXT\ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00231\ \ \ \ \ EXT-\/>Thetarm\_EXT\_old\ =\ 0.f;}
+\DoxyCodeLine{00232\ \ \ \ \ EXT-\/>Sin\_Thetarm\_EXT\ =\ 0.f;}
+\DoxyCodeLine{00233\ \ \ \ \ EXT-\/>Cos\_Thetarm\_EXT\ =\ 0.f;}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ EXT-\/>Vdse\_ref\_EXT\ =\ 0.f;\ EXT-\/>Vqse\_ref\_EXT\ =\ 0.f;}
+\DoxyCodeLine{00236\ \ \ \ \ EXT-\/>Idse\_EXT\ \ \ \ \ =\ 0.f;\ EXT-\/>Iqse\_EXT\ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00237\ \ \ \ \ EXT-\/>Err\_Idse\_EXT\ =\ 0.f;\ EXT-\/>Err\_Iqse\_EXT\ =\ 0.f;}
+\DoxyCodeLine{00238\ \ \ \ \ EXT-\/>Idse\_EXT\_est\ =\ 0.f;\ EXT-\/>Iqse\_EXT\_est\ =\ 0.f;}
+\DoxyCodeLine{00239\ \ \ \ \ EXT-\/>integ\_Idse\_EXT\_est\ =\ 0.f;}
+\DoxyCodeLine{00240\ \ \ \ \ EXT-\/>integ\_Iqse\_EXT\_est\ =\ 0.f;}
+\DoxyCodeLine{00241\ \ \ \ \ EXT-\/>EEMFd\_est\ \ \ \ =\ 0.f;\ EXT-\/>EEMFq\_est\ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00242\ \ \ \ \ EXT-\/>Vdse\_FF\_EXT\ \ =\ 0.f;\ EXT-\/>Vqse\_FF\_EXT\ \ =\ 0.f;}
+\DoxyCodeLine{00243\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{speed__observer_8c_a7bb91d6ba879e229823d84200e61de2d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{speed__observer_8c_a69c4e8e965006dc08a941b3778962d4a}\index{speed\_observer.c@{speed\_observer.c}!InitSpeedObserver\_@{InitSpeedObserver\_}}
+\index{InitSpeedObserver\_@{InitSpeedObserver\_}!speed\_observer.c@{speed\_observer.c}}
+\doxysubsubsection{\texorpdfstring{InitSpeedObserver\_()}{InitSpeedObserver\_()}}
+{\footnotesize\ttfamily \label{speed__observer_8c_a69c4e8e965006dc08a941b3778962d4a} 
+void Init\+Speed\+Observer\+\_\+ (\begin{DoxyParamCaption}\item[{struct SPEED\+\_\+\+OBSERVER \texorpdfstring{$\ast$}{*}}]{SPDOBS}{, }\item[{float}]{Beta}{, }\item[{float}]{PP}{, }\item[{float}]{Ld}{, }\item[{float}]{Lq}{, }\item[{float}]{Lamf}{, }\item[{float}]{Jm}{, }\item[{float}]{Bm}{}\end{DoxyParamCaption})}
+
+
+
+전체차원 속도 옵저버를 초기화한다. 
+
+Butterworth 극 배치를 사용하여 옵저버 게인(l1, l2, l3)을 계산한다. 옵저버는 위치 오차를 입력으로 기계적 각속도와 부하 토크를 추정한다.
+
+Butterworth 3극 배치 공식:\+
+\begin{DoxyItemize}
+\item l1 = -\/2×\+Wso -\/ Bm/\+\+Jm
+\item l2 = 2×\+Wso² -\/ l1×\+Bm/\+\+Jm
+\item l3 = Wso³ × Jm
+\item K1 = l1, K2 = Jm×l2, K3 = -\/l3
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{out}}  & {\em SPDOBS} & 속도 옵저버 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Beta} & 옵저버 대역폭 \+[rad/\+s]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em PP} & 극쌍수 \+[-\/]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Ld} & d축 인덕턴스 \+[H]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Lq} & q축 인덕턴스 \+[H]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Lamf} & 영구자석 자속 \+[Wb]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Jm} & 관성 모멘트 \+[kg·m²]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Bm} & 점성 마찰 계수 \+[N·m·s/\+rad]\+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{speed__observer_8c_source}{speed\+\_\+observer.\+c}} 파일의 \doxymbox{\hyperlink{speed__observer_8c_source_l00059}{59}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{/*\ 상태\ 변수\ 초기화\ */}}
+\DoxyCodeLine{00065\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ \ \ =\ 0.f;}
+\DoxyCodeLine{00066\ \ \ \ \ SPDOBS-\/>Thetar\_est\ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00067\ \ \ \ \ SPDOBS-\/>Wrm\_est\ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00068\ \ \ \ \ SPDOBS-\/>Wr\_est\ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00069\ \ \ \ \ SPDOBS-\/>Wrm\_est\_fb\ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{/*\ 전동기\ 파라미터\ 저장\ */}}
+\DoxyCodeLine{00072\ \ \ \ \ SPDOBS-\/>PP\ \ \ \ \ \ \ \ =\ PP;}
+\DoxyCodeLine{00073\ \ \ \ \ SPDOBS-\/>INV\_PP\ \ \ \ =\ 1.f\ /\ PP;}
+\DoxyCodeLine{00074\ \ \ \ \ SPDOBS-\/>Ld\_hat\ \ \ \ =\ Ld;}
+\DoxyCodeLine{00075\ \ \ \ \ SPDOBS-\/>Lq\_hat\ \ \ \ =\ Lq;}
+\DoxyCodeLine{00076\ \ \ \ \ SPDOBS-\/>Lamf\_hat\ \ =\ Lamf;}
+\DoxyCodeLine{00077\ \ \ \ \ SPDOBS-\/>Jm\_hat\ \ \ \ =\ Jm;}
+\DoxyCodeLine{00078\ \ \ \ \ SPDOBS-\/>Bm\_hat\ \ \ \ =\ Bm;}
+\DoxyCodeLine{00079\ \ \ \ \ SPDOBS-\/>INV\_Jm\_hat\ =\ 1.f\ /\ Jm;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{/*\ Butterworth\ 극\ 배치\ 게인\ 계산\ */}}
+\DoxyCodeLine{00082\ \ \ \ \ SPDOBS-\/>Wso\ =\ -\/Beta;}
+\DoxyCodeLine{00083\ \ \ \ \ SPDOBS-\/>l1\ \ =\ -\/2.f\ *\ SPDOBS-\/>Wso\ -\/\ SPDOBS-\/>Bm\_hat\ *\ SPDOBS-\/>INV\_Jm\_hat;}
+\DoxyCodeLine{00084\ \ \ \ \ SPDOBS-\/>l2\ \ =\ \ 2.f\ *\ SPDOBS-\/>Wso\ *\ SPDOBS-\/>Wso\ -\/\ SPDOBS-\/>l1\ *\ SPDOBS-\/>Bm\_hat\ *\ SPDOBS-\/>INV\_Jm\_hat;}
+\DoxyCodeLine{00085\ \ \ \ \ SPDOBS-\/>l3\ \ =\ \ SPDOBS-\/>Wso\ *\ SPDOBS-\/>Wso\ *\ SPDOBS-\/>Wso\ *\ SPDOBS-\/>Jm\_hat;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ SPDOBS-\/>K1\ =\ \ SPDOBS-\/>l1;}
+\DoxyCodeLine{00088\ \ \ \ \ SPDOBS-\/>K2\ =\ \ SPDOBS-\/>Jm\_hat\ *\ SPDOBS-\/>l2;}
+\DoxyCodeLine{00089\ \ \ \ \ SPDOBS-\/>K3\ =\ -\/SPDOBS-\/>l3;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{/*\ 오차\ 및\ 추정\ 토크\ 초기화\ */}}
+\DoxyCodeLine{00092\ \ \ \ \ SPDOBS-\/>Thetarm\_err\ \ \ =\ 0.f;}
+\DoxyCodeLine{00093\ \ \ \ \ SPDOBS-\/>Wrm\_err\ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00094\ \ \ \ \ SPDOBS-\/>Te\_est\ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00095\ \ \ \ \ SPDOBS-\/>Tl\_est\ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00096\ \ \ \ \ SPDOBS-\/>Te\_ff\ \ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00097\ \ \ \ \ SPDOBS-\/>integ\_double\ \ =\ 0.f;}
+\DoxyCodeLine{00098\ \ \ \ \ SPDOBS-\/>integ\_Wrm\_est\ =\ 0.f;}
+\DoxyCodeLine{00099\ \ \ \ \ SPDOBS-\/>Tload\_est\ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{00100\ \}}
+
+\end{DoxyCode}
+\Hypertarget{speed__observer_8c_a8f5b08ab903b8aed4b6acc456b12804d}\index{speed\_observer.c@{speed\_observer.c}!SpeedObserver\_4\_34@{SpeedObserver\_4\_34}}
+\index{SpeedObserver\_4\_34@{SpeedObserver\_4\_34}!speed\_observer.c@{speed\_observer.c}}
+\doxysubsubsection{\texorpdfstring{SpeedObserver\_4\_34()}{SpeedObserver\_4\_34()}}
+{\footnotesize\ttfamily \label{speed__observer_8c_a8f5b08ab903b8aed4b6acc456b12804d} 
+void Speed\+Observer\+\_\+4\+\_\+34 (\begin{DoxyParamCaption}\item[{struct SPEED\+\_\+\+OBSERVER \texorpdfstring{$\ast$}{*}}]{SPDOBS}{, }\item[{float}]{Err\+\_\+\+Thetar}{, }\item[{float}]{Idse\+\_\+ff}{, }\item[{float}]{Iqse\+\_\+ff}{}\end{DoxyParamCaption})}
+
+
+
+속도 옵저버 실행 (수식 4-\/34 방식) 
+
+위치 오차를 입력으로 하여 전자 토크 및 부하 토크를 추정하고, 적분을 통해 기계적 각속도와 위치를 갱신한다.
+
+갱신 순서:\+
+\begin{DoxyEnumerate}
+\item Te\+\_\+est = K2 × Thetarm\+\_\+err
+\item Tl\+\_\+est += K3 × Thetarm\+\_\+err × Tsamp (적분)
+\item Te\+\_\+ff = 1.\+5 × PP × (λf × Iq + (Ld-\/\+Lq) × Id × Iq)
+\item integ\+\_\+\+Wrm\+\_\+est += (Te\+\_\+est + Te\+\_\+ff + Tl\+\_\+est -\/ Bm × Wrm\+\_\+est\+\_\+fb) /\+ Jm × Tsamp
+\item Wrm\+\_\+est = integ\+\_\+\+Wrm\+\_\+est (4-\/34:\+ 피드백은 순수 적분값)
+\item Thetarm\+\_\+est += (Wrm\+\_\+est + K1 × Thetarm\+\_\+err) × Tsamp
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em SPDOBS} & 속도 옵저버 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Err\+\_\+\+Thetar} & 전기각 위치 오차 \+[rad]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Idse\+\_\+ff} & 피드포워드 d축 전류 \+[A]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Iqse\+\_\+ff} & 피드포워드 q축 전류 \+[A]\+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{speed__observer_8c_source}{speed\+\_\+observer.\+c}} 파일의 \doxymbox{\hyperlink{speed__observer_8c_source_l00121}{121}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ SPDOBS-\/>Thetarm\_err\ =\ Err\_Thetar\ *\ SPDOBS-\/>INV\_PP;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ SPDOBS-\/>Te\_est\ \ =\ SPDOBS-\/>K2\ *\ SPDOBS-\/>Thetarm\_err;}
+\DoxyCodeLine{00127\ \ \ \ \ SPDOBS-\/>Tl\_est\ +=\ SPDOBS-\/>K3\ *\ SPDOBS-\/>Thetarm\_err\ *\ Tsamp;}
+\DoxyCodeLine{00128\ \ \ \ \ SPDOBS-\/>Te\_ff\ \ \ =\ 1.5f\ *\ SPDOBS-\/>PP\ *\ (SPDOBS-\/>Lamf\_hat\ *\ Iqse\_ff}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ (SPDOBS-\/>Ld\_hat\ -\/\ SPDOBS-\/>Lq\_hat)\ *\ Idse\_ff\ *\ Iqse\_ff);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ SPDOBS-\/>integ\_Wrm\_est\ +=\ (SPDOBS-\/>Te\_est\ +\ SPDOBS-\/>Te\_ff\ +\ SPDOBS-\/>Tl\_est}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ SPDOBS-\/>Bm\_hat\ *\ SPDOBS-\/>Wrm\_est\_fb)\ *\ SPDOBS-\/>INV\_Jm\_hat\ *\ Tsamp;}
+\DoxyCodeLine{00133\ \ \ \ \ SPDOBS-\/>Wrm\_est\ \ \ \ =\ SPDOBS-\/>integ\_Wrm\_est;}
+\DoxyCodeLine{00134\ \ \ \ \ SPDOBS-\/>Wrm\_est\_fb\ =\ SPDOBS-\/>integ\_Wrm\_est;}
+\DoxyCodeLine{00135\ \ \ \ \ SPDOBS-\/>Wr\_est\ \ \ \ \ =\ SPDOBS-\/>Wrm\_est\ *\ SPDOBS-\/>PP;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ +=\ (SPDOBS-\/>Wrm\_est\ +\ SPDOBS-\/>K1\ *\ SPDOBS-\/>Thetarm\_err)\ *\ Tsamp;}
+\DoxyCodeLine{00138\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ \ =\ BOUND\_PI(SPDOBS-\/>Thetarm\_est);}
+\DoxyCodeLine{00139\ \ \ \ \ SPDOBS-\/>Thetar\_est\ \ \ =\ BOUND\_PI(SPDOBS-\/>PP\ *\ SPDOBS-\/>Thetarm\_est);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ SPDOBS-\/>Tload\_est\ =\ -\/SPDOBS-\/>Tl\_est;}
+\DoxyCodeLine{00142\ \}}
+
+\end{DoxyCode}
+\Hypertarget{speed__observer_8c_afecd3b4028d587d06f5acc2cb78ec17b}\index{speed\_observer.c@{speed\_observer.c}!SpeedObserver\_4\_35@{SpeedObserver\_4\_35}}
+\index{SpeedObserver\_4\_35@{SpeedObserver\_4\_35}!speed\_observer.c@{speed\_observer.c}}
+\doxysubsubsection{\texorpdfstring{SpeedObserver\_4\_35()}{SpeedObserver\_4\_35()}}
+{\footnotesize\ttfamily \label{speed__observer_8c_afecd3b4028d587d06f5acc2cb78ec17b} 
+void Speed\+Observer\+\_\+4\+\_\+35 (\begin{DoxyParamCaption}\item[{struct SPEED\+\_\+\+OBSERVER \texorpdfstring{$\ast$}{*}}]{SPDOBS}{, }\item[{float}]{Err\+\_\+\+Thetar}{, }\item[{float}]{Idse\+\_\+ff}{, }\item[{float}]{Iqse\+\_\+ff}{}\end{DoxyParamCaption})}
+
+
+
+속도 옵저버 실행 (수식 4-\/35 방식) 
+
+4-\/34와 동일하지만 Wrm\+\_\+est 출력에 K1 보정항이 포함된다. (Wrm\+\_\+est\+\_\+fb는 순수 적분값, Wrm\+\_\+est는 K1 보정 포함)
+
+4-\/34와 다른 점:\+
+\begin{DoxyItemize}
+\item Wrm\+\_\+est = integ\+\_\+\+Wrm\+\_\+est + K1 × Thetarm\+\_\+err (출력에 직접 보정)
+\item Wrm\+\_\+est\+\_\+fb = integ\+\_\+\+Wrm\+\_\+est (피드백은 순수 적분값 유지)
+\item Thetarm\+\_\+est += Wrm\+\_\+est × Tsamp (K1항이 Wrm\+\_\+est에 포함됨)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in,out}}  & {\em SPDOBS} & 속도 옵저버 구조체 포인터 \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Err\+\_\+\+Thetar} & 전기각 위치 오차 \+[rad]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Idse\+\_\+ff} & 피드포워드 d축 전류 \+[A]\+ \\
+\hline
+\doxymbox{\texttt{in}}  & {\em Iqse\+\_\+ff} & 피드포워드 q축 전류 \+[A]\+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxymbox{\hyperlink{speed__observer_8c_source}{speed\+\_\+observer.\+c}} 파일의 \doxymbox{\hyperlink{speed__observer_8c_source_l00160}{160}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00162\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ SPDOBS-\/>Thetarm\_err\ =\ Err\_Thetar\ *\ SPDOBS-\/>INV\_PP;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ SPDOBS-\/>Te\_est\ \ =\ SPDOBS-\/>K2\ *\ SPDOBS-\/>Thetarm\_err;}
+\DoxyCodeLine{00166\ \ \ \ \ SPDOBS-\/>Tl\_est\ +=\ SPDOBS-\/>K3\ *\ SPDOBS-\/>Thetarm\_err\ *\ Tsamp;}
+\DoxyCodeLine{00167\ \ \ \ \ SPDOBS-\/>Te\_ff\ \ \ =\ 1.5f\ *\ SPDOBS-\/>PP\ *\ (SPDOBS-\/>Lamf\_hat\ *\ Iqse\_ff}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ (SPDOBS-\/>Ld\_hat\ -\/\ SPDOBS-\/>Lq\_hat)\ *\ Idse\_ff\ *\ Iqse\_ff);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ SPDOBS-\/>integ\_Wrm\_est\ +=\ (SPDOBS-\/>Te\_est\ +\ SPDOBS-\/>Te\_ff\ +\ SPDOBS-\/>Tl\_est}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ SPDOBS-\/>Bm\_hat\ *\ SPDOBS-\/>Wrm\_est\_fb)\ *\ SPDOBS-\/>INV\_Jm\_hat\ *\ Tsamp;}
+\DoxyCodeLine{00172\ \ \ \ \ SPDOBS-\/>Wrm\_est\ \ \ \ =\ SPDOBS-\/>integ\_Wrm\_est\ +\ SPDOBS-\/>K1\ *\ SPDOBS-\/>Thetarm\_err;}
+\DoxyCodeLine{00173\ \ \ \ \ SPDOBS-\/>Wrm\_est\_fb\ =\ SPDOBS-\/>integ\_Wrm\_est;}
+\DoxyCodeLine{00174\ \ \ \ \ SPDOBS-\/>Wr\_est\ \ \ \ \ =\ SPDOBS-\/>Wrm\_est\ *\ SPDOBS-\/>PP;}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ +=\ SPDOBS-\/>Wrm\_est\ *\ Tsamp;}
+\DoxyCodeLine{00177\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ \ =\ BOUND\_PI(SPDOBS-\/>Thetarm\_est);}
+\DoxyCodeLine{00178\ \ \ \ \ SPDOBS-\/>Thetar\_est\ \ \ =\ BOUND\_PI(SPDOBS-\/>PP\ *\ SPDOBS-\/>Thetarm\_est);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ SPDOBS-\/>Tload\_est\ =\ -\/SPDOBS-\/>Tl\_est;}
+\DoxyCodeLine{00181\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-var-members}
+\Hypertarget{speed__observer_8c_doc-var-members}
+\doxysubsection{변수 문서화}
+\Hypertarget{speed__observer_8c_aaac3af89e1dd9944b6bccef174d4250b}\index{speed\_observer.c@{speed\_observer.c}!EXT\_1@{EXT\_1}}
+\index{EXT\_1@{EXT\_1}!speed\_observer.c@{speed\_observer.c}}
+\doxysubsubsection{\texorpdfstring{EXT\_1}{EXT\_1}}
+{\footnotesize\ttfamily \label{speed__observer_8c_aaac3af89e1dd9944b6bccef174d4250b} 
+struct EXT\+\_\+\+Sensorless EXT\+\_\+1}
+
+
+
+확장 센서리스 옵저버 전역 구조체 
+
+
+
+\doxymbox{\hyperlink{speed__observer_8c_source}{speed\+\_\+observer.\+c}} 파일의 \doxymbox{\hyperlink{speed__observer_8c_source_l00032}{32}} 번째 라인에서 정의되었습니다.
+

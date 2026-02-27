@@ -1,0 +1,5 @@
+<map id="HardWareFault" name="HardWareFault">
+<area shape="rect" id="Node000001" title="하드웨어 고장 처리 함수" alt="" coords="236,5,344,32"/>
+<area shape="rect" id="Node000002" href="$fault_8c.html#a0cd91fd3a9608559c2a87a8ba6cba55f" title="GPIO 외부 인터럽트 콜백 (하드웨어 고장 진입점)" alt="" coords="5,5,188,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,19,188,21,188,16,223,19"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Core/Src/speed_observer.c" name="Core/Src/speed_observer.c">
+<area shape="rect" id="Node000001" title="속도 옵저버 및 확장 역기전력(EEMF) 기반 센서리스 제어 모듈" alt="" coords="95,5,275,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,130,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,32,102,74,99,69,162,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="154,80,216,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,31,187,66,183,63,183,34"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="240,80,317,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="202,30,253,70,248,70,200,35"/>
+</map>

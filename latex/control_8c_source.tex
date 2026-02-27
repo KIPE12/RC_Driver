@@ -1,0 +1,100 @@
+\doxysection{control.\+c}
+\hypertarget{control_8c_source}{}\label{control_8c_source}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/control.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/control.c}}
+\doxymbox{\hyperlink{control_8c}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}control.h"{}}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}inv.h"{}}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}variable.h"{}}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}fault.h"{}}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}flag.h"{}}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}adc.h"{}}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00038}00038\ \textcolor{preprocessor}{\#include\ "{}speed\_observer.h"{}}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00044}\doxymbox{\hyperlink{control_8c_a8dde33cdd74f2fd5bc110c7986794411}{00044}}\ uint32\_t\ \doxymbox{\hyperlink{control_8c_a8dde33cdd74f2fd5bc110c7986794411}{ControlCnt}};}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00046}00046\ \textcolor{keyword}{extern}\ uint8\_t\ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{control_8c_aee4f58524acc5e1a9386b2e9223e4846}{T\_buffer}}[0];}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00047}00047\ \textcolor{keyword}{extern}\ ADC\_HandleTypeDef\ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}};}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00060}\doxymbox{\hyperlink{control_8c_afb486c446e28753e3dca5112dfdc8264}{00060}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{control_8c_afb486c446e28753e3dca5112dfdc8264}{Control}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00061}00061\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00062}00062\ \ \ \ \ \doxymbox{\hyperlink{control_8c_a8dde33cdd74f2fd5bc110c7986794411}{ControlCnt}}++;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00064}00064\ \ \ \ \ \textcolor{comment}{/*\ ADC\ Injected\ 레지스터\ 직접\ 읽기\ */}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00065}00065\ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[0]\ =\ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Instance-\/>JDR1;\ \textcolor{comment}{/*\ Ia\ \ [LSB]\ */}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00066}00066\ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[1]\ =\ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Instance-\/>JDR2;\ \textcolor{comment}{/*\ Ib\ \ [LSB]\ */}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00067}00067\ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[2]\ =\ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Instance-\/>JDR3;\ \textcolor{comment}{/*\ Ic\ \ [LSB]\ */}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00068}00068\ \ \ \ \ \doxymbox{\hyperlink{group___a_d_c___variables_ga3f46ad79f65150aec6105a862cf32624}{adc1Val}}[3]\ =\ \doxymbox{\hyperlink{adc_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}}.Instance-\/>JDR4;\ \textcolor{comment}{/*\ Vdc\ [LSB]\ */}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{group___a_d_c___variables_ga734b67f14f678f4b701be37706729cd0}{AdInitFlag}})}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a5c5c41c37d32d75b9a5844f877762629}{Offset}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{adc_8c_a39fd8940b1565d6d40f65b288f358c6c}{AdcProcess}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00075}00075\ \ \ \ \ \textcolor{comment}{/*\ 소프트웨어\ 과전류\ 보호\ */}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (ABS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Ia)\ >=\ 80.f)\ \{\ \doxymbox{\hyperlink{fault_8c_a5d0d662228c78364b02259814f0f8ccd}{SoftWareFault}}();\ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (ABS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Ib)\ >=\ 80.f)\ \{\ \doxymbox{\hyperlink{fault_8c_a5d0d662228c78364b02259814f0f8ccd}{SoftWareFault}}();\ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (ABS(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Ic)\ >=\ 80.f)\ \{\ \doxymbox{\hyperlink{fault_8c_a5d0d662228c78364b02259814f0f8ccd}{SoftWareFault}}();\ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00080}00080\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a9fabfabf3cf816a557870ac6174ba05b}{UpdateController}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00081}00081\ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a3db77525a1b8b485f18baebc7e086cb1}{Hallsensor\_Observer}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.READY\ \&\&\ !(\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.FAULT))\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_RUN)\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_aa0c62359efaad04d667cc7d8d3e169e6}{SpeedControl}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a01248186cec9f4dadc54e4c94be940cf}{Vref\_GenControl}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.HALL\_POS\_TEST)\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5eb5c4adfd5c3833415678e1da00bf93}{HallPosition\_Test}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{PwmSwOn}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ PWM\_BUF\_ON;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.DUTY\_TEST)\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_A\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_A,\ 0.f,\ 0.95f);}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_B\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_B,\ 0.f,\ 0.95f);}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_C\ =\ LIMIT(\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_C,\ 0.f,\ 0.95f);}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_A\ =\ 0.2f;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_B\ =\ 0.3f;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}}.Duty\_C\ =\ 0.8f;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a031511fea69b8fce19a44f86eb1858fe}{PwmSwOn}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ PWM\_BUF\_ON;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_OLC)\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{group___control_mode_ga5e542439936627687d1a27ac7b6b50c2}{Theta\_mode}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a964ec348ab2be811f76c85501ac14208}{OpenLoopControl}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a68f857bdf76878fd721ac48e6c354997}{CurrentControl}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_Vref\_Gen)\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a01248186cec9f4dadc54e4c94be940cf}{Vref\_GenControl}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_VOLC)\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_aefbd0b8bc957317d7f22f0db0185683d}{VoltageOpenLoopControl}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00116}00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.Param\_Estimation)\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_aedf8f86f640274dface77130a3d50207}{VoltageInjection\_SquareWave}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00119}00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_ALIGN)\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_ad14c7779ae276ada8516bc3d58997206}{Align}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00122}00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a9013a288bba48367bf9d57702c80b1ee}{PwmSwOff}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a1f6df58c2a073ad2274f97f6a504c96d}{ResetController}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_RUN\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_OLC\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_VOLC\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_ALIGN\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_NLC\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.TS\_MODE\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a9013a288bba48367bf9d57702c80b1ee}{PwmSwOff}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a4b849dca1f135dd860c6f0ce88cc7c13}{PwmDutyUpt}}();}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{inv_8c_a1f6df58c2a073ad2274f97f6a504c96d}{ResetController}}(\&\doxymbox{\hyperlink{inv_8c_a5b799dff3aee9e48ae67cfe1f9075e30}{INV}});}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_RUN\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_OLC\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_VOLC\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_ALIGN\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.INV\_NLC\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.TS\_MODE\ =\ \doxymbox{\hyperlink{flag_8c_ac09613eff9a28b2750787c13d7d6fdc9}{FLAG}}.READY\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00137}00137\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{control_8c_source_l00138}00138\ \}}
+
+\end{DoxyCode}

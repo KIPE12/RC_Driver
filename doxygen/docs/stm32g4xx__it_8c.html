@@ -1,0 +1,898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RC_Driver: Core/Src/stm32g4xx_it.c 파일 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">RC_Driver<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('stm32g4xx__it_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">stm32g4xx_it.c 파일 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>STM32G4xx 인터럽트 서비스 루틴(ISR) 모듈  
+<a href="#details">더 자세히 ...</a></p>
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;stm32g4xx_it.h&quot;</code><br />
+<code>#include &quot;control.h&quot;</code><br />
+<code>#include &quot;inv.h&quot;</code><br />
+<code>#include &quot;variable.h&quot;</code><br />
+<code>#include &quot;speed_observer.h&quot;</code><br />
+<code>#include &quot;adc.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+stm32g4xx_it.c에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="stm32g4xx__it_8c__incl.png" border="0" usemap="#a_core_2_src_2stm32g4xx__it_8c" loading="lazy" alt=""/></div>
+<map name="a_core_2_src_2stm32g4xx__it_8c" id="a_core_2_src_2stm32g4xx__it_8c">
+<area shape="rect" title="STM32G4xx 인터럽트 서비스 루틴(ISR) 모듈" alt="" coords="260,5,427,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,66,107"/>
+<area shape="poly" title=" " alt="" coords="284,35,81,82,80,77,283,30"/>
+<area shape="rect" title=" " alt="" coords="90,80,200,107"/>
+<area shape="poly" title=" " alt="" coords="312,32,195,77,193,72,306,33"/>
+<area shape="rect" title=" " alt="" coords="224,80,295,107"/>
+<area shape="poly" title=" " alt="" coords="331,32,287,72,284,67,326,33"/>
+<area shape="rect" title=" " alt="" coords="319,80,368,107"/>
+<area shape="poly" title=" " alt="" coords="345,31,346,66,341,63,342,34"/>
+<area shape="rect" title=" " alt="" coords="392,80,469,107"/>
+<area shape="poly" title=" " alt="" coords="360,30,406,71,401,70,358,35"/>
+<area shape="rect" title=" " alt="" coords="493,80,618,107"/>
+<area shape="poly" title=" " alt="" coords="381,30,506,74,501,75,380,35"/>
+<area shape="rect" title=" " alt="" coords="642,80,696,107"/>
+<area shape="poly" title=" " alt="" coords="413,30,511,50,630,80,625,80,510,55,413,35"/>
+</map>
+</div>
+</div>
+<p><a href="stm32g4xx__it_8c_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+함수</h2></td></tr>
+<tr class="memitem:a6ad7a5e3ee69cb6db6a6b9111ba898bc" id="r_a6ad7a5e3ee69cb6db6a6b9111ba898bc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6ad7a5e3ee69cb6db6a6b9111ba898bc">NMI_Handler</a> (void)</td></tr>
+<tr class="memdesc:a6ad7a5e3ee69cb6db6a6b9111ba898bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-Maskable Interrupt(NMI) 핸들러  <br /></td></tr>
+<tr class="memitem:a2bffc10d5bd4106753b7c30e86903bea" id="r_a2bffc10d5bd4106753b7c30e86903bea"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2bffc10d5bd4106753b7c30e86903bea">HardFault_Handler</a> (void)</td></tr>
+<tr class="memdesc:a2bffc10d5bd4106753b7c30e86903bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hard Fault 핸들러  <br /></td></tr>
+<tr class="memitem:a3150f74512510287a942624aa9b44cc5" id="r_a3150f74512510287a942624aa9b44cc5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3150f74512510287a942624aa9b44cc5">MemManage_Handler</a> (void)</td></tr>
+<tr class="memdesc:a3150f74512510287a942624aa9b44cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory Management Fault 핸들러  <br /></td></tr>
+<tr class="memitem:a850cefb17a977292ae5eb4cafa9976c3" id="r_a850cefb17a977292ae5eb4cafa9976c3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a850cefb17a977292ae5eb4cafa9976c3">BusFault_Handler</a> (void)</td></tr>
+<tr class="memdesc:a850cefb17a977292ae5eb4cafa9976c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bus Fault 핸들러  <br /></td></tr>
+<tr class="memitem:a1d98923de2ed6b7309b66f9ba2971647" id="r_a1d98923de2ed6b7309b66f9ba2971647"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1d98923de2ed6b7309b66f9ba2971647">UsageFault_Handler</a> (void)</td></tr>
+<tr class="memdesc:a1d98923de2ed6b7309b66f9ba2971647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usage Fault 핸들러  <br /></td></tr>
+<tr class="memitem:a3e5ddb3df0d62f2dc357e64a3f04a6ce" id="r_a3e5ddb3df0d62f2dc357e64a3f04a6ce"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3e5ddb3df0d62f2dc357e64a3f04a6ce">SVC_Handler</a> (void)</td></tr>
+<tr class="memdesc:a3e5ddb3df0d62f2dc357e64a3f04a6ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">SVC(SuperVisor Call) 핸들러  <br /></td></tr>
+<tr class="memitem:adbdfb05858cc36fc520974df37ec3cb0" id="r_adbdfb05858cc36fc520974df37ec3cb0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adbdfb05858cc36fc520974df37ec3cb0">DebugMon_Handler</a> (void)</td></tr>
+<tr class="memdesc:adbdfb05858cc36fc520974df37ec3cb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug Monitor 핸들러  <br /></td></tr>
+<tr class="memitem:a6303e1f258cbdc1f970ce579cc015623" id="r_a6303e1f258cbdc1f970ce579cc015623"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6303e1f258cbdc1f970ce579cc015623">PendSV_Handler</a> (void)</td></tr>
+<tr class="memdesc:a6303e1f258cbdc1f970ce579cc015623"><td class="mdescLeft">&#160;</td><td class="mdescRight">PendSV 핸들러  <br /></td></tr>
+<tr class="memitem:ab5e09814056d617c521549e542639b7e" id="r_ab5e09814056d617c521549e542639b7e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab5e09814056d617c521549e542639b7e">SysTick_Handler</a> (void)</td></tr>
+<tr class="memdesc:ab5e09814056d617c521549e542639b7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">SysTick 타이머 핸들러  <br /></td></tr>
+<tr class="memitem:a3e8fca6e2f18e433a9fbc3d2dcc0b411" id="r_a3e8fca6e2f18e433a9fbc3d2dcc0b411"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3e8fca6e2f18e433a9fbc3d2dcc0b411">ADC1_2_IRQHandler</a> (void)</td></tr>
+<tr class="memdesc:a3e8fca6e2f18e433a9fbc3d2dcc0b411"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC1 및 ADC2 글로벌 인터럽트 핸들러  <br /></td></tr>
+<tr class="memitem:a37c3c8d5fe4f0106410dea2c1147b8a9" id="r_a37c3c8d5fe4f0106410dea2c1147b8a9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a37c3c8d5fe4f0106410dea2c1147b8a9">TIM1_BRK_TIM15_IRQHandler</a> (void)</td></tr>
+<tr class="memdesc:a37c3c8d5fe4f0106410dea2c1147b8a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM1 Break 및 TIM15 글로벌 인터럽트 핸들러  <br /></td></tr>
+<tr class="memitem:a38ad4725462bdc5e86c4ead4f04b9fc2" id="r_a38ad4725462bdc5e86c4ead4f04b9fc2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a38ad4725462bdc5e86c4ead4f04b9fc2">TIM2_IRQHandler</a> (void)</td></tr>
+<tr class="memdesc:a38ad4725462bdc5e86c4ead4f04b9fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM2 글로벌 인터럽트 핸들러 ★ 제어 루프 진입점 ★  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+변수</h2></td></tr>
+<tr class="memitem:ab3fd4ee94ab824d4a4459089b76ddc64" id="r_ab3fd4ee94ab824d4a4459089b76ddc64"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ab3fd4ee94ab824d4a4459089b76ddc64">risingVal</a></td></tr>
+<tr class="memdesc:ab3fd4ee94ab824d4a4459089b76ddc64"><td class="mdescLeft">&#160;</td><td class="mdescRight">RC 입력 캡처: 상승 에지 타임스탬프  <br /></td></tr>
+<tr class="memitem:a0f7d3cd98c4fbfde05cb2e9423ca3a14" id="r_a0f7d3cd98c4fbfde05cb2e9423ca3a14"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a0f7d3cd98c4fbfde05cb2e9423ca3a14">fallingVal</a></td></tr>
+<tr class="memdesc:a0f7d3cd98c4fbfde05cb2e9423ca3a14"><td class="mdescLeft">&#160;</td><td class="mdescRight">RC 입력 캡처: 하강 에지 타임스탬프  <br /></td></tr>
+<tr class="memitem:acea7b6fcaefe000a4219f33b2c0e65db" id="r_acea7b6fcaefe000a4219f33b2c0e65db"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#acea7b6fcaefe000a4219f33b2c0e65db">highTime</a></td></tr>
+<tr class="memdesc:acea7b6fcaefe000a4219f33b2c0e65db"><td class="mdescLeft">&#160;</td><td class="mdescRight">RC 입력: 하이 구간 폭 [타이머 카운트]  <br /></td></tr>
+<tr class="memitem:a81b43df06332b4fef558297592bb7ff1" id="r_a81b43df06332b4fef558297592bb7ff1"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a81b43df06332b4fef558297592bb7ff1">period</a></td></tr>
+<tr class="memdesc:a81b43df06332b4fef558297592bb7ff1"><td class="mdescLeft">&#160;</td><td class="mdescRight">RC 입력: 전체 주기 [타이머 카운트]  <br /></td></tr>
+<tr class="memitem:ab5e71ba0276929fe061bacdcc22c3335" id="r_ab5e71ba0276929fe061bacdcc22c3335"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ab5e71ba0276929fe061bacdcc22c3335">dutyCycle</a></td></tr>
+<tr class="memdesc:ab5e71ba0276929fe061bacdcc22c3335"><td class="mdescLeft">&#160;</td><td class="mdescRight">RC 입력 듀티 사이클 [0.0, 1.0]  <br /></td></tr>
+<tr class="memitem:a22b804736f5648d52f639b2647d4ed13" id="r_a22b804736f5648d52f639b2647d4ed13"><td class="memItemLeft">ADC_HandleTypeDef&#160;</td><td class="memItemRight"><a class="el" href="#a22b804736f5648d52f639b2647d4ed13">hadc1</a></td></tr>
+<tr class="memdesc:a22b804736f5648d52f639b2647d4ed13"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC1 핸들 (adc.c에서 정의)  <br /></td></tr>
+<tr class="memitem:ga25fc663547539bc49fecc0011bd76ab5" id="r_ga25fc663547539bc49fecc0011bd76ab5"><td class="memItemLeft">TIM_HandleTypeDef&#160;</td><td class="memItemRight"><a class="el" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a></td></tr>
+<tr class="memdesc:ga25fc663547539bc49fecc0011bd76ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM1 핸들 (tim.c에서 정의)  <br /></td></tr>
+<tr class="memitem:ga2c80fd5510e2990a59a5c90d745c716c" id="r_ga2c80fd5510e2990a59a5c90d745c716c"><td class="memItemLeft">TIM_HandleTypeDef&#160;</td><td class="memItemRight"><a class="el" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a></td></tr>
+<tr class="memdesc:ga2c80fd5510e2990a59a5c90d745c716c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM2 핸들 (tim.c에서 정의)  <br /></td></tr>
+<tr class="memitem:ga859a9bb217bb4010bb2bffb6881478c0" id="r_ga859a9bb217bb4010bb2bffb6881478c0"><td class="memItemLeft">TIM_HandleTypeDef&#160;</td><td class="memItemRight"><a class="el" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a></td></tr>
+<tr class="memdesc:ga859a9bb217bb4010bb2bffb6881478c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM15 핸들 (tim.c에서 정의)  <br /></td></tr>
+<tr class="memitem:ade319cda99d696f3d1cd760e5624390c" id="r_ade319cda99d696f3d1cd760e5624390c"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ade319cda99d696f3d1cd760e5624390c">tim2_cnt</a></td></tr>
+<tr class="memdesc:ade319cda99d696f3d1cd760e5624390c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM2 인터럽트 발생 횟수 카운터 (디버깅용)  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>STM32G4xx 인터럽트 서비스 루틴(ISR) 모듈 </p>
+<p>Cortex-M4 예외 핸들러 및 STM32G4xx 주변장치 인터럽트 핸들러를 정의한다.</p>
+<p>사용 중인 주요 인터럽트: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">인터럽트  </th><th class="markdownTableHeadNone">핸들러  </th><th class="markdownTableHeadNone">동작  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ADC1/ADC2  </td><td class="markdownTableBodyNone">ADC1_2_IRQHandler  </td><td class="markdownTableBodyNone">HAL ADC 처리  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">TIM1 Break / TIM15  </td><td class="markdownTableBodyNone">TIM1_BRK_TIM15_IRQHandler  </td><td class="markdownTableBodyNone">HAL TIM 처리  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">TIM2  </td><td class="markdownTableBodyNone">TIM2_IRQHandler  </td><td class="markdownTableBodyNone">카운터 증가 + <b><a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a></b> 호출  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SysTick  </td><td class="markdownTableBodyNone">SysTick_Handler  </td><td class="markdownTableBodyNone">HAL 틱 카운터 증가  </td></tr>
+</table>
+<dl class="section note"><dt>주의</dt><dd>TIM2_IRQHandler 내에서 <a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a>을 직접 호출한다. TIM2 주기(100µs)가 곧 제어 샘플링 주기(Tsamp)이다.</dd></dl>
+<dl class="section author"><dt>작성자</dt><dd>STMicroelectronics / HALAB_G </dd></dl>
+<dl class="section date"><dt>날짜</dt><dd>2026</dd></dl>
+<dl class="section attention"><dt>주의</dt><dd>Copyright (c) 2026 STMicroelectronics. All rights reserved. </dd></dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일에서 정의되었습니다.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">함수 문서화</h2>
+<a id="a3e8fca6e2f18e433a9fbc3d2dcc0b411" name="a3e8fca6e2f18e433a9fbc3d2dcc0b411"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e8fca6e2f18e433a9fbc3d2dcc0b411">&#9670;&#160;</a></span>ADC1_2_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ADC1_2_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADC1 및 ADC2 글로벌 인터럽트 핸들러 </p>
+<p>Regular 또는 Injected 변환 완료 시 호출된다. HAL_ADC_IRQHandler()를 통해 콜백(HAL_ADCEx_InjectedConvCpltCallback 등)이 연결된다.</p>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00255">255</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  256</span>{</div>
+<div class="line"><span class="lineno">  257</span>  <span class="comment">/* USER CODE BEGIN ADC1_2_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  258</span> </div>
+<div class="line"><span class="lineno">  259</span>  <span class="comment">/* USER CODE END ADC1_2_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  260</span>  HAL_ADC_IRQHandler(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>);</div>
+<div class="line"><span class="lineno">  261</span>  <span class="comment">/* USER CODE BEGIN ADC1_2_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  262</span> </div>
+<div class="line"><span class="lineno">  263</span>  <span class="comment">/* USER CODE END ADC1_2_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  264</span>}</div>
+<div class="ttc" id="aadc_8c_html_a22b804736f5648d52f639b2647d4ed13"><div class="ttname"><a href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a></div><div class="ttdeci">ADC_HandleTypeDef hadc1</div><div class="ttdoc">ADC1 HAL 핸들 구조체</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00059">adc.c:59</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a850cefb17a977292ae5eb4cafa9976c3" name="a850cefb17a977292ae5eb4cafa9976c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a850cefb17a977292ae5eb4cafa9976c3">&#9670;&#160;</a></span>BusFault_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BusFault_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bus Fault 핸들러 </p>
+<p>프리페치 실패, 메모리 접근 오류 시 진입한다. </p><dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00146">146</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  147</span>{</div>
+<div class="line"><span class="lineno">  148</span>  <span class="comment">/* USER CODE BEGIN BusFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  149</span> </div>
+<div class="line"><span class="lineno">  150</span>  <span class="comment">/* USER CODE END BusFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  151</span>  <span class="keywordflow">while</span> (1)</div>
+<div class="line"><span class="lineno">  152</span>  {</div>
+<div class="line"><span class="lineno">  153</span>    <span class="comment">/* USER CODE BEGIN W1_BusFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  154</span>    <span class="comment">/* USER CODE END W1_BusFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  155</span>  }</div>
+<div class="line"><span class="lineno">  156</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="adbdfb05858cc36fc520974df37ec3cb0" name="adbdfb05858cc36fc520974df37ec3cb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbdfb05858cc36fc520974df37ec3cb0">&#9670;&#160;</a></span>DebugMon_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugMon_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Debug Monitor 핸들러 </p>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00197">197</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  198</span>{</div>
+<div class="line"><span class="lineno">  199</span>  <span class="comment">/* USER CODE BEGIN DebugMonitor_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  200</span> </div>
+<div class="line"><span class="lineno">  201</span>  <span class="comment">/* USER CODE END DebugMonitor_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  202</span>  <span class="comment">/* USER CODE BEGIN DebugMonitor_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  203</span> </div>
+<div class="line"><span class="lineno">  204</span>  <span class="comment">/* USER CODE END DebugMonitor_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  205</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2bffc10d5bd4106753b7c30e86903bea" name="a2bffc10d5bd4106753b7c30e86903bea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bffc10d5bd4106753b7c30e86903bea">&#9670;&#160;</a></span>HardFault_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HardFault_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Hard Fault 핸들러 </p>
+<p>잘못된 메모리 접근, 정렬 오류, 버스 오류 등 치명적 예외 발생 시 진입한다. </p><dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00110">110</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  111</span>{</div>
+<div class="line"><span class="lineno">  112</span>  <span class="comment">/* USER CODE BEGIN HardFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  113</span> </div>
+<div class="line"><span class="lineno">  114</span>  <span class="comment">/* USER CODE END HardFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  115</span>  <span class="keywordflow">while</span> (1)</div>
+<div class="line"><span class="lineno">  116</span>  {</div>
+<div class="line"><span class="lineno">  117</span>    <span class="comment">/* USER CODE BEGIN W1_HardFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  118</span>    <span class="comment">/* USER CODE END W1_HardFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  119</span>  }</div>
+<div class="line"><span class="lineno">  120</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3150f74512510287a942624aa9b44cc5" name="a3150f74512510287a942624aa9b44cc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3150f74512510287a942624aa9b44cc5">&#9670;&#160;</a></span>MemManage_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MemManage_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Memory Management Fault 핸들러 </p>
+<p>MPU 보호 위반 시 진입한다. </p><dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00128">128</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  129</span>{</div>
+<div class="line"><span class="lineno">  130</span>  <span class="comment">/* USER CODE BEGIN MemoryManagement_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  131</span> </div>
+<div class="line"><span class="lineno">  132</span>  <span class="comment">/* USER CODE END MemoryManagement_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  133</span>  <span class="keywordflow">while</span> (1)</div>
+<div class="line"><span class="lineno">  134</span>  {</div>
+<div class="line"><span class="lineno">  135</span>    <span class="comment">/* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  136</span>    <span class="comment">/* USER CODE END W1_MemoryManagement_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  137</span>  }</div>
+<div class="line"><span class="lineno">  138</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6ad7a5e3ee69cb6db6a6b9111ba898bc" name="a6ad7a5e3ee69cb6db6a6b9111ba898bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ad7a5e3ee69cb6db6a6b9111ba898bc">&#9670;&#160;</a></span>NMI_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NMI_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Non-Maskable Interrupt(NMI) 핸들러 </p>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00094">94</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>{</div>
+<div class="line"><span class="lineno">   96</span>  <span class="comment">/* USER CODE BEGIN NonMaskableInt_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>  <span class="comment">/* USER CODE END NonMaskableInt_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">   99</span>  <span class="comment">/* USER CODE BEGIN NonMaskableInt_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  100</span>  <span class="keywordflow">while</span> (1) { }</div>
+<div class="line"><span class="lineno">  101</span>  <span class="comment">/* USER CODE END NonMaskableInt_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  102</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6303e1f258cbdc1f970ce579cc015623" name="a6303e1f258cbdc1f970ce579cc015623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6303e1f258cbdc1f970ce579cc015623">&#9670;&#160;</a></span>PendSV_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PendSV_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PendSV 핸들러 </p>
+<p>소프트웨어 트리거 가능한 지연 예외 처리. RTOS 컨텍스트 스위칭에 주로 사용된다. </p><dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00214">214</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  215</span>{</div>
+<div class="line"><span class="lineno">  216</span>  <span class="comment">/* USER CODE BEGIN PendSV_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  217</span> </div>
+<div class="line"><span class="lineno">  218</span>  <span class="comment">/* USER CODE END PendSV_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  219</span>  <span class="comment">/* USER CODE BEGIN PendSV_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  220</span> </div>
+<div class="line"><span class="lineno">  221</span>  <span class="comment">/* USER CODE END PendSV_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  222</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3e5ddb3df0d62f2dc357e64a3f04a6ce" name="a3e5ddb3df0d62f2dc357e64a3f04a6ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e5ddb3df0d62f2dc357e64a3f04a6ce">&#9670;&#160;</a></span>SVC_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SVC_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SVC(SuperVisor Call) 핸들러 </p>
+<p>SWI 명령어로 발생하는 소프트웨어 인터럽트를 처리한다. RTOS 사용 시 커널 진입점으로 활용된다. </p><dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00183">183</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  184</span>{</div>
+<div class="line"><span class="lineno">  185</span>  <span class="comment">/* USER CODE BEGIN SVCall_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  186</span> </div>
+<div class="line"><span class="lineno">  187</span>  <span class="comment">/* USER CODE END SVCall_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  188</span>  <span class="comment">/* USER CODE BEGIN SVCall_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>  <span class="comment">/* USER CODE END SVCall_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  191</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab5e09814056d617c521549e542639b7e" name="ab5e09814056d617c521549e542639b7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5e09814056d617c521549e542639b7e">&#9670;&#160;</a></span>SysTick_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SysTick_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SysTick 타이머 핸들러 </p>
+<p>HAL_IncTick()을 호출하여 HAL 내부 ms 틱 카운터를 증가시킨다. HAL_Delay() 및 타임아웃 관련 함수의 기준 클럭이다. </p><dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00231">231</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  232</span>{</div>
+<div class="line"><span class="lineno">  233</span>  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  234</span> </div>
+<div class="line"><span class="lineno">  235</span>  <span class="comment">/* USER CODE END SysTick_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  236</span>  HAL_IncTick();</div>
+<div class="line"><span class="lineno">  237</span>  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  238</span> </div>
+<div class="line"><span class="lineno">  239</span>  <span class="comment">/* USER CODE END SysTick_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  240</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a37c3c8d5fe4f0106410dea2c1147b8a9" name="a37c3c8d5fe4f0106410dea2c1147b8a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37c3c8d5fe4f0106410dea2c1147b8a9">&#9670;&#160;</a></span>TIM1_BRK_TIM15_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIM1_BRK_TIM15_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM1 Break 및 TIM15 글로벌 인터럽트 핸들러 </p>
+<p>TIM1과 TIM15는 IRQ를 공유한다. 두 핸들 모두에 HAL_TIM_IRQHandler()를 호출하여 각자의 플래그를 처리한다.</p>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00274">274</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  275</span>{</div>
+<div class="line"><span class="lineno">  276</span>  <span class="comment">/* USER CODE BEGIN TIM1_BRK_TIM15_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  277</span> </div>
+<div class="line"><span class="lineno">  278</span>  <span class="comment">/* USER CODE END TIM1_BRK_TIM15_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  279</span>  HAL_TIM_IRQHandler(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>);</div>
+<div class="line"><span class="lineno">  280</span>  HAL_TIM_IRQHandler(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>);</div>
+<div class="line"><span class="lineno">  281</span>  <span class="comment">/* USER CODE BEGIN TIM1_BRK_TIM15_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  282</span> </div>
+<div class="line"><span class="lineno">  283</span>  <span class="comment">/* USER CODE END TIM1_BRK_TIM15_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  284</span>}</div>
+<div class="ttc" id="agroup___t_i_m___handles_html_ga25fc663547539bc49fecc0011bd76ab5"><div class="ttname"><a href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a></div><div class="ttdeci">TIM_HandleTypeDef htim1</div><div class="ttdoc">TIM1 핸들: 3상 PWM 출력</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00048">tim.c:48</a></div></div>
+<div class="ttc" id="agroup___t_i_m___handles_html_ga859a9bb217bb4010bb2bffb6881478c0"><div class="ttname"><a href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a></div><div class="ttdeci">TIM_HandleTypeDef htim15</div><div class="ttdoc">TIM15 핸들 (tim.c에서 정의)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00050">tim.c:50</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a38ad4725462bdc5e86c4ead4f04b9fc2" name="a38ad4725462bdc5e86c4ead4f04b9fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38ad4725462bdc5e86c4ead4f04b9fc2">&#9670;&#160;</a></span>TIM2_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIM2_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM2 글로벌 인터럽트 핸들러 ★ 제어 루프 진입점 ★ </p>
+<p>TIM2 CH2 OC(Output Compare) 인터럽트가 100µs 주기로 발생한다. HAL 처리 후 <b><a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a></b> 을 직접 호출하여 PMSM 제어 루프를 실행한다.</p>
+<p>실행 순서:</p><ol type="1">
+<li><code>tim2_cnt</code> 카운터 증가 (디버깅/모니터링용)</li>
+<li>HAL_TIM_IRQHandler() → 플래그 클리어 및 콜백 처리</li>
+<li><a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a> → ADC 읽기, 좌표 변환, PI 제어, PWM 출력</li>
+</ol>
+<dl class="section warning"><dt>경고</dt><dd><a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a>의 실행 시간이 100µs를 초과하면 제어 주기 위반이 발생한다.</dd></dl>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>&lt; 디버깅용 인터럽트 카운터 증가</p>
+<p>&lt; PMSM 메인 제어 루프 실행 (100µs 주기)</p>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00301">301</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  302</span>{</div>
+<div class="line"><span class="lineno">  303</span>  <span class="comment">/* USER CODE BEGIN TIM2_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  304</span>  <a class="code hl_variable" href="#ade319cda99d696f3d1cd760e5624390c">tim2_cnt</a>++;  </div>
+<div class="line"><span class="lineno">  305</span>  <span class="comment">/* USER CODE END TIM2_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  306</span>  HAL_TIM_IRQHandler(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>);</div>
+<div class="line"><span class="lineno">  307</span>  <span class="comment">/* USER CODE BEGIN TIM2_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  308</span>  <a class="code hl_function" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264">Control</a>();   </div>
+<div class="line"><span class="lineno">  309</span>  <span class="comment">/* USER CODE END TIM2_IRQn 1 */</span></div>
+<div class="line"><span class="lineno">  310</span>}</div>
+<div class="ttc" id="acontrol_8c_html_afb486c446e28753e3dca5112dfdc8264"><div class="ttname"><a href="control_8c.html#afb486c446e28753e3dca5112dfdc8264">Control</a></div><div class="ttdeci">void Control(void)</div><div class="ttdoc">PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)</div><div class="ttdef"><b>Definition</b> <a href="control_8c_source.html#l00060">control.c:60</a></div></div>
+<div class="ttc" id="agroup___t_i_m___handles_html_ga2c80fd5510e2990a59a5c90d745c716c"><div class="ttname"><a href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a></div><div class="ttdeci">TIM_HandleTypeDef htim2</div><div class="ttdoc">TIM2 핸들 (tim.c에서 정의)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00049">tim.c:49</a></div></div>
+<div class="ttc" id="astm32g4xx__it_8c_html_ade319cda99d696f3d1cd760e5624390c"><div class="ttname"><a href="#ade319cda99d696f3d1cd760e5624390c">tim2_cnt</a></div><div class="ttdeci">uint32_t tim2_cnt</div><div class="ttdoc">TIM2 인터럽트 발생 횟수 카운터 (디버깅용)</div><div class="ttdef"><b>Definition</b> <a href="stm32g4xx__it_8c_source.html#l00083">stm32g4xx_it.c:83</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="stm32g4xx__it_8c_a38ad4725462bdc5e86c4ead4f04b9fc2_cgraph.png" border="0" usemap="#astm32g4xx__it_8c_a38ad4725462bdc5e86c4ead4f04b9fc2_cgraph" loading="lazy" alt=""/></div>
+<map name="astm32g4xx__it_8c_a38ad4725462bdc5e86c4ead4f04b9fc2_cgraph" id="astm32g4xx__it_8c_a38ad4725462bdc5e86c4ead4f04b9fc2_cgraph">
+<area shape="rect" title="TIM2 글로벌 인터럽트 핸들러 ★ 제어 루프 진입점 ★" alt="" coords="5,461,133,488"/>
+<area shape="rect" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)" alt="" coords="181,461,244,488"/>
+<area shape="poly" title=" " alt="" coords="132,472,167,473,163,476,135,477"/>
+<area shape="rect" href="adc_8c.html#a39fd8940b1565d6d40f65b288f358c6c" title="ADC 원시값을 물리량(전류/전압)으로 변환한다." alt="" coords="318,5,410,32"/>
+<area shape="poly" title=" " alt="" coords="212,460,218,378,233,256,256,133,271,84,290,49,306,37,303,41,294,52,276,86,261,134,238,257,224,379,217,461"/>
+<area shape="rect" href="inv_8c.html#ad14c7779ae276ada8516bc3d58997206" title="d축 전류 정렬 절차 (4단계 상태 머신)" alt="" coords="338,259,389,285"/>
+<area shape="poly" title=" " alt="" coords="214,460,222,429,237,387,259,342,290,302,325,282,322,286,294,306,264,345,242,389,227,430,219,462"/>
+<area shape="rect" href="inv_8c.html#a68f857bdf76878fd721ac48e6c354997" title="PI 전류 제어기 (d&#45;q 동기 좌표계)" alt="" coords="527,309,634,336"/>
+<area shape="poly" title=" " alt="" coords="217,460,244,414,265,389,291,368,345,343,403,328,461,320,514,319,509,321,461,325,404,333,347,348,293,373,269,393,249,417,222,462"/>
+<area shape="rect" href="inv_8c.html#a4b849dca1f135dd860c6f0ce88cc7c13" title="TIM1 CCR 레지스터에 듀티비를 업데이트한다." alt="" coords="726,183,826,209"/>
+<area shape="poly" title=" " alt="" coords="213,460,221,395,237,302,260,211,274,175,290,150,335,109,379,78,424,58,469,48,517,47,568,55,621,70,679,92,704,107,727,127,761,169,756,169,723,130,701,111,677,97,619,75,566,60,517,52,470,53,425,63,381,83,338,113,294,154,279,177,265,213,242,303,226,396,218,461"/>
+<area shape="rect" href="inv_8c.html#a031511fea69b8fce19a44f86eb1858fe" title="TIM1 PWM 출력을 활성화한다 (3상 상하 암 모두)." alt="" coords="732,284,820,311"/>
+<area shape="poly" title=" " alt="" coords="243,461,291,447,350,437,402,434,490,436,532,436,576,432,623,419,676,396,700,381,722,362,755,325,759,322,726,366,704,385,679,401,625,424,577,437,532,442,490,442,402,439,351,442,293,452,246,465"/>
+<area shape="rect" href="inv_8c.html#a5eb5c4adfd5c3833415678e1da00bf93" title="Hall 위치 테스트: 기본 전압 벡터를 순차 인가한다." alt="" coords="302,461,425,488"/>
+<area shape="poly" title=" " alt="" coords="243,472,288,473,284,476,246,477"/>
+<area shape="rect" href="inv_8c.html#a3db77525a1b8b485f18baebc7e086cb1" title="Hall 센서 기반 속도/위치 PLL 옵저버" alt="" coords="292,512,435,539"/>
+<area shape="poly" title=" " alt="" coords="244,483,310,505,305,508,245,488"/>
+<area shape="rect" href="adc_8c.html#a5c5c41c37d32d75b9a5844f877762629" title="전류 센서 오프셋을 자동 측정한다." alt="" coords="336,563,392,589"/>
+<area shape="poly" title=" " alt="" coords="224,486,255,517,293,548,323,564,318,565,291,553,251,521,225,491"/>
+<area shape="rect" href="inv_8c.html#a964ec348ab2be811f76c85501ac14208" title="전류 개루프 제어 (Open&#45;Loop Current Control)" alt="" coords="302,613,425,640"/>
+<area shape="poly" title=" " alt="" coords="219,486,247,542,268,572,294,599,300,605,295,606,290,603,264,576,242,544,218,491"/>
+<area shape="rect" href="inv_8c.html#a9013a288bba48367bf9d57702c80b1ee" title="TIM1 PWM 출력을 비활성화한다." alt="" coords="537,689,624,716"/>
+<area shape="poly" title=" " alt="" coords="214,486,218,532,228,591,238,622,252,652,270,679,294,701,320,715,348,725,378,731,409,733,469,729,525,720,520,721,470,734,409,738,378,736,347,731,318,720,290,705,266,682,247,655,233,624,223,592,213,532,213,491"/>
+<area shape="rect" href="inv_8c.html#a1f6df58c2a073ad2274f97f6a504c96d" title="모든 제어 상태 변수를 초기값으로 리셋한다." alt="" coords="308,765,420,792"/>
+<area shape="poly" title=" " alt="" coords="214,486,219,536,230,603,254,678,271,713,294,745,306,757,301,757,290,748,267,716,249,680,225,605,214,536,213,491"/>
+<area shape="rect" href="fault_8c.html#a5d0d662228c78364b02259814f0f8ccd" title="소프트웨어 고장 처리 함수" alt="" coords="312,664,416,691"/>
+<area shape="poly" title=" " alt="" coords="216,486,226,521,240,564,262,610,294,650,301,657,295,657,290,654,258,613,235,566,221,522,215,491"/>
+<area shape="rect" href="inv_8c.html#aa0c62359efaad04d667cc7d8d3e169e6" title="PI 속도 제어기 (rpm → 토크 기준 생성)" alt="" coords="314,816,414,843"/>
+<area shape="poly" title=" " alt="" coords="216,486,226,554,242,648,265,741,279,778,294,802,303,812,298,811,290,806,274,780,260,743,237,650,221,555,214,491"/>
+<area shape="rect" href="inv_8c.html#a9fabfabf3cf816a557870ac6174ba05b" title="제어기 게인을 현재 파라미터로 갱신한다." alt="" coords="304,867,423,893"/>
+<area shape="poly" title=" " alt="" coords="216,486,225,563,239,673,262,781,277,824,294,853,297,858,292,856,290,856,272,826,257,783,234,674,219,564,214,491"/>
+<area shape="rect" href="inv_8c.html#aedf8f86f640274dface77130a3d50207" title="d축 구형파 전압 주입 (파라미터 추정용)" alt="" coords="483,208,678,235"/>
+<area shape="poly" title=" " alt="" coords="211,460,214,418,224,358,234,327,248,296,267,268,290,245,313,230,337,219,389,205,441,201,493,204,489,207,442,206,389,210,339,224,315,235,294,249,271,272,253,299,239,329,230,360,219,419,216,462"/>
+<area shape="rect" href="inv_8c.html#aefbd0b8bc957317d7f22f0db0185683d" title="전압 개루프 제어 (Voltage Open&#45;Loop Control)" alt="" coords="498,360,663,387"/>
+<area shape="poly" title=" " alt="" coords="223,459,251,430,270,415,291,403,338,386,388,375,485,368,480,371,389,381,340,391,293,408,273,419,255,434,227,462"/>
+<area shape="rect" href="inv_8c.html#a01248186cec9f4dadc54e4c94be940cf" title="전압 기준 생성 제어 (전압 피드포워드 방식)" alt="" coords="522,107,639,133"/>
+<area shape="poly" title=" " alt="" coords="211,460,213,413,223,344,233,307,247,270,266,235,290,205,313,185,339,168,395,143,453,128,509,122,504,125,454,134,397,148,342,173,316,189,294,209,270,238,251,272,238,309,228,345,218,413,216,461"/>
+<area shape="poly" title=" " alt="" coords="389,275,515,306,510,308,390,280"/>
+<area shape="poly" title=" " alt="" coords="378,256,423,223,452,206,483,193,542,181,603,177,660,179,713,185,708,187,660,184,603,183,543,187,484,199,454,211,426,227,382,260"/>
+<area shape="poly" title=" " alt="" coords="389,271,719,292,715,296,390,276"/>
+<area shape="poly" title=" " alt="" coords="601,307,743,216,739,220,604,311"/>
+<area shape="poly" title=" " alt="" coords="633,313,720,304,715,306,635,318"/>
+<area shape="rect" href="inv_8c.html#a158783ba9a4d5687c5fc417acfcc74a4" title="Hall 센서 3개의 상태를 3비트 정수로 변환한다." alt="" coords="512,512,649,539"/>
+<area shape="poly" title=" " alt="" coords="435,523,499,524,494,526,436,528"/>
+<area shape="poly" title=" " alt="" coords="416,681,524,695,519,696,417,686"/>
+<area shape="poly" title=" " alt="" coords="677,206,713,203,708,206,679,211"/>
+<area shape="poly" title=" " alt="" coords="626,233,679,251,735,277,730,278,677,256,627,238"/>
+<area shape="poly" title=" " alt="" coords="656,357,676,346,694,329,703,313,723,271,756,225,759,221,728,273,708,315,698,333,679,350,659,362"/>
+<area shape="poly" title=" " alt="" coords="642,357,677,346,741,317,736,320,679,350,644,362"/>
+<area shape="poly" title=" " alt="" coords="626,131,679,150,735,175,730,176,677,154,627,136"/>
+<area shape="poly" title=" " alt="" coords="601,131,679,194,755,272,750,273,676,198,601,137"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1d98923de2ed6b7309b66f9ba2971647" name="a1d98923de2ed6b7309b66f9ba2971647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d98923de2ed6b7309b66f9ba2971647">&#9670;&#160;</a></span>UsageFault_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UsageFault_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Usage Fault 핸들러 </p>
+<p>미정의 명령어, 잘못된 상태 등 사용 오류 발생 시 진입한다. </p><dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00164">164</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  165</span>{</div>
+<div class="line"><span class="lineno">  166</span>  <span class="comment">/* USER CODE BEGIN UsageFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>  <span class="comment">/* USER CODE END UsageFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  169</span>  <span class="keywordflow">while</span> (1)</div>
+<div class="line"><span class="lineno">  170</span>  {</div>
+<div class="line"><span class="lineno">  171</span>    <span class="comment">/* USER CODE BEGIN W1_UsageFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  172</span>    <span class="comment">/* USER CODE END W1_UsageFault_IRQn 0 */</span></div>
+<div class="line"><span class="lineno">  173</span>  }</div>
+<div class="line"><span class="lineno">  174</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">변수 문서화</h2>
+<a id="ab5e71ba0276929fe061bacdcc22c3335" name="ab5e71ba0276929fe061bacdcc22c3335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5e71ba0276929fe061bacdcc22c3335">&#9670;&#160;</a></span>dutyCycle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float dutyCycle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RC 입력 듀티 사이클 [0.0, 1.0] </p>
+<p>RC 입력 듀티 사이클 [0.0, 1.0]</p>
+<p>TIM15 입력 캡처로부터 계산된 PWM 듀티비. <a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a> 함수 내에서 속도 또는 토크 기준으로 변환된다. </p>
+
+<p class="definition"><a class="el" href="main_8c_source.html">main.c</a> 파일의 <a class="el" href="main_8c_source.html#l00120">120</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a0f7d3cd98c4fbfde05cb2e9423ca3a14" name="a0f7d3cd98c4fbfde05cb2e9423ca3a14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7d3cd98c4fbfde05cb2e9423ca3a14">&#9670;&#160;</a></span>fallingVal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t fallingVal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RC 입력 캡처: 하강 에지 타임스탬프 </p>
+
+</div>
+</div>
+<a id="a22b804736f5648d52f639b2647d4ed13" name="a22b804736f5648d52f639b2647d4ed13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22b804736f5648d52f639b2647d4ed13">&#9670;&#160;</a></span>hadc1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ADC_HandleTypeDef hadc1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ADC1 핸들 (adc.c에서 정의) </p>
+<p>ADC1 핸들 (adc.c에서 정의) </p>
+
+<p class="definition"><a class="el" href="adc_8c_source.html">adc.c</a> 파일의 <a class="el" href="adc_8c_source.html#l00059">59</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="acea7b6fcaefe000a4219f33b2c0e65db" name="acea7b6fcaefe000a4219f33b2c0e65db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acea7b6fcaefe000a4219f33b2c0e65db">&#9670;&#160;</a></span>highTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t highTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RC 입력: 하이 구간 폭 [타이머 카운트] </p>
+
+</div>
+</div>
+<a id="a81b43df06332b4fef558297592bb7ff1" name="a81b43df06332b4fef558297592bb7ff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81b43df06332b4fef558297592bb7ff1">&#9670;&#160;</a></span>period</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t period</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RC 입력: 전체 주기 [타이머 카운트] </p>
+
+</div>
+</div>
+<a id="ab3fd4ee94ab824d4a4459089b76ddc64" name="ab3fd4ee94ab824d4a4459089b76ddc64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3fd4ee94ab824d4a4459089b76ddc64">&#9670;&#160;</a></span>risingVal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t risingVal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RC 입력 캡처: 상승 에지 타임스탬프 </p>
+
+</div>
+</div>
+<a id="ade319cda99d696f3d1cd760e5624390c" name="ade319cda99d696f3d1cd760e5624390c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade319cda99d696f3d1cd760e5624390c">&#9670;&#160;</a></span>tim2_cnt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t tim2_cnt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM2 인터럽트 발생 횟수 카운터 (디버깅용) </p>
+<p>누산 오버플로우는 uint32_t 범위 내에서 자연적으로 처리된다. </p>
+
+<p class="definition"><a class="el" href="stm32g4xx__it_8c_source.html">stm32g4xx_it.c</a> 파일의 <a class="el" href="stm32g4xx__it_8c_source.html#l00083">83</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a href="stm32g4xx__it_8c.html">stm32g4xx_it.c</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

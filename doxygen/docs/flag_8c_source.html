@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RC_Driver: Core/Src/flag.c 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">RC_Driver<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('flag_8c_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">flag.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="flag_8c.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;flag.h&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">   41</a></span><span class="keyword">struct </span>CONTROL_FLAG <a class="code hl_variable" href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a> = {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    .READY            = 0,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    .FAULT            = 0,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    .FAULT_CLEAR      = 0,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    .INV_RUN          = 0,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    .INV_OLC          = 0,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    .INV_VOLC         = 0,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    .INV_ALIGN        = 0,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    .INV_NLC          = 0,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    .TS_MODE          = 0,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    .TS_MODE_STOP     = 0,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    .DUTY_TEST        = 0,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    .Param_Estimation = 0,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    .HALL_POS_TEST    = 0</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+</div>
+<div class="ttc" id="aflag_8c_html_ac09613eff9a28b2750787c13d7d6fdc9"><div class="ttname"><a href="flag_8c.html#ac09613eff9a28b2750787c13d7d6fdc9">FLAG</a></div><div class="ttdeci">struct CONTROL_FLAG FLAG</div><div class="ttdoc">제어 플래그 전역 구조체 (시스템 시작 시 모두 0으로 초기화)</div><div class="ttdef"><b>Definition</b> <a href="#l00041">flag.c:41</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a href="flag_8c.html">flag.c</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

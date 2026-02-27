@@ -1,0 +1,7 @@
+<map id="VoltageInjection_SquareWave" name="VoltageInjection_SquareWave">
+<area shape="rect" id="Node000001" title="d축 구형파 전압 주입 (파라미터 추정용)" alt="" coords="292,5,486,32"/>
+<area shape="rect" id="Node000002" href="$control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)" alt="" coords="181,5,244,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,19,245,21,245,16,279,19"/>
+<area shape="rect" id="Node000003" href="$stm32g4xx__it_8c.html#a38ad4725462bdc5e86c4ead4f04b9fc2" title="TIM2 글로벌 인터럽트 핸들러 ★ 제어 루프 진입점 ★" alt="" coords="5,5,133,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="162,19,133,21,133,16,168,18"/>
+</map>

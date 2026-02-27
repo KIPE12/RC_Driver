@@ -1,0 +1,93 @@
+\doxysection{C:\+/\+\+Users/\+\+USER/\+\+One\+Drive/\+\+Desktop/\+doxygen/\+\+RC\+\_\+\+DRIVER/\+stm32g4xx\+\_\+hal\+\_\+msp.c 파일 참조}
+\hypertarget{stm32g4xx__hal__msp_8c}{}\label{stm32g4xx__hal__msp_8c}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/stm32g4xx\_hal\_msp.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/stm32g4xx\_hal\_msp.c}}
+
+
+HAL MSP(\+MCU Support Package) 초기화 및 해제 모듈  
+
+
+{\ttfamily \+\#include "{}main.\+h"{}}\newline
+stm32g4xx\+\_\+hal\+\_\+msp.\+c에 대한 include 의존 그래프
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{stm32g4xx__hal__msp_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{stm32g4xx__hal__msp_8c_ae4fb8e66865c87d0ebab74a726a6891f}{HAL\+\_\+\+Msp\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em 전역 MSP 초기화 (HAL\+\_\+\+Init() 내부에서 호출) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+HAL MSP(\+MCU Support Package) 초기화 및 해제 모듈 
+
+HAL 라이브러리가 내부적으로 호출하는 MSP 콜백 함수를 정의한다. MCU에 종속적인 저수준 초기화(클럭, GPIO, NVIC 등)를 수행한다.
+
+\begin{DoxyNote}{주의}
+각 주변장치별 MSP 함수(HAL\+\_\+\+ADC\+\_\+\+Msp\+Init, HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+Init 등)는 해당 주변장치 파일(\doxylink{adc_8c}{adc.\+c}, \doxylink{tim_8c}{tim.\+c})에 위치하며, 이 파일에는 전역 MSP 초기화(\+HAL\+\_\+\+Msp\+Init)만 정의한다.
+\end{DoxyNote}
+\begin{DoxyAuthor}{작성자}
+STMicroelectronics /\+ HALAB\+\_\+G 
+\end{DoxyAuthor}
+\begin{DoxyDate}{날짜}
+2026
+\end{DoxyDate}
+\begin{DoxyAttention}{주의}
+Copyright (c) 2026 STMicroelectronics. All rights reserved. 
+\end{DoxyAttention}
+
+
+\doxymbox{\hyperlink{stm32g4xx__hal__msp_8c_source}{stm32g4xx\+\_\+hal\+\_\+msp.\+c}} 파일에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{stm32g4xx__hal__msp_8c_doc-func-members}
+\doxysubsection{함수 문서화}
+\Hypertarget{stm32g4xx__hal__msp_8c_ae4fb8e66865c87d0ebab74a726a6891f}\index{stm32g4xx\_hal\_msp.c@{stm32g4xx\_hal\_msp.c}!HAL\_MspInit@{HAL\_MspInit}}
+\index{HAL\_MspInit@{HAL\_MspInit}!stm32g4xx\_hal\_msp.c@{stm32g4xx\_hal\_msp.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_MspInit()}{HAL\_MspInit()}}
+{\footnotesize\ttfamily \label{stm32g4xx__hal__msp_8c_ae4fb8e66865c87d0ebab74a726a6891f} 
+void HAL\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+전역 MSP 초기화 (HAL\+\_\+\+Init() 내부에서 호출) 
+
+모든 주변장치에 공통으로 적용되는 저수준 초기화를 수행한다:\+
+\begin{DoxyItemize}
+\item SYSCFG 및 PWR 클럭 활성화
+\item UCPD Dead Battery 핀 Pull-\/\+Down 비활성화 (UCPD를 사용하지 않는 경우 데드 배터리 모드 방지)
+\end{DoxyItemize}
+
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{stm32g4xx__hal__msp_8c_source}{stm32g4xx\+\_\+hal\+\_\+msp.\+c}} 파일의 \doxymbox{\hyperlink{stm32g4xx__hal__msp_8c_source_l00070}{70}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ MspInit\ 0\ */}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ MspInit\ 0\ */}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \_\_HAL\_RCC\_SYSCFG\_CLK\_ENABLE();}
+\DoxyCodeLine{00077\ \ \ \_\_HAL\_RCC\_PWR\_CLK\_ENABLE();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{/*\ UCPD\ Dead\ Battery\ 핀\ 내부\ Pull-\/Down\ 비활성화\ */}}
+\DoxyCodeLine{00080\ \ \ HAL\_PWREx\_DisableUCPDDeadBattery();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ MspInit\ 1\ */}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ MspInit\ 1\ */}}
+\DoxyCodeLine{00085\ \}}
+
+\end{DoxyCode}

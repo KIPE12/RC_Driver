@@ -1,0 +1,33 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,275,55,301"/>
+<area shape="rect" id="Node000002" href="$inv_8c.html#a887559495f97e26d7fa0ef0a2c5c84f0" title="속도 PLL(Phase&#45;Locked Loop) 옵저버를 초기화한다." alt="" coords="136,5,235,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="28,274,31,230,40,168,62,101,79,70,101,42,123,29,120,33,104,46,83,73,66,103,45,169,36,230,34,274"/>
+<area shape="rect" id="Node000003" href="$inv_8c.html#a643273242fd423931f39716c68ac91bf" title="전류 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다." alt="" coords="116,56,254,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="30,274,35,238,46,189,67,138,82,114,101,93,108,89,105,94,105,97,87,117,72,140,51,191,40,239,35,274"/>
+<area shape="rect" id="Node000004" href="$speed__observer_8c.html#a7bb91d6ba879e229823d84200e61de2d" title="확장 동기 좌표계 센서리스 옵저버를 초기화한다." alt="" coords="103,107,268,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="33,273,56,219,76,187,101,159,108,156,105,160,105,163,80,190,61,221,38,275"/>
+<area shape="rect" id="Node000005" href="$inv_8c.html#a917cf2e97121d1990d40ef50799f3ecd" title="전동기 및 인버터 기본 파라미터를 초기화한다." alt="" coords="136,173,235,200"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="38,273,65,241,101,210,123,201,119,205,104,214,68,245,43,275"/>
+<area shape="rect" id="Node000006" href="$inv_8c.html#a0e276774794e294c9ba7a8ec91266d75" title="속도 제어기를 초기화하고 관련 상태 변수를 0으로 리셋한다." alt="" coords="119,224,252,251"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="53,277,102,260,126,254,122,258,104,265,57,281"/>
+<area shape="rect" id="Node000007" href="$adc_8c.html#acccd58aa70215a6b184ad242312ffd0c" title="ADC1 초기화 (12비트, Injected 4채널, TIM2 TRGO 트리거)" alt="" coords="131,275,240,301"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="54,286,118,286,114,290,56,290"/>
+<area shape="rect" id="Node000009" href="$gpio_8c.html#ac724e431d2af879252de35615be2bdea" title="사용되는 모든 GPIO 핀을 초기화한다." alt="" coords="132,325,238,352"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="54,294,104,311,126,319,121,321,102,316,56,299"/>
+<area shape="rect" id="Node000010" href="$tim_8c.html#ac4b6b63257bb307dd93a4d5f45e39172" title="TIM15 초기화 (보조 타이머)" alt="" coords="130,376,240,403"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="40,299,68,331,104,362,118,370,113,372,101,366,65,335,41,304"/>
+<area shape="rect" id="Node000011" href="$tim_8c.html#ad1f9d42690163f73f73e5b820c81ca14" title="TIM1 초기화 (3상 Center&#45;Aligned PWM)" alt="" coords="134,528,237,555"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="32,299,37,342,47,400,68,461,84,489,104,514,122,528,117,528,101,518,80,492,63,463,42,401,32,343,31,304"/>
+<area shape="rect" id="Node000013" href="$tim_8c.html#a4b8ff887fd3fdf26605e35927e4ff202" title="TIM2 초기화 (제어 루프 트리거 / ADC TRGO)" alt="" coords="134,427,237,453"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="35,299,60,355,79,386,104,413,122,424,117,426,101,417,75,389,55,358,35,304"/>
+<area shape="rect" id="Node000014" href="$main_8c.html#a70af21c671abfcc773614a9a4f63d920" title="시스템 클럭 설정" alt="" coords="113,477,258,504"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="33,299,41,334,53,378,74,424,88,445,105,463,110,469,104,469,101,467,84,448,69,426,48,380,36,335,33,304"/>
+<area shape="rect" id="Node000008" href="$main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="오류 처리 함수" alt="" coords="342,427,444,453"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="240,298,269,311,301,334,331,361,376,414,370,414,327,365,298,338,267,316,241,303"/>
+<area shape="poly" id="edge10_Node000010_Node000008" title=" " alt="" coords="241,400,330,423,325,425,241,405"/>
+<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="237,525,267,514,316,488,358,463,363,462,319,492,269,518,238,530"/>
+<area shape="rect" id="Node000012" href="$tim_8c.html#a708f19bbc41b292fccf38f2d9796c46a" title="TIM MSP 초기화 후처리 (GPIO 대체 기능 설정)" alt="" coords="316,528,470,555"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="237,539,303,541,298,541,237,544"/>
+<area shape="poly" id="edge15_Node000013_Node000008" title=" " alt="" coords="237,437,329,439,324,441,238,443"/>
+<area shape="poly" id="edge17_Node000014_Node000008" title=" " alt="" coords="243,474,330,455,325,457,244,479"/>
+</map>

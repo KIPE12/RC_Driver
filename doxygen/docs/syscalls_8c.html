@@ -1,0 +1,775 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RC_Driver: Core/Src/syscalls.c 파일 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">RC_Driver<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('syscalls_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">syscalls.c 파일 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Newlib C 라이브러리용 시스템 콜 최소 구현 모듈  
+<a href="#details">더 자세히 ...</a></p>
+<div class="textblock"><code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;signal.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;sys/time.h&gt;</code><br />
+<code>#include &lt;sys/times.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+syscalls.c에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="syscalls_8c__incl.png" border="0" usemap="#a_core_2_src_2syscalls_8c" loading="lazy" alt=""/></div>
+<map name="a_core_2_src_2syscalls_8c" id="a_core_2_src_2syscalls_8c">
+<area shape="rect" title="Newlib C 라이브러리용 시스템 콜 최소 구현 모듈" alt="" coords="289,5,425,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,85,107"/>
+<area shape="poly" title=" " alt="" coords="303,35,101,82,99,77,302,30"/>
+<area shape="rect" title=" " alt="" coords="109,80,173,107"/>
+<area shape="poly" title=" " alt="" coords="322,32,188,79,187,74,317,33"/>
+<area shape="rect" title=" " alt="" coords="197,80,258,107"/>
+<area shape="poly" title=" " alt="" coords="337,32,265,74,263,70,332,33"/>
+<area shape="rect" title=" " alt="" coords="283,80,343,107"/>
+<area shape="poly" title=" " alt="" coords="352,31,330,69,327,65,347,34"/>
+<area shape="rect" title=" " alt="" coords="368,80,434,107"/>
+<area shape="poly" title=" " alt="" coords="366,30,388,68,383,66,363,35"/>
+<area shape="rect" title=" " alt="" coords="458,80,515,107"/>
+<area shape="poly" title=" " alt="" coords="380,30,453,72,448,72,379,35"/>
+<area shape="rect" title=" " alt="" coords="538,80,621,107"/>
+<area shape="poly" title=" " alt="" coords="396,30,529,75,524,75,395,35"/>
+<area shape="rect" title=" " alt="" coords="644,80,734,107"/>
+<area shape="poly" title=" " alt="" coords="416,30,632,79,627,80,415,35"/>
+</map>
+</div>
+</div>
+<p><a href="syscalls_8c_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+함수</h2></td></tr>
+<tr class="memitem:aa53ed4b191897a1bfc205aa1da005d24" id="r_aa53ed4b191897a1bfc205aa1da005d24"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa53ed4b191897a1bfc205aa1da005d24">__io_putchar</a> (int ch) <a class="el" href="#af9aace1b44b73111e15aa39f06f43456">__attribute__</a>((weak))</td></tr>
+<tr class="memitem:ad0122671640a3af49792ddaa59e8294e" id="r_ad0122671640a3af49792ddaa59e8294e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad0122671640a3af49792ddaa59e8294e">__io_getchar</a> (void)</td></tr>
+<tr class="memitem:a25c7f100d498300fff65568c2fcfe639" id="r_a25c7f100d498300fff65568c2fcfe639"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a25c7f100d498300fff65568c2fcfe639">initialise_monitor_handles</a> ()</td></tr>
+<tr class="memitem:a945e539df8e0f66d3c73c533fe1968ee" id="r_a945e539df8e0f66d3c73c533fe1968ee"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a945e539df8e0f66d3c73c533fe1968ee">_getpid</a> (void)</td></tr>
+<tr class="memitem:a062a5101199c3128edd5170f2575bb10" id="r_a062a5101199c3128edd5170f2575bb10"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a062a5101199c3128edd5170f2575bb10">_kill</a> (int pid, int sig)</td></tr>
+<tr class="memitem:abc96bd69b58b2deaddb484478d911c1b" id="r_abc96bd69b58b2deaddb484478d911c1b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abc96bd69b58b2deaddb484478d911c1b">_exit</a> (int status)</td></tr>
+<tr class="memitem:af9aace1b44b73111e15aa39f06f43456" id="r_af9aace1b44b73111e15aa39f06f43456"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af9aace1b44b73111e15aa39f06f43456">__attribute__</a> ((weak))</td></tr>
+<tr class="memitem:a5aab5e2acfd600e3667dc915a2bbc7cb" id="r_a5aab5e2acfd600e3667dc915a2bbc7cb"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a5aab5e2acfd600e3667dc915a2bbc7cb">_close</a> (int file)</td></tr>
+<tr class="memitem:a41eef54307912a82d20e71c3d47315aa" id="r_a41eef54307912a82d20e71c3d47315aa"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a41eef54307912a82d20e71c3d47315aa">_fstat</a> (int file, struct stat *st)</td></tr>
+<tr class="memitem:ad3134a3dc296622b8d1c5456e481505b" id="r_ad3134a3dc296622b8d1c5456e481505b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad3134a3dc296622b8d1c5456e481505b">_isatty</a> (int file)</td></tr>
+<tr class="memitem:a7a61311bdf1cb025fc07dc2bdae22ce4" id="r_a7a61311bdf1cb025fc07dc2bdae22ce4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7a61311bdf1cb025fc07dc2bdae22ce4">_lseek</a> (int file, int ptr, int dir)</td></tr>
+<tr class="memitem:a270c9113047edd8d64186710ad76062b" id="r_a270c9113047edd8d64186710ad76062b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a270c9113047edd8d64186710ad76062b">_open</a> (char *path, int flags,...)</td></tr>
+<tr class="memitem:aeef0c3372d04caa1bcc99fed2ab6ec72" id="r_aeef0c3372d04caa1bcc99fed2ab6ec72"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aeef0c3372d04caa1bcc99fed2ab6ec72">_wait</a> (int *status)</td></tr>
+<tr class="memitem:a70b2f211d665cded5637065aa2bb89dc" id="r_a70b2f211d665cded5637065aa2bb89dc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a70b2f211d665cded5637065aa2bb89dc">_unlink</a> (char *name)</td></tr>
+<tr class="memitem:aaf727ebf57cd64d6c58b23e6ee4a4a69" id="r_aaf727ebf57cd64d6c58b23e6ee4a4a69"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aaf727ebf57cd64d6c58b23e6ee4a4a69">_times</a> (struct tms *buf)</td></tr>
+<tr class="memitem:a4711e961db985ed2c850a8be6597af50" id="r_a4711e961db985ed2c850a8be6597af50"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a4711e961db985ed2c850a8be6597af50">_stat</a> (char *file, struct stat *st)</td></tr>
+<tr class="memitem:a31da4cd5328defa76a9e2246992aba12" id="r_a31da4cd5328defa76a9e2246992aba12"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a31da4cd5328defa76a9e2246992aba12">_link</a> (char *old, char *new)</td></tr>
+<tr class="memitem:a6cb6331c9d166180903d5fb78b9c9dd7" id="r_a6cb6331c9d166180903d5fb78b9c9dd7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a6cb6331c9d166180903d5fb78b9c9dd7">_fork</a> (void)</td></tr>
+<tr class="memitem:ad2a07db8fdf26151eb98ba5711fad8c5" id="r_ad2a07db8fdf26151eb98ba5711fad8c5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad2a07db8fdf26151eb98ba5711fad8c5">_execve</a> (char *name, char **argv, char **env)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+변수</h2></td></tr>
+<tr class="memitem:aa006daaf11f1e2e45a6ababaf463212b" id="r_aa006daaf11f1e2e45a6ababaf463212b"><td class="memItemLeft">char **&#160;</td><td class="memItemRight"><a class="el" href="#aa006daaf11f1e2e45a6ababaf463212b">environ</a> = __env</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Newlib C 라이브러리용 시스템 콜 최소 구현 모듈 </p>
+<p>Newlib(GCC ARM 임베디드 표준 라이브러리)가 요구하는 저수준 시스템 콜 함수들의 최소 구현을 제공한다.</p>
+<p>구현된 시스템 콜: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">함수  </th><th class="markdownTableHeadNone">동작  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">_read()  </td><td class="markdownTableBodyNone">문자 입력 (약한 링크, <a class="el" href="#ad0122671640a3af49792ddaa59e8294e">__io_getchar()</a> 사용)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">_write()  </td><td class="markdownTableBodyNone">문자 출력 (약한 링크, <a class="el" href="#aa53ed4b191897a1bfc205aa1da005d24">__io_putchar()</a> 사용)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="#a5aab5e2acfd600e3667dc915a2bbc7cb">_close()</a>  </td><td class="markdownTableBodyNone">항상 -1 반환 (파일 시스템 없음)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="#a41eef54307912a82d20e71c3d47315aa">_fstat()</a>  </td><td class="markdownTableBodyNone">S_IFCHR 반환 (문자 장치로 처리)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="#ad3134a3dc296622b8d1c5456e481505b">_isatty()</a>  </td><td class="markdownTableBodyNone">항상 1 반환 (터미널로 처리)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="#a7a61311bdf1cb025fc07dc2bdae22ce4">_lseek()</a>  </td><td class="markdownTableBodyNone">항상 0 반환 (탐색 불가)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="#a270c9113047edd8d64186710ad76062b">_open()</a>  </td><td class="markdownTableBodyNone">항상 -1 반환 (파일 열기 불가)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="#a945e539df8e0f66d3c73c533fe1968ee">_getpid()</a>  </td><td class="markdownTableBodyNone">항상 1 반환  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="#a062a5101199c3128edd5170f2575bb10">_kill()</a>  </td><td class="markdownTableBodyNone">EINVAL 반환  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="#abc96bd69b58b2deaddb484478d911c1b">_exit()</a>  </td><td class="markdownTableBodyNone">무한 루프 (복귀 불가)  </td></tr>
+</table>
+<dl class="section note"><dt>주의</dt><dd><a class="el" href="#aa53ed4b191897a1bfc205aa1da005d24">__io_putchar()</a> 및 <a class="el" href="#ad0122671640a3af49792ddaa59e8294e">__io_getchar()</a>를 구현하면 printf/scanf가 동작한다. (예: UART를 통한 ITM/SWO 출력)</dd></dl>
+<dl class="section author"><dt>작성자</dt><dd>STMicroelectronics (Auto-generated by STM32CubeIDE) </dd></dl>
+<dl class="section date"><dt>날짜</dt><dd>2020-2025</dd></dl>
+<dl class="section attention"><dt>주의</dt><dd>Copyright (c) 2020-2025 STMicroelectronics. All rights reserved. </dd></dl>
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일에서 정의되었습니다.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">함수 문서화</h2>
+<a id="af9aace1b44b73111e15aa39f06f43456" name="af9aace1b44b73111e15aa39f06f43456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9aace1b44b73111e15aa39f06f43456">&#9670;&#160;</a></span>__attribute__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(weak)</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00076">76</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>{</div>
+<div class="line"><span class="lineno">   78</span>  (void)file;</div>
+<div class="line"><span class="lineno">   79</span>  <span class="keywordtype">int</span> DataIdx;</div>
+<div class="line"><span class="lineno">   80</span> </div>
+<div class="line"><span class="lineno">   81</span>  <span class="keywordflow">for</span> (DataIdx = 0; DataIdx &lt; len; DataIdx++)</div>
+<div class="line"><span class="lineno">   82</span>  {</div>
+<div class="line"><span class="lineno">   83</span>    *ptr++ = <a class="code hl_function" href="#ad0122671640a3af49792ddaa59e8294e">__io_getchar</a>();</div>
+<div class="line"><span class="lineno">   84</span>  }</div>
+<div class="line"><span class="lineno">   85</span> </div>
+<div class="line"><span class="lineno">   86</span>  <span class="keywordflow">return</span> len;</div>
+<div class="line"><span class="lineno">   87</span>}</div>
+<div class="ttc" id="asyscalls_8c_html_ad0122671640a3af49792ddaa59e8294e"><div class="ttname"><a href="#ad0122671640a3af49792ddaa59e8294e">__io_getchar</a></div><div class="ttdeci">int __io_getchar(void)</div><div class="ttdef"><b>Definition</b> <a href="syscalls_8c_source.html#l00045">syscalls.c:45</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="syscalls_8c_af9aace1b44b73111e15aa39f06f43456_cgraph.png" border="0" usemap="#asyscalls_8c_af9aace1b44b73111e15aa39f06f43456_cgraph" loading="lazy" alt=""/></div>
+<map name="asyscalls_8c_af9aace1b44b73111e15aa39f06f43456_cgraph" id="asyscalls_8c_af9aace1b44b73111e15aa39f06f43456_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,102,32"/>
+<area shape="rect" href="syscalls_8c.html#ad0122671640a3af49792ddaa59e8294e" title=" " alt="" coords="150,5,245,32"/>
+<area shape="poly" title=" " alt="" coords="102,16,137,18,131,19,102,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad0122671640a3af49792ddaa59e8294e" name="ad0122671640a3af49792ddaa59e8294e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0122671640a3af49792ddaa59e8294e">&#9670;&#160;</a></span>__io_getchar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int __io_getchar </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00045">45</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">   48</span>               { 0 };</div>
+</div><!-- fragment --><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="syscalls_8c_ad0122671640a3af49792ddaa59e8294e_icgraph.png" border="0" usemap="#asyscalls_8c_ad0122671640a3af49792ddaa59e8294e_icgraph" loading="lazy" alt=""/></div>
+<map name="asyscalls_8c_ad0122671640a3af49792ddaa59e8294e_icgraph" id="asyscalls_8c_ad0122671640a3af49792ddaa59e8294e_icgraph">
+<area shape="rect" title=" " alt="" coords="150,5,245,32"/>
+<area shape="rect" href="syscalls_8c.html#af9aace1b44b73111e15aa39f06f43456" title=" " alt="" coords="5,5,102,32"/>
+<area shape="poly" title=" " alt="" coords="132,19,102,21,102,16,137,18"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa53ed4b191897a1bfc205aa1da005d24" name="aa53ed4b191897a1bfc205aa1da005d24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa53ed4b191897a1bfc205aa1da005d24">&#9670;&#160;</a></span>__io_putchar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int __io_putchar </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ch</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5aab5e2acfd600e3667dc915a2bbc7cb" name="a5aab5e2acfd600e3667dc915a2bbc7cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aab5e2acfd600e3667dc915a2bbc7cb">&#9670;&#160;</a></span>_close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _close </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00101">101</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  102</span>{</div>
+<div class="line"><span class="lineno">  103</span>  (void)file;</div>
+<div class="line"><span class="lineno">  104</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  105</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad2a07db8fdf26151eb98ba5711fad8c5" name="ad2a07db8fdf26151eb98ba5711fad8c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a07db8fdf26151eb98ba5711fad8c5">&#9670;&#160;</a></span>_execve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _execve </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>argv</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>env</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00178">178</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  179</span>{</div>
+<div class="line"><span class="lineno">  180</span>  (void)name;</div>
+<div class="line"><span class="lineno">  181</span>  (void)argv;</div>
+<div class="line"><span class="lineno">  182</span>  (void)env;</div>
+<div class="line"><span class="lineno">  183</span>  errno = ENOMEM;</div>
+<div class="line"><span class="lineno">  184</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  185</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="abc96bd69b58b2deaddb484478d911c1b" name="abc96bd69b58b2deaddb484478d911c1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc96bd69b58b2deaddb484478d911c1b">&#9670;&#160;</a></span>_exit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _exit </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00070">70</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>{</div>
+<div class="line"><span class="lineno">   72</span>  <a class="code hl_function" href="#a062a5101199c3128edd5170f2575bb10">_kill</a>(status, -1);</div>
+<div class="line"><span class="lineno">   73</span>  <span class="keywordflow">while</span> (1) {}    <span class="comment">/* Make sure we hang here */</span></div>
+<div class="line"><span class="lineno">   74</span>}</div>
+<div class="ttc" id="asyscalls_8c_html_a062a5101199c3128edd5170f2575bb10"><div class="ttname"><a href="#a062a5101199c3128edd5170f2575bb10">_kill</a></div><div class="ttdeci">int _kill(int pid, int sig)</div><div class="ttdef"><b>Definition</b> <a href="syscalls_8c_source.html#l00062">syscalls.c:62</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="syscalls_8c_abc96bd69b58b2deaddb484478d911c1b_cgraph.png" border="0" usemap="#asyscalls_8c_abc96bd69b58b2deaddb484478d911c1b_cgraph" loading="lazy" alt=""/></div>
+<map name="asyscalls_8c_abc96bd69b58b2deaddb484478d911c1b_cgraph" id="asyscalls_8c_abc96bd69b58b2deaddb484478d911c1b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="syscalls_8c.html#a062a5101199c3128edd5170f2575bb10" title=" " alt="" coords="103,5,147,32"/>
+<area shape="poly" title=" " alt="" coords="55,16,89,18,84,19,55,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6cb6331c9d166180903d5fb78b9c9dd7" name="a6cb6331c9d166180903d5fb78b9c9dd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cb6331c9d166180903d5fb78b9c9dd7">&#9670;&#160;</a></span>_fork()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _fork </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00172">172</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  173</span>{</div>
+<div class="line"><span class="lineno">  174</span>  errno = EAGAIN;</div>
+<div class="line"><span class="lineno">  175</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  176</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a41eef54307912a82d20e71c3d47315aa" name="a41eef54307912a82d20e71c3d47315aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41eef54307912a82d20e71c3d47315aa">&#9670;&#160;</a></span>_fstat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _fstat </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct stat *</td>          <td class="paramname"><span class="paramname"><em>st</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00108">108</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  109</span>{</div>
+<div class="line"><span class="lineno">  110</span>  (void)file;</div>
+<div class="line"><span class="lineno">  111</span>  st-&gt;st_mode = S_IFCHR;</div>
+<div class="line"><span class="lineno">  112</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  113</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a945e539df8e0f66d3c73c533fe1968ee" name="a945e539df8e0f66d3c73c533fe1968ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a945e539df8e0f66d3c73c533fe1968ee">&#9670;&#160;</a></span>_getpid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _getpid </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00057">57</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>{</div>
+<div class="line"><span class="lineno">   59</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   60</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad3134a3dc296622b8d1c5456e481505b" name="ad3134a3dc296622b8d1c5456e481505b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3134a3dc296622b8d1c5456e481505b">&#9670;&#160;</a></span>_isatty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _isatty </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00115">115</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  116</span>{</div>
+<div class="line"><span class="lineno">  117</span>  (void)file;</div>
+<div class="line"><span class="lineno">  118</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  119</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a062a5101199c3128edd5170f2575bb10" name="a062a5101199c3128edd5170f2575bb10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a062a5101199c3128edd5170f2575bb10">&#9670;&#160;</a></span>_kill()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _kill </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>pid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>sig</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00062">62</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>{</div>
+<div class="line"><span class="lineno">   64</span>  (void)pid;</div>
+<div class="line"><span class="lineno">   65</span>  (void)sig;</div>
+<div class="line"><span class="lineno">   66</span>  errno = EINVAL;</div>
+<div class="line"><span class="lineno">   67</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">   68</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="syscalls_8c_a062a5101199c3128edd5170f2575bb10_icgraph.png" border="0" usemap="#asyscalls_8c_a062a5101199c3128edd5170f2575bb10_icgraph" loading="lazy" alt=""/></div>
+<map name="asyscalls_8c_a062a5101199c3128edd5170f2575bb10_icgraph" id="asyscalls_8c_a062a5101199c3128edd5170f2575bb10_icgraph">
+<area shape="rect" title=" " alt="" coords="103,5,147,32"/>
+<area shape="rect" href="syscalls_8c.html#abc96bd69b58b2deaddb484478d911c1b" title=" " alt="" coords="5,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="84,19,55,21,55,16,89,18"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a31da4cd5328defa76a9e2246992aba12" name="a31da4cd5328defa76a9e2246992aba12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31da4cd5328defa76a9e2246992aba12">&#9670;&#160;</a></span>_link()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _link </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>old</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>new</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00164">164</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  165</span>{</div>
+<div class="line"><span class="lineno">  166</span>  (void)old;</div>
+<div class="line"><span class="lineno">  167</span>  (void)<span class="keyword">new</span>;</div>
+<div class="line"><span class="lineno">  168</span>  errno = EMLINK;</div>
+<div class="line"><span class="lineno">  169</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  170</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a7a61311bdf1cb025fc07dc2bdae22ce4" name="a7a61311bdf1cb025fc07dc2bdae22ce4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a61311bdf1cb025fc07dc2bdae22ce4">&#9670;&#160;</a></span>_lseek()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _lseek </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00121">121</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  122</span>{</div>
+<div class="line"><span class="lineno">  123</span>  (void)file;</div>
+<div class="line"><span class="lineno">  124</span>  (void)ptr;</div>
+<div class="line"><span class="lineno">  125</span>  (void)dir;</div>
+<div class="line"><span class="lineno">  126</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  127</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a270c9113047edd8d64186710ad76062b" name="a270c9113047edd8d64186710ad76062b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a270c9113047edd8d64186710ad76062b">&#9670;&#160;</a></span>_open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _open </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>flags</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00129">129</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  130</span>{</div>
+<div class="line"><span class="lineno">  131</span>  (void)path;</div>
+<div class="line"><span class="lineno">  132</span>  (void)flags;</div>
+<div class="line"><span class="lineno">  133</span>  <span class="comment">/* Pretend like we always fail */</span></div>
+<div class="line"><span class="lineno">  134</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  135</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a4711e961db985ed2c850a8be6597af50" name="a4711e961db985ed2c850a8be6597af50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4711e961db985ed2c850a8be6597af50">&#9670;&#160;</a></span>_stat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _stat </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct stat *</td>          <td class="paramname"><span class="paramname"><em>st</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00157">157</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  158</span>{</div>
+<div class="line"><span class="lineno">  159</span>  (void)file;</div>
+<div class="line"><span class="lineno">  160</span>  st-&gt;st_mode = S_IFCHR;</div>
+<div class="line"><span class="lineno">  161</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  162</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aaf727ebf57cd64d6c58b23e6ee4a4a69" name="aaf727ebf57cd64d6c58b23e6ee4a4a69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf727ebf57cd64d6c58b23e6ee4a4a69">&#9670;&#160;</a></span>_times()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _times </td>
+          <td>(</td>
+          <td class="paramtype">struct tms *</td>          <td class="paramname"><span class="paramname"><em>buf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00151">151</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  152</span>{</div>
+<div class="line"><span class="lineno">  153</span>  (void)buf;</div>
+<div class="line"><span class="lineno">  154</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  155</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a70b2f211d665cded5637065aa2bb89dc" name="a70b2f211d665cded5637065aa2bb89dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70b2f211d665cded5637065aa2bb89dc">&#9670;&#160;</a></span>_unlink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _unlink </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00144">144</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  145</span>{</div>
+<div class="line"><span class="lineno">  146</span>  (void)name;</div>
+<div class="line"><span class="lineno">  147</span>  errno = ENOENT;</div>
+<div class="line"><span class="lineno">  148</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  149</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aeef0c3372d04caa1bcc99fed2ab6ec72" name="aeef0c3372d04caa1bcc99fed2ab6ec72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeef0c3372d04caa1bcc99fed2ab6ec72">&#9670;&#160;</a></span>_wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _wait </td>
+          <td>(</td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00137">137</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  138</span>{</div>
+<div class="line"><span class="lineno">  139</span>  (void)status;</div>
+<div class="line"><span class="lineno">  140</span>  errno = ECHILD;</div>
+<div class="line"><span class="lineno">  141</span>  <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">  142</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a25c7f100d498300fff65568c2fcfe639" name="a25c7f100d498300fff65568c2fcfe639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25c7f100d498300fff65568c2fcfe639">&#9670;&#160;</a></span>initialise_monitor_handles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialise_monitor_handles </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00053">53</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>{</div>
+<div class="line"><span class="lineno">   55</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">변수 문서화</h2>
+<a id="aa006daaf11f1e2e45a6ababaf463212b" name="aa006daaf11f1e2e45a6ababaf463212b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa006daaf11f1e2e45a6ababaf463212b">&#9670;&#160;</a></span>environ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char** environ = __env</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="syscalls_8c_source.html">syscalls.c</a> 파일의 <a class="el" href="syscalls_8c_source.html#l00049">49</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a href="syscalls_8c.html">syscalls.c</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+../Core/Src/adc.c:58:6:MX_ADC1_Init	8
+../Core/Src/adc.c:170:6:HAL_ADC_MspInit	3
+../Core/Src/adc.c:214:6:HAL_ADC_MspDeInit	2
+../Core/Src/adc.c:304:6:AdcProcess	5
+../Core/Src/adc.c:334:6:Offset	3

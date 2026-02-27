@@ -1,0 +1,506 @@
+\doxysection{C:\+/\+\+Users/\+\+USER/\+\+One\+Drive/\+\+Desktop/\+doxygen/\+\+RC\+\_\+\+DRIVER/\+syscalls.c 파일 참조}
+\hypertarget{syscalls_8c}{}\label{syscalls_8c}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/syscalls.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/syscalls.c}}
+
+
+Newlib C 라이브러리용 시스템 콜 최소 구현 모듈  
+
+
+{\ttfamily \+\#include $<$sys/\+stat.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \+\#include $<$errno.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$signal.\+h$>$}\newline
+{\ttfamily \+\#include $<$time.\+h$>$}\newline
+{\ttfamily \+\#include $<$sys/\+time.\+h$>$}\newline
+{\ttfamily \+\#include $<$sys/\+times.\+h$>$}\newline
+syscalls.\+c에 대한 include 의존 그래프
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{syscalls_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_aa53ed4b191897a1bfc205aa1da005d24}{\+\_\+\+\_\+io\+\_\+putchar}} (int ch) \doxymbox{\hyperlink{syscalls_8c_af9aace1b44b73111e15aa39f06f43456}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((weak))
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_ad0122671640a3af49792ddaa59e8294e}{\+\_\+\+\_\+io\+\_\+getchar}} (void)
+\item 
+void \doxymbox{\hyperlink{syscalls_8c_a25c7f100d498300fff65568c2fcfe639}{initialise\+\_\+monitor\+\_\+handles}} ()
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a945e539df8e0f66d3c73c533fe1968ee}{\+\_\+getpid}} (void)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a062a5101199c3128edd5170f2575bb10}{\+\_\+kill}} (int pid, int sig)
+\item 
+void \doxymbox{\hyperlink{syscalls_8c_abc96bd69b58b2deaddb484478d911c1b}{\+\_\+exit}} (int status)
+\item 
+\doxymbox{\hyperlink{syscalls_8c_af9aace1b44b73111e15aa39f06f43456}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((weak))
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a5aab5e2acfd600e3667dc915a2bbc7cb}{\+\_\+close}} (int file)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a41eef54307912a82d20e71c3d47315aa}{\+\_\+fstat}} (int file, struct stat \texorpdfstring{$\ast$}{*}st)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_ad3134a3dc296622b8d1c5456e481505b}{\+\_\+isatty}} (int file)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a7a61311bdf1cb025fc07dc2bdae22ce4}{\+\_\+lseek}} (int file, int ptr, int dir)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a270c9113047edd8d64186710ad76062b}{\+\_\+open}} (char \texorpdfstring{$\ast$}{*}path, int flags,...)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_aeef0c3372d04caa1bcc99fed2ab6ec72}{\+\_\+wait}} (int \texorpdfstring{$\ast$}{*}status)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a70b2f211d665cded5637065aa2bb89dc}{\+\_\+unlink}} (char \texorpdfstring{$\ast$}{*}name)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_aaf727ebf57cd64d6c58b23e6ee4a4a69}{\+\_\+times}} (struct tms \texorpdfstring{$\ast$}{*}buf)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a4711e961db985ed2c850a8be6597af50}{\+\_\+stat}} (char \texorpdfstring{$\ast$}{*}file, struct stat \texorpdfstring{$\ast$}{*}st)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a31da4cd5328defa76a9e2246992aba12}{\+\_\+link}} (char \texorpdfstring{$\ast$}{*}old, char \texorpdfstring{$\ast$}{*}new)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_a6cb6331c9d166180903d5fb78b9c9dd7}{\+\_\+fork}} (void)
+\item 
+int \doxymbox{\hyperlink{syscalls_8c_ad2a07db8fdf26151eb98ba5711fad8c5}{\+\_\+execve}} (char \texorpdfstring{$\ast$}{*}name, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}env)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{변수}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{syscalls_8c_aa006daaf11f1e2e45a6ababaf463212b}{environ}} = \+\_\+\+\_\+env
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+Newlib C 라이브러리용 시스템 콜 최소 구현 모듈 
+
+Newlib(GCC ARM 임베디드 표준 라이브러리)가 요구하는 저수준 시스템 콜 함수들의 최소 구현을 제공한다.
+
+구현된 시스템 콜:\+ 
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}함수  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}동작  \\
+\+\_\+read()  &문자 입력 (약한 링크, \doxylink{syscalls_8c_ad0122671640a3af49792ddaa59e8294e}{\+\_\+\+\_\+io\+\_\+getchar()} 사용)  \\
+\+\_\+write()  &문자 출력 (약한 링크, \doxylink{syscalls_8c_aa53ed4b191897a1bfc205aa1da005d24}{\+\_\+\+\_\+io\+\_\+putchar()} 사용)  \\
+\doxylink{syscalls_8c_a5aab5e2acfd600e3667dc915a2bbc7cb}{\+\_\+close()}  &항상 -\/1 반환 (파일 시스템 없음)  \\
+\doxylink{syscalls_8c_a41eef54307912a82d20e71c3d47315aa}{\+\_\+fstat()}  &S\+\_\+\+IFCHR 반환 (문자 장치로 처리)  \\
+\doxylink{syscalls_8c_ad3134a3dc296622b8d1c5456e481505b}{\+\_\+isatty()}  &항상 1 반환 (터미널로 처리)  \\
+\doxylink{syscalls_8c_a7a61311bdf1cb025fc07dc2bdae22ce4}{\+\_\+lseek()}  &항상 0 반환 (탐색 불가)  \\
+\doxylink{syscalls_8c_a270c9113047edd8d64186710ad76062b}{\+\_\+open()}  &항상 -\/1 반환 (파일 열기 불가)  \\
+\doxylink{syscalls_8c_a945e539df8e0f66d3c73c533fe1968ee}{\+\_\+getpid()}  &항상 1 반환  \\
+\doxylink{syscalls_8c_a062a5101199c3128edd5170f2575bb10}{\+\_\+kill()}  &EINVAL 반환  \\
+\doxylink{syscalls_8c_abc96bd69b58b2deaddb484478d911c1b}{\+\_\+exit()}  &무한 루프 (복귀 불가)  \\
+\end{DoxyTable}
+
+
+\begin{DoxyNote}{주의}
+\doxylink{syscalls_8c_aa53ed4b191897a1bfc205aa1da005d24}{\+\_\+\+\_\+io\+\_\+putchar()} 및 \doxylink{syscalls_8c_ad0122671640a3af49792ddaa59e8294e}{\+\_\+\+\_\+io\+\_\+getchar()}를 구현하면 printf/\+scanf가 동작한다. (예:\+ UART를 통한 ITM/\+\+SWO 출력)
+\end{DoxyNote}
+\begin{DoxyAuthor}{작성자}
+STMicroelectronics (Auto-\/generated by STM32\+Cube\+IDE) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{날짜}
+2020-\/2025
+\end{DoxyDate}
+\begin{DoxyAttention}{주의}
+Copyright (c) 2020-\/2025 STMicroelectronics. All rights reserved. 
+\end{DoxyAttention}
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{syscalls_8c_doc-func-members}
+\doxysubsection{함수 문서화}
+\Hypertarget{syscalls_8c_af9aace1b44b73111e15aa39f06f43456}\index{syscalls.c@{syscalls.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{syscalls_8c_af9aace1b44b73111e15aa39f06f43456} 
+\+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(weak)}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00076}{76}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ (void)file;}
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{int}\ DataIdx;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordflow}{for}\ (DataIdx\ =\ 0;\ DataIdx\ <\ len;\ DataIdx++)}
+\DoxyCodeLine{00082\ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ *ptr++\ =\ \doxymbox{\hyperlink{syscalls_8c_ad0122671640a3af49792ddaa59e8294e}{\_\_io\_getchar}}();}
+\DoxyCodeLine{00084\ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordflow}{return}\ len;}
+\DoxyCodeLine{00087\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{syscalls_8c_af9aace1b44b73111e15aa39f06f43456_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{syscalls_8c_ad0122671640a3af49792ddaa59e8294e}\index{syscalls.c@{syscalls.c}!\_\_io\_getchar@{\_\_io\_getchar}}
+\index{\_\_io\_getchar@{\_\_io\_getchar}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_\_io\_getchar()}{\_\_io\_getchar()}}
+{\footnotesize\ttfamily \label{syscalls_8c_ad0122671640a3af49792ddaa59e8294e} 
+int \+\_\+\+\_\+io\+\_\+getchar (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00045}{45}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ 0\ \};}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{syscalls_8c_ad0122671640a3af49792ddaa59e8294e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{syscalls_8c_aa53ed4b191897a1bfc205aa1da005d24}\index{syscalls.c@{syscalls.c}!\_\_io\_putchar@{\_\_io\_putchar}}
+\index{\_\_io\_putchar@{\_\_io\_putchar}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_\_io\_putchar()}{\_\_io\_putchar()}}
+{\footnotesize\ttfamily \label{syscalls_8c_aa53ed4b191897a1bfc205aa1da005d24} 
+int \+\_\+\+\_\+io\+\_\+putchar (\begin{DoxyParamCaption}\item[{int}]{ch}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{syscalls_8c_a5aab5e2acfd600e3667dc915a2bbc7cb}\index{syscalls.c@{syscalls.c}!\_close@{\_close}}
+\index{\_close@{\_close}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_close()}{\_close()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a5aab5e2acfd600e3667dc915a2bbc7cb} 
+int \+\_\+close (\begin{DoxyParamCaption}\item[{int}]{file}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00101}{101}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00102\ \{}
+\DoxyCodeLine{00103\ \ \ (void)file;}
+\DoxyCodeLine{00104\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00105\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_ad2a07db8fdf26151eb98ba5711fad8c5}\index{syscalls.c@{syscalls.c}!\_execve@{\_execve}}
+\index{\_execve@{\_execve}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_execve()}{\_execve()}}
+{\footnotesize\ttfamily \label{syscalls_8c_ad2a07db8fdf26151eb98ba5711fad8c5} 
+int \+\_\+execve (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{env}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00178}{178}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00179\ \{}
+\DoxyCodeLine{00180\ \ \ (void)name;}
+\DoxyCodeLine{00181\ \ \ (void)argv;}
+\DoxyCodeLine{00182\ \ \ (void)env;}
+\DoxyCodeLine{00183\ \ \ errno\ =\ ENOMEM;}
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00185\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_abc96bd69b58b2deaddb484478d911c1b}\index{syscalls.c@{syscalls.c}!\_exit@{\_exit}}
+\index{\_exit@{\_exit}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_exit()}{\_exit()}}
+{\footnotesize\ttfamily \label{syscalls_8c_abc96bd69b58b2deaddb484478d911c1b} 
+void \+\_\+exit (\begin{DoxyParamCaption}\item[{int}]{status}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00070}{70}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \doxymbox{\hyperlink{syscalls_8c_a062a5101199c3128edd5170f2575bb10}{\_kill}}(status,\ -\/1);}
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{while}\ (1)\ \{\}\ \ \ \ \textcolor{comment}{/*\ Make\ sure\ we\ hang\ here\ */}}
+\DoxyCodeLine{00074\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{syscalls_8c_abc96bd69b58b2deaddb484478d911c1b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{syscalls_8c_a6cb6331c9d166180903d5fb78b9c9dd7}\index{syscalls.c@{syscalls.c}!\_fork@{\_fork}}
+\index{\_fork@{\_fork}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_fork()}{\_fork()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a6cb6331c9d166180903d5fb78b9c9dd7} 
+int \+\_\+fork (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00172}{172}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173\ \{}
+\DoxyCodeLine{00174\ \ \ errno\ =\ EAGAIN;}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00176\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_a41eef54307912a82d20e71c3d47315aa}\index{syscalls.c@{syscalls.c}!\_fstat@{\_fstat}}
+\index{\_fstat@{\_fstat}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_fstat()}{\_fstat()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a41eef54307912a82d20e71c3d47315aa} 
+int \+\_\+fstat (\begin{DoxyParamCaption}\item[{int}]{file}{, }\item[{struct stat \texorpdfstring{$\ast$}{*}}]{st}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00108}{108}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ (void)file;}
+\DoxyCodeLine{00111\ \ \ st-\/>st\_mode\ =\ S\_IFCHR;}
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00113\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_a945e539df8e0f66d3c73c533fe1968ee}\index{syscalls.c@{syscalls.c}!\_getpid@{\_getpid}}
+\index{\_getpid@{\_getpid}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_getpid()}{\_getpid()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a945e539df8e0f66d3c73c533fe1968ee} 
+int \+\_\+getpid (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00057}{57}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_ad3134a3dc296622b8d1c5456e481505b}\index{syscalls.c@{syscalls.c}!\_isatty@{\_isatty}}
+\index{\_isatty@{\_isatty}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_isatty()}{\_isatty()}}
+{\footnotesize\ttfamily \label{syscalls_8c_ad3134a3dc296622b8d1c5456e481505b} 
+int \+\_\+isatty (\begin{DoxyParamCaption}\item[{int}]{file}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00115}{115}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ (void)file;}
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00119\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_a062a5101199c3128edd5170f2575bb10}\index{syscalls.c@{syscalls.c}!\_kill@{\_kill}}
+\index{\_kill@{\_kill}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_kill()}{\_kill()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a062a5101199c3128edd5170f2575bb10} 
+int \+\_\+kill (\begin{DoxyParamCaption}\item[{int}]{pid}{, }\item[{int}]{sig}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00062}{62}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ (void)pid;}
+\DoxyCodeLine{00065\ \ \ (void)sig;}
+\DoxyCodeLine{00066\ \ \ errno\ =\ EINVAL;}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00068\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{syscalls_8c_a062a5101199c3128edd5170f2575bb10_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{syscalls_8c_a31da4cd5328defa76a9e2246992aba12}\index{syscalls.c@{syscalls.c}!\_link@{\_link}}
+\index{\_link@{\_link}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_link()}{\_link()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a31da4cd5328defa76a9e2246992aba12} 
+int \+\_\+link (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{old}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{new}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00164}{164}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00166\ \ \ (void)old;}
+\DoxyCodeLine{00167\ \ \ (void)\textcolor{keyword}{new};}
+\DoxyCodeLine{00168\ \ \ errno\ =\ EMLINK;}
+\DoxyCodeLine{00169\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00170\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_a7a61311bdf1cb025fc07dc2bdae22ce4}\index{syscalls.c@{syscalls.c}!\_lseek@{\_lseek}}
+\index{\_lseek@{\_lseek}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_lseek()}{\_lseek()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a7a61311bdf1cb025fc07dc2bdae22ce4} 
+int \+\_\+lseek (\begin{DoxyParamCaption}\item[{int}]{file}{, }\item[{int}]{ptr}{, }\item[{int}]{dir}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00121}{121}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ (void)file;}
+\DoxyCodeLine{00124\ \ \ (void)ptr;}
+\DoxyCodeLine{00125\ \ \ (void)dir;}
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00127\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_a270c9113047edd8d64186710ad76062b}\index{syscalls.c@{syscalls.c}!\_open@{\_open}}
+\index{\_open@{\_open}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_open()}{\_open()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a270c9113047edd8d64186710ad76062b} 
+int \+\_\+open (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{int}]{flags}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00129}{129}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ (void)path;}
+\DoxyCodeLine{00132\ \ \ (void)flags;}
+\DoxyCodeLine{00133\ \ \ \textcolor{comment}{/*\ Pretend\ like\ we\ always\ fail\ */}}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00135\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_a4711e961db985ed2c850a8be6597af50}\index{syscalls.c@{syscalls.c}!\_stat@{\_stat}}
+\index{\_stat@{\_stat}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_stat()}{\_stat()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a4711e961db985ed2c850a8be6597af50} 
+int \+\_\+stat (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{struct stat \texorpdfstring{$\ast$}{*}}]{st}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00157}{157}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \ \ (void)file;}
+\DoxyCodeLine{00160\ \ \ st-\/>st\_mode\ =\ S\_IFCHR;}
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00162\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_aaf727ebf57cd64d6c58b23e6ee4a4a69}\index{syscalls.c@{syscalls.c}!\_times@{\_times}}
+\index{\_times@{\_times}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_times()}{\_times()}}
+{\footnotesize\ttfamily \label{syscalls_8c_aaf727ebf57cd64d6c58b23e6ee4a4a69} 
+int \+\_\+times (\begin{DoxyParamCaption}\item[{struct tms \texorpdfstring{$\ast$}{*}}]{buf}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00151}{151}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ (void)buf;}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00155\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_a70b2f211d665cded5637065aa2bb89dc}\index{syscalls.c@{syscalls.c}!\_unlink@{\_unlink}}
+\index{\_unlink@{\_unlink}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_unlink()}{\_unlink()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a70b2f211d665cded5637065aa2bb89dc} 
+int \+\_\+unlink (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00144}{144}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ (void)name;}
+\DoxyCodeLine{00147\ \ \ errno\ =\ ENOENT;}
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00149\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_aeef0c3372d04caa1bcc99fed2ab6ec72}\index{syscalls.c@{syscalls.c}!\_wait@{\_wait}}
+\index{\_wait@{\_wait}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{\_wait()}{\_wait()}}
+{\footnotesize\ttfamily \label{syscalls_8c_aeef0c3372d04caa1bcc99fed2ab6ec72} 
+int \+\_\+wait (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{status}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00137}{137}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00138\ \{}
+\DoxyCodeLine{00139\ \ \ (void)status;}
+\DoxyCodeLine{00140\ \ \ errno\ =\ ECHILD;}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00142\ \}}
+
+\end{DoxyCode}
+\Hypertarget{syscalls_8c_a25c7f100d498300fff65568c2fcfe639}\index{syscalls.c@{syscalls.c}!initialise\_monitor\_handles@{initialise\_monitor\_handles}}
+\index{initialise\_monitor\_handles@{initialise\_monitor\_handles}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{initialise\_monitor\_handles()}{initialise\_monitor\_handles()}}
+{\footnotesize\ttfamily \label{syscalls_8c_a25c7f100d498300fff65568c2fcfe639} 
+void initialise\+\_\+monitor\+\_\+handles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00053}{53}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-var-members}
+\Hypertarget{syscalls_8c_doc-var-members}
+\doxysubsection{변수 문서화}
+\Hypertarget{syscalls_8c_aa006daaf11f1e2e45a6ababaf463212b}\index{syscalls.c@{syscalls.c}!environ@{environ}}
+\index{environ@{environ}!syscalls.c@{syscalls.c}}
+\doxysubsubsection{\texorpdfstring{environ}{environ}}
+{\footnotesize\ttfamily \label{syscalls_8c_aa006daaf11f1e2e45a6ababaf463212b} 
+char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} environ = \+\_\+\+\_\+env}
+
+
+
+\doxymbox{\hyperlink{syscalls_8c_source}{syscalls.\+c}} 파일의 \doxymbox{\hyperlink{syscalls_8c_source_l00049}{49}} 번째 라인에서 정의되었습니다.
+

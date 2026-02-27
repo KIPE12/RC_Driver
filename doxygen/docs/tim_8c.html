@@ -1,0 +1,741 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RC_Driver: Core/Src/tim.c 파일 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">RC_Driver<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('tim_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">tim.c 파일 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>타이머(TIM1, TIM2, TIM15) 초기화 및 MSP 설정 모듈  
+<a href="#details">더 자세히 ...</a></p>
+<div class="textblock"><code>#include &quot;tim.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+tim.c에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="tim_8c__incl.png" border="0" usemap="#a_core_2_src_2tim_8c" loading="lazy" alt=""/></div>
+<map name="a_core_2_src_2tim_8c" id="a_core_2_src_2tim_8c">
+<area shape="rect" title="타이머(TIM1, TIM2, TIM15) 초기화 및 MSP 설정 모듈" alt="" coords="5,5,112,32"/>
+<area shape="rect" title=" " alt="" coords="33,80,84,107"/>
+<area shape="poly" title=" " alt="" coords="60,30,61,65,56,64,57,35"/>
+</map>
+</div>
+</div>
+<p><a href="tim_8c_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+함수</h2></td></tr>
+<tr class="memitem:ad1f9d42690163f73f73e5b820c81ca14" id="r_ad1f9d42690163f73f73e5b820c81ca14"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad1f9d42690163f73f73e5b820c81ca14">MX_TIM1_Init</a> (void)</td></tr>
+<tr class="memdesc:ad1f9d42690163f73f73e5b820c81ca14"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM1 초기화 (3상 Center-Aligned PWM)  <br /></td></tr>
+<tr class="memitem:a4b8ff887fd3fdf26605e35927e4ff202" id="r_a4b8ff887fd3fdf26605e35927e4ff202"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4b8ff887fd3fdf26605e35927e4ff202">MX_TIM2_Init</a> (void)</td></tr>
+<tr class="memdesc:a4b8ff887fd3fdf26605e35927e4ff202"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM2 초기화 (제어 루프 트리거 / ADC TRGO)  <br /></td></tr>
+<tr class="memitem:ac4b6b63257bb307dd93a4d5f45e39172" id="r_ac4b6b63257bb307dd93a4d5f45e39172"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac4b6b63257bb307dd93a4d5f45e39172">MX_TIM15_Init</a> (void)</td></tr>
+<tr class="memdesc:ac4b6b63257bb307dd93a4d5f45e39172"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM15 초기화 (보조 타이머)  <br /></td></tr>
+<tr class="memitem:a59716af159bfbbb6023b31354fb23af8" id="r_a59716af159bfbbb6023b31354fb23af8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a59716af159bfbbb6023b31354fb23af8">HAL_TIM_Base_MspInit</a> (TIM_HandleTypeDef *tim_baseHandle)</td></tr>
+<tr class="memdesc:a59716af159bfbbb6023b31354fb23af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM MSP 초기화 (클럭 활성화 및 NVIC 설정)  <br /></td></tr>
+<tr class="memitem:a708f19bbc41b292fccf38f2d9796c46a" id="r_a708f19bbc41b292fccf38f2d9796c46a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a708f19bbc41b292fccf38f2d9796c46a">HAL_TIM_MspPostInit</a> (TIM_HandleTypeDef *timHandle)</td></tr>
+<tr class="memdesc:a708f19bbc41b292fccf38f2d9796c46a"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM MSP 초기화 후처리 (GPIO 대체 기능 설정)  <br /></td></tr>
+<tr class="memitem:adee8ed7d3ebb3a217c27ac10af86ce2f" id="r_adee8ed7d3ebb3a217c27ac10af86ce2f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adee8ed7d3ebb3a217c27ac10af86ce2f">HAL_TIM_Base_MspDeInit</a> (TIM_HandleTypeDef *tim_baseHandle)</td></tr>
+<tr class="memdesc:adee8ed7d3ebb3a217c27ac10af86ce2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM MSP 해제 (클럭 비활성화 및 NVIC 해제)  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+변수</h2></td></tr>
+<tr class="memitem:ga25fc663547539bc49fecc0011bd76ab5" id="r_ga25fc663547539bc49fecc0011bd76ab5"><td class="memItemLeft">TIM_HandleTypeDef&#160;</td><td class="memItemRight"><a class="el" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a></td></tr>
+<tr class="memdesc:ga25fc663547539bc49fecc0011bd76ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM1 핸들: 3상 PWM 출력  <br /></td></tr>
+<tr class="memitem:ga2c80fd5510e2990a59a5c90d745c716c" id="r_ga2c80fd5510e2990a59a5c90d745c716c"><td class="memItemLeft">TIM_HandleTypeDef&#160;</td><td class="memItemRight"><a class="el" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a></td></tr>
+<tr class="memdesc:ga2c80fd5510e2990a59a5c90d745c716c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM2 핸들: 제어 루프 / ADC 트리거  <br /></td></tr>
+<tr class="memitem:ga859a9bb217bb4010bb2bffb6881478c0" id="r_ga859a9bb217bb4010bb2bffb6881478c0"><td class="memItemLeft">TIM_HandleTypeDef&#160;</td><td class="memItemRight"><a class="el" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a></td></tr>
+<tr class="memdesc:ga859a9bb217bb4010bb2bffb6881478c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM15 핸들: 보조 타이머  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>타이머(TIM1, TIM2, TIM15) 초기화 및 MSP 설정 모듈 </p>
+<p>PMSM 인버터 제어에 사용되는 세 개의 타이머를 설정한다.</p>
+<p>타이머 역할 요약: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">타이머  </th><th class="markdownTableHeadNone">역할  </th><th class="markdownTableHeadNone">주기/주파수  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">TIM1  </td><td class="markdownTableBodyNone">3상 PWM 출력 (Center-Aligned)  </td><td class="markdownTableBodyNone">ARR=4200 → ~20kHz  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">TIM2  </td><td class="markdownTableBodyNone">제어 루프 트리거 + ADC TRGO  </td><td class="markdownTableBodyNone">Period=16999 → 100µs  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">TIM15  </td><td class="markdownTableBodyNone">보조 타이머 (RC 입력 등)  </td><td class="markdownTableBodyNone">Prescaler=4200, Period=9999  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="tim1_detail"></a>
+TIM1 상세</h1>
+<ul>
+<li>Center-Aligned Mode 2 (업/다운 카운트, 다운 시 CCx 인터럽트)</li>
+<li>CH1~CH3: 3상 PWM 상단 암 (PA8, PA9, PA10)</li>
+<li>CH1N~CH3N: 3상 PWM 하단 암 (PA11, PA12, PB15)</li>
+<li>Dead-Time: 35 (≈ 35/170MHz ≈ 206ns)</li>
+<li>TRGO2: OC4REF → ADC 동기화</li>
+<li>Slave Mode: RESET, 트리거 ITR1 (TIM2 TRGO)</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="tim2_detail"></a>
+TIM2 상세</h1>
+<ul>
+<li>Up Count, Period=16999 → 170MHz/17000 = 10kHz (100µs)</li>
+<li>CH2 OC Timing: Pulse=2100 → 제어 루프 인터럽트 발생 시점</li>
+<li>TRGO: OC1 → ADC Injected 트리거 소스</li>
+<li>Master Mode 활성화 (TIM1 슬레이브 동기)</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="tim15_detail"></a>
+TIM15 상세</h1>
+<ul>
+<li>Prescaler=4200, Period=9999</li>
+<li>저속 보조 타이머 (RC 수신기 PWM 측정 등)</li>
+</ul>
+<dl class="section author"><dt>작성자</dt><dd>STMicroelectronics / HALAB_G </dd></dl>
+<dl class="section date"><dt>날짜</dt><dd>2026</dd></dl>
+<dl class="section attention"><dt>주의</dt><dd>Copyright (c) 2026 STMicroelectronics. All rights reserved. </dd></dl>
+
+<p class="definition"><a class="el" href="tim_8c_source.html">tim.c</a> 파일에서 정의되었습니다.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">함수 문서화</h2>
+<a id="adee8ed7d3ebb3a217c27ac10af86ce2f" name="adee8ed7d3ebb3a217c27ac10af86ce2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adee8ed7d3ebb3a217c27ac10af86ce2f">&#9670;&#160;</a></span>HAL_TIM_Base_MspDeInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_TIM_Base_MspDeInit </td>
+          <td>(</td>
+          <td class="paramtype">TIM_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>tim_baseHandle</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM MSP 해제 (클럭 비활성화 및 NVIC 해제) </p>
+<p>HAL_TIM_Base_DeInit() 내부에서 자동 호출된다.</p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tim_baseHandle</td><td>해제 중인 타이머 핸들 포인터 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="tim_8c_source.html">tim.c</a> 파일의 <a class="el" href="tim_8c_source.html#l00347">347</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  348</span>{</div>
+<div class="line"><span class="lineno">  349</span>  <span class="keywordflow">if</span> (tim_baseHandle-&gt;Instance == TIM1)</div>
+<div class="line"><span class="lineno">  350</span>  {</div>
+<div class="line"><span class="lineno">  351</span>    <span class="comment">/* USER CODE BEGIN TIM1_MspDeInit 0 */</span></div>
+<div class="line"><span class="lineno">  352</span>    <span class="comment">/* USER CODE END TIM1_MspDeInit 0 */</span></div>
+<div class="line"><span class="lineno">  353</span>    __HAL_RCC_TIM1_CLK_DISABLE();</div>
+<div class="line"><span class="lineno">  354</span>    <span class="comment">/* TIM1_BRK_TIM15_IRQn은 TIM15와 공유하므로 주의하여 비활성화 */</span></div>
+<div class="line"><span class="lineno">  355</span>    <span class="comment">/* USER CODE BEGIN TIM1_MspDeInit 1 */</span></div>
+<div class="line"><span class="lineno">  356</span>    <span class="comment">/* USER CODE END TIM1_MspDeInit 1 */</span></div>
+<div class="line"><span class="lineno">  357</span>  }</div>
+<div class="line"><span class="lineno">  358</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tim_baseHandle-&gt;Instance == TIM2)</div>
+<div class="line"><span class="lineno">  359</span>  {</div>
+<div class="line"><span class="lineno">  360</span>    <span class="comment">/* USER CODE BEGIN TIM2_MspDeInit 0 */</span></div>
+<div class="line"><span class="lineno">  361</span>    <span class="comment">/* USER CODE END TIM2_MspDeInit 0 */</span></div>
+<div class="line"><span class="lineno">  362</span>    __HAL_RCC_TIM2_CLK_DISABLE();</div>
+<div class="line"><span class="lineno">  363</span>    HAL_NVIC_DisableIRQ(TIM2_IRQn);</div>
+<div class="line"><span class="lineno">  364</span>    <span class="comment">/* USER CODE BEGIN TIM2_MspDeInit 1 */</span></div>
+<div class="line"><span class="lineno">  365</span>    <span class="comment">/* USER CODE END TIM2_MspDeInit 1 */</span></div>
+<div class="line"><span class="lineno">  366</span>  }</div>
+<div class="line"><span class="lineno">  367</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tim_baseHandle-&gt;Instance == TIM15)</div>
+<div class="line"><span class="lineno">  368</span>  {</div>
+<div class="line"><span class="lineno">  369</span>    <span class="comment">/* USER CODE BEGIN TIM15_MspDeInit 0 */</span></div>
+<div class="line"><span class="lineno">  370</span>    <span class="comment">/* USER CODE END TIM15_MspDeInit 0 */</span></div>
+<div class="line"><span class="lineno">  371</span>    __HAL_RCC_TIM15_CLK_DISABLE();</div>
+<div class="line"><span class="lineno">  372</span>    <span class="comment">/* TIM1_BRK_TIM15_IRQn은 TIM1과 공유하므로 주의하여 비활성화 */</span></div>
+<div class="line"><span class="lineno">  373</span>    <span class="comment">/* USER CODE BEGIN TIM15_MspDeInit 1 */</span></div>
+<div class="line"><span class="lineno">  374</span>    <span class="comment">/* USER CODE END TIM15_MspDeInit 1 */</span></div>
+<div class="line"><span class="lineno">  375</span>  }</div>
+<div class="line"><span class="lineno">  376</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a59716af159bfbbb6023b31354fb23af8" name="a59716af159bfbbb6023b31354fb23af8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59716af159bfbbb6023b31354fb23af8">&#9670;&#160;</a></span>HAL_TIM_Base_MspInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_TIM_Base_MspInit </td>
+          <td>(</td>
+          <td class="paramtype">TIM_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>tim_baseHandle</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM MSP 초기화 (클럭 활성화 및 NVIC 설정) </p>
+<p>HAL_TIM_Base_Init() 내부에서 자동 호출된다. 각 타이머 인스턴스에 대해 클럭을 활성화하고 인터럽트 우선순위를 설정한다.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">타이머  </th><th class="markdownTableHeadNone">IRQ  </th><th class="markdownTableHeadNone">우선순위  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">TIM1  </td><td class="markdownTableBodyNone">TIM1_BRK_TIM15_IRQn  </td><td class="markdownTableBodyNone">0, 0  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">TIM2  </td><td class="markdownTableBodyNone">TIM2_IRQn  </td><td class="markdownTableBodyNone">0, 0  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">TIM15  </td><td class="markdownTableBodyNone">TIM1_BRK_TIM15_IRQn  </td><td class="markdownTableBodyNone">0, 0  </td></tr>
+</table>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tim_baseHandle</td><td>초기화 중인 타이머 핸들 포인터 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="tim_8c_source.html">tim.c</a> 파일의 <a class="el" href="tim_8c_source.html#l00256">256</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  257</span>{</div>
+<div class="line"><span class="lineno">  258</span>  <span class="keywordflow">if</span> (tim_baseHandle-&gt;Instance == TIM1)</div>
+<div class="line"><span class="lineno">  259</span>  {</div>
+<div class="line"><span class="lineno">  260</span>    <span class="comment">/* USER CODE BEGIN TIM1_MspInit 0 */</span></div>
+<div class="line"><span class="lineno">  261</span>    <span class="comment">/* USER CODE END TIM1_MspInit 0 */</span></div>
+<div class="line"><span class="lineno">  262</span>    __HAL_RCC_TIM1_CLK_ENABLE();</div>
+<div class="line"><span class="lineno">  263</span>    HAL_NVIC_SetPriority(TIM1_BRK_TIM15_IRQn, 0, 0);</div>
+<div class="line"><span class="lineno">  264</span>    HAL_NVIC_EnableIRQ(TIM1_BRK_TIM15_IRQn);</div>
+<div class="line"><span class="lineno">  265</span>    <span class="comment">/* USER CODE BEGIN TIM1_MspInit 1 */</span></div>
+<div class="line"><span class="lineno">  266</span>    <span class="comment">/* USER CODE END TIM1_MspInit 1 */</span></div>
+<div class="line"><span class="lineno">  267</span>  }</div>
+<div class="line"><span class="lineno">  268</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tim_baseHandle-&gt;Instance == TIM2)</div>
+<div class="line"><span class="lineno">  269</span>  {</div>
+<div class="line"><span class="lineno">  270</span>    <span class="comment">/* USER CODE BEGIN TIM2_MspInit 0 */</span></div>
+<div class="line"><span class="lineno">  271</span>    <span class="comment">/* USER CODE END TIM2_MspInit 0 */</span></div>
+<div class="line"><span class="lineno">  272</span>    __HAL_RCC_TIM2_CLK_ENABLE();</div>
+<div class="line"><span class="lineno">  273</span>    HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);</div>
+<div class="line"><span class="lineno">  274</span>    HAL_NVIC_EnableIRQ(TIM2_IRQn);</div>
+<div class="line"><span class="lineno">  275</span>    <span class="comment">/* USER CODE BEGIN TIM2_MspInit 1 */</span></div>
+<div class="line"><span class="lineno">  276</span>    <span class="comment">/* USER CODE END TIM2_MspInit 1 */</span></div>
+<div class="line"><span class="lineno">  277</span>  }</div>
+<div class="line"><span class="lineno">  278</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tim_baseHandle-&gt;Instance == TIM15)</div>
+<div class="line"><span class="lineno">  279</span>  {</div>
+<div class="line"><span class="lineno">  280</span>    <span class="comment">/* USER CODE BEGIN TIM15_MspInit 0 */</span></div>
+<div class="line"><span class="lineno">  281</span>    <span class="comment">/* USER CODE END TIM15_MspInit 0 */</span></div>
+<div class="line"><span class="lineno">  282</span>    __HAL_RCC_TIM15_CLK_ENABLE();</div>
+<div class="line"><span class="lineno">  283</span>    HAL_NVIC_SetPriority(TIM1_BRK_TIM15_IRQn, 0, 0);</div>
+<div class="line"><span class="lineno">  284</span>    HAL_NVIC_EnableIRQ(TIM1_BRK_TIM15_IRQn);</div>
+<div class="line"><span class="lineno">  285</span>    <span class="comment">/* USER CODE BEGIN TIM15_MspInit 1 */</span></div>
+<div class="line"><span class="lineno">  286</span>    <span class="comment">/* USER CODE END TIM15_MspInit 1 */</span></div>
+<div class="line"><span class="lineno">  287</span>  }</div>
+<div class="line"><span class="lineno">  288</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a708f19bbc41b292fccf38f2d9796c46a" name="a708f19bbc41b292fccf38f2d9796c46a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a708f19bbc41b292fccf38f2d9796c46a">&#9670;&#160;</a></span>HAL_TIM_MspPostInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_TIM_MspPostInit </td>
+          <td>(</td>
+          <td class="paramtype">TIM_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>timHandle</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM MSP 초기화 후처리 (GPIO 대체 기능 설정) </p>
+<p>HAL_TIM_PWM_Init() 완료 후 자동 호출된다. TIM1에 대해 PWM 출력 핀의 GPIO 대체 기능(AF)을 설정한다.</p>
+<p>TIM1 GPIO 핀 매핑: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">핀  </th><th class="markdownTableHeadNone">채널  </th><th class="markdownTableHeadNone">AF  </th><th class="markdownTableHeadNone">설명  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">PB15  </td><td class="markdownTableBodyNone">CH3N  </td><td class="markdownTableBodyNone">GPIO_AF4_TIM1  </td><td class="markdownTableBodyNone">C상 하단 암  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">PA8  </td><td class="markdownTableBodyNone">CH1  </td><td class="markdownTableBodyNone">GPIO_AF6_TIM1  </td><td class="markdownTableBodyNone">A상 상단 암  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">PA9  </td><td class="markdownTableBodyNone">CH2  </td><td class="markdownTableBodyNone">GPIO_AF6_TIM1  </td><td class="markdownTableBodyNone">B상 상단 암  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">PA10  </td><td class="markdownTableBodyNone">CH3  </td><td class="markdownTableBodyNone">GPIO_AF6_TIM1  </td><td class="markdownTableBodyNone">C상 상단 암  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">PA11  </td><td class="markdownTableBodyNone">CH1N  </td><td class="markdownTableBodyNone">GPIO_AF6_TIM1  </td><td class="markdownTableBodyNone">A상 하단 암  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">PA12  </td><td class="markdownTableBodyNone">CH2N  </td><td class="markdownTableBodyNone">GPIO_AF6_TIM1  </td><td class="markdownTableBodyNone">B상 하단 암  </td></tr>
+</table>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">timHandle</td><td>초기화 완료된 타이머 핸들 포인터 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="tim_8c_source.html">tim.c</a> 파일의 <a class="el" href="tim_8c_source.html#l00309">309</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  310</span>{</div>
+<div class="line"><span class="lineno">  311</span>  GPIO_InitTypeDef GPIO_InitStruct = {0};</div>
+<div class="line"><span class="lineno">  312</span>  <span class="keywordflow">if</span> (timHandle-&gt;Instance == TIM1)</div>
+<div class="line"><span class="lineno">  313</span>  {</div>
+<div class="line"><span class="lineno">  314</span>    <span class="comment">/* USER CODE BEGIN TIM1_MspPostInit 0 */</span></div>
+<div class="line"><span class="lineno">  315</span>    <span class="comment">/* USER CODE END TIM1_MspPostInit 0 */</span></div>
+<div class="line"><span class="lineno">  316</span> </div>
+<div class="line"><span class="lineno">  317</span>    __HAL_RCC_GPIOB_CLK_ENABLE();</div>
+<div class="line"><span class="lineno">  318</span>    __HAL_RCC_GPIOA_CLK_ENABLE();</div>
+<div class="line"><span class="lineno">  319</span> </div>
+<div class="line"><span class="lineno">  320</span>    <span class="comment">/* PB15 → TIM1_CH3N (AF4) */</span></div>
+<div class="line"><span class="lineno">  321</span>    GPIO_InitStruct.Pin       = GPIO_PIN_15;</div>
+<div class="line"><span class="lineno">  322</span>    GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;</div>
+<div class="line"><span class="lineno">  323</span>    GPIO_InitStruct.Pull      = GPIO_NOPULL;</div>
+<div class="line"><span class="lineno">  324</span>    GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_LOW;</div>
+<div class="line"><span class="lineno">  325</span>    GPIO_InitStruct.Alternate = GPIO_AF4_TIM1;</div>
+<div class="line"><span class="lineno">  326</span>    HAL_GPIO_Init(GPIOB, &amp;GPIO_InitStruct);</div>
+<div class="line"><span class="lineno">  327</span> </div>
+<div class="line"><span class="lineno">  328</span>    <span class="comment">/* PA8~PA12 → TIM1_CH1~CH3, CH1N~CH2N (AF6) */</span></div>
+<div class="line"><span class="lineno">  329</span>    GPIO_InitStruct.Pin       = GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10</div>
+<div class="line"><span class="lineno">  330</span>                              | GPIO_PIN_11 | GPIO_PIN_12;</div>
+<div class="line"><span class="lineno">  331</span>    GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;</div>
+<div class="line"><span class="lineno">  332</span>    HAL_GPIO_Init(GPIOA, &amp;GPIO_InitStruct);</div>
+<div class="line"><span class="lineno">  333</span> </div>
+<div class="line"><span class="lineno">  334</span>    <span class="comment">/* USER CODE BEGIN TIM1_MspPostInit 1 */</span></div>
+<div class="line"><span class="lineno">  335</span>    <span class="comment">/* USER CODE END TIM1_MspPostInit 1 */</span></div>
+<div class="line"><span class="lineno">  336</span>  }</div>
+<div class="line"><span class="lineno">  337</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="tim_8c_a708f19bbc41b292fccf38f2d9796c46a_icgraph.png" border="0" usemap="#atim_8c_a708f19bbc41b292fccf38f2d9796c46a_icgraph" loading="lazy" alt=""/></div>
+<map name="atim_8c_a708f19bbc41b292fccf38f2d9796c46a_icgraph" id="atim_8c_a708f19bbc41b292fccf38f2d9796c46a_icgraph">
+<area shape="rect" title="TIM MSP 초기화 후처리 (GPIO 대체 기능 설정)" alt="" coords="254,5,408,32"/>
+<area shape="rect" href="tim_8c.html#ad1f9d42690163f73f73e5b820c81ca14" title="TIM1 초기화 (3상 Center&#45;Aligned PWM)" alt="" coords="103,5,206,32"/>
+<area shape="poly" title=" " alt="" coords="236,19,207,21,206,16,241,19"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="84,20,55,21,55,16,89,18"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac4b6b63257bb307dd93a4d5f45e39172" name="ac4b6b63257bb307dd93a4d5f45e39172"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4b6b63257bb307dd93a4d5f45e39172">&#9670;&#160;</a></span>MX_TIM15_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MX_TIM15_Init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM15 초기화 (보조 타이머) </p>
+<p>RC 수신기 PWM 측정 등 저속 보조 목적으로 사용되는 타이머를 설정한다.</p>
+<ul>
+<li>Prescaler = 4200: 170MHz / 4201 ≈ 40.47kHz 타이머 클럭</li>
+<li>Period = 9999: 약 247ms 주기 (오버플로우 기준)</li>
+</ul>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="tim_8c_source.html">tim.c</a> 파일의 <a class="el" href="tim_8c_source.html#l00207">207</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  208</span>{</div>
+<div class="line"><span class="lineno">  209</span>  <span class="comment">/* USER CODE BEGIN TIM15_Init 0 */</span></div>
+<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  211</span>  <span class="comment">/* USER CODE END TIM15_Init 0 */</span></div>
+<div class="line"><span class="lineno">  212</span> </div>
+<div class="line"><span class="lineno">  213</span>  TIM_ClockConfigTypeDef  sClockSourceConfig = {0};</div>
+<div class="line"><span class="lineno">  214</span>  TIM_MasterConfigTypeDef sMasterConfig      = {0};</div>
+<div class="line"><span class="lineno">  215</span> </div>
+<div class="line"><span class="lineno">  216</span>  <span class="comment">/* USER CODE BEGIN TIM15_Init 1 */</span></div>
+<div class="line"><span class="lineno">  217</span> </div>
+<div class="line"><span class="lineno">  218</span>  <span class="comment">/* USER CODE END TIM15_Init 1 */</span></div>
+<div class="line"><span class="lineno">  219</span> </div>
+<div class="line"><span class="lineno">  220</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>.Instance               = TIM15;</div>
+<div class="line"><span class="lineno">  221</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>.Init.Prescaler         = 4200;</div>
+<div class="line"><span class="lineno">  222</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>.Init.CounterMode       = TIM_COUNTERMODE_UP;</div>
+<div class="line"><span class="lineno">  223</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>.Init.Period            = 9999;</div>
+<div class="line"><span class="lineno">  224</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;</div>
+<div class="line"><span class="lineno">  225</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>.Init.RepetitionCounter = 0;</div>
+<div class="line"><span class="lineno">  226</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;</div>
+<div class="line"><span class="lineno">  227</span>  <span class="keywordflow">if</span> (HAL_TIM_Base_Init(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;</div>
+<div class="line"><span class="lineno">  230</span>  <span class="keywordflow">if</span> (HAL_TIM_ConfigClockSource(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>, &amp;sClockSourceConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  231</span> </div>
+<div class="line"><span class="lineno">  232</span>  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;</div>
+<div class="line"><span class="lineno">  233</span>  sMasterConfig.MasterSlaveMode     = TIM_MASTERSLAVEMODE_DISABLE;</div>
+<div class="line"><span class="lineno">  234</span>  <span class="keywordflow">if</span> (HAL_TIMEx_MasterConfigSynchronization(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a>, &amp;sMasterConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  235</span> </div>
+<div class="line"><span class="lineno">  236</span>  <span class="comment">/* USER CODE BEGIN TIM15_Init 2 */</span></div>
+<div class="line"><span class="lineno">  237</span> </div>
+<div class="line"><span class="lineno">  238</span>  <span class="comment">/* USER CODE END TIM15_Init 2 */</span></div>
+<div class="line"><span class="lineno">  239</span>}</div>
+<div class="ttc" id="agroup___t_i_m___handles_html_ga859a9bb217bb4010bb2bffb6881478c0"><div class="ttname"><a href="group___t_i_m___handles.html#ga859a9bb217bb4010bb2bffb6881478c0">htim15</a></div><div class="ttdeci">TIM_HandleTypeDef htim15</div><div class="ttdoc">TIM15 핸들 (tim.c에서 정의)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00050">tim.c:50</a></div></div>
+<div class="ttc" id="amain_8c_html_a1730ffe1e560465665eb47d9264826f9"><div class="ttname"><a href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a></div><div class="ttdeci">void Error_Handler(void)</div><div class="ttdoc">오류 처리 함수</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00286">main.c:286</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="tim_8c_ac4b6b63257bb307dd93a4d5f45e39172_cgraph.png" border="0" usemap="#atim_8c_ac4b6b63257bb307dd93a4d5f45e39172_cgraph" loading="lazy" alt=""/></div>
+<map name="atim_8c_ac4b6b63257bb307dd93a4d5f45e39172_cgraph" id="atim_8c_ac4b6b63257bb307dd93a4d5f45e39172_cgraph">
+<area shape="rect" title="TIM15 초기화 (보조 타이머)" alt="" coords="5,5,116,32"/>
+<area shape="rect" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="오류 처리 함수" alt="" coords="164,5,265,32"/>
+<area shape="poly" title=" " alt="" coords="116,16,151,18,145,19,116,21"/>
+</map>
+</div>
+<div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="tim_8c_ac4b6b63257bb307dd93a4d5f45e39172_icgraph.png" border="0" usemap="#atim_8c_ac4b6b63257bb307dd93a4d5f45e39172_icgraph" loading="lazy" alt=""/></div>
+<map name="atim_8c_ac4b6b63257bb307dd93a4d5f45e39172_icgraph" id="atim_8c_ac4b6b63257bb307dd93a4d5f45e39172_icgraph">
+<area shape="rect" title="TIM15 초기화 (보조 타이머)" alt="" coords="103,5,213,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="84,20,55,21,55,16,90,18"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad1f9d42690163f73f73e5b820c81ca14" name="ad1f9d42690163f73f73e5b820c81ca14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1f9d42690163f73f73e5b820c81ca14">&#9670;&#160;</a></span>MX_TIM1_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MX_TIM1_Init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM1 초기화 (3상 Center-Aligned PWM) </p>
+<p>TIM1을 3상 인버터 PWM 출력용으로 설정한다. 슬레이브 모드(RESET/ITR1)로 TIM2와 동기화되며, TRGO2(OC4REF)로 ADC 변환을 트리거한다.</p>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>&lt; 프리스케일러 없음 (170MHz)</p>
+<p>&lt; Center-Aligned Mode 2</p>
+<p>&lt; 170MHz / (2×4200) ≈ 20.24kHz</p>
+<p>&lt; ≈ 206ns @170MHz</p>
+
+<p class="definition"><a class="el" href="tim_8c_source.html">tim.c</a> 파일의 <a class="el" href="tim_8c_source.html#l00062">62</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>{</div>
+<div class="line"><span class="lineno">   64</span>  <span class="comment">/* USER CODE BEGIN TIM1_Init 0 */</span></div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>  <span class="comment">/* USER CODE END TIM1_Init 0 */</span></div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>  TIM_ClockConfigTypeDef       sClockSourceConfig  = {0};</div>
+<div class="line"><span class="lineno">   69</span>  TIM_SlaveConfigTypeDef       sSlaveConfig        = {0};</div>
+<div class="line"><span class="lineno">   70</span>  TIM_MasterConfigTypeDef      sMasterConfig       = {0};</div>
+<div class="line"><span class="lineno">   71</span>  TIM_OC_InitTypeDef           sConfigOC           = {0};</div>
+<div class="line"><span class="lineno">   72</span>  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>  <span class="comment">/* USER CODE BEGIN TIM1_Init 1 */</span></div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>  <span class="comment">/* USER CODE END TIM1_Init 1 */</span></div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>  <span class="comment">/* TIM1 기본 설정 */</span></div>
+<div class="line"><span class="lineno">   79</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>.Instance               = TIM1;</div>
+<div class="line"><span class="lineno">   80</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>.Init.Prescaler         = 0;                          </div>
+<div class="line"><span class="lineno">   81</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>.Init.CounterMode       = TIM_COUNTERMODE_CENTERALIGNED2; </div>
+<div class="line"><span class="lineno">   82</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>.Init.Period            = 4200;                       </div>
+<div class="line"><span class="lineno">   83</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;</div>
+<div class="line"><span class="lineno">   84</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>.Init.RepetitionCounter = 0;</div>
+<div class="line"><span class="lineno">   85</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;</div>
+<div class="line"><span class="lineno">   86</span>  <span class="keywordflow">if</span> (HAL_TIM_Base_Init(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;</div>
+<div class="line"><span class="lineno">   89</span>  <span class="keywordflow">if</span> (HAL_TIM_ConfigClockSource(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>, &amp;sClockSourceConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">   90</span> </div>
+<div class="line"><span class="lineno">   91</span>  <span class="keywordflow">if</span> (HAL_TIM_PWM_Init(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>  <span class="comment">/* 슬레이브 모드: TIM2 TRGO(ITR1)로 카운터 리셋 */</span></div>
+<div class="line"><span class="lineno">   94</span>  sSlaveConfig.SlaveMode    = TIM_SLAVEMODE_RESET;</div>
+<div class="line"><span class="lineno">   95</span>  sSlaveConfig.InputTrigger = TIM_TS_ITR1;</div>
+<div class="line"><span class="lineno">   96</span>  <span class="keywordflow">if</span> (HAL_TIM_SlaveConfigSynchro(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>, &amp;sSlaveConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>  <span class="comment">/* 마스터 출력: TRGO/TRGO2 = OC4REF → ADC 트리거 */</span></div>
+<div class="line"><span class="lineno">   99</span>  sMasterConfig.MasterOutputTrigger  = TIM_TRGO_OC4REF;</div>
+<div class="line"><span class="lineno">  100</span>  sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_OC4REF;</div>
+<div class="line"><span class="lineno">  101</span>  sMasterConfig.MasterSlaveMode      = TIM_MASTERSLAVEMODE_DISABLE;</div>
+<div class="line"><span class="lineno">  102</span>  <span class="keywordflow">if</span> (HAL_TIMEx_MasterConfigSynchronization(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>, &amp;sMasterConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  103</span> </div>
+<div class="line"><span class="lineno">  104</span>  <span class="comment">/* CH1~CH3: PWM Mode 1, 초기 듀티 0 */</span></div>
+<div class="line"><span class="lineno">  105</span>  sConfigOC.OCMode       = TIM_OCMODE_PWM1;</div>
+<div class="line"><span class="lineno">  106</span>  sConfigOC.Pulse        = 0;</div>
+<div class="line"><span class="lineno">  107</span>  sConfigOC.OCPolarity   = TIM_OCPOLARITY_HIGH;</div>
+<div class="line"><span class="lineno">  108</span>  sConfigOC.OCNPolarity  = TIM_OCNPOLARITY_HIGH;</div>
+<div class="line"><span class="lineno">  109</span>  sConfigOC.OCFastMode   = TIM_OCFAST_DISABLE;</div>
+<div class="line"><span class="lineno">  110</span>  sConfigOC.OCIdleState  = TIM_OCIDLESTATE_RESET;</div>
+<div class="line"><span class="lineno">  111</span>  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;</div>
+<div class="line"><span class="lineno">  112</span>  <span class="keywordflow">if</span> (HAL_TIM_PWM_ConfigChannel(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>, &amp;sConfigOC, TIM_CHANNEL_1) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  113</span>  <span class="keywordflow">if</span> (HAL_TIM_PWM_ConfigChannel(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>, &amp;sConfigOC, TIM_CHANNEL_2) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  114</span>  <span class="keywordflow">if</span> (HAL_TIM_PWM_ConfigChannel(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>, &amp;sConfigOC, TIM_CHANNEL_3) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>  <span class="comment">/* Dead-Time 및 Break 설정 */</span></div>
+<div class="line"><span class="lineno">  117</span>  sBreakDeadTimeConfig.OffStateRunMode   = TIM_OSSR_DISABLE;</div>
+<div class="line"><span class="lineno">  118</span>  sBreakDeadTimeConfig.OffStateIDLEMode  = TIM_OSSI_DISABLE;</div>
+<div class="line"><span class="lineno">  119</span>  sBreakDeadTimeConfig.LockLevel         = TIM_LOCKLEVEL_OFF;</div>
+<div class="line"><span class="lineno">  120</span>  sBreakDeadTimeConfig.DeadTime          = 35;  </div>
+<div class="line"><span class="lineno">  121</span>  sBreakDeadTimeConfig.BreakState        = TIM_BREAK_DISABLE;</div>
+<div class="line"><span class="lineno">  122</span>  sBreakDeadTimeConfig.BreakPolarity     = TIM_BREAKPOLARITY_HIGH;</div>
+<div class="line"><span class="lineno">  123</span>  sBreakDeadTimeConfig.BreakFilter       = 0;</div>
+<div class="line"><span class="lineno">  124</span>  sBreakDeadTimeConfig.BreakAFMode       = TIM_BREAK_AFMODE_INPUT;</div>
+<div class="line"><span class="lineno">  125</span>  sBreakDeadTimeConfig.Break2State       = TIM_BREAK2_DISABLE;</div>
+<div class="line"><span class="lineno">  126</span>  sBreakDeadTimeConfig.Break2Polarity    = TIM_BREAK2POLARITY_HIGH;</div>
+<div class="line"><span class="lineno">  127</span>  sBreakDeadTimeConfig.Break2Filter      = 0;</div>
+<div class="line"><span class="lineno">  128</span>  sBreakDeadTimeConfig.Break2AFMode      = TIM_BREAK_AFMODE_INPUT;</div>
+<div class="line"><span class="lineno">  129</span>  sBreakDeadTimeConfig.AutomaticOutput   = TIM_AUTOMATICOUTPUT_DISABLE;</div>
+<div class="line"><span class="lineno">  130</span>  <span class="keywordflow">if</span> (HAL_TIMEx_ConfigBreakDeadTime(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>, &amp;sBreakDeadTimeConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  131</span> </div>
+<div class="line"><span class="lineno">  132</span>  <span class="comment">/* USER CODE BEGIN TIM1_Init 2 */</span></div>
+<div class="line"><span class="lineno">  133</span> </div>
+<div class="line"><span class="lineno">  134</span>  <span class="comment">/* USER CODE END TIM1_Init 2 */</span></div>
+<div class="line"><span class="lineno">  135</span> </div>
+<div class="line"><span class="lineno">  136</span>  <a class="code hl_function" href="#a708f19bbc41b292fccf38f2d9796c46a">HAL_TIM_MspPostInit</a>(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a>);</div>
+<div class="line"><span class="lineno">  137</span>}</div>
+<div class="ttc" id="agroup___t_i_m___handles_html_ga25fc663547539bc49fecc0011bd76ab5"><div class="ttname"><a href="group___t_i_m___handles.html#ga25fc663547539bc49fecc0011bd76ab5">htim1</a></div><div class="ttdeci">TIM_HandleTypeDef htim1</div><div class="ttdoc">TIM1 핸들: 3상 PWM 출력</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00048">tim.c:48</a></div></div>
+<div class="ttc" id="atim_8c_html_a708f19bbc41b292fccf38f2d9796c46a"><div class="ttname"><a href="#a708f19bbc41b292fccf38f2d9796c46a">HAL_TIM_MspPostInit</a></div><div class="ttdeci">void HAL_TIM_MspPostInit(TIM_HandleTypeDef *timHandle)</div><div class="ttdoc">TIM MSP 초기화 후처리 (GPIO 대체 기능 설정)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00309">tim.c:309</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="tim_8c_ad1f9d42690163f73f73e5b820c81ca14_cgraph.png" border="0" usemap="#atim_8c_ad1f9d42690163f73f73e5b820c81ca14_cgraph" loading="lazy" alt=""/></div>
+<map name="atim_8c_ad1f9d42690163f73f73e5b820c81ca14_cgraph" id="atim_8c_ad1f9d42690163f73f73e5b820c81ca14_cgraph">
+<area shape="rect" title="TIM1 초기화 (3상 Center&#45;Aligned PWM)" alt="" coords="5,31,109,57"/>
+<area shape="rect" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="오류 처리 함수" alt="" coords="183,5,284,32"/>
+<area shape="poly" title=" " alt="" coords="109,34,170,27,166,29,110,39"/>
+<area shape="rect" href="tim_8c.html#a708f19bbc41b292fccf38f2d9796c46a" title="TIM MSP 초기화 후처리 (GPIO 대체 기능 설정)" alt="" coords="157,56,311,83"/>
+<area shape="poly" title=" " alt="" coords="109,49,144,56,138,56,109,54"/>
+</map>
+</div>
+<div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="tim_8c_ad1f9d42690163f73f73e5b820c81ca14_icgraph.png" border="0" usemap="#atim_8c_ad1f9d42690163f73f73e5b820c81ca14_icgraph" loading="lazy" alt=""/></div>
+<map name="atim_8c_ad1f9d42690163f73f73e5b820c81ca14_icgraph" id="atim_8c_ad1f9d42690163f73f73e5b820c81ca14_icgraph">
+<area shape="rect" title="TIM1 초기화 (3상 Center&#45;Aligned PWM)" alt="" coords="103,5,206,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="84,20,55,21,55,16,89,18"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4b8ff887fd3fdf26605e35927e4ff202" name="a4b8ff887fd3fdf26605e35927e4ff202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b8ff887fd3fdf26605e35927e4ff202">&#9670;&#160;</a></span>MX_TIM2_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MX_TIM2_Init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM2 초기화 (제어 루프 트리거 / ADC TRGO) </p>
+<p>TIM2를 10kHz 제어 루프 인터럽트 소스 및 ADC Injected 트리거로 설정한다.</p>
+<ul>
+<li>Period = 16999: 170MHz / 17000 = 10kHz (100µs 주기)</li>
+<li>CH2 Pulse = 2100: 카운터 중간 시점에서 <a class="el" href="control_8c.html#afb486c446e28753e3dca5112dfdc8264" title="PMSM 메인 제어 함수 (TIM2 인터럽트에서 100µs 주기로 호출)">Control()</a> 인터럽트 발생</li>
+<li>TRGO = OC1: ADC Injected 채널 외부 트리거</li>
+<li>Master Mode 활성화: TIM1 슬레이브와 동기</li>
+</ul>
+<dl class="retval"><dt>반환값</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>&lt; 170MHz 직접 사용</p>
+<p>&lt; 100µs 주기</p>
+
+<p class="definition"><a class="el" href="tim_8c_source.html">tim.c</a> 파일의 <a class="el" href="tim_8c_source.html#l00152">152</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><span class="lineno">  153</span>{</div>
+<div class="line"><span class="lineno">  154</span>  <span class="comment">/* USER CODE BEGIN TIM2_Init 0 */</span></div>
+<div class="line"><span class="lineno">  155</span> </div>
+<div class="line"><span class="lineno">  156</span>  <span class="comment">/* USER CODE END TIM2_Init 0 */</span></div>
+<div class="line"><span class="lineno">  157</span> </div>
+<div class="line"><span class="lineno">  158</span>  TIM_ClockConfigTypeDef  sClockSourceConfig = {0};</div>
+<div class="line"><span class="lineno">  159</span>  TIM_MasterConfigTypeDef sMasterConfig      = {0};</div>
+<div class="line"><span class="lineno">  160</span>  TIM_OC_InitTypeDef      sConfigOC          = {0};</div>
+<div class="line"><span class="lineno">  161</span> </div>
+<div class="line"><span class="lineno">  162</span>  <span class="comment">/* USER CODE BEGIN TIM2_Init 1 */</span></div>
+<div class="line"><span class="lineno">  163</span> </div>
+<div class="line"><span class="lineno">  164</span>  <span class="comment">/* USER CODE END TIM2_Init 1 */</span></div>
+<div class="line"><span class="lineno">  165</span> </div>
+<div class="line"><span class="lineno">  166</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>.Instance               = TIM2;</div>
+<div class="line"><span class="lineno">  167</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>.Init.Prescaler         = 0;                        </div>
+<div class="line"><span class="lineno">  168</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>.Init.CounterMode       = TIM_COUNTERMODE_UP;</div>
+<div class="line"><span class="lineno">  169</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>.Init.Period            = 16999;                    </div>
+<div class="line"><span class="lineno">  170</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;</div>
+<div class="line"><span class="lineno">  171</span>  <a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;</div>
+<div class="line"><span class="lineno">  172</span>  <span class="keywordflow">if</span> (HAL_TIM_Base_Init(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;</div>
+<div class="line"><span class="lineno">  175</span>  <span class="keywordflow">if</span> (HAL_TIM_ConfigClockSource(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>, &amp;sClockSourceConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>  <span class="keywordflow">if</span> (HAL_TIM_OC_Init(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  178</span> </div>
+<div class="line"><span class="lineno">  179</span>  <span class="comment">/* TRGO = OC1 → ADC Injected 트리거 */</span></div>
+<div class="line"><span class="lineno">  180</span>  sMasterConfig.MasterOutputTrigger = TIM_TRGO_OC1;</div>
+<div class="line"><span class="lineno">  181</span>  sMasterConfig.MasterSlaveMode     = TIM_MASTERSLAVEMODE_ENABLE;</div>
+<div class="line"><span class="lineno">  182</span>  <span class="keywordflow">if</span> (HAL_TIMEx_MasterConfigSynchronization(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>, &amp;sMasterConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  183</span> </div>
+<div class="line"><span class="lineno">  184</span>  <span class="comment">/* CH2: OC Timing 모드, Pulse=2100 → 인터럽트 발생 시점 */</span></div>
+<div class="line"><span class="lineno">  185</span>  sConfigOC.OCMode     = TIM_OCMODE_TIMING;</div>
+<div class="line"><span class="lineno">  186</span>  sConfigOC.Pulse      = 2100;</div>
+<div class="line"><span class="lineno">  187</span>  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;</div>
+<div class="line"><span class="lineno">  188</span>  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;</div>
+<div class="line"><span class="lineno">  189</span>  <span class="keywordflow">if</span> (HAL_TIM_OC_ConfigChannel(&amp;<a class="code hl_variable" href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a>, &amp;sConfigOC, TIM_CHANNEL_2) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><span class="lineno">  190</span> </div>
+<div class="line"><span class="lineno">  191</span>  <span class="comment">/* USER CODE BEGIN TIM2_Init 2 */</span></div>
+<div class="line"><span class="lineno">  192</span> </div>
+<div class="line"><span class="lineno">  193</span>  <span class="comment">/* USER CODE END TIM2_Init 2 */</span></div>
+<div class="line"><span class="lineno">  194</span>}</div>
+<div class="ttc" id="agroup___t_i_m___handles_html_ga2c80fd5510e2990a59a5c90d745c716c"><div class="ttname"><a href="group___t_i_m___handles.html#ga2c80fd5510e2990a59a5c90d745c716c">htim2</a></div><div class="ttdeci">TIM_HandleTypeDef htim2</div><div class="ttdoc">TIM2 핸들 (tim.c에서 정의)</div><div class="ttdef"><b>Definition</b> <a href="tim_8c_source.html#l00049">tim.c:49</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="tim_8c_a4b8ff887fd3fdf26605e35927e4ff202_cgraph.png" border="0" usemap="#atim_8c_a4b8ff887fd3fdf26605e35927e4ff202_cgraph" loading="lazy" alt=""/></div>
+<map name="atim_8c_a4b8ff887fd3fdf26605e35927e4ff202_cgraph" id="atim_8c_a4b8ff887fd3fdf26605e35927e4ff202_cgraph">
+<area shape="rect" title="TIM2 초기화 (제어 루프 트리거 / ADC TRGO)" alt="" coords="5,5,109,32"/>
+<area shape="rect" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9" title="오류 처리 함수" alt="" coords="157,5,258,32"/>
+<area shape="poly" title=" " alt="" coords="109,16,143,18,138,19,109,21"/>
+</map>
+</div>
+<div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="tim_8c_a4b8ff887fd3fdf26605e35927e4ff202_icgraph.png" border="0" usemap="#atim_8c_a4b8ff887fd3fdf26605e35927e4ff202_icgraph" loading="lazy" alt=""/></div>
+<map name="atim_8c_a4b8ff887fd3fdf26605e35927e4ff202_icgraph" id="atim_8c_a4b8ff887fd3fdf26605e35927e4ff202_icgraph">
+<area shape="rect" title="TIM2 초기화 (제어 루프 트리거 / ADC TRGO)" alt="" coords="103,5,206,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="84,20,55,21,55,16,89,18"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a href="tim_8c.html">tim.c</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

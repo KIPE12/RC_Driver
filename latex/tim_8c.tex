@@ -1,0 +1,597 @@
+\doxysection{C:\+/\+\+Users/\+\+USER/\+\+One\+Drive/\+\+Desktop/\+doxygen/\+\+RC\+\_\+\+DRIVER/\+tim.c 파일 참조}
+\hypertarget{tim_8c}{}\label{tim_8c}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/tim.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/tim.c}}
+
+
+타이머(\+TIM1, TIM2, TIM15) 초기화 및 MSP 설정 모듈  
+
+
+{\ttfamily \+\#include "{}tim.\+h"{}}\newline
+tim.\+c에 대한 include 의존 그래프
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{tim_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{tim_8c_ad1f9d42690163f73f73e5b820c81ca14}{MX\+\_\+\+TIM1\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em TIM1 초기화 (3상 Center-\/\+Aligned PWM) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202}{MX\+\_\+\+TIM2\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em TIM2 초기화 (제어 루프 트리거 /\+ ADC TRGO) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{tim_8c_ac4b6b63257bb307dd93a4d5f45e39172}{MX\+\_\+\+TIM15\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em TIM15 초기화 (보조 타이머) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{tim_8c_a59716af159bfbbb6023b31354fb23af8}{HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+Init}} (TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim\+\_\+base\+Handle)
+\begin{DoxyCompactList}\small\item\em TIM MSP 초기화 (클럭 활성화 및 NVIC 설정) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}{HAL\+\_\+\+TIM\+\_\+\+Msp\+Post\+Init}} (TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim\+Handle)
+\begin{DoxyCompactList}\small\item\em TIM MSP 초기화 후처리 (GPIO 대체 기능 설정) \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f}{HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+De\+Init}} (TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim\+\_\+base\+Handle)
+\begin{DoxyCompactList}\small\item\em TIM MSP 해제 (클럭 비활성화 및 NVIC 해제) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{변수}
+\begin{DoxyCompactItemize}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}
+\begin{DoxyCompactList}\small\item\em TIM1 핸들:\+ 3상 PWM 출력 \end{DoxyCompactList}\item 
+TIM\+\_\+\+Handle\+Type\+Def \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}
+\begin{DoxyCompactList}\small\item\em TIM2 핸들:\+ 제어 루프 /\+ ADC 트리거 \end{DoxyCompactList}\item 
+TIM\+\_\+\+Handle\+Type\+Def \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}
+\begin{DoxyCompactList}\small\item\em TIM15 핸들:\+ 보조 타이머 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{상세한 설명}
+타이머(\+TIM1, TIM2, TIM15) 초기화 및 MSP 설정 모듈 
+
+PMSM 인버터 제어에 사용되는 세 개의 타이머를 설정한다.
+
+타이머 역할 요약:\+ 
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}타이머  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}역할  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}주기/\+주파수  \\
+TIM1  &3상 PWM 출력 (Center-\/\+Aligned)  &ARR=4200 → \texorpdfstring{$\sim$}{\string~}20k\+Hz  \\
+TIM2  &제어 루프 트리거 + ADC TRGO  &Period=16999 → 100µs  \\
+TIM15  &보조 타이머 (RC 입력 등)  &Prescaler=4200, Period=9999  \\
+\end{DoxyTable}
+\hypertarget{tim_8c_tim1_detail}{}\doxysubsection{\texorpdfstring{TIM1 상세}{TIM1 상세}}\label{tim_8c_tim1_detail}
+
+\begin{DoxyItemize}
+\item Center-\/\+Aligned Mode 2 (업/\+다운 카운트, 다운 시 CCx 인터럽트)
+\item CH1\texorpdfstring{$\sim$}{\string~}\+CH3:\+ 3상 PWM 상단 암 (PA8, PA9, PA10)
+\item CH1\+N\texorpdfstring{$\sim$}{\string~}\+CH3N:\+ 3상 PWM 하단 암 (PA11, PA12, PB15)
+\item Dead-\/\+Time:\+ 35 (≈ 35/\+170\+MHz ≈ 206ns)
+\item TRGO2:\+ OC4\+REF → ADC 동기화
+\item Slave Mode:\+ RESET, 트리거 ITR1 (TIM2 TRGO)
+\end{DoxyItemize}\hypertarget{tim_8c_tim2_detail}{}\doxysubsection{\texorpdfstring{TIM2 상세}{TIM2 상세}}\label{tim_8c_tim2_detail}
+
+\begin{DoxyItemize}
+\item Up Count, Period=16999 → 170MHz/\+17000 = 10k\+Hz (100µs)
+\item CH2 OC Timing:\+ Pulse=2100 → 제어 루프 인터럽트 발생 시점
+\item TRGO:\+ OC1 → ADC Injected 트리거 소스
+\item Master Mode 활성화 (TIM1 슬레이브 동기)
+\end{DoxyItemize}\hypertarget{tim_8c_tim15_detail}{}\doxysubsection{\texorpdfstring{TIM15 상세}{TIM15 상세}}\label{tim_8c_tim15_detail}
+
+\begin{DoxyItemize}
+\item Prescaler=4200, Period=9999
+\item 저속 보조 타이머 (RC 수신기 PWM 측정 등)
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{작성자}
+STMicroelectronics /\+ HALAB\+\_\+G 
+\end{DoxyAuthor}
+\begin{DoxyDate}{날짜}
+2026
+\end{DoxyDate}
+\begin{DoxyAttention}{주의}
+Copyright (c) 2026 STMicroelectronics. All rights reserved. 
+\end{DoxyAttention}
+
+
+\doxymbox{\hyperlink{tim_8c_source}{tim.\+c}} 파일에서 정의되었습니다.
+
+
+
+\label{doc-func-members}
+\Hypertarget{tim_8c_doc-func-members}
+\doxysubsection{함수 문서화}
+\Hypertarget{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f}\index{tim.c@{tim.c}!HAL\_TIM\_Base\_MspDeInit@{HAL\_TIM\_Base\_MspDeInit}}
+\index{HAL\_TIM\_Base\_MspDeInit@{HAL\_TIM\_Base\_MspDeInit}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_Base\_MspDeInit()}{HAL\_TIM\_Base\_MspDeInit()}}
+{\footnotesize\ttfamily \label{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f} 
+void HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+De\+Init (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{tim\+\_\+base\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+TIM MSP 해제 (클럭 비활성화 및 NVIC 해제) 
+
+HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+De\+Init() 내부에서 자동 호출된다.
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in}}  & {\em tim\+\_\+base\+Handle} & 해제 중인 타이머 핸들 포인터 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{tim_8c_source}{tim.\+c}} 파일의 \doxymbox{\hyperlink{tim_8c_source_l00347}{347}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00348\ \{}
+\DoxyCodeLine{00349\ \ \ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM1)}
+\DoxyCodeLine{00350\ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{00353\ \ \ \ \ \_\_HAL\_RCC\_TIM1\_CLK\_DISABLE();}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{comment}{/*\ TIM1\_BRK\_TIM15\_IRQn은\ TIM15와\ 공유하므로\ 주의하여\ 비활성화\ */}}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{00357\ \ \ \}}
+\DoxyCodeLine{00358\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM2)}
+\DoxyCodeLine{00359\ \ \ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{00362\ \ \ \ \ \_\_HAL\_RCC\_TIM2\_CLK\_DISABLE();}
+\DoxyCodeLine{00363\ \ \ \ \ HAL\_NVIC\_DisableIRQ(TIM2\_IRQn);}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{00366\ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM15)}
+\DoxyCodeLine{00368\ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{00371\ \ \ \ \ \_\_HAL\_RCC\_TIM15\_CLK\_DISABLE();}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{comment}{/*\ TIM1\_BRK\_TIM15\_IRQn은\ TIM1과\ 공유하므로\ 주의하여\ 비활성화\ */}}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{00375\ \ \ \}}
+\DoxyCodeLine{00376\ \}}
+
+\end{DoxyCode}
+\Hypertarget{tim_8c_a59716af159bfbbb6023b31354fb23af8}\index{tim.c@{tim.c}!HAL\_TIM\_Base\_MspInit@{HAL\_TIM\_Base\_MspInit}}
+\index{HAL\_TIM\_Base\_MspInit@{HAL\_TIM\_Base\_MspInit}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_Base\_MspInit()}{HAL\_TIM\_Base\_MspInit()}}
+{\footnotesize\ttfamily \label{tim_8c_a59716af159bfbbb6023b31354fb23af8} 
+void HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{tim\+\_\+base\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+TIM MSP 초기화 (클럭 활성화 및 NVIC 설정) 
+
+HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Init() 내부에서 자동 호출된다. 각 타이머 인스턴스에 대해 클럭을 활성화하고 인터럽트 우선순위를 설정한다.
+
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}타이머  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}IRQ  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}우선순위  \\
+TIM1  &TIM1\+\_\+\+BRK\+\_\+\+TIM15\+\_\+\+IRQn  &0, 0  \\
+TIM2  &TIM2\+\_\+\+IRQn  &0, 0  \\
+TIM15  &TIM1\+\_\+\+BRK\+\_\+\+TIM15\+\_\+\+IRQn  &0, 0  \\
+\end{DoxyTable}
+
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in}}  & {\em tim\+\_\+base\+Handle} & 초기화 중인 타이머 핸들 포인터 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{tim_8c_source}{tim.\+c}} 파일의 \doxymbox{\hyperlink{tim_8c_source_l00256}{256}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00257\ \{}
+\DoxyCodeLine{00258\ \ \ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM1)}
+\DoxyCodeLine{00259\ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspInit\ 0\ */}}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspInit\ 0\ */}}
+\DoxyCodeLine{00262\ \ \ \ \ \_\_HAL\_RCC\_TIM1\_CLK\_ENABLE();}
+\DoxyCodeLine{00263\ \ \ \ \ HAL\_NVIC\_SetPriority(TIM1\_BRK\_TIM15\_IRQn,\ 0,\ 0);}
+\DoxyCodeLine{00264\ \ \ \ \ HAL\_NVIC\_EnableIRQ(TIM1\_BRK\_TIM15\_IRQn);}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspInit\ 1\ */}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspInit\ 1\ */}}
+\DoxyCodeLine{00267\ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM2)}
+\DoxyCodeLine{00269\ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_MspInit\ 0\ */}}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_MspInit\ 0\ */}}
+\DoxyCodeLine{00272\ \ \ \ \ \_\_HAL\_RCC\_TIM2\_CLK\_ENABLE();}
+\DoxyCodeLine{00273\ \ \ \ \ HAL\_NVIC\_SetPriority(TIM2\_IRQn,\ 0,\ 0);}
+\DoxyCodeLine{00274\ \ \ \ \ HAL\_NVIC\_EnableIRQ(TIM2\_IRQn);}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_MspInit\ 1\ */}}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_MspInit\ 1\ */}}
+\DoxyCodeLine{00277\ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM15)}
+\DoxyCodeLine{00279\ \ \ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_MspInit\ 0\ */}}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_MspInit\ 0\ */}}
+\DoxyCodeLine{00282\ \ \ \ \ \_\_HAL\_RCC\_TIM15\_CLK\_ENABLE();}
+\DoxyCodeLine{00283\ \ \ \ \ HAL\_NVIC\_SetPriority(TIM1\_BRK\_TIM15\_IRQn,\ 0,\ 0);}
+\DoxyCodeLine{00284\ \ \ \ \ HAL\_NVIC\_EnableIRQ(TIM1\_BRK\_TIM15\_IRQn);}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_MspInit\ 1\ */}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_MspInit\ 1\ */}}
+\DoxyCodeLine{00287\ \ \ \}}
+\DoxyCodeLine{00288\ \}}
+
+\end{DoxyCode}
+\Hypertarget{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}\index{tim.c@{tim.c}!HAL\_TIM\_MspPostInit@{HAL\_TIM\_MspPostInit}}
+\index{HAL\_TIM\_MspPostInit@{HAL\_TIM\_MspPostInit}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_MspPostInit()}{HAL\_TIM\_MspPostInit()}}
+{\footnotesize\ttfamily \label{tim_8c_a708f19bbc41b292fccf38f2d9796c46a} 
+void HAL\+\_\+\+TIM\+\_\+\+Msp\+Post\+Init (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{tim\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+TIM MSP 초기화 후처리 (GPIO 대체 기능 설정) 
+
+HAL\+\_\+\+TIM\+\_\+\+PWM\+\_\+\+Init() 완료 후 자동 호출된다. TIM1에 대해 PWM 출력 핀의 GPIO 대체 기능(\+AF)을 설정한다.
+
+TIM1 GPIO 핀 매핑:\+ 
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}핀  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}채널  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}AF  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}설명  \\
+PB15  &CH3N  &GPIO\+\_\+\+AF4\+\_\+\+TIM1  &C상 하단 암  \\
+PA8  &CH1  &GPIO\+\_\+\+AF6\+\_\+\+TIM1  &A상 상단 암  \\
+PA9  &CH2  &GPIO\+\_\+\+AF6\+\_\+\+TIM1  &B상 상단 암  \\
+PA10  &CH3  &GPIO\+\_\+\+AF6\+\_\+\+TIM1  &C상 상단 암  \\
+PA11  &CH1N  &GPIO\+\_\+\+AF6\+\_\+\+TIM1  &A상 하단 암  \\
+PA12  &CH2N  &GPIO\+\_\+\+AF6\+\_\+\+TIM1  &B상 하단 암  \\
+\end{DoxyTable}
+
+
+
+\begin{DoxyParams}[1]{매개변수}
+\doxymbox{\texttt{in}}  & {\em tim\+Handle} & 초기화 완료된 타이머 핸들 포인터 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{tim_8c_source}{tim.\+c}} 파일의 \doxymbox{\hyperlink{tim_8c_source_l00309}{309}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00310\ \{}
+\DoxyCodeLine{00311\ \ \ GPIO\_InitTypeDef\ GPIO\_InitStruct\ =\ \{0\};}
+\DoxyCodeLine{00312\ \ \ \textcolor{keywordflow}{if}\ (timHandle-\/>Instance\ ==\ TIM1)}
+\DoxyCodeLine{00313\ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspPostInit\ 0\ */}}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspPostInit\ 0\ */}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \_\_HAL\_RCC\_GPIOB\_CLK\_ENABLE();}
+\DoxyCodeLine{00318\ \ \ \ \ \_\_HAL\_RCC\_GPIOA\_CLK\_ENABLE();}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{comment}{/*\ PB15\ →\ TIM1\_CH3N\ (AF4)\ */}}
+\DoxyCodeLine{00321\ \ \ \ \ GPIO\_InitStruct.Pin\ \ \ \ \ \ \ =\ GPIO\_PIN\_15;}
+\DoxyCodeLine{00322\ \ \ \ \ GPIO\_InitStruct.Mode\ \ \ \ \ \ =\ GPIO\_MODE\_AF\_PP;}
+\DoxyCodeLine{00323\ \ \ \ \ GPIO\_InitStruct.Pull\ \ \ \ \ \ =\ GPIO\_NOPULL;}
+\DoxyCodeLine{00324\ \ \ \ \ GPIO\_InitStruct.Speed\ \ \ \ \ =\ GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{00325\ \ \ \ \ GPIO\_InitStruct.Alternate\ =\ GPIO\_AF4\_TIM1;}
+\DoxyCodeLine{00326\ \ \ \ \ HAL\_GPIO\_Init(GPIOB,\ \&GPIO\_InitStruct);}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{comment}{/*\ PA8\string~PA12\ →\ TIM1\_CH1\string~CH3,\ CH1N\string~CH2N\ (AF6)\ */}}
+\DoxyCodeLine{00329\ \ \ \ \ GPIO\_InitStruct.Pin\ \ \ \ \ \ \ =\ GPIO\_PIN\_8\ |\ GPIO\_PIN\_9\ |\ GPIO\_PIN\_10}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ GPIO\_PIN\_11\ |\ GPIO\_PIN\_12;}
+\DoxyCodeLine{00331\ \ \ \ \ GPIO\_InitStruct.Alternate\ =\ GPIO\_AF6\_TIM1;}
+\DoxyCodeLine{00332\ \ \ \ \ HAL\_GPIO\_Init(GPIOA,\ \&GPIO\_InitStruct);}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspPostInit\ 1\ */}}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspPostInit\ 1\ */}}
+\DoxyCodeLine{00336\ \ \ \}}
+\DoxyCodeLine{00337\ \}}
+
+\end{DoxyCode}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tim_8c_a708f19bbc41b292fccf38f2d9796c46a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tim_8c_ac4b6b63257bb307dd93a4d5f45e39172}\index{tim.c@{tim.c}!MX\_TIM15\_Init@{MX\_TIM15\_Init}}
+\index{MX\_TIM15\_Init@{MX\_TIM15\_Init}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{MX\_TIM15\_Init()}{MX\_TIM15\_Init()}}
+{\footnotesize\ttfamily \label{tim_8c_ac4b6b63257bb307dd93a4d5f45e39172} 
+void MX\+\_\+\+TIM15\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+TIM15 초기화 (보조 타이머) 
+
+RC 수신기 PWM 측정 등 저속 보조 목적으로 사용되는 타이머를 설정한다.
+
+
+\begin{DoxyItemize}
+\item Prescaler = 4200:\+ 170MHz /\+ 4201 ≈ 40.\+47k\+Hz 타이머 클럭
+\item Period = 9999:\+ 약 247ms 주기 (오버플로우 기준)
+\end{DoxyItemize}
+
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxymbox{\hyperlink{tim_8c_source}{tim.\+c}} 파일의 \doxymbox{\hyperlink{tim_8c_source_l00207}{207}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_Init\ 0\ */}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_Init\ 0\ */}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ TIM\_ClockConfigTypeDef\ \ sClockSourceConfig\ =\ \{0\};}
+\DoxyCodeLine{00214\ \ \ TIM\_MasterConfigTypeDef\ sMasterConfig\ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_Init\ 1\ */}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_Init\ 1\ */}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Instance\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ TIM15;}
+\DoxyCodeLine{00221\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.Prescaler\ \ \ \ \ \ \ \ \ =\ 4200;}
+\DoxyCodeLine{00222\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.CounterMode\ \ \ \ \ \ \ =\ TIM\_COUNTERMODE\_UP;}
+\DoxyCodeLine{00223\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.Period\ \ \ \ \ \ \ \ \ \ \ \ =\ 9999;}
+\DoxyCodeLine{00224\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.ClockDivision\ \ \ \ \ =\ TIM\_CLOCKDIVISION\_DIV1;}
+\DoxyCodeLine{00225\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.RepetitionCounter\ =\ 0;}
+\DoxyCodeLine{00226\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.AutoReloadPreload\ =\ TIM\_AUTORELOAD\_PRELOAD\_DISABLE;}
+\DoxyCodeLine{00227\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_Base\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ sClockSourceConfig.ClockSource\ =\ TIM\_CLOCKSOURCE\_INTERNAL;}
+\DoxyCodeLine{00230\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_ConfigClockSource(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}},\ \&sClockSourceConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ sMasterConfig.MasterOutputTrigger\ =\ TIM\_TRGO\_RESET;}
+\DoxyCodeLine{00233\ \ \ sMasterConfig.MasterSlaveMode\ \ \ \ \ =\ TIM\_MASTERSLAVEMODE\_DISABLE;}
+\DoxyCodeLine{00234\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIMEx\_MasterConfigSynchronization(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}},\ \&sMasterConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_Init\ 2\ */}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_Init\ 2\ */}}
+\DoxyCodeLine{00239\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{tim_8c_ac4b6b63257bb307dd93a4d5f45e39172_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{tim_8c_ac4b6b63257bb307dd93a4d5f45e39172_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tim_8c_ad1f9d42690163f73f73e5b820c81ca14}\index{tim.c@{tim.c}!MX\_TIM1\_Init@{MX\_TIM1\_Init}}
+\index{MX\_TIM1\_Init@{MX\_TIM1\_Init}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{MX\_TIM1\_Init()}{MX\_TIM1\_Init()}}
+{\footnotesize\ttfamily \label{tim_8c_ad1f9d42690163f73f73e5b820c81ca14} 
+void MX\+\_\+\+TIM1\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+TIM1 초기화 (3상 Center-\/\+Aligned PWM) 
+
+TIM1을 3상 인버터 PWM 출력용으로 설정한다. 슬레이브 모드(RESET/\+\+ITR1)로 TIM2와 동기화되며, TRGO2(\+OC4\+REF)로 ADC 변환을 트리거한다.
+
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\texorpdfstring{$<$}{<} 프리스케일러 없음 (170MHz)
+
+\texorpdfstring{$<$}{<} Center-\/\+Aligned Mode 2
+
+\texorpdfstring{$<$}{<} 170MHz /\+ (2×4200) ≈ 20.\+24k\+Hz
+
+\texorpdfstring{$<$}{<} ≈ 206ns @170MHz
+
+\doxymbox{\hyperlink{tim_8c_source}{tim.\+c}} 파일의 \doxymbox{\hyperlink{tim_8c_source_l00062}{62}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_Init\ 0\ */}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_Init\ 0\ */}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ TIM\_ClockConfigTypeDef\ \ \ \ \ \ \ sClockSourceConfig\ \ =\ \{0\};}
+\DoxyCodeLine{00069\ \ \ TIM\_SlaveConfigTypeDef\ \ \ \ \ \ \ sSlaveConfig\ \ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{00070\ \ \ TIM\_MasterConfigTypeDef\ \ \ \ \ \ sMasterConfig\ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{00071\ \ \ TIM\_OC\_InitTypeDef\ \ \ \ \ \ \ \ \ \ \ sConfigOC\ \ \ \ \ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{00072\ \ \ TIM\_BreakDeadTimeConfigTypeDef\ sBreakDeadTimeConfig\ =\ \{0\};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_Init\ 1\ */}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_Init\ 1\ */}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{/*\ TIM1\ 기본\ 설정\ */}}
+\DoxyCodeLine{00079\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Instance\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ TIM1;}
+\DoxyCodeLine{00080\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.Prescaler\ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.CounterMode\ \ \ \ \ \ \ =\ TIM\_COUNTERMODE\_CENTERALIGNED2;\ }
+\DoxyCodeLine{00082\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.Period\ \ \ \ \ \ \ \ \ \ \ \ =\ 4200;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.ClockDivision\ \ \ \ \ =\ TIM\_CLOCKDIVISION\_DIV1;}
+\DoxyCodeLine{00084\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.RepetitionCounter\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.AutoReloadPreload\ =\ TIM\_AUTORELOAD\_PRELOAD\_DISABLE;}
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_Base\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ sClockSourceConfig.ClockSource\ =\ TIM\_CLOCKSOURCE\_INTERNAL;}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_ConfigClockSource(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sClockSourceConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_PWM\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \textcolor{comment}{/*\ 슬레이브\ 모드:\ TIM2\ TRGO(ITR1)로\ 카운터\ 리셋\ */}}
+\DoxyCodeLine{00094\ \ \ sSlaveConfig.SlaveMode\ \ \ \ =\ TIM\_SLAVEMODE\_RESET;}
+\DoxyCodeLine{00095\ \ \ sSlaveConfig.InputTrigger\ =\ TIM\_TS\_ITR1;}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_SlaveConfigSynchro(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sSlaveConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \textcolor{comment}{/*\ 마스터\ 출력:\ TRGO/TRGO2\ =\ OC4REF\ →\ ADC\ 트리거\ */}}
+\DoxyCodeLine{00099\ \ \ sMasterConfig.MasterOutputTrigger\ \ =\ TIM\_TRGO\_OC4REF;}
+\DoxyCodeLine{00100\ \ \ sMasterConfig.MasterOutputTrigger2\ =\ TIM\_TRGO2\_OC4REF;}
+\DoxyCodeLine{00101\ \ \ sMasterConfig.MasterSlaveMode\ \ \ \ \ \ =\ TIM\_MASTERSLAVEMODE\_DISABLE;}
+\DoxyCodeLine{00102\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIMEx\_MasterConfigSynchronization(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sMasterConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{comment}{/*\ CH1\string~CH3:\ PWM\ Mode\ 1,\ 초기\ 듀티\ 0\ */}}
+\DoxyCodeLine{00105\ \ \ sConfigOC.OCMode\ \ \ \ \ \ \ =\ TIM\_OCMODE\_PWM1;}
+\DoxyCodeLine{00106\ \ \ sConfigOC.Pulse\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00107\ \ \ sConfigOC.OCPolarity\ \ \ =\ TIM\_OCPOLARITY\_HIGH;}
+\DoxyCodeLine{00108\ \ \ sConfigOC.OCNPolarity\ \ =\ TIM\_OCNPOLARITY\_HIGH;}
+\DoxyCodeLine{00109\ \ \ sConfigOC.OCFastMode\ \ \ =\ TIM\_OCFAST\_DISABLE;}
+\DoxyCodeLine{00110\ \ \ sConfigOC.OCIdleState\ \ =\ TIM\_OCIDLESTATE\_RESET;}
+\DoxyCodeLine{00111\ \ \ sConfigOC.OCNIdleState\ =\ TIM\_OCNIDLESTATE\_RESET;}
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_PWM\_ConfigChannel(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sConfigOC,\ TIM\_CHANNEL\_1)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_PWM\_ConfigChannel(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sConfigOC,\ TIM\_CHANNEL\_2)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_PWM\_ConfigChannel(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sConfigOC,\ TIM\_CHANNEL\_3)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \textcolor{comment}{/*\ Dead-\/Time\ 및\ Break\ 설정\ */}}
+\DoxyCodeLine{00117\ \ \ sBreakDeadTimeConfig.OffStateRunMode\ \ \ =\ TIM\_OSSR\_DISABLE;}
+\DoxyCodeLine{00118\ \ \ sBreakDeadTimeConfig.OffStateIDLEMode\ \ =\ TIM\_OSSI\_DISABLE;}
+\DoxyCodeLine{00119\ \ \ sBreakDeadTimeConfig.LockLevel\ \ \ \ \ \ \ \ \ =\ TIM\_LOCKLEVEL\_OFF;}
+\DoxyCodeLine{00120\ \ \ sBreakDeadTimeConfig.DeadTime\ \ \ \ \ \ \ \ \ \ =\ 35;\ \ }
+\DoxyCodeLine{00121\ \ \ sBreakDeadTimeConfig.BreakState\ \ \ \ \ \ \ \ =\ TIM\_BREAK\_DISABLE;}
+\DoxyCodeLine{00122\ \ \ sBreakDeadTimeConfig.BreakPolarity\ \ \ \ \ =\ TIM\_BREAKPOLARITY\_HIGH;}
+\DoxyCodeLine{00123\ \ \ sBreakDeadTimeConfig.BreakFilter\ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00124\ \ \ sBreakDeadTimeConfig.BreakAFMode\ \ \ \ \ \ \ =\ TIM\_BREAK\_AFMODE\_INPUT;}
+\DoxyCodeLine{00125\ \ \ sBreakDeadTimeConfig.Break2State\ \ \ \ \ \ \ =\ TIM\_BREAK2\_DISABLE;}
+\DoxyCodeLine{00126\ \ \ sBreakDeadTimeConfig.Break2Polarity\ \ \ \ =\ TIM\_BREAK2POLARITY\_HIGH;}
+\DoxyCodeLine{00127\ \ \ sBreakDeadTimeConfig.Break2Filter\ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00128\ \ \ sBreakDeadTimeConfig.Break2AFMode\ \ \ \ \ \ =\ TIM\_BREAK\_AFMODE\_INPUT;}
+\DoxyCodeLine{00129\ \ \ sBreakDeadTimeConfig.AutomaticOutput\ \ \ =\ TIM\_AUTOMATICOUTPUT\_DISABLE;}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIMEx\_ConfigBreakDeadTime(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sBreakDeadTimeConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_Init\ 2\ */}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_Init\ 2\ */}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \doxymbox{\hyperlink{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}{HAL\_TIM\_MspPostInit}}(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}});}
+\DoxyCodeLine{00137\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{tim_8c_ad1f9d42690163f73f73e5b820c81ca14_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{tim_8c_ad1f9d42690163f73f73e5b820c81ca14_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202}\index{tim.c@{tim.c}!MX\_TIM2\_Init@{MX\_TIM2\_Init}}
+\index{MX\_TIM2\_Init@{MX\_TIM2\_Init}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{MX\_TIM2\_Init()}{MX\_TIM2\_Init()}}
+{\footnotesize\ttfamily \label{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202} 
+void MX\+\_\+\+TIM2\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+TIM2 초기화 (제어 루프 트리거 /\+ ADC TRGO) 
+
+TIM2를 10k\+Hz 제어 루프 인터럽트 소스 및 ADC Injected 트리거로 설정한다.
+
+
+\begin{DoxyItemize}
+\item Period = 16999:\+ 170MHz /\+ 17000 = 10k\+Hz (100µs 주기)
+\item CH2 Pulse = 2100:\+ 카운터 중간 시점에서 \doxylink{control_8c_afb486c446e28753e3dca5112dfdc8264}{Control()} 인터럽트 발생
+\item TRGO = OC1:\+ ADC Injected 채널 외부 트리거
+\item Master Mode 활성화:\+ TIM1 슬레이브와 동기
+\end{DoxyItemize}
+
+
+\begin{DoxyRetVals}{반환값}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\texorpdfstring{$<$}{<} 170MHz 직접 사용
+
+\texorpdfstring{$<$}{<} 100µs 주기
+
+\doxymbox{\hyperlink{tim_8c_source}{tim.\+c}} 파일의 \doxymbox{\hyperlink{tim_8c_source_l00152}{152}} 번째 라인에서 정의되었습니다.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00153\ \{}
+\DoxyCodeLine{00154\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_Init\ 0\ */}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_Init\ 0\ */}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ TIM\_ClockConfigTypeDef\ \ sClockSourceConfig\ =\ \{0\};}
+\DoxyCodeLine{00159\ \ \ TIM\_MasterConfigTypeDef\ sMasterConfig\ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{00160\ \ \ TIM\_OC\_InitTypeDef\ \ \ \ \ \ sConfigOC\ \ \ \ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_Init\ 1\ */}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_Init\ 1\ */}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Instance\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ TIM2;}
+\DoxyCodeLine{00167\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.Prescaler\ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.CounterMode\ \ \ \ \ \ \ =\ TIM\_COUNTERMODE\_UP;}
+\DoxyCodeLine{00169\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.Period\ \ \ \ \ \ \ \ \ \ \ \ =\ 16999;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.ClockDivision\ \ \ \ \ =\ TIM\_CLOCKDIVISION\_DIV1;}
+\DoxyCodeLine{00171\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.AutoReloadPreload\ =\ TIM\_AUTORELOAD\_PRELOAD\_DISABLE;}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_Base\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ sClockSourceConfig.ClockSource\ =\ TIM\_CLOCKSOURCE\_INTERNAL;}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_ConfigClockSource(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}},\ \&sClockSourceConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_OC\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \textcolor{comment}{/*\ TRGO\ =\ OC1\ →\ ADC\ Injected\ 트리거\ */}}
+\DoxyCodeLine{00180\ \ \ sMasterConfig.MasterOutputTrigger\ =\ TIM\_TRGO\_OC1;}
+\DoxyCodeLine{00181\ \ \ sMasterConfig.MasterSlaveMode\ \ \ \ \ =\ TIM\_MASTERSLAVEMODE\_ENABLE;}
+\DoxyCodeLine{00182\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIMEx\_MasterConfigSynchronization(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}},\ \&sMasterConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \textcolor{comment}{/*\ CH2:\ OC\ Timing\ 모드,\ Pulse=2100\ →\ 인터럽트\ 발생\ 시점\ */}}
+\DoxyCodeLine{00185\ \ \ sConfigOC.OCMode\ \ \ \ \ =\ TIM\_OCMODE\_TIMING;}
+\DoxyCodeLine{00186\ \ \ sConfigOC.Pulse\ \ \ \ \ \ =\ 2100;}
+\DoxyCodeLine{00187\ \ \ sConfigOC.OCPolarity\ =\ TIM\_OCPOLARITY\_HIGH;}
+\DoxyCodeLine{00188\ \ \ sConfigOC.OCFastMode\ =\ TIM\_OCFAST\_DISABLE;}
+\DoxyCodeLine{00189\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_OC\_ConfigChannel(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}},\ \&sConfigOC,\ TIM\_CHANNEL\_2)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_Init\ 2\ */}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_Init\ 2\ */}}
+\DoxyCodeLine{00194\ \}}
+
+\end{DoxyCode}
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202_cgraph}
+\end{center}
+\end{figure}
+이 함수를 호출하는 함수들에 대한 그래프입니다.:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202_icgraph}
+\end{center}
+\end{figure}

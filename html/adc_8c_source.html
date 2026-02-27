@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RC_Driver: C:/Users/USER/OneDrive/Desktop/doxygen/RC_DRIVER/adc.c 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">RC_Driver<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('adc_8c_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">adc.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="adc_8c.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="adc_8c.html#a6468e4f5307fe3787196c448082edfa4">   25</a></span><span class="preprocessor">#define ADC12BIT  4095.1f  </span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="adc_8c.html#abb6c4ee522ebd1493a24229158ba9289">   26</a></span><span class="preprocessor">#define ADC_RESOL ADC12BIT </span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;adc.h&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;stm32g4xx_it.h&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;inv.h&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#ga734b67f14f678f4b701be37706729cd0">   36</a></span><span class="keywordtype">int</span> <a class="code hl_variable" href="group___a_d_c___variables.html#ga734b67f14f678f4b701be37706729cd0">AdInitFlag</a> = 0; </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">   38</a></span><span class="keywordtype">float</span> <a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[4]     = {0.f, 0.f, 0.f, 0.f}; </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">   39</a></span><span class="keywordtype">float</span> <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[4] = {0.f, 0.f, 0.f, 0.f}; </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">   41</a></span><span class="keywordtype">float</span> <a class="code hl_variable" href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">ADC1_Offset</a>[3]             = {2048.f, 2048.f, 2048.f}; </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">   42</a></span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">ADC1_Offset_sum</a>[3] = {0, 0, 0};                </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#ga179af1226d9481eedeaa735e688c4553">   44</a></span><span class="keywordtype">float</span> <a class="code hl_variable" href="group___a_d_c___variables.html#ga179af1226d9481eedeaa735e688c4553">scale_comp</a> = 1.0f; </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#ga30578536ba1b4f97bf46c3e23a4656af">   50</a></span><span class="keywordtype">float</span> <a class="code hl_variable" href="group___a_d_c___variables.html#ga30578536ba1b4f97bf46c3e23a4656af">ADCgain</a>[4] = {1.0f, 1.0f, 1.0f, 1.0f};</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#gaa84d1b34b367ee7ae68cfdb9161260cc">   52</a></span><span class="keywordtype">float</span>        <a class="code hl_variable" href="group___a_d_c___variables.html#gaa84d1b34b367ee7ae68cfdb9161260cc">Ia_arr</a>[3000]; </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#ga62322c9b26bf52d62a48597667468e2e">   53</a></span><span class="keywordtype">int</span>          <a class="code hl_variable" href="group___a_d_c___variables.html#ga62322c9b26bf52d62a48597667468e2e">store_cnt</a>  = 0; </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#gaefc0d46c6253b25ffa506d5430abe433">   54</a></span><span class="keywordtype">int</span>          <a class="code hl_variable" href="group___a_d_c___variables.html#gaefc0d46c6253b25ffa506d5430abe433">store_flag</a> = 0; </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="group___a_d_c___variables.html#ga263585f5810892154827fe50fa03970f">   55</a></span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="group___a_d_c___variables.html#ga263585f5810892154827fe50fa03970f">AdOffCalcCnt</a> = 0; </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">   59</a></span>ADC_HandleTypeDef <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>; </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c">   72</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c">MX_ADC1_Init</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    ADC_MultiModeTypeDef     multimode       = {0};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    ADC_ChannelConfTypeDef   sConfig         = {0};</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    ADC_InjectionConfTypeDef sConfigInjected = {0};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Instance                   = ADC1;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.ClockPrescaler        = ADC_CLOCK_SYNC_PCLK_DIV4;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.Resolution            = ADC_RESOLUTION_12B;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.DataAlign             = ADC_DATAALIGN_RIGHT;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.GainCompensation      = 0;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.ScanConvMode          = ADC_SCAN_ENABLE;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.EOCSelection          = ADC_EOC_SINGLE_CONV;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.LowPowerAutoWait      = DISABLE;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.ContinuousConvMode    = DISABLE;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.NbrOfConversion       = 1;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.DiscontinuousConvMode = DISABLE;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.ExternalTrigConv      = ADC_SOFTWARE_START;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.ExternalTrigConvEdge  = ADC_EXTERNALTRIGCONVEDGE_NONE;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.DMAContinuousRequests = DISABLE;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.Overrun               = ADC_OVR_DATA_PRESERVED;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>.Init.OversamplingMode      = DISABLE;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">if</span> (HAL_ADC_Init(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    multimode.Mode = ADC_MODE_INDEPENDENT;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">if</span> (HAL_ADCEx_MultiModeConfigChannel(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>, &amp;multimode) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">/* Regular CH1 (초기화만 수행) */</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    sConfig.Channel      = ADC_CHANNEL_1;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    sConfig.Rank         = ADC_REGULAR_RANK_1;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    sConfig.SingleDiff   = ADC_SINGLE_ENDED;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    sConfig.OffsetNumber = ADC_OFFSET_NONE;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    sConfig.Offset       = 0;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">if</span> (HAL_ADC_ConfigChannel(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>, &amp;sConfig) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">/* Injected CH1~CH3 (Ia/Ib/Ic): TIM2 TRGO 트리거 */</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    sConfigInjected.InjectedChannel               = ADC_CHANNEL_1;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    sConfigInjected.InjectedRank                  = ADC_INJECTED_RANK_1;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    sConfigInjected.InjectedSamplingTime          = ADC_SAMPLETIME_2CYCLES_5;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    sConfigInjected.InjectedSingleDiff            = ADC_SINGLE_ENDED;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    sConfigInjected.InjectedOffsetNumber          = ADC_OFFSET_NONE;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    sConfigInjected.InjectedOffset                = 0;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    sConfigInjected.InjectedNbrOfConversion       = 4;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    sConfigInjected.InjectedDiscontinuousConvMode = DISABLE;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    sConfigInjected.AutoInjectedConv              = DISABLE;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    sConfigInjected.QueueInjectedContext          = DISABLE;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    sConfigInjected.ExternalTrigInjecConv         = ADC_EXTERNALTRIGINJEC_T2_TRGO;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    sConfigInjected.ExternalTrigInjecConvEdge     = ADC_EXTERNALTRIGINJECCONV_EDGE_RISING;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    sConfigInjected.InjecOversamplingMode         = DISABLE;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">if</span> (HAL_ADCEx_InjectedConfigChannel(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>, &amp;sConfigInjected) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    sConfigInjected.InjectedChannel = ADC_CHANNEL_2;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    sConfigInjected.InjectedRank    = ADC_INJECTED_RANK_2;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">if</span> (HAL_ADCEx_InjectedConfigChannel(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>, &amp;sConfigInjected) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    sConfigInjected.InjectedChannel = ADC_CHANNEL_3;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    sConfigInjected.InjectedRank    = ADC_INJECTED_RANK_3;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordflow">if</span> (HAL_ADCEx_InjectedConfigChannel(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>, &amp;sConfigInjected) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">/* Injected CH4 (Vdc): 47.5 사이클 샘플링 */</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    sConfigInjected.InjectedChannel      = ADC_CHANNEL_4;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    sConfigInjected.InjectedRank         = ADC_INJECTED_RANK_4;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    sConfigInjected.InjectedSamplingTime = ADC_SAMPLETIME_47CYCLES_5;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordflow">if</span> (HAL_ADCEx_InjectedConfigChannel(&amp;<a class="code hl_variable" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>, &amp;sConfigInjected) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>}</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span></div>
+<div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="adc_8c.html#ac3139540667c403c5dfd37a99c610b1c">  147</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8c.html#ac3139540667c403c5dfd37a99c610b1c">HAL_ADC_MspInit</a>(ADC_HandleTypeDef *adcHandle)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>{</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    GPIO_InitTypeDef         GPIO_InitStruct = {0};</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    RCC_PeriphCLKInitTypeDef PeriphClkInit  = {0};</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">if</span> (adcHandle-&gt;Instance == ADC1)</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC12;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        PeriphClkInit.Adc12ClockSelection  = RCC_ADC12CLKSOURCE_SYSCLK;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">if</span> (HAL_RCCEx_PeriphCLKConfig(&amp;PeriphClkInit) != HAL_OK) { <a class="code hl_function" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(); }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        __HAL_RCC_ADC12_CLK_ENABLE();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        __HAL_RCC_GPIOA_CLK_ENABLE();</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="comment">/* PA0=Ia, PA1=Ib, PA2=Ic, PA3=Vdc: 아날로그 입력 */</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        GPIO_InitStruct.Pin  = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        GPIO_InitStruct.Pull = GPIO_NOPULL;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        HAL_GPIO_Init(GPIOA, &amp;GPIO_InitStruct);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        HAL_NVIC_SetPriority(ADC1_2_IRQn, 0, 0);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        HAL_NVIC_EnableIRQ(ADC1_2_IRQn);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}</div>
+</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span></div>
+<div class="foldopen" id="foldopen00177" data-start="{" data-end="}">
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="adc_8c.html#a3f61f2c2af0f122f81a87af8ad7b4360">  177</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8c.html#a3f61f2c2af0f122f81a87af8ad7b4360">HAL_ADC_MspDeInit</a>(ADC_HandleTypeDef *adcHandle)</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>{</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordflow">if</span> (adcHandle-&gt;Instance == ADC1)</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        __HAL_RCC_ADC12_CLK_DISABLE();</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        HAL_NVIC_DisableIRQ(ADC1_2_IRQn);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>}</div>
+</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span></div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="adc_8c.html#a39fd8940b1565d6d40f65b288f358c6c">  197</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8c.html#a39fd8940b1565d6d40f65b288f358c6c">AdcProcess</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>{</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[0] = (<a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[0] - <a class="code hl_variable" href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">ADC1_Offset</a>[0]) / 81.9f;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[1] = (<a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[1] - <a class="code hl_variable" href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">ADC1_Offset</a>[1]) / 81.9f;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[2] = (<a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[2] - <a class="code hl_variable" href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">ADC1_Offset</a>[2]) / 81.9f;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[3] =  <a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[3]                   / 203.4f;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Ia  = <a class="code hl_variable" href="group___a_d_c___variables.html#ga30578536ba1b4f97bf46c3e23a4656af">ADCgain</a>[0] * <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[0] * <a class="code hl_variable" href="group___a_d_c___variables.html#ga179af1226d9481eedeaa735e688c4553">scale_comp</a>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Ib  = <a class="code hl_variable" href="group___a_d_c___variables.html#ga30578536ba1b4f97bf46c3e23a4656af">ADCgain</a>[1] * <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[1] * <a class="code hl_variable" href="group___a_d_c___variables.html#ga179af1226d9481eedeaa735e688c4553">scale_comp</a>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Ic  = <a class="code hl_variable" href="group___a_d_c___variables.html#ga30578536ba1b4f97bf46c3e23a4656af">ADCgain</a>[2] * <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[2] * <a class="code hl_variable" href="group___a_d_c___variables.html#ga179af1226d9481eedeaa735e688c4553">scale_comp</a>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Vdc = <a class="code hl_variable" href="group___a_d_c___variables.html#ga30578536ba1b4f97bf46c3e23a4656af">ADCgain</a>[3] * <a class="code hl_variable" href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a>[3] * <a class="code hl_variable" href="group___a_d_c___variables.html#ga179af1226d9481eedeaa735e688c4553">scale_comp</a>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> alpha = 0.999f;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Vdc_control   = <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Vdc * (1.0f - alpha) + alpha * <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Vdc_control;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Vdc           = <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Vdc_control;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.INV_Vdc       = 1.0f / MAX(<a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Vdc_control, 1.f);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="group___a_d_c___variables.html#gaefc0d46c6253b25ffa506d5430abe433">store_flag</a> == 1) {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="group___a_d_c___variables.html#ga62322c9b26bf52d62a48597667468e2e">store_cnt</a> &lt; 3000) <a class="code hl_variable" href="group___a_d_c___variables.html#gaa84d1b34b367ee7ae68cfdb9161260cc">Ia_arr</a>[<a class="code hl_variable" href="group___a_d_c___variables.html#ga62322c9b26bf52d62a48597667468e2e">store_cnt</a>++] = <a class="code hl_variable" href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a>.Ia;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keywordflow">else</span>                  <a class="code hl_variable" href="group___a_d_c___variables.html#gaefc0d46c6253b25ffa506d5430abe433">store_flag</a> = 0;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>}</div>
+</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span></div>
+<div class="foldopen" id="foldopen00230" data-start="{" data-end="}">
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="adc_8c.html#a5c5c41c37d32d75b9a5844f877762629">  230</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8c.html#a5c5c41c37d32d75b9a5844f877762629">Offset</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>{</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> AdDummyCnt = 0;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordflow">if</span> (AdDummyCnt &lt; 5000) {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        AdDummyCnt++;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        <a class="code hl_variable" href="group___a_d_c___variables.html#ga263585f5810892154827fe50fa03970f">AdOffCalcCnt</a>++;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <a class="code hl_variable" href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">ADC1_Offset_sum</a>[0] += (<span class="keywordtype">unsigned</span> long)<a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[0];</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        <a class="code hl_variable" href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">ADC1_Offset_sum</a>[1] += (<span class="keywordtype">unsigned</span> long)<a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[1];</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <a class="code hl_variable" href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">ADC1_Offset_sum</a>[2] += (<span class="keywordtype">unsigned</span> long)<a class="code hl_variable" href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a>[2];</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="group___a_d_c___variables.html#ga263585f5810892154827fe50fa03970f">AdOffCalcCnt</a> == 5000) {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>            <a class="code hl_variable" href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">ADC1_Offset</a>[0] = (float)<a class="code hl_variable" href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">ADC1_Offset_sum</a>[0] / 5000.f;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            <a class="code hl_variable" href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">ADC1_Offset</a>[1] = (float)<a class="code hl_variable" href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">ADC1_Offset_sum</a>[1] / 5000.f;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            <a class="code hl_variable" href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">ADC1_Offset</a>[2] = (float)<a class="code hl_variable" href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">ADC1_Offset_sum</a>[2] / 5000.f;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            <a class="code hl_variable" href="group___a_d_c___variables.html#ga734b67f14f678f4b701be37706729cd0">AdInitFlag</a> = 1;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>}</div>
+</div>
+<div class="ttc" id="aadc_8c_html_a22b804736f5648d52f639b2647d4ed13"><div class="ttname"><a href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a></div><div class="ttdeci">ADC_HandleTypeDef hadc1</div><div class="ttdoc">ADC1 HAL 핸들 구조체</div><div class="ttdef"><b>Definition</b> <a href="#l00059">adc.c:59</a></div></div>
+<div class="ttc" id="aadc_8c_html_a39fd8940b1565d6d40f65b288f358c6c"><div class="ttname"><a href="adc_8c.html#a39fd8940b1565d6d40f65b288f358c6c">AdcProcess</a></div><div class="ttdeci">void AdcProcess(void)</div><div class="ttdoc">ADC 원시값을 물리량(전류/전압)으로 변환한다.</div><div class="ttdef"><b>Definition</b> <a href="#l00197">adc.c:197</a></div></div>
+<div class="ttc" id="aadc_8c_html_a3f61f2c2af0f122f81a87af8ad7b4360"><div class="ttname"><a href="adc_8c.html#a3f61f2c2af0f122f81a87af8ad7b4360">HAL_ADC_MspDeInit</a></div><div class="ttdeci">void HAL_ADC_MspDeInit(ADC_HandleTypeDef *adcHandle)</div><div class="ttdoc">ADC1 MSP 해제</div><div class="ttdef"><b>Definition</b> <a href="#l00177">adc.c:177</a></div></div>
+<div class="ttc" id="aadc_8c_html_a5c5c41c37d32d75b9a5844f877762629"><div class="ttname"><a href="adc_8c.html#a5c5c41c37d32d75b9a5844f877762629">Offset</a></div><div class="ttdeci">void Offset(void)</div><div class="ttdoc">전류 센서 오프셋을 자동 측정한다.</div><div class="ttdef"><b>Definition</b> <a href="#l00230">adc.c:230</a></div></div>
+<div class="ttc" id="aadc_8c_html_ac3139540667c403c5dfd37a99c610b1c"><div class="ttname"><a href="adc_8c.html#ac3139540667c403c5dfd37a99c610b1c">HAL_ADC_MspInit</a></div><div class="ttdeci">void HAL_ADC_MspInit(ADC_HandleTypeDef *adcHandle)</div><div class="ttdoc">ADC1 MSP 초기화 (GPIO, 클럭, NVIC 설정)</div><div class="ttdef"><b>Definition</b> <a href="#l00147">adc.c:147</a></div></div>
+<div class="ttc" id="aadc_8c_html_acccd58aa70215a6b184ad242312ffd0c"><div class="ttname"><a href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c">MX_ADC1_Init</a></div><div class="ttdeci">void MX_ADC1_Init(void)</div><div class="ttdoc">ADC1 초기화 (12비트, Injected 4채널, TIM2 TRGO 트리거)</div><div class="ttdef"><b>Definition</b> <a href="#l00072">adc.c:72</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga179af1226d9481eedeaa735e688c4553"><div class="ttname"><a href="group___a_d_c___variables.html#ga179af1226d9481eedeaa735e688c4553">scale_comp</a></div><div class="ttdeci">float scale_comp</div><div class="ttdoc">ADC 스케일링 보정 계수</div><div class="ttdef"><b>Definition</b> <a href="#l00044">adc.c:44</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga263585f5810892154827fe50fa03970f"><div class="ttname"><a href="group___a_d_c___variables.html#ga263585f5810892154827fe50fa03970f">AdOffCalcCnt</a></div><div class="ttdeci">unsigned int AdOffCalcCnt</div><div class="ttdoc">오프셋 평균 계산 카운터</div><div class="ttdef"><b>Definition</b> <a href="#l00055">adc.c:55</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga30578536ba1b4f97bf46c3e23a4656af"><div class="ttname"><a href="group___a_d_c___variables.html#ga30578536ba1b4f97bf46c3e23a4656af">ADCgain</a></div><div class="ttdeci">float ADCgain[4]</div><div class="ttdoc">ADC 채널별 게인 보정 배열</div><div class="ttdef"><b>Definition</b> <a href="#l00050">adc.c:50</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga3f46ad79f65150aec6105a862cf32624"><div class="ttname"><a href="group___a_d_c___variables.html#ga3f46ad79f65150aec6105a862cf32624">adc1Val</a></div><div class="ttdeci">float adc1Val[4]</div><div class="ttdoc">ADC1 Injected 채널 원시값 [Ia, Ib, Ic, Vdc]</div><div class="ttdef"><b>Definition</b> <a href="#l00038">adc.c:38</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga62322c9b26bf52d62a48597667468e2e"><div class="ttname"><a href="group___a_d_c___variables.html#ga62322c9b26bf52d62a48597667468e2e">store_cnt</a></div><div class="ttdeci">int store_cnt</div><div class="ttdoc">Ia_arr 저장 인덱스</div><div class="ttdef"><b>Definition</b> <a href="#l00053">adc.c:53</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga734b67f14f678f4b701be37706729cd0"><div class="ttname"><a href="group___a_d_c___variables.html#ga734b67f14f678f4b701be37706729cd0">AdInitFlag</a></div><div class="ttdeci">int AdInitFlag</div><div class="ttdoc">ADC 오프셋 보정 완료 플래그 (0: 미완료, 1: 완료)</div><div class="ttdef"><b>Definition</b> <a href="#l00036">adc.c:36</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_ga7a716cd4960c2c53daedb424e347c545"><div class="ttname"><a href="group___a_d_c___variables.html#ga7a716cd4960c2c53daedb424e347c545">ADC1_Result</a></div><div class="ttdeci">float ADC1_Result[4]</div><div class="ttdoc">오프셋/스케일 적용 후 변환값</div><div class="ttdef"><b>Definition</b> <a href="#l00039">adc.c:39</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_gaa84d1b34b367ee7ae68cfdb9161260cc"><div class="ttname"><a href="group___a_d_c___variables.html#gaa84d1b34b367ee7ae68cfdb9161260cc">Ia_arr</a></div><div class="ttdeci">float Ia_arr[3000]</div><div class="ttdoc">Ia 데이터 저장 버퍼 (디버깅용, 최대 3000샘플)</div><div class="ttdef"><b>Definition</b> <a href="#l00052">adc.c:52</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_gaaf7ce8ada81ed29a8dc65c3e5e37dc9f"><div class="ttname"><a href="group___a_d_c___variables.html#gaaf7ce8ada81ed29a8dc65c3e5e37dc9f">ADC1_Offset</a></div><div class="ttdeci">float ADC1_Offset[3]</div><div class="ttdoc">전류 채널 오프셋 (12bit 중간값 기본)</div><div class="ttdef"><b>Definition</b> <a href="#l00041">adc.c:41</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_gad15e099727465664d340076de7f99b54"><div class="ttname"><a href="group___a_d_c___variables.html#gad15e099727465664d340076de7f99b54">ADC1_Offset_sum</a></div><div class="ttdeci">unsigned long ADC1_Offset_sum[3]</div><div class="ttdoc">오프셋 누산 버퍼</div><div class="ttdef"><b>Definition</b> <a href="#l00042">adc.c:42</a></div></div>
+<div class="ttc" id="agroup___a_d_c___variables_html_gaefc0d46c6253b25ffa506d5430abe433"><div class="ttname"><a href="group___a_d_c___variables.html#gaefc0d46c6253b25ffa506d5430abe433">store_flag</a></div><div class="ttdeci">int store_flag</div><div class="ttdoc">데이터 저장 활성화 플래그 (1: 활성)</div><div class="ttdef"><b>Definition</b> <a href="#l00054">adc.c:54</a></div></div>
+<div class="ttc" id="ainv_8c_html_a5b799dff3aee9e48ae67cfe1f9075e30"><div class="ttname"><a href="inv_8c.html#a5b799dff3aee9e48ae67cfe1f9075e30">INV</a></div><div class="ttdeci">struct INVERTER INV</div><div class="ttdoc">인버터 전역 상태/파라미터 구조체</div><div class="ttdef"><b>Definition</b> <a href="inv_8c_source.html#l00053">inv.c:53</a></div></div>
+<div class="ttc" id="amain_8c_html_a1730ffe1e560465665eb47d9264826f9"><div class="ttname"><a href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a></div><div class="ttdeci">void Error_Handler(void)</div><div class="ttdoc">오류 처리 함수</div><div class="ttdef"><b>Definition</b> <a href="main_8c_source.html#l00222">main.c:222</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_4e8d938e9ddb5a617c200d5739d1f41a.html">doxygen</a></li><li class="navelem"><a href="dir_985d89a533ae4c988ecd0cc1b0a10377.html">RC_DRIVER</a></li><li class="navelem"><a href="adc_8c.html">adc.c</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

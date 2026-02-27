@@ -1,0 +1,272 @@
+\doxysection{tim.\+c}
+\hypertarget{tim_8c_source}{}\label{tim_8c_source}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/tim.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/tim.c}}
+\doxymbox{\hyperlink{tim_8c}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00039}00039\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00040}00040\ \textcolor{preprocessor}{\#include\ "{}tim.h"{}}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00042}00042\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00044}00044\ \textcolor{comment}{/*\ USER\ CODE\ END\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00048}\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{00048}}\ TIM\_HandleTypeDef\ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}};\ \ \ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00049}\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{00049}}\ TIM\_HandleTypeDef\ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}};\ \ \ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00050}\doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{00050}}\ TIM\_HandleTypeDef\ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}};\ \ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00062}\doxymbox{\hyperlink{tim_8c_ad1f9d42690163f73f73e5b820c81ca14}{00062}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{tim_8c_ad1f9d42690163f73f73e5b820c81ca14}{MX\_TIM1\_Init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00063}00063\ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00064}00064\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_Init\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00066}00066\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_Init\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00068}00068\ \ \ TIM\_ClockConfigTypeDef\ \ \ \ \ \ \ sClockSourceConfig\ \ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00069}00069\ \ \ TIM\_SlaveConfigTypeDef\ \ \ \ \ \ \ sSlaveConfig\ \ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00070}00070\ \ \ TIM\_MasterConfigTypeDef\ \ \ \ \ \ sMasterConfig\ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00071}00071\ \ \ TIM\_OC\_InitTypeDef\ \ \ \ \ \ \ \ \ \ \ sConfigOC\ \ \ \ \ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00072}00072\ \ \ TIM\_BreakDeadTimeConfigTypeDef\ sBreakDeadTimeConfig\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00074}00074\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_Init\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00076}00076\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_Init\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00078}00078\ \ \ \textcolor{comment}{/*\ TIM1\ 기본\ 설정\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00079}00079\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Instance\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ TIM1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00080}00080\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.Prescaler\ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00081}00081\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.CounterMode\ \ \ \ \ \ \ =\ TIM\_COUNTERMODE\_CENTERALIGNED2;\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00082}00082\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.Period\ \ \ \ \ \ \ \ \ \ \ \ =\ 4200;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00083}00083\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.ClockDivision\ \ \ \ \ =\ TIM\_CLOCKDIVISION\_DIV1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00084}00084\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.RepetitionCounter\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00085}00085\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}}.Init.AutoReloadPreload\ =\ TIM\_AUTORELOAD\_PRELOAD\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00086}00086\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_Base\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00088}00088\ \ \ sClockSourceConfig.ClockSource\ =\ TIM\_CLOCKSOURCE\_INTERNAL;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00089}00089\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_ConfigClockSource(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sClockSourceConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00091}00091\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_PWM\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00093}00093\ \ \ \textcolor{comment}{/*\ 슬레이브\ 모드:\ TIM2\ TRGO(ITR1)로\ 카운터\ 리셋\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00094}00094\ \ \ sSlaveConfig.SlaveMode\ \ \ \ =\ TIM\_SLAVEMODE\_RESET;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00095}00095\ \ \ sSlaveConfig.InputTrigger\ =\ TIM\_TS\_ITR1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00096}00096\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_SlaveConfigSynchro(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sSlaveConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00098}00098\ \ \ \textcolor{comment}{/*\ 마스터\ 출력:\ TRGO/TRGO2\ =\ OC4REF\ →\ ADC\ 트리거\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00099}00099\ \ \ sMasterConfig.MasterOutputTrigger\ \ =\ TIM\_TRGO\_OC4REF;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00100}00100\ \ \ sMasterConfig.MasterOutputTrigger2\ =\ TIM\_TRGO2\_OC4REF;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00101}00101\ \ \ sMasterConfig.MasterSlaveMode\ \ \ \ \ \ =\ TIM\_MASTERSLAVEMODE\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00102}00102\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIMEx\_MasterConfigSynchronization(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sMasterConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00104}00104\ \ \ \textcolor{comment}{/*\ CH1\string~CH3:\ PWM\ Mode\ 1,\ 초기\ 듀티\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00105}00105\ \ \ sConfigOC.OCMode\ \ \ \ \ \ \ =\ TIM\_OCMODE\_PWM1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00106}00106\ \ \ sConfigOC.Pulse\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00107}00107\ \ \ sConfigOC.OCPolarity\ \ \ =\ TIM\_OCPOLARITY\_HIGH;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00108}00108\ \ \ sConfigOC.OCNPolarity\ \ =\ TIM\_OCNPOLARITY\_HIGH;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00109}00109\ \ \ sConfigOC.OCFastMode\ \ \ =\ TIM\_OCFAST\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00110}00110\ \ \ sConfigOC.OCIdleState\ \ =\ TIM\_OCIDLESTATE\_RESET;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00111}00111\ \ \ sConfigOC.OCNIdleState\ =\ TIM\_OCNIDLESTATE\_RESET;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00112}00112\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_PWM\_ConfigChannel(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sConfigOC,\ TIM\_CHANNEL\_1)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00113}00113\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_PWM\_ConfigChannel(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sConfigOC,\ TIM\_CHANNEL\_2)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00114}00114\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_PWM\_ConfigChannel(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sConfigOC,\ TIM\_CHANNEL\_3)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00116}00116\ \ \ \textcolor{comment}{/*\ Dead-\/Time\ 및\ Break\ 설정\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00117}00117\ \ \ sBreakDeadTimeConfig.OffStateRunMode\ \ \ =\ TIM\_OSSR\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00118}00118\ \ \ sBreakDeadTimeConfig.OffStateIDLEMode\ \ =\ TIM\_OSSI\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00119}00119\ \ \ sBreakDeadTimeConfig.LockLevel\ \ \ \ \ \ \ \ \ =\ TIM\_LOCKLEVEL\_OFF;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00120}00120\ \ \ sBreakDeadTimeConfig.DeadTime\ \ \ \ \ \ \ \ \ \ =\ 35;\ \ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00121}00121\ \ \ sBreakDeadTimeConfig.BreakState\ \ \ \ \ \ \ \ =\ TIM\_BREAK\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00122}00122\ \ \ sBreakDeadTimeConfig.BreakPolarity\ \ \ \ \ =\ TIM\_BREAKPOLARITY\_HIGH;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00123}00123\ \ \ sBreakDeadTimeConfig.BreakFilter\ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00124}00124\ \ \ sBreakDeadTimeConfig.BreakAFMode\ \ \ \ \ \ \ =\ TIM\_BREAK\_AFMODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00125}00125\ \ \ sBreakDeadTimeConfig.Break2State\ \ \ \ \ \ \ =\ TIM\_BREAK2\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00126}00126\ \ \ sBreakDeadTimeConfig.Break2Polarity\ \ \ \ =\ TIM\_BREAK2POLARITY\_HIGH;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00127}00127\ \ \ sBreakDeadTimeConfig.Break2Filter\ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00128}00128\ \ \ sBreakDeadTimeConfig.Break2AFMode\ \ \ \ \ \ =\ TIM\_BREAK\_AFMODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00129}00129\ \ \ sBreakDeadTimeConfig.AutomaticOutput\ \ \ =\ TIM\_AUTOMATICOUTPUT\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00130}00130\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIMEx\_ConfigBreakDeadTime(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}},\ \&sBreakDeadTimeConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00132}00132\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_Init\ 2\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00134}00134\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_Init\ 2\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00136}00136\ \ \ \doxymbox{\hyperlink{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}{HAL\_TIM\_MspPostInit}}(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga25fc663547539bc49fecc0011bd76ab5}{htim1}});}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00137}00137\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00152}\doxymbox{\hyperlink{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202}{00152}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202}{MX\_TIM2\_Init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00153}00153\ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00154}00154\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_Init\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00156}00156\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_Init\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00158}00158\ \ \ TIM\_ClockConfigTypeDef\ \ sClockSourceConfig\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00159}00159\ \ \ TIM\_MasterConfigTypeDef\ sMasterConfig\ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00160}00160\ \ \ TIM\_OC\_InitTypeDef\ \ \ \ \ \ sConfigOC\ \ \ \ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00162}00162\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_Init\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00164}00164\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_Init\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00166}00166\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Instance\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ TIM2;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00167}00167\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.Prescaler\ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00168}00168\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.CounterMode\ \ \ \ \ \ \ =\ TIM\_COUNTERMODE\_UP;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00169}00169\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.Period\ \ \ \ \ \ \ \ \ \ \ \ =\ 16999;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00170}00170\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.ClockDivision\ \ \ \ \ =\ TIM\_CLOCKDIVISION\_DIV1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00171}00171\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}}.Init.AutoReloadPreload\ =\ TIM\_AUTORELOAD\_PRELOAD\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00172}00172\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_Base\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00174}00174\ \ \ sClockSourceConfig.ClockSource\ =\ TIM\_CLOCKSOURCE\_INTERNAL;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00175}00175\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_ConfigClockSource(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}},\ \&sClockSourceConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00177}00177\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_OC\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00179}00179\ \ \ \textcolor{comment}{/*\ TRGO\ =\ OC1\ →\ ADC\ Injected\ 트리거\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00180}00180\ \ \ sMasterConfig.MasterOutputTrigger\ =\ TIM\_TRGO\_OC1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00181}00181\ \ \ sMasterConfig.MasterSlaveMode\ \ \ \ \ =\ TIM\_MASTERSLAVEMODE\_ENABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00182}00182\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIMEx\_MasterConfigSynchronization(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}},\ \&sMasterConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00184}00184\ \ \ \textcolor{comment}{/*\ CH2:\ OC\ Timing\ 모드,\ Pulse=2100\ →\ 인터럽트\ 발생\ 시점\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00185}00185\ \ \ sConfigOC.OCMode\ \ \ \ \ =\ TIM\_OCMODE\_TIMING;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00186}00186\ \ \ sConfigOC.Pulse\ \ \ \ \ \ =\ 2100;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00187}00187\ \ \ sConfigOC.OCPolarity\ =\ TIM\_OCPOLARITY\_HIGH;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00188}00188\ \ \ sConfigOC.OCFastMode\ =\ TIM\_OCFAST\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00189}00189\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_OC\_ConfigChannel(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga2c80fd5510e2990a59a5c90d745c716c}{htim2}},\ \&sConfigOC,\ TIM\_CHANNEL\_2)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00191}00191\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_Init\ 2\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00193}00193\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_Init\ 2\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00194}00194\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00207}\doxymbox{\hyperlink{tim_8c_ac4b6b63257bb307dd93a4d5f45e39172}{00207}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{tim_8c_ac4b6b63257bb307dd93a4d5f45e39172}{MX\_TIM15\_Init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00208}00208\ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00209}00209\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_Init\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00211}00211\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_Init\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00213}00213\ \ \ TIM\_ClockConfigTypeDef\ \ sClockSourceConfig\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00214}00214\ \ \ TIM\_MasterConfigTypeDef\ sMasterConfig\ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00216}00216\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_Init\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00218}00218\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_Init\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00220}00220\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Instance\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ TIM15;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00221}00221\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.Prescaler\ \ \ \ \ \ \ \ \ =\ 4200;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00222}00222\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.CounterMode\ \ \ \ \ \ \ =\ TIM\_COUNTERMODE\_UP;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00223}00223\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.Period\ \ \ \ \ \ \ \ \ \ \ \ =\ 9999;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00224}00224\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.ClockDivision\ \ \ \ \ =\ TIM\_CLOCKDIVISION\_DIV1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00225}00225\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.RepetitionCounter\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00226}00226\ \ \ \doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}}.Init.AutoReloadPreload\ =\ TIM\_AUTORELOAD\_PRELOAD\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00227}00227\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_Base\_Init(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}})\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00229}00229\ \ \ sClockSourceConfig.ClockSource\ =\ TIM\_CLOCKSOURCE\_INTERNAL;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00230}00230\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIM\_ConfigClockSource(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}},\ \&sClockSourceConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00232}00232\ \ \ sMasterConfig.MasterOutputTrigger\ =\ TIM\_TRGO\_RESET;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00233}00233\ \ \ sMasterConfig.MasterSlaveMode\ \ \ \ \ =\ TIM\_MASTERSLAVEMODE\_DISABLE;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00234}00234\ \ \ \textcolor{keywordflow}{if}\ (HAL\_TIMEx\_MasterConfigSynchronization(\&\doxymbox{\hyperlink{group___t_i_m___handles_ga859a9bb217bb4010bb2bffb6881478c0}{htim15}},\ \&sMasterConfig)\ !=\ HAL\_OK)\ \{\ \doxymbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00236}00236\ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_Init\ 2\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00238}00238\ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_Init\ 2\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00239}00239\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00256}\doxymbox{\hyperlink{tim_8c_a59716af159bfbbb6023b31354fb23af8}{00256}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{tim_8c_a59716af159bfbbb6023b31354fb23af8}{HAL\_TIM\_Base\_MspInit}}(TIM\_HandleTypeDef\ *tim\_baseHandle)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00257}00257\ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00258}00258\ \ \ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM1)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00259}00259\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00260}00260\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00261}00261\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00262}00262\ \ \ \ \ \_\_HAL\_RCC\_TIM1\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00263}00263\ \ \ \ \ HAL\_NVIC\_SetPriority(TIM1\_BRK\_TIM15\_IRQn,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00264}00264\ \ \ \ \ HAL\_NVIC\_EnableIRQ(TIM1\_BRK\_TIM15\_IRQn);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00265}00265\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00266}00266\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00267}00267\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00268}00268\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM2)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00269}00269\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00270}00270\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_MspInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00271}00271\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_MspInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00272}00272\ \ \ \ \ \_\_HAL\_RCC\_TIM2\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00273}00273\ \ \ \ \ HAL\_NVIC\_SetPriority(TIM2\_IRQn,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00274}00274\ \ \ \ \ HAL\_NVIC\_EnableIRQ(TIM2\_IRQn);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00275}00275\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_MspInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00276}00276\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_MspInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00277}00277\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00278}00278\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM15)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00279}00279\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00280}00280\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_MspInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00281}00281\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_MspInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00282}00282\ \ \ \ \ \_\_HAL\_RCC\_TIM15\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00283}00283\ \ \ \ \ HAL\_NVIC\_SetPriority(TIM1\_BRK\_TIM15\_IRQn,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00284}00284\ \ \ \ \ HAL\_NVIC\_EnableIRQ(TIM1\_BRK\_TIM15\_IRQn);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00285}00285\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_MspInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00286}00286\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_MspInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00287}00287\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00288}00288\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00309}\doxymbox{\hyperlink{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}{00309}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{tim_8c_a708f19bbc41b292fccf38f2d9796c46a}{HAL\_TIM\_MspPostInit}}(TIM\_HandleTypeDef\ *timHandle)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00310}00310\ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00311}00311\ \ \ GPIO\_InitTypeDef\ GPIO\_InitStruct\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00312}00312\ \ \ \textcolor{keywordflow}{if}\ (timHandle-\/>Instance\ ==\ TIM1)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00313}00313\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00314}00314\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspPostInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00315}00315\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspPostInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00317}00317\ \ \ \ \ \_\_HAL\_RCC\_GPIOB\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00318}00318\ \ \ \ \ \_\_HAL\_RCC\_GPIOA\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00320}00320\ \ \ \ \ \textcolor{comment}{/*\ PB15\ →\ TIM1\_CH3N\ (AF4)\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00321}00321\ \ \ \ \ GPIO\_InitStruct.Pin\ \ \ \ \ \ \ =\ GPIO\_PIN\_15;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00322}00322\ \ \ \ \ GPIO\_InitStruct.Mode\ \ \ \ \ \ =\ GPIO\_MODE\_AF\_PP;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00323}00323\ \ \ \ \ GPIO\_InitStruct.Pull\ \ \ \ \ \ =\ GPIO\_NOPULL;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00324}00324\ \ \ \ \ GPIO\_InitStruct.Speed\ \ \ \ \ =\ GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00325}00325\ \ \ \ \ GPIO\_InitStruct.Alternate\ =\ GPIO\_AF4\_TIM1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00326}00326\ \ \ \ \ HAL\_GPIO\_Init(GPIOB,\ \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00328}00328\ \ \ \ \ \textcolor{comment}{/*\ PA8\string~PA12\ →\ TIM1\_CH1\string~CH3,\ CH1N\string~CH2N\ (AF6)\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00329}00329\ \ \ \ \ GPIO\_InitStruct.Pin\ \ \ \ \ \ \ =\ GPIO\_PIN\_8\ |\ GPIO\_PIN\_9\ |\ GPIO\_PIN\_10}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ GPIO\_PIN\_11\ |\ GPIO\_PIN\_12;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00331}00331\ \ \ \ \ GPIO\_InitStruct.Alternate\ =\ GPIO\_AF6\_TIM1;}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00332}00332\ \ \ \ \ HAL\_GPIO\_Init(GPIOA,\ \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00333}00333\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00334}00334\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspPostInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00335}00335\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspPostInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00336}00336\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00337}00337\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00347}\doxymbox{\hyperlink{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f}{00347}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f}{HAL\_TIM\_Base\_MspDeInit}}(TIM\_HandleTypeDef\ *tim\_baseHandle)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00348}00348\ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00349}00349\ \ \ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM1)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00350}00350\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00351}00351\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00352}00352\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00353}00353\ \ \ \ \ \_\_HAL\_RCC\_TIM1\_CLK\_DISABLE();}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00354}00354\ \ \ \ \ \textcolor{comment}{/*\ TIM1\_BRK\_TIM15\_IRQn은\ TIM15와\ 공유하므로\ 주의하여\ 비활성화\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00355}00355\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM1\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00356}00356\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM1\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00357}00357\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00358}00358\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM2)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00359}00359\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00360}00360\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00361}00361\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00362}00362\ \ \ \ \ \_\_HAL\_RCC\_TIM2\_CLK\_DISABLE();}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00363}00363\ \ \ \ \ HAL\_NVIC\_DisableIRQ(TIM2\_IRQn);}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00364}00364\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM2\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00365}00365\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM2\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00366}00366\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00367}00367\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tim\_baseHandle-\/>Instance\ ==\ TIM15)}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00368}00368\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00369}00369\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00370}00370\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_MspDeInit\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00371}00371\ \ \ \ \ \_\_HAL\_RCC\_TIM15\_CLK\_DISABLE();}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00372}00372\ \ \ \ \ \textcolor{comment}{/*\ TIM1\_BRK\_TIM15\_IRQn은\ TIM1과\ 공유하므로\ 주의하여\ 비활성화\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00373}00373\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ TIM15\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00374}00374\ \ \ \ \ \textcolor{comment}{/*\ USER\ CODE\ END\ TIM15\_MspDeInit\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00375}00375\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00376}00376\ \}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00378}00378\ \textcolor{comment}{/*\ USER\ CODE\ BEGIN\ 1\ */}}
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00379}00379\ }
+\DoxyCodeLine{\Hypertarget{tim_8c_source_l00380}00380\ \textcolor{comment}{/*\ USER\ CODE\ END\ 1\ */}}
+
+\end{DoxyCode}

@@ -1,0 +1,207 @@
+\doxysection{speed\+\_\+observer.\+c}
+\hypertarget{speed__observer_8c_source}{}\label{speed__observer_8c_source}\index{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/speed\_observer.c@{C:/Users/USER/OneDrive/Desktop/doxygen/RC\_DRIVER/speed\_observer.c}}
+\doxymbox{\hyperlink{speed__observer_8c}{이 파일의 문서화 페이지로 가기}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}speed\_observer.h"{}}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}math.h"{}}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}variable.h"{}}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00032}\doxymbox{\hyperlink{speed__observer_8c_aaac3af89e1dd9944b6bccef174d4250b}{00032}}\ \textcolor{keyword}{struct\ }EXT\_Sensorless\ \doxymbox{\hyperlink{speed__observer_8c_aaac3af89e1dd9944b6bccef174d4250b}{EXT\_1}};\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00034}00034\ \textcolor{comment}{/*\ ======================================================================}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00035}00035\ \textcolor{comment}{\ *\ 속도\ 옵저버\ 초기화\ 및\ 실행}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00036}00036\ \textcolor{comment}{\ *\ ======================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00059}\doxymbox{\hyperlink{speed__observer_8c_a69c4e8e965006dc08a941b3778962d4a}{00059}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{speed__observer_8c_a69c4e8e965006dc08a941b3778962d4a}{InitSpeedObserver\_}}(\textcolor{keyword}{struct}\ SPEED\_OBSERVER\ *SPDOBS,}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Beta,\ \textcolor{keywordtype}{float}\ PP,}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Ld,\ \textcolor{keywordtype}{float}\ Lq,\ \textcolor{keywordtype}{float}\ Lamf,}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Jm,\ \textcolor{keywordtype}{float}\ Bm)}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00063}00063\ \{}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00064}00064\ \ \ \ \ \textcolor{comment}{/*\ 상태\ 변수\ 초기화\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00065}00065\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00066}00066\ \ \ \ \ SPDOBS-\/>Thetar\_est\ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00067}00067\ \ \ \ \ SPDOBS-\/>Wrm\_est\ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00068}00068\ \ \ \ \ SPDOBS-\/>Wr\_est\ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00069}00069\ \ \ \ \ SPDOBS-\/>Wrm\_est\_fb\ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00071}00071\ \ \ \ \ \textcolor{comment}{/*\ 전동기\ 파라미터\ 저장\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00072}00072\ \ \ \ \ SPDOBS-\/>PP\ \ \ \ \ \ \ \ =\ PP;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00073}00073\ \ \ \ \ SPDOBS-\/>INV\_PP\ \ \ \ =\ 1.f\ /\ PP;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00074}00074\ \ \ \ \ SPDOBS-\/>Ld\_hat\ \ \ \ =\ Ld;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00075}00075\ \ \ \ \ SPDOBS-\/>Lq\_hat\ \ \ \ =\ Lq;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00076}00076\ \ \ \ \ SPDOBS-\/>Lamf\_hat\ \ =\ Lamf;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00077}00077\ \ \ \ \ SPDOBS-\/>Jm\_hat\ \ \ \ =\ Jm;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00078}00078\ \ \ \ \ SPDOBS-\/>Bm\_hat\ \ \ \ =\ Bm;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00079}00079\ \ \ \ \ SPDOBS-\/>INV\_Jm\_hat\ =\ 1.f\ /\ Jm;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00081}00081\ \ \ \ \ \textcolor{comment}{/*\ Butterworth\ 극\ 배치\ 게인\ 계산\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00082}00082\ \ \ \ \ SPDOBS-\/>Wso\ =\ -\/Beta;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00083}00083\ \ \ \ \ SPDOBS-\/>l1\ \ =\ -\/2.f\ *\ SPDOBS-\/>Wso\ -\/\ SPDOBS-\/>Bm\_hat\ *\ SPDOBS-\/>INV\_Jm\_hat;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00084}00084\ \ \ \ \ SPDOBS-\/>l2\ \ =\ \ 2.f\ *\ SPDOBS-\/>Wso\ *\ SPDOBS-\/>Wso\ -\/\ SPDOBS-\/>l1\ *\ SPDOBS-\/>Bm\_hat\ *\ SPDOBS-\/>INV\_Jm\_hat;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00085}00085\ \ \ \ \ SPDOBS-\/>l3\ \ =\ \ SPDOBS-\/>Wso\ *\ SPDOBS-\/>Wso\ *\ SPDOBS-\/>Wso\ *\ SPDOBS-\/>Jm\_hat;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00087}00087\ \ \ \ \ SPDOBS-\/>K1\ =\ \ SPDOBS-\/>l1;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00088}00088\ \ \ \ \ SPDOBS-\/>K2\ =\ \ SPDOBS-\/>Jm\_hat\ *\ SPDOBS-\/>l2;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00089}00089\ \ \ \ \ SPDOBS-\/>K3\ =\ -\/SPDOBS-\/>l3;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00091}00091\ \ \ \ \ \textcolor{comment}{/*\ 오차\ 및\ 추정\ 토크\ 초기화\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00092}00092\ \ \ \ \ SPDOBS-\/>Thetarm\_err\ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00093}00093\ \ \ \ \ SPDOBS-\/>Wrm\_err\ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00094}00094\ \ \ \ \ SPDOBS-\/>Te\_est\ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00095}00095\ \ \ \ \ SPDOBS-\/>Tl\_est\ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00096}00096\ \ \ \ \ SPDOBS-\/>Te\_ff\ \ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00097}00097\ \ \ \ \ SPDOBS-\/>integ\_double\ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00098}00098\ \ \ \ \ SPDOBS-\/>integ\_Wrm\_est\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00099}00099\ \ \ \ \ SPDOBS-\/>Tload\_est\ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00100}00100\ \}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00121}\doxymbox{\hyperlink{speed__observer_8c_a8f5b08ab903b8aed4b6acc456b12804d}{00121}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{speed__observer_8c_a8f5b08ab903b8aed4b6acc456b12804d}{SpeedObserver\_4\_34}}(\textcolor{keyword}{struct}\ SPEED\_OBSERVER\ *SPDOBS,}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Err\_Thetar,\ \textcolor{keywordtype}{float}\ Idse\_ff,\ \textcolor{keywordtype}{float}\ Iqse\_ff)}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00123}00123\ \{}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00124}00124\ \ \ \ \ SPDOBS-\/>Thetarm\_err\ =\ Err\_Thetar\ *\ SPDOBS-\/>INV\_PP;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00126}00126\ \ \ \ \ SPDOBS-\/>Te\_est\ \ =\ SPDOBS-\/>K2\ *\ SPDOBS-\/>Thetarm\_err;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00127}00127\ \ \ \ \ SPDOBS-\/>Tl\_est\ +=\ SPDOBS-\/>K3\ *\ SPDOBS-\/>Thetarm\_err\ *\ Tsamp;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00128}00128\ \ \ \ \ SPDOBS-\/>Te\_ff\ \ \ =\ 1.5f\ *\ SPDOBS-\/>PP\ *\ (SPDOBS-\/>Lamf\_hat\ *\ Iqse\_ff}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ (SPDOBS-\/>Ld\_hat\ -\/\ SPDOBS-\/>Lq\_hat)\ *\ Idse\_ff\ *\ Iqse\_ff);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00131}00131\ \ \ \ \ SPDOBS-\/>integ\_Wrm\_est\ +=\ (SPDOBS-\/>Te\_est\ +\ SPDOBS-\/>Te\_ff\ +\ SPDOBS-\/>Tl\_est}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ SPDOBS-\/>Bm\_hat\ *\ SPDOBS-\/>Wrm\_est\_fb)\ *\ SPDOBS-\/>INV\_Jm\_hat\ *\ Tsamp;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00133}00133\ \ \ \ \ SPDOBS-\/>Wrm\_est\ \ \ \ =\ SPDOBS-\/>integ\_Wrm\_est;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00134}00134\ \ \ \ \ SPDOBS-\/>Wrm\_est\_fb\ =\ SPDOBS-\/>integ\_Wrm\_est;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00135}00135\ \ \ \ \ SPDOBS-\/>Wr\_est\ \ \ \ \ =\ SPDOBS-\/>Wrm\_est\ *\ SPDOBS-\/>PP;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00137}00137\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ +=\ (SPDOBS-\/>Wrm\_est\ +\ SPDOBS-\/>K1\ *\ SPDOBS-\/>Thetarm\_err)\ *\ Tsamp;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00138}00138\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ \ =\ BOUND\_PI(SPDOBS-\/>Thetarm\_est);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00139}00139\ \ \ \ \ SPDOBS-\/>Thetar\_est\ \ \ =\ BOUND\_PI(SPDOBS-\/>PP\ *\ SPDOBS-\/>Thetarm\_est);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00141}00141\ \ \ \ \ SPDOBS-\/>Tload\_est\ =\ -\/SPDOBS-\/>Tl\_est;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00142}00142\ \}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00160}\doxymbox{\hyperlink{speed__observer_8c_afecd3b4028d587d06f5acc2cb78ec17b}{00160}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{speed__observer_8c_afecd3b4028d587d06f5acc2cb78ec17b}{SpeedObserver\_4\_35}}(\textcolor{keyword}{struct}\ SPEED\_OBSERVER\ *SPDOBS,}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Err\_Thetar,\ \textcolor{keywordtype}{float}\ Idse\_ff,\ \textcolor{keywordtype}{float}\ Iqse\_ff)}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00162}00162\ \{}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00163}00163\ \ \ \ \ SPDOBS-\/>Thetarm\_err\ =\ Err\_Thetar\ *\ SPDOBS-\/>INV\_PP;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00165}00165\ \ \ \ \ SPDOBS-\/>Te\_est\ \ =\ SPDOBS-\/>K2\ *\ SPDOBS-\/>Thetarm\_err;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00166}00166\ \ \ \ \ SPDOBS-\/>Tl\_est\ +=\ SPDOBS-\/>K3\ *\ SPDOBS-\/>Thetarm\_err\ *\ Tsamp;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00167}00167\ \ \ \ \ SPDOBS-\/>Te\_ff\ \ \ =\ 1.5f\ *\ SPDOBS-\/>PP\ *\ (SPDOBS-\/>Lamf\_hat\ *\ Iqse\_ff}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ (SPDOBS-\/>Ld\_hat\ -\/\ SPDOBS-\/>Lq\_hat)\ *\ Idse\_ff\ *\ Iqse\_ff);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00170}00170\ \ \ \ \ SPDOBS-\/>integ\_Wrm\_est\ +=\ (SPDOBS-\/>Te\_est\ +\ SPDOBS-\/>Te\_ff\ +\ SPDOBS-\/>Tl\_est}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ SPDOBS-\/>Bm\_hat\ *\ SPDOBS-\/>Wrm\_est\_fb)\ *\ SPDOBS-\/>INV\_Jm\_hat\ *\ Tsamp;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00172}00172\ \ \ \ \ SPDOBS-\/>Wrm\_est\ \ \ \ =\ SPDOBS-\/>integ\_Wrm\_est\ +\ SPDOBS-\/>K1\ *\ SPDOBS-\/>Thetarm\_err;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00173}00173\ \ \ \ \ SPDOBS-\/>Wrm\_est\_fb\ =\ SPDOBS-\/>integ\_Wrm\_est;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00174}00174\ \ \ \ \ SPDOBS-\/>Wr\_est\ \ \ \ \ =\ SPDOBS-\/>Wrm\_est\ *\ SPDOBS-\/>PP;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00176}00176\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ +=\ SPDOBS-\/>Wrm\_est\ *\ Tsamp;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00177}00177\ \ \ \ \ SPDOBS-\/>Thetarm\_est\ \ =\ BOUND\_PI(SPDOBS-\/>Thetarm\_est);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00178}00178\ \ \ \ \ SPDOBS-\/>Thetar\_est\ \ \ =\ BOUND\_PI(SPDOBS-\/>PP\ *\ SPDOBS-\/>Thetarm\_est);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00180}00180\ \ \ \ \ SPDOBS-\/>Tload\_est\ =\ -\/SPDOBS-\/>Tl\_est;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00181}00181\ \}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00183}00183\ \textcolor{comment}{/*\ ======================================================================}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00184}00184\ \textcolor{comment}{\ *\ 확장\ 역기전력(EEMF)\ 기반\ 센서리스\ 옵저버}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00185}00185\ \textcolor{comment}{\ *\ ======================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00203}\doxymbox{\hyperlink{speed__observer_8c_a7bb91d6ba879e229823d84200e61de2d}{00203}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{speed__observer_8c_a7bb91d6ba879e229823d84200e61de2d}{initExtended\_Sensorless\_Synchronous\_Frame}}(\textcolor{keyword}{struct}\ EXT\_Sensorless\ *EXT,}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Wc,\ \textcolor{keywordtype}{float}\ Rs,\ \textcolor{keywordtype}{float}\ Ld,\ \textcolor{keywordtype}{float}\ Lq)}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00205}00205\ \{}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00206}00206\ \ \ \ \ EXT-\/>Rs\_hat\ \ \ \ \ =\ Rs;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00207}00207\ \ \ \ \ EXT-\/>Ld\_hat\ \ \ \ \ =\ Ld;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00208}00208\ \ \ \ \ EXT-\/>Lq\_hat\ \ \ \ \ =\ Lq;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00209}00209\ \ \ \ \ EXT-\/>INV\_Ld\_hat\ =\ 1.f\ /\ Ld;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00210}00210\ \ \ \ \ EXT-\/>k\_debug\ \ \ \ =\ 1.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00212}00212\ \ \ \ \ EXT-\/>Wec\ \ \ \ \ \ =\ 1.0f\ *\ Wc;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00213}00213\ \ \ \ \ EXT-\/>Kpd\_EXT\ \ =\ EXT-\/>Ld\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00214}00214\ \ \ \ \ EXT-\/>Kid\_EXT\ \ =\ EXT-\/>Rs\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00215}00215\ \ \ \ \ EXT-\/>Kpq\_EXT\ \ =\ EXT-\/>Ld\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00216}00216\ \ \ \ \ EXT-\/>Kiq\_EXT\ \ =\ EXT-\/>Rs\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00218}00218\ \ \ \ \ \textcolor{comment}{/*\ 전압/전류\ 상태\ 변수\ 초기화\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00219}00219\ \ \ \ \ EXT-\/>Vdss\_ref\_EXT\ =\ 0.f;\ EXT-\/>Vqss\_ref\_EXT\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00220}00220\ \ \ \ \ EXT-\/>Vdss\_ref\_old\ =\ 0.f;\ EXT-\/>Vqss\_ref\_old\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00222}00222\ \ \ \ \ EXT-\/>Err\_Thetar\_EXT\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00223}00223\ \ \ \ \ EXT-\/>Wr\_EXT\ \ \ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00224}00224\ \ \ \ \ EXT-\/>Thetar\_EXT\ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00225}00225\ \ \ \ \ EXT-\/>Thetar\_EXT\_old\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00226}00226\ \ \ \ \ EXT-\/>Sin\_Thetar\_EXT\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00227}00227\ \ \ \ \ EXT-\/>Cos\_Thetar\_EXT\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00228}00228\ \ \ \ \ EXT-\/>Wr\_EXT\_f\ \ \ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00230}00230\ \ \ \ \ EXT-\/>Thetarm\_EXT\ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00231}00231\ \ \ \ \ EXT-\/>Thetarm\_EXT\_old\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00232}00232\ \ \ \ \ EXT-\/>Sin\_Thetarm\_EXT\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00233}00233\ \ \ \ \ EXT-\/>Cos\_Thetarm\_EXT\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00235}00235\ \ \ \ \ EXT-\/>Vdse\_ref\_EXT\ =\ 0.f;\ EXT-\/>Vqse\_ref\_EXT\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00236}00236\ \ \ \ \ EXT-\/>Idse\_EXT\ \ \ \ \ =\ 0.f;\ EXT-\/>Iqse\_EXT\ \ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00237}00237\ \ \ \ \ EXT-\/>Err\_Idse\_EXT\ =\ 0.f;\ EXT-\/>Err\_Iqse\_EXT\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00238}00238\ \ \ \ \ EXT-\/>Idse\_EXT\_est\ =\ 0.f;\ EXT-\/>Iqse\_EXT\_est\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00239}00239\ \ \ \ \ EXT-\/>integ\_Idse\_EXT\_est\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00240}00240\ \ \ \ \ EXT-\/>integ\_Iqse\_EXT\_est\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00241}00241\ \ \ \ \ EXT-\/>EEMFd\_est\ \ \ \ =\ 0.f;\ EXT-\/>EEMFq\_est\ \ \ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00242}00242\ \ \ \ \ EXT-\/>Vdse\_FF\_EXT\ \ =\ 0.f;\ EXT-\/>Vqse\_FF\_EXT\ \ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00243}00243\ \}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00268}\doxymbox{\hyperlink{speed__observer_8c_abaa786059f3014de411996ce837e3d61}{00268}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{speed__observer_8c_abaa786059f3014de411996ce837e3d61}{EXT\_SS\_Sync}}(\textcolor{keyword}{struct}\ EXT\_Sensorless\ *EXT,}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Vdss,\ \textcolor{keywordtype}{float}\ Vqss,\ \textcolor{keywordtype}{float}\ Idss,\ \textcolor{keywordtype}{float}\ Iqss)}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00270}00270\ \{}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00271}00271\ \ \ \ \ \textcolor{comment}{/*\ 게인\ 갱신\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00272}00272\ \ \ \ \ EXT-\/>Kpd\_EXT\ =\ EXT-\/>Ld\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00273}00273\ \ \ \ \ EXT-\/>Kid\_EXT\ =\ EXT-\/>Rs\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00274}00274\ \ \ \ \ EXT-\/>Kpq\_EXT\ =\ EXT-\/>Ld\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00275}00275\ \ \ \ \ EXT-\/>Kiq\_EXT\ =\ EXT-\/>Rs\_hat\ *\ EXT-\/>Wec;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00277}00277\ \ \ \ \ EXT-\/>Sin\_Thetar\_EXT\ =\ sinf(EXT-\/>Thetar\_EXT);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00278}00278\ \ \ \ \ EXT-\/>Cos\_Thetar\_EXT\ =\ cosf(EXT-\/>Thetar\_EXT);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00280}00280\ \ \ \ \ \textcolor{comment}{/*\ 전압\ 평균\ (1/2\ 스텝\ 지연\ 보상)\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00281}00281\ \ \ \ \ EXT-\/>Vdss\_ref\_EXT\ =\ (EXT-\/>Vdss\_ref\_old\ +\ Vdss)\ *\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00282}00282\ \ \ \ \ EXT-\/>Vqss\_ref\_EXT\ =\ (EXT-\/>Vqss\_ref\_old\ +\ Vqss)\ *\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00283}00283\ \ \ \ \ EXT-\/>Vdss\_ref\_old\ =\ Vdss;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00284}00284\ \ \ \ \ EXT-\/>Vqss\_ref\_old\ =\ Vqss;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00286}00286\ \ \ \ \ \textcolor{comment}{/*\ 정지\ →\ 동기\ 좌표\ 변환\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00287}00287\ \ \ \ \ EXT-\/>Vdse\_ref\_EXT\ =\ EXT-\/>Vdss\_ref\_EXT\ *\ \ EXT-\/>Cos\_Thetar\_EXT\ +\ EXT-\/>Vqss\_ref\_EXT\ *\ EXT-\/>Sin\_Thetar\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00288}00288\ \ \ \ \ EXT-\/>Vqse\_ref\_EXT\ =\ EXT-\/>Vdss\_ref\_EXT\ *\ (-\/EXT-\/>Sin\_Thetar\_EXT)\ +\ EXT-\/>Vqss\_ref\_EXT\ *\ EXT-\/>Cos\_Thetar\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00290}00290\ \ \ \ \ EXT-\/>Idse\_EXT\ =\ Idss\ *\ \ EXT-\/>Cos\_Thetar\_EXT\ +\ Iqss\ *\ EXT-\/>Sin\_Thetar\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00291}00291\ \ \ \ \ EXT-\/>Iqse\_EXT\ =\ Idss\ *\ (-\/EXT-\/>Sin\_Thetar\_EXT)\ +\ Iqss\ *\ EXT-\/>Cos\_Thetar\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00293}00293\ \ \ \ \ \textcolor{comment}{/*\ PI\ 전류\ 관측기\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00294}00294\ \ \ \ \ EXT-\/>Err\_Idse\_EXT\ =\ EXT-\/>Idse\_EXT\ -\/\ EXT-\/>Idse\_EXT\_est;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00295}00295\ \ \ \ \ EXT-\/>Err\_Iqse\_EXT\ =\ EXT-\/>Iqse\_EXT\ -\/\ EXT-\/>Iqse\_EXT\_est;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00297}00297\ \ \ \ \ EXT-\/>integ\_Idse\_EXT\_est\ +=\ Tsamp\ *\ EXT-\/>Kid\_EXT\ *\ EXT-\/>Err\_Idse\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00298}00298\ \ \ \ \ EXT-\/>integ\_Iqse\_EXT\_est\ +=\ Tsamp\ *\ EXT-\/>Kiq\_EXT\ *\ EXT-\/>Err\_Iqse\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00300}00300\ \ \ \ \ \textcolor{comment}{/*\ EEMF\ 추정\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00301}00301\ \ \ \ \ EXT-\/>EEMFd\_est\ =\ -\/(EXT-\/>Err\_Idse\_EXT\ *\ EXT-\/>Kpd\_EXT\ +\ EXT-\/>integ\_Idse\_EXT\_est);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00302}00302\ \ \ \ \ EXT-\/>EEMFq\_est\ =\ -\/(EXT-\/>Err\_Iqse\_EXT\ *\ EXT-\/>Kpq\_EXT\ +\ EXT-\/>integ\_Iqse\_EXT\_est);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00304}00304\ \ \ \ \ \textcolor{comment}{/*\ 피드포워드\ 전압\ (역기전력\ 분리)\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00305}00305\ \ \ \ \ EXT-\/>Vdse\_FF\_EXT\ =\ EXT-\/>Vdse\_ref\_EXT\ +\ EXT-\/>Wr\_EXT\ *\ EXT-\/>Lq\_hat\ *\ EXT-\/>Iqse\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00306}00306\ \ \ \ \ EXT-\/>Vqse\_FF\_EXT\ =\ EXT-\/>Vqse\_ref\_EXT\ -\/\ EXT-\/>Wr\_EXT\ *\ EXT-\/>Lq\_hat\ *\ EXT-\/>Idse\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00308}00308\ \ \ \ \ \textcolor{comment}{/*\ 전류\ 모델\ 적분\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00309}00309\ \ \ \ \ EXT-\/>Idse\_EXT\_est\ +=\ EXT-\/>INV\_Ld\_hat\ *\ Tsamp\ *\ (EXT-\/>Vdse\_FF\_EXT\ -\/\ EXT-\/>EEMFd\_est\ -\/\ EXT-\/>Rs\_hat\ *\ EXT-\/>Idse\_EXT);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00310}00310\ \ \ \ \ EXT-\/>Iqse\_EXT\_est\ +=\ EXT-\/>INV\_Ld\_hat\ *\ Tsamp\ *\ (EXT-\/>Vqse\_FF\_EXT\ -\/\ EXT-\/>EEMFq\_est\ -\/\ EXT-\/>Rs\_hat\ *\ EXT-\/>Iqse\_EXT);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00312}00312\ \ \ \ \ \textcolor{comment}{/*\ EEMFq\ 발산\ 방지\ (분모\ 제한)\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00313}00313\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabs(EXT-\/>EEMFq\_est)\ <\ 1.f)\ \{}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00314}00314\ \ \ \ \ \ \ \ \ EXT-\/>EEMFq\_est\ =\ 1.f;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00315}00315\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00317}00317\ \ \ \ \ \textcolor{comment}{/*\ 위치\ 오차\ 계산:\ θ\_err\ =\ atan2(-\/EEMFd,\ EEMFq)\ */}}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00318}00318\ \ \ \ \ EXT-\/>Err\_Thetar\_EXT\ =\ atan2f(-\/EXT-\/>EEMFd\_est,\ EXT-\/>EEMFq\_est);}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00319}00319\ \ \ \ \ EXT-\/>Thetar\_EXT\_old\ \ =\ EXT-\/>Thetar\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00320}00320\ \ \ \ \ EXT-\/>Thetarm\_EXT\_old\ =\ EXT-\/>Thetarm\_EXT;}
+\DoxyCodeLine{\Hypertarget{speed__observer_8c_source_l00321}00321\ \}}
+
+\end{DoxyCode}

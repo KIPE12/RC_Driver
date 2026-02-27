@@ -1,0 +1,7 @@
+<map id="Vref_GenControl" name="Vref_GenControl">
+<area shape="rect" id="Node000001" title="전압 기준 생성 제어 (전압 피드포워드 방식)" alt="" coords="5,31,123,57"/>
+<area shape="rect" id="Node000002" href="$inv_8c.html#a4b849dca1f135dd860c6f0ce88cc7c13" title="TIM1 CCR 레지스터에 듀티비를 업데이트한다." alt="" coords="171,5,271,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,32,158,28,153,30,124,37"/>
+<area shape="rect" id="Node000003" href="$inv_8c.html#a031511fea69b8fce19a44f86eb1858fe" title="TIM1 PWM 출력을 활성화한다 (3상 상하 암 모두)." alt="" coords="177,56,264,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="123,51,164,60,159,60,123,56"/>
+</map>

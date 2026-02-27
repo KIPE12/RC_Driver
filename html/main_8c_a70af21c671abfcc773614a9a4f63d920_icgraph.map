@@ -1,0 +1,5 @@
+<map id="SystemClock_Config" name="SystemClock_Config">
+<area shape="rect" id="Node000001" title="시스템 클럭 설정" alt="" coords="103,5,248,32"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="애플리케이션 진입점 (메인 함수)" alt="" coords="5,5,55,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,20,55,21,55,16,90,18"/>
+</map>

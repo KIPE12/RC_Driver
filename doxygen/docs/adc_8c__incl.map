@@ -1,0 +1,9 @@
+<map id="Core/Src/adc.c" name="Core/Src/adc.c">
+<area shape="rect" id="Node000001" title="ADC1 초기화 및 전류/전압 측정 처리 모듈" alt="" coords="83,5,192,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,59,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,33,64,73,61,69,116,32"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="82,80,192,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="139,31,140,66,135,63,136,35"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="217,80,266,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="156,30,214,71,208,71,155,35"/>
+</map>

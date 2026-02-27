@@ -1,5 +1,5 @@
 
-<img src="doxygen/image/전력전자학회로고1.png" width="400px"/>
+<img src="doxygen/image/전력전자학회로고1.png" width="200px"/>
 
 # RC_Driver
 

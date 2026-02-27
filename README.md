@@ -1,5 +1,5 @@
 
-![RC_Driver](doxygen/image/전력전자학회1.png)
+![RC_Driver](doxygen/image/전력전자학회로고1.png)
 
 # RC_Driver
 

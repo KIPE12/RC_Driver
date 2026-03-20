@@ -13,5 +13,5 @@ STM32G474 기반 PMSM 인버터 드라이버 펌웨어
 ## 프로젝트 개요
 - MCU: STM32G474RET6
 - 제어: FOC (Field Oriented Control)
-- 센서: Hall 센서 + EEMF 센서리스
+- 센서: Hall 센서 + PLL 속도 추정
 ```

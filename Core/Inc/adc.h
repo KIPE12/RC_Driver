@@ -1,63 +1,63 @@
-/* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    adc.h
-  * @brief   This file contains all the function prototypes for
-  *          the adc.c file
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __ADC_H__
-#define __ADC_H__
+ * @file    Adc.h
+ * @author  lsj50
+ * @date    Aug 26, 2025
+ * @brief   ADC(Analog-to-Digital Converter) 설정 및 데이터 처리를 위한 헤더 파일
+ * @details 인버터의 상전류(Ia, Ib, Ic) 및 직류단 전압(Vdc) 측정을 위한
+ * 스케일 상수를 정의하고, 오프셋 계산을 위한 구조체를 포함합니다.
+ */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef INC_ADC_H_
+#define INC_ADC_H_
 
-/* Includes ------------------------------------------------------------------*/
-#include "main.h"
+/** @brief ADC1에서 사용하는 채널의 총 개수 */
+#define ADC1_CHANNEL_NUM		4	//ADC 개수와 동일하게 설정
+/** @brief ADC2에서 전류 센싱에 사용하는 채널의 개수 */
+#define ADC2_CURRENT_SENSE_NUM  (ADC2_CHANNEL_NUM - 1u)
 
-/* USER CODE BEGIN Includes */
-extern int AdInitFlag;
+/** @brief 외부 오프셋 캘리브레이션 단계 상태 정의 */
+#define ADC_EXTERNAL_OFFSET_CALIBRATION		0u
+/** @brief ADC 원시 값을 실제 물리량(A, V)으로 변환하는 단계 정의 */
+#define ADC_GET_SCALED_VALUE				1u
 
-extern float ADC1_Result[4];
-extern float ADC1_Offset[3];
-extern float adc1Val[4];
+/** * @brief 전류 ADC 스케일링 상수
+ * @details 계산식: 1.0 / 센서감도(0.066V/A) * (기준전압(3.3V) / 분해능(4096))
+ */
+#define SCALE_ADC_CURR			(0.01220703125f)			//1. / 0.066 * (3.3 / 4096)
 
-void AdcProcess();
-void Offset();
+/** * @brief 직류단 전압(Vdc) ADC 스케일링 상수
+ * @details 계산식: (기준전압(3.3V) * 분배저항비(6.1)) / 분해능(4096)
+ */
+#define SCALE_ADC_VDC			(0.00491455078125f) 		//(3.3 * 6.1) / 4096.0
 
-void ADC_Injected();
-void Offset_Injected();
+/** @brief 직류단 전압 정밀 측정을 위한 추가 게인 튜닝 변수 */
+#define GAIN_TUNING_ADC_VDC 		(1.0f)
 
-/* USER CODE END Includes */
+/**
+ * @struct sADC1Meas
+ * @brief  ADC1을 통해 측정된 각 상전류의 오프셋 값을 저장하는 구조체
+ */
+typedef struct{
 
-extern ADC_HandleTypeDef hadc1;
+	float fADC1Offset;    /**< ADC1 공통 오프셋 (필요 시 사용) */
+	float fIaADC1Offset;  /**< A상 전류 오프셋 측정값 */
+	float fIbADC1Offset;  /**< B상 전류 오프셋 측정값 */
+	float fIcADC1Offset;  /**< C상 전류 오프셋 측정값 */
 
-/* USER CODE BEGIN Private defines */
+}sADC1Meas;
 
-/* USER CODE END Private defines */
+/**
+ * @brief  ADC 관련 주변장치 및 변수를 초기화합니다.
+ * @retval 없음
+ */
+extern void vInitAdc(void);
 
-void MX_ADC1_Init(void);
+/**
+ * @brief  ADC 변환 완료 후 호출되어 데이터를 스케일링하고 오프셋을 제거하는 실시간 처리 함수입니다.
+ * @details 주로 ADC DMA 인터럽트 서비스 루틴 혹은 콜백 함수에서 호출됩니다.
+ * @retval 없음
+ */
+extern void vAdcAction(void);
 
-/* USER CODE BEGIN Prototypes */
 
-/* USER CODE END Prototypes */
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* __ADC_H__ */
-
+#endif /* INC_ADC_H_ */

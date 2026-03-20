@@ -1,0 +1,4 @@
+../Core/Src/CurrentControl.c:35:6:vInitCurrentControl	16	static
+../Core/Src/CurrentControl.c:123:6:vCurrentRef	16	static
+../Core/Src/CurrentControl.c:161:6:vCurrentControl	16	static
+../Core/Src/CurrentControl.c:203:6:vVoltageModulationTIM	24	static

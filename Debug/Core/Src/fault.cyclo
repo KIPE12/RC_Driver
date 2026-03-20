@@ -1,3 +1,4 @@
-../Core/Src/fault.c:17:6:HAL_GPIO_EXTI_Callback	1
-../Core/Src/fault.c:22:6:HardWareFault	1
-../Core/Src/fault.c:40:6:SoftWareFault	2
+../Core/Src/Fault.c:47:6:vFaultEvent	1
+../Core/Src/Fault.c:74:6:vSWFaultOperation	1
+../Core/Src/Fault.c:86:6:vInitFault	1
+../Core/Src/Fault.c:107:6:vClearFault	1

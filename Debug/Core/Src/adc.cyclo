@@ -1,5 +1,4 @@
-../Core/Src/adc.c:58:6:MX_ADC1_Init	8
-../Core/Src/adc.c:170:6:HAL_ADC_MspInit	3
-../Core/Src/adc.c:214:6:HAL_ADC_MspDeInit	2
-../Core/Src/adc.c:304:6:AdcProcess	5
-../Core/Src/adc.c:334:6:Offset	3
+../Core/Src/Adc.c:41:6:vInitAdc	1
+../Core/Src/Adc.c:54:6:vAdcOffsetCalibration	3
+../Core/Src/Adc.c:82:6:vScaleAdcValue	2
+../Core/Src/Adc.c:103:6:vAdcAction	2

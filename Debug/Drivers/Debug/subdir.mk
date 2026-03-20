@@ -1,0 +1,13 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+ELF_SRCS += \
+../Drivers/Debug/KIMM_5Axis_HandDriver(RTBOX).elf \
+../Drivers/Debug/KIMM_BaseCode.elf 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+

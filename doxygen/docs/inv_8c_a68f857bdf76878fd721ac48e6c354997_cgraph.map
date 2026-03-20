@@ -1,7 +1,0 @@
-<map id="CurrentControl" name="CurrentControl">
-<area shape="rect" id="Node000001" title="PI 전류 제어기 (d&#45;q 동기 좌표계)" alt="" coords="5,31,112,57"/>
-<area shape="rect" id="Node000002" href="$inv_8c.html#a4b849dca1f135dd860c6f0ce88cc7c13" title="TIM1 CCR 레지스터에 듀티비를 업데이트한다." alt="" coords="160,5,260,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,32,147,29,142,31,113,38"/>
-<area shape="rect" id="Node000003" href="$inv_8c.html#a031511fea69b8fce19a44f86eb1858fe" title="TIM1 PWM 출력을 활성화한다 (3상 상하 암 모두)." alt="" coords="166,56,254,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="112,50,153,59,148,60,112,56"/>
-</map>

@@ -1,0 +1,4 @@
+../Core/Src/PosControl.c:14:6:vInitPositionControl	16	static
+../Core/Src/PosControl.c:92:6:vPostionLinear	16	static
+../Core/Src/PosControl.c:109:6:vPostionRefGenerator	32	static
+../Core/Src/PosControl.c:268:6:vPositionControl	16	static

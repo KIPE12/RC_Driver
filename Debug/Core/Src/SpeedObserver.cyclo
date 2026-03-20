@@ -1,0 +1,7 @@
+../Core/Src/SpeedObserver.c:55:6:vInitSpeedObserver	1
+../Core/Src/SpeedObserver.c:131:13:vSinCos_Calculation	1
+../Core/Src/SpeedObserver.c:160:6:vSpeedObserver	11
+../Core/Src/SpeedObserver.c:212:9:GetHallSensorState	3
+../Core/Src/SpeedObserver.c:225:7:fGetHallSensorInfo	7
+../Core/Src/SpeedObserver.c:253:6:vAlignHallSensor	16
+../Core/Src/SpeedObserver.c:347:7:fGetEncoderInfo	2

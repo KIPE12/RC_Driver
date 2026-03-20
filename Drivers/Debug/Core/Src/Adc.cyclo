@@ -1,0 +1,4 @@
+../Core/Src/Adc.c:24:6:vInitAdc	1
+../Core/Src/Adc.c:31:6:vAdcOffsetCalibration	3
+../Core/Src/Adc.c:55:6:vScaleAdcValue	1
+../Core/Src/Adc.c:69:6:vAdcAction	2

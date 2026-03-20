@@ -1,0 +1,4 @@
+../Core/Src/CurrentControl.c:35:6:vInitCurrentControl	3
+../Core/Src/CurrentControl.c:123:6:vCurrentRef	5
+../Core/Src/CurrentControl.c:161:6:vCurrentControl	1
+../Core/Src/CurrentControl.c:203:6:vVoltageModulationTIM	15

@@ -5,65 +5,65 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/adc.c \
-../Core/Src/control.c \
-../Core/Src/fault.c \
-../Core/Src/flag.c \
-../Core/Src/gpio.c \
-../Core/Src/inv.c \
+../Core/Src/Adc.c \
+../Core/Src/CurrentControl.c \
+../Core/Src/Fault.c \
+../Core/Src/Filter.c \
+../Core/Src/GlobalVar.c \
+../Core/Src/IntDac.c \
+../Core/Src/MainControl.c \
+../Core/Src/SpeedControl.c \
+../Core/Src/SpeedObserver.c \
 ../Core/Src/main.c \
-../Core/Src/speed_observer.c \
 ../Core/Src/stm32g4xx_hal_msp.c \
 ../Core/Src/stm32g4xx_it.c \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
-../Core/Src/system_stm32g4xx.c \
-../Core/Src/tim.c \
-../Core/Src/variable.c 
+../Core/Src/system_stm32g4xx.c 
 
 OBJS += \
-./Core/Src/adc.o \
-./Core/Src/control.o \
-./Core/Src/fault.o \
-./Core/Src/flag.o \
-./Core/Src/gpio.o \
-./Core/Src/inv.o \
+./Core/Src/Adc.o \
+./Core/Src/CurrentControl.o \
+./Core/Src/Fault.o \
+./Core/Src/Filter.o \
+./Core/Src/GlobalVar.o \
+./Core/Src/IntDac.o \
+./Core/Src/MainControl.o \
+./Core/Src/SpeedControl.o \
+./Core/Src/SpeedObserver.o \
 ./Core/Src/main.o \
-./Core/Src/speed_observer.o \
 ./Core/Src/stm32g4xx_hal_msp.o \
 ./Core/Src/stm32g4xx_it.o \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
-./Core/Src/system_stm32g4xx.o \
-./Core/Src/tim.o \
-./Core/Src/variable.o 
+./Core/Src/system_stm32g4xx.o 
 
 C_DEPS += \
-./Core/Src/adc.d \
-./Core/Src/control.d \
-./Core/Src/fault.d \
-./Core/Src/flag.d \
-./Core/Src/gpio.d \
-./Core/Src/inv.d \
+./Core/Src/Adc.d \
+./Core/Src/CurrentControl.d \
+./Core/Src/Fault.d \
+./Core/Src/Filter.d \
+./Core/Src/GlobalVar.d \
+./Core/Src/IntDac.d \
+./Core/Src/MainControl.d \
+./Core/Src/SpeedControl.d \
+./Core/Src/SpeedObserver.d \
 ./Core/Src/main.d \
-./Core/Src/speed_observer.d \
 ./Core/Src/stm32g4xx_hal_msp.d \
 ./Core/Src/stm32g4xx_it.d \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
-./Core/Src/system_stm32g4xx.d \
-./Core/Src/tim.d \
-./Core/Src/variable.d 
+./Core/Src/system_stm32g4xx.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DARM_MATH_CM4 -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/adc.cyclo ./Core/Src/adc.d ./Core/Src/adc.o ./Core/Src/adc.su ./Core/Src/control.cyclo ./Core/Src/control.d ./Core/Src/control.o ./Core/Src/control.su ./Core/Src/fault.cyclo ./Core/Src/fault.d ./Core/Src/fault.o ./Core/Src/fault.su ./Core/Src/flag.cyclo ./Core/Src/flag.d ./Core/Src/flag.o ./Core/Src/flag.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/inv.cyclo ./Core/Src/inv.d ./Core/Src/inv.o ./Core/Src/inv.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/speed_observer.cyclo ./Core/Src/speed_observer.d ./Core/Src/speed_observer.o ./Core/Src/speed_observer.su ./Core/Src/stm32g4xx_hal_msp.cyclo ./Core/Src/stm32g4xx_hal_msp.d ./Core/Src/stm32g4xx_hal_msp.o ./Core/Src/stm32g4xx_hal_msp.su ./Core/Src/stm32g4xx_it.cyclo ./Core/Src/stm32g4xx_it.d ./Core/Src/stm32g4xx_it.o ./Core/Src/stm32g4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32g4xx.cyclo ./Core/Src/system_stm32g4xx.d ./Core/Src/system_stm32g4xx.o ./Core/Src/system_stm32g4xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su ./Core/Src/variable.cyclo ./Core/Src/variable.d ./Core/Src/variable.o ./Core/Src/variable.su
+	-$(RM) ./Core/Src/Adc.cyclo ./Core/Src/Adc.d ./Core/Src/Adc.o ./Core/Src/Adc.su ./Core/Src/CurrentControl.cyclo ./Core/Src/CurrentControl.d ./Core/Src/CurrentControl.o ./Core/Src/CurrentControl.su ./Core/Src/Fault.cyclo ./Core/Src/Fault.d ./Core/Src/Fault.o ./Core/Src/Fault.su ./Core/Src/Filter.cyclo ./Core/Src/Filter.d ./Core/Src/Filter.o ./Core/Src/Filter.su ./Core/Src/GlobalVar.cyclo ./Core/Src/GlobalVar.d ./Core/Src/GlobalVar.o ./Core/Src/GlobalVar.su ./Core/Src/IntDac.cyclo ./Core/Src/IntDac.d ./Core/Src/IntDac.o ./Core/Src/IntDac.su ./Core/Src/MainControl.cyclo ./Core/Src/MainControl.d ./Core/Src/MainControl.o ./Core/Src/MainControl.su ./Core/Src/SpeedControl.cyclo ./Core/Src/SpeedControl.d ./Core/Src/SpeedControl.o ./Core/Src/SpeedControl.su ./Core/Src/SpeedObserver.cyclo ./Core/Src/SpeedObserver.d ./Core/Src/SpeedObserver.o ./Core/Src/SpeedObserver.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32g4xx_hal_msp.cyclo ./Core/Src/stm32g4xx_hal_msp.d ./Core/Src/stm32g4xx_hal_msp.o ./Core/Src/stm32g4xx_hal_msp.su ./Core/Src/stm32g4xx_it.cyclo ./Core/Src/stm32g4xx_it.d ./Core/Src/stm32g4xx_it.o ./Core/Src/stm32g4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32g4xx.cyclo ./Core/Src/system_stm32g4xx.d ./Core/Src/system_stm32g4xx.o ./Core/Src/system_stm32g4xx.su
 
 .PHONY: clean-Core-2f-Src
 

@@ -1,0 +1,4 @@
+../Core/Src/Adc.c:24:6:vInitAdc	8	static
+../Core/Src/Adc.c:31:6:vAdcOffsetCalibration	4	static
+../Core/Src/Adc.c:55:6:vScaleAdcValue	16	static
+../Core/Src/Adc.c:69:6:vAdcAction	8	static

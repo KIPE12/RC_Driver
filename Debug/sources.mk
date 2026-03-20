@@ -24,5 +24,10 @@ C_DEPS :=
 SUBDIRS := \
 Core/Src \
 Core/Startup \
+Drivers/Debug/Core/Src \
+Drivers/Debug/Core/Startup \
+Drivers/Debug/Drivers/CMSIS/Device/ST/STM32G4xx/Source/Templates \
+Drivers/Debug/Drivers/STM32G4xx_HAL_Driver/Src \
+Drivers/Debug \
 Drivers/STM32G4xx_HAL_Driver/Src \
 

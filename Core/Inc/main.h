@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2026 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -31,12 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "inv.h"
-#include "control.h"
-#include "speed_observer.h"
-#include "fault.h"
-#include "flag.h"
-#include "variable.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -54,6 +49,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -62,10 +59,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define PPR 2000
 #define PWM_EN_Pin GPIO_PIN_13
 #define PWM_EN_GPIO_Port GPIOC
-#define HALL_A_Pin GPIO_PIN_6
-#define HALL_A_GPIO_Port GPIOC
 #define HALL_B_Pin GPIO_PIN_7
 #define HALL_B_GPIO_Port GPIOC
 #define HALL_C_Pin GPIO_PIN_2

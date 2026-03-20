@@ -1,0 +1,10 @@
+../Core/Src/GlobalVar.c:29:6:vSlopeGenerator	24	static
+../Core/Src/GlobalVar.c:40:6:vInintMotorParameter	16	static
+../Core/Src/GlobalVar.c:63:6:vInitController	8	static
+../Core/Src/GlobalVar.c:109:6:vSwitchOnSettingHRTIM	16	static
+../Core/Src/GlobalVar.c:119:6:vSwitchOffSettingHRTIM	16	static
+../Core/Src/GlobalVar.c:125:6:vSwitchOnSettingTIM	16	static
+../Core/Src/GlobalVar.c:133:6:vSwitchOffSettingTIM	16	static
+../Core/Src/GlobalVar.c:143:6:vEnableCycleCounter	4	static
+../Core/Src/GlobalVar.c:156:6:vInitEncoder	16	static
+../Core/Src/GlobalVar.c:163:6:vInitDac	16	static

@@ -1,36 +1,67 @@
 /**
- * @file    system_stm32g4xx.c
- * @brief   CMSIS Cortex-M4 STM32G4xx 시스템 초기화 및 클럭 갱신 모듈
- *
- * 사용자 애플리케이션에서 호출되는 두 개의 함수와 전역 변수를 제공한다.
- *
- * @details 제공 인터페이스:
- * | 심볼                  | 종류     | 역할                                       |
- * |-----------------------|----------|--------------------------------------------|
- * | SystemInit()          | 함수     | 리셋 직후 FPU 및 벡터 테이블 설정         |
- * | SystemCoreClockUpdate()| 함수    | RCC 레지스터로부터 HCLK 주파수 계산 갱신  |
- * | SystemCoreClock       | 변수     | 현재 HCLK 주파수 [Hz] (기본값: HSI=16MHz) |
- *
- * @note SystemInit()은 startup_stm32g4xx.s에서 main() 이전에 자동 호출된다.
- * @note HAL_RCC_ClockConfig() 호출 시 SystemCoreClock이 자동 갱신되므로
- *       이후 SystemCoreClockUpdate() 재호출이 불필요하다.
- *
- * @details 기본 클럭 설정 (리셋 후):
- * | 항목           | 값        |
- * |----------------|-----------|
- * | SYSCLK 소스    | HSI       |
- * | SYSCLK         | 16MHz     |
- * | HCLK           | 16MHz     |
- * | AHB Prescaler  | /1        |
- * | APB1 Prescaler | /1        |
- * | APB2 Prescaler | /1        |
- *
- * @author  MCD Application Team, STMicroelectronics
- * @date    2019
- *
- * @attention
- * Copyright (c) 2019 STMicroelectronics. All rights reserved.
- */
+  ******************************************************************************
+  * @file    system_stm32g4xx.c
+  * @author  MCD Application Team
+  * @brief   CMSIS Cortex-M4 Device Peripheral Access Layer System Source File
+  *
+  *   This file provides two functions and one global variable to be called from
+  *   user application:
+  *      - SystemInit(): This function is called at startup just after reset and
+  *                      before branch to main program. This call is made inside
+  *                      the "startup_stm32g4xx.s" file.
+  *
+  *      - SystemCoreClock variable: Contains the core clock (HCLK), it can be used
+  *                                  by the user application to setup the SysTick
+  *                                  timer or configure other parameters.
+  *
+  *      - SystemCoreClockUpdate(): Updates the variable SystemCoreClock and must
+  *                                 be called whenever the core clock is changed
+  *                                 during program execution.
+  *
+  *   After each device reset the HSI (16 MHz) is used as system clock source.
+  *   Then SystemInit() function is called, in "startup_stm32g4xx.s" file, to
+  *   configure the system clock before to branch to main program.
+  *
+  *   This file configures the system clock as follows:
+  *=============================================================================
+  *-----------------------------------------------------------------------------
+  *        System Clock source                    | HSI
+  *-----------------------------------------------------------------------------
+  *        SYSCLK(Hz)                             | 16000000
+  *-----------------------------------------------------------------------------
+  *        HCLK(Hz)                               | 16000000
+  *-----------------------------------------------------------------------------
+  *        AHB Prescaler                          | 1
+  *-----------------------------------------------------------------------------
+  *        APB1 Prescaler                         | 1
+  *-----------------------------------------------------------------------------
+  *        APB2 Prescaler                         | 1
+  *-----------------------------------------------------------------------------
+  *        PLL_M                                  | 1
+  *-----------------------------------------------------------------------------
+  *        PLL_N                                  | 16
+  *-----------------------------------------------------------------------------
+  *        PLL_P                                  | 7
+  *-----------------------------------------------------------------------------
+  *        PLL_Q                                  | 2
+  *-----------------------------------------------------------------------------
+  *        PLL_R                                  | 2
+  *-----------------------------------------------------------------------------
+  *        Require 48MHz for RNG                  | Disabled
+  *-----------------------------------------------------------------------------
+  *=============================================================================
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2019 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 
 /** @addtogroup CMSIS
   * @{

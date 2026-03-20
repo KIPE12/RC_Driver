@@ -1,5 +1,0 @@
-<map id="Hallsensor_Observer" name="Hallsensor_Observer">
-<area shape="rect" id="Node000001" title="Hall 센서 기반 속도/위치 PLL 옵저버" alt="" coords="5,5,149,32"/>
-<area shape="rect" id="Node000002" href="$inv_8c.html#a158783ba9a4d5687c5fc417acfcc74a4" title="Hall 센서 3개의 상태를 3비트 정수로 변환한다." alt="" coords="197,5,334,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,16,184,19,179,19,149,21"/>
-</map>

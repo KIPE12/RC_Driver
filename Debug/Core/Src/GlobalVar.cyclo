@@ -1,0 +1,9 @@
+../Core/Src/GlobalVar.c:70:6:vSlopeGenerator	3
+../Core/Src/GlobalVar.c:84:6:vInintMotorParameter	1
+../Core/Src/GlobalVar.c:109:6:vInitController	1
+../Core/Src/GlobalVar.c:124:6:vSwitchOnSettingTIM	1
+../Core/Src/GlobalVar.c:140:6:vSwitchOffSettingTIM	1
+../Core/Src/GlobalVar.c:157:6:vBootstrapCharge	5
+../Core/Src/GlobalVar.c:214:6:HAL_TIM_IC_CaptureCallback	3
+../Core/Src/GlobalVar.c:238:6:vEnableCycleCounter	1
+../Core/Src/GlobalVar.c:248:6:vInitEncoder	1

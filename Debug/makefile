@@ -10,6 +10,11 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Drivers/STM32G4xx_HAL_Driver/Src/subdir.mk
+-include Drivers/Debug/Drivers/STM32G4xx_HAL_Driver/Src/subdir.mk
+-include Drivers/Debug/Drivers/CMSIS/Device/ST/STM32G4xx/Source/Templates/subdir.mk
+-include Drivers/Debug/Core/Startup/subdir.mk
+-include Drivers/Debug/Core/Src/subdir.mk
+-include Drivers/Debug/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
@@ -34,34 +39,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := RC_Driver
+BUILD_ARTIFACT_NAME := RC_Driver_Default
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-RC_Driver.elf \
+RC_Driver_Default.elf \
 
 MAP_FILES += \
-RC_Driver.map \
+RC_Driver_Default.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-RC_Driver.list \
+RC_Driver_Default.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: RC_Driver.elf secondary-outputs
+main-build: RC_Driver_Default.elf secondary-outputs
 
 # Tool invocations
-RC_Driver.elf RC_Driver.map: $(OBJS) $(USER_OBJS) C:\Users\USER\OneDrive\Desktop\stm\RC_Driver\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "RC_Driver.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\USER\OneDrive\Desktop\stm\RC_Driver\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RC_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+RC_Driver_Default.elf RC_Driver_Default.map: $(OBJS) $(USER_OBJS) C:\STM32\RC_Driver_Defaultl_VerA\RC_Driver_Default\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "RC_Driver_Default.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\STM32\RC_Driver_Defaultl_VerA\RC_Driver_Default\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RC_Driver_Default.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +75,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-RC_Driver.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "RC_Driver.list"
+RC_Driver_Default.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "RC_Driver_Default.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) RC_Driver.elf RC_Driver.list RC_Driver.map default.size.stdout
+	-$(RM) RC_Driver_Default.elf RC_Driver_Default.list RC_Driver_Default.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

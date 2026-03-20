@@ -1,0 +1,2 @@
+../Core/Src/IntDac.c:38:6:vInitIntDac	56	static
+../Core/Src/IntDac.c:65:6:vIntDacOut	4	static

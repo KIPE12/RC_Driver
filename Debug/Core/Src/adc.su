@@ -1,5 +1,4 @@
-../Core/Src/adc.c:58:6:MX_ADC1_Init	112	static
-../Core/Src/adc.c:170:6:HAL_ADC_MspInit	128	static
-../Core/Src/adc.c:214:6:HAL_ADC_MspDeInit	16	static
-../Core/Src/adc.c:304:6:AdcProcess	16	static
-../Core/Src/adc.c:334:6:Offset	8	static
+../Core/Src/Adc.c:41:6:vInitAdc	8	static
+../Core/Src/Adc.c:54:6:vAdcOffsetCalibration	4	static
+../Core/Src/Adc.c:82:6:vScaleAdcValue	16	static
+../Core/Src/Adc.c:103:6:vAdcAction	8	static

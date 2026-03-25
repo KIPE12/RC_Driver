@@ -125,7 +125,7 @@ void vCurrentRef(sCurrentCtrl* CCtrl, sSpeedCtrl* SCtrl){
 	case CONST_CUR_MODE:
 		CCtrl->fIqsrRefSet = 0.0f;
 		vSlopeGenerator(&CCtrl->fIdsrRef, CCtrl->fIdsrRefSet, 500.0f * fTsamp);
-		vSlopeGenerator(&CCtrl->fIdsrRef, CCtrl->fIqsrRefSet, 500.0f * fTsamp);
+		vSlopeGenerator(&CCtrl->fIqsrRef, CCtrl->fIqsrRefSet, 500.0f * fTsamp);		//Edited 2026-03-25 CCtrl->fIdsrRef -> CCtrl->fIqsrRef
 		break;
 
 	case VECTCONTL_MODE:
